@@ -1,0 +1,137 @@
+/* Font styles appling */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    /* Colors */
+    --body-color: #CEF2C6;
+    --sidebar-color: #40ad26;
+    --primary-color: #31851d;
+    --primary-color-light: #F6F5FF;
+    --text-color: #f0fbee;
+    --border-color: #205613;
+    --active-color: #047508;
+    --hover-color: #04750880;
+
+    /* Transitions */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+}
+
+body{
+    height: 100vh;
+    background: var(--body-color);
+}
+
+/*Side bar styling*/
+.sidebar{
+    position : fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 20px 0px;
+    background: var(--sidebar-color); 
+}
+
+.sidebar li{
+    height: 46px;
+    margin-top: 5px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar li:hover{
+    margin-top: 10px;
+    width:100%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    background : var(--hover-color);
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.sidebar li.active{
+    margin-top: 10px;
+    width:100%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    background : var(--active-color);
+    color: #ffffff;
+    hight: 46px;
+    font-weight: bold;
+}
+
+.sidebar li .icon,
+.sidebar li .text{
+    color: var(--text-color);
+    min-width: 60px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar li a{
+    text-decoration: none;
+    height : 100%;
+    align-items: center;
+    display: flex;
+}
+
+.sidebar .text{
+    font-size: 16px;
+    font-weight: 500;
+    color : var(--text-color)
+}
+
+.sidebar .image{
+    min-width: 50px;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.sidebar header{
+    position: relative;
+    padding: 5px;
+}
+
+.sidebar .image-text img{
+    width : 80px;
+    border-radius : 6px;
+}
+
+.sidebar header .image-text{
+    display: flex;
+    align-items: center;
+}
+
+header .image-text .header-text{
+    display: flex;
+    flex-direction: column;
+}
+
+.header-text .name{
+    font-size: 25 px;
+    font-weight: 800;
+    color: #FFF;
+    margin-left: 15px;
+}
+
+
+.sidebar .menu-bar{
+    height: calc(100% - 50px);
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
