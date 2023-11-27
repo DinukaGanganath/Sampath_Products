@@ -1,8 +1,40 @@
+/* Font styles appling */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    /* Colors */
+    --body-color: #CEF2C6;
+    --sidebar-color: #40ad26;
+    --primary-color: #31851d;
+    --primary-color-light: #F6F5FF;
+    --text-color: #f0fbee;
+    --border-color: #205613;
+    --active-color: #047508;
+    --hover-color: #04750880;
+
+    /* Transitions */
+    --tran-03: all .2s ease;
+    --tran-03: all .3s ease;
+    --tran-04: all .4s ease;
+    --tran-05: all .5s ease;
+}
+
 /* Top Navigation Bar*/
+.content-container{
+    text-align: right;
+}
 
 .topnav {
+    position: static;
     background-color: var(--body-color);
     overflow: hidden;
+    width: 100%;
+    float: right;
+
 }
   
 .topnav a {
@@ -15,8 +47,7 @@
 }
   
 .topnav a:hover {
-    background-color: #37f63d1a;
-    color: #023603;
+    color: var(--sidebar-color);
     font-size: 18px;
     font-weight: bold;
 }
@@ -43,4 +74,30 @@
     height: 25px;
     padding: 5px;
 
+}
+
+.topnav img{
+    border-radius: 50%;
+    width : 40px;
+    border-color: var(--sidebar-color);
+    border-weight: 5px;
+}
+
+.topnav .nav-username{
+    color: var(--sidebar-color);
+    font-size: 25px;
+    font-weight: bold;
+    height : 30px;
+}
+
+.topnav .nav-role{
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+@media (max-width: 767px) {
+    .topnav{
+        display: none;
+    }
 }

@@ -29,14 +29,20 @@ body{
 }
 
 /*Side bar styling*/
+.sidebar-container{
+    position: absolute;
+    height: 100vh;
+}
+
 .sidebar{
-    position : fixed;
+    position : static;
     top: 0;
     left: 0;
-    height: 100%;
+    height: 100vh;
     width: 250px;
     padding: 20px 0px;
     background: var(--sidebar-color); 
+    transition: all .2s ease-in;
 }
 
 .sidebar li{
@@ -48,7 +54,7 @@ body{
 }
 
 .sidebar li:hover{
-    margin-top: 10px;
+    margin-top: 5px;
     width:100%;
     list-style: none;
     display: flex;
@@ -56,6 +62,8 @@ body{
     background : var(--hover-color);
     color: #ffffff;
     font-weight: bold;
+    box-shadow : 0px 3px 8px rgba(0, 0, 0, 25%);
+    transition : all .2 ease-in;
 }
 
 .sidebar li.active{
@@ -68,6 +76,7 @@ body{
     color: #ffffff;
     hight: 46px;
     font-weight: bold;
+    box-shadow : 0px 3px 8px rgba(0, 0, 0, 25%);
 }
 
 .sidebar li .icon,
@@ -78,6 +87,8 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity : 1;
+    transition: all 1.5s ease-out;
 }
 
 .sidebar li a{
@@ -98,6 +109,7 @@ body{
     display: flex;
     align-items: center;
     margin: 5px;
+    margin-right: 15px;
 }
 
 .sidebar header{
@@ -124,7 +136,7 @@ header .image-text .header-text{
     font-size: 25 px;
     font-weight: 800;
     color: #FFF;
-    margin-left: 15px;
+    margin-left: 20px;
 }
 
 
@@ -135,3 +147,59 @@ header .image-text .header-text{
     justify-content: space-between;
 }
 
+.toggle .icon{
+    background-color: var(--sidebar-color);
+    color: white;
+    height: 20px;
+    margin-left: 55px;
+    border-radius: 50%;
+    border-color : var(--sidebar-color);
+    border: 10px;
+    transition: all .2s ease-in;
+    box-shadow : 0px 3px 8px rgba(0, 0, 0, 25%);
+}
+
+.sidebar.hide{
+    width: 90px;
+    marign: 10px;
+    
+}
+
+.sidebar.hide header .header-text{
+    display:none;
+}
+
+.sidebar.hide li .text{
+    opacity:0;
+    transition: all 0.2s ease-out;
+
+}
+
+.sidebar.hide .image-text img{
+    width : 60px;
+    border-radius : 6px;
+}
+
+.sidebar.hide .toggle .icon{
+    background-color: var(--sidebar-color);
+    color: white;
+    height: 20px;
+    margin-left: 5px;
+    border-radius: 50%;
+    border-color : var(--sidebar-color);
+    border: 10px;
+}
+
+
+@media (max-width: 767px) {
+    .sidebar {
+        width: 80vw;
+    }
+
+    .sidebar.active {
+        display: block;
+    }
+
+
+
+}
