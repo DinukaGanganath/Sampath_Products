@@ -9,7 +9,8 @@
 		<link rel="stylesheet" href="fontawesome/css/all.css" />
 		<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
 		<link rel="stylesheet" href="style/sidenavbarstyles.css" />
-		<link rel="stylesheet" href="style/topnavbarstyles.css" />
+		<link rel="stylesheet" href="style/tablestyles.css" />
+		<link rel="stylesheet" href="style/contentstyles.css" />
 		
 		
 	</head>
@@ -92,6 +93,12 @@
 							<div class="bottom-content">
 								<li class="nav-link">
 									<a href="#">
+										<img class="user-image" src="images/myphoto.jpeg" alt="User Image">
+										<p class="text nav-text">Dinuka</p>
+									</a>
+								</li>
+								<li class="nav-link">
+									<a href="#">
 										<i class="fa-solid fa-sign-out icon"></i>
 										<span class="text nav-text">Signout</span>
 									</a>
@@ -99,74 +106,61 @@
 							</div>
 						</div>
 					</div>
+					<div class="pos-f-t mob-view">
+						<div class="collapse" id="navbarToggleExternalContent">
+						  <div class="bg-dark p-4">
+							<h4 class="text-white">Collapsed content</h4>
+							<span class="text-muted">Toggleable via the navbar brand.</span>
+						  </div>
+						</div>
+						<nav class="navbar navbar-dark bg-dark">
+						  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						  </button>
+						</nav>
+					  </div>
 				</div>
 				<div class="content-container">
-					<!--Top Navbar-->
-					<!--div class="topnav">			
-						<a>
-							<img src="images/customers.png" alt="Avatar">
-						</a>
-						<a>
-							<p class="nav-username">Dinuka</p>
-						</a>
-						<a>
-							<form class="form-inline">
-								<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-								<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-							</form>
-
-						</a>	
-					</div-->
-
-					<nav class="navbar justify-content-between topnav">
-						<img src="images/customers.png" alt="Avatar">
-						<p class="nav-username">Dinuka</p>
-						<form class="form-inline">
-						  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-						  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-						</form>
-					</nav>
 
 					<div class="content">
-						<table class="detail_List">
+						<div class="head-title">
+							Admin Dashboard
+						</div>
+						<table class="table table-striped detail-list">
 							<thead>
-								<th>1</th>
-								<th>2</th>
-								<th>3</th>
-								<th>4</th>
+							  <tr>
+								<th scope="col">#</th>
+								<th scope="col">First</th>
+								<th scope="col">Last</th>
+								<th scope="col">Handle</th>
+							  </tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Dinuka</td>
-									<td>Walpola</td>
-									<td>26</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>Kasuni</td>
-									<td>Gampaha</td>
-									<td>20</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>Piyal</td>
-									<td>Colombo</td>
-									<td>30</td>
-								</tr>
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
+							  <tr>
+								<th scope="row">1</th>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td>@mdo</td>
+							  </tr>
+							  <tr>
+								<th scope="row">2</th>
+								<td>Jacob</td>
+								<td>Thornton</td>
+								<td>@fat</td>
+							  </tr>
+							  <tr>
+								<th scope="row">3</th>
+								<td>Larry</td>
+								<td>the Bird</td>
+								<td>@twitter</td>
+							  </tr>
 							</tbody>
-						</table>
+						  </table>
 					</div>
 				</div>
 			</div>
 		</div>
-
+		
 		  
 	</body>
 </html>

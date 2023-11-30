@@ -1,3 +1,25 @@
+// Get the image element
+var imgElement = document.querySelector('.user-img');
+
+// Default image path
+var defaultImagePath = 'images/customers.png';
+
+// Function to load default image
+function loadDefaultImage() {
+    imgElement.src = defaultImagePath;
+}
+
+// Check if the image path exists or load default image
+imgElement.onerror = loadDefaultImage;
+
+// Check if the default image path is invalid or fails to load
+var defaultImage = new Image();
+defaultImage.onerror = loadDefaultImage;
+defaultImage.src = defaultImagePath;
+
+
+
+
 // Menu toggle with chevro button
 function menuToggle(element){
     const menu = document.querySelector('.sidebar');

@@ -1,0 +1,28 @@
+:root{
+    /* Colors */
+    --body-color: #CEF2C6;
+    --sidebar-color: #40ad26;
+    --primary-color: #31851d;
+    --primary-color-light: #F6F5FF;
+    --text-color: #f0fbee;
+    --border-color: #205613;
+    --active-color: #047508;
+    --hover-color: #04750880;
+
+    /* Transitions */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+.content-container{
+    width:100%;
+    flex:1;
+    padding: 30px;
+    padding-top:10px;
+}
+
+.head-title{
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--active-color);
+}
