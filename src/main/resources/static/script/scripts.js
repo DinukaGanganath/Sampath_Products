@@ -1,25 +1,3 @@
-// Get the image element
-var imgElement = document.querySelector('.user-img');
-
-// Default image path
-var defaultImagePath = 'images/customers.png';
-
-// Function to load default image
-function loadDefaultImage() {
-    imgElement.src = defaultImagePath;
-}
-
-// Check if the image path exists or load default image
-imgElement.onerror = loadDefaultImage;
-
-// Check if the default image path is invalid or fails to load
-var defaultImage = new Image();
-defaultImage.onerror = loadDefaultImage;
-defaultImage.src = defaultImagePath;
-
-
-
-
 // Menu toggle with chevro button
 function menuToggle(element){
     const menu = document.querySelector('.sidebar');
@@ -37,14 +15,15 @@ function menuToggle(element){
     }
 }
 
-// Mobile view of side bar toggle
-function mobileToggle(element){
-    const mobile_menu = document.querySelector('.sidebar');
-    console.log(mobile_menu.classList);
+function mobMenuToggle(){
+    const menu = document.querySelector('.sidebar');
 
-    if(mobile_menu.classList.contains('mob_show')){
-        mobile_menu.classList.remove('mob_show');
+    if(menu.classList.contains('mobmenuhide')){
+        menu.classList.remove('mobmenuhide');
+        menu.classList.add('mobmenushow');
     }else{
-        mobile_menu.classList.add('mob_show');
+        menu.classList.remove('mobmenushow');
+        menu.classList.add('mobmenuhide');
     }
 }
+
