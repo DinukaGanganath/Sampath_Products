@@ -5,14 +5,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-public class AdminDashboardController {
+public class TableViewController {
 
-    @RequestMapping(value = "/AdminDashboard")
+    @RequestMapping(value = "/TableView")
     public ModelAndView adminDashboard() {
         ModelAndView adminDashboardView = new ModelAndView();
-        adminDashboardView.setViewName("AdminDashboard.html");
+        adminDashboardView.setViewName("TableView.html");
         return adminDashboardView;
-
     }
 
 }

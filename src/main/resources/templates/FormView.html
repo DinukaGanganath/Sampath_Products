@@ -1,0 +1,213 @@
+<html>
+	<head>
+		<title>Admin Dashboard</title>
+		<script type="text/javascript" src="script/scripts.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="fontawesome/js/all.js"></script>
+
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="fontawesome/css/all.css" />
+		<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
+		<link rel="stylesheet" href="style/sidenavbarstyles.css" />
+		<link rel="stylesheet" href="style/formstyles.css" />
+		<link rel="stylesheet" href="style/contentstyles.css" />
+		
+		
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="column">
+					<div class="mobile-icon">
+						<i class="fa-solid fa-bars mob-icon" onclick="mobMenuToggle()"></i>
+						<div class="part">
+							<img class="mob-image" src="images/logo_white.png" alt="logo"/>
+							<h5 class="name mob-header">Sampath Products</h5>
+						</div>
+					</div>
+				</div>
+				<div class="column">
+					<div class="sidebar show mobmenuhide">
+					<div class="logo-details">
+						<header>
+							<!--Side bar Logo-->
+							<div class="image-text">
+								<!--Image-->
+								<span class="image">
+									<img src="images/logo_white.png" alt="logo"/>
+								</span>
+								<!--image text-->
+								<div class="text header-text">
+									<h5 class="name">Sampath Products</h5>
+								</div>
+								<!--Chevoren mark-->
+								<div class="toggle">
+									<i class="icon fa-solid fa-circle-chevron-left" onclick="menuToggle(this)"></i>
+								</div>
+							</div>
+						</header>
+						<!--Menu items-->
+						<div class="menu-bar">
+							<div class="menu">
+								<ul class="menu-links">
+									<li class="nav-link active">
+										<a href="#">
+											<i class="fa-solid fa-house icon"></i>
+											<span class="text nav-text">Dashboard</span>
+										</a>
+									</li>
+									<li class="nav-link">
+										<a href="#">
+											<i class="fa-solid fa-people-carry-box icon"></i>
+											<span class="text nav-text">Supplier</span>
+										</a>
+									</li>
+									<li class="nav-link">
+										<a href="#">
+											<i class="fa-solid fa-truck-fast icon"></i>
+											<span class="text nav-text">Sales Rep</span>
+										</a>
+									</li>
+									<li class="nav-link">
+										<a href="#">
+											<i class="fa-solid fa-box-archive icon"></i>
+											<span class="text nav-text">Products</span>
+										</a>
+									</li>
+									<li class="nav-link">
+										<a href="#">
+											<i class="fa-solid fa-boxes-stacked icon"></i>
+											<span class="text nav-text">Stores</span>
+										</a>
+									</li>
+									<li class="nav-link">
+										<a href="#">
+											<i class="fa-solid fa-truck-ramp-box icon"></i>
+											<span class="text nav-text">Production</span>
+										</a>
+									</li>
+									<li class="nav-link">
+										<a href="#">
+											<i class="fa-solid fa-sheet-plastic icon"></i>
+											<span class="text nav-text">Quotations</span>
+										</a>
+									</li>
+									<li class="nav-link">
+										<a href="#">
+											<i class="fa-solid fa-users icon"></i>
+											<span class="text nav-text">Customers</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="bottom-content">
+								<li class="nav-link">
+									<a href="#">
+										<img class="user-image" src="images/myphoto.jpeg" alt="User Image">
+										<span class="text nav-text">Dinuka</span>
+									</a>
+								</li>
+								<li class="nav-link">
+									<a href="#">
+										<i class="fa-solid fa-sign-out icon"></i>
+										<span class="text nav-text">Signout</span>
+									</a>
+								</li>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+				
+			  
+				<div class="content-container">
+
+					<div class="content">
+						<div class="head-title">
+							Admin Dashboard
+						</div>
+						<!--header class="form-header">Registration</header-->
+
+						<div class="form-container">
+							<form action="#">
+								<div class="form first">
+									<div class="details personal">
+										<span class="title">Personal Details</span>
+										<div class="fields">
+											<div class="input-field">
+												<label for="full-name">Full Name</label>
+												<input id="full-name" type="text" placeholder="Enter your name" required>
+											</div>
+
+											<div class="input-field">
+												<label for="birthdate">Date of Birth</label>
+												<input id="birthdate" type="date" placeholder="Enter your name" required>
+											</div>
+
+											<div class="input-field">
+												<label for="email">email</label>
+												<input id="email" type="text" placeholder="Enter your name" required>
+											</div>
+
+											<div class="input-field">
+												<label for="full-name">Full Name</label>
+												<input id="full-name" type="text" placeholder="Enter your name" required>
+											</div>
+
+											<div class="input-field">
+												<label for="birthdate">Date of Birth</label>
+												<input id="birthdate" type="date" placeholder="Enter your name" required>
+											</div>
+
+											<div class="input-field">
+												<label for="email">email</label>
+												<input id="email" type="text" placeholder="Enter your name" required>
+											</div>
+										</div>
+										<span class="title">Personal Details</span>
+										<div class="fields">
+											<div class="input-field">
+												<label for="full-name">Full Name</label>
+												<input id="full-name" type="text" placeholder="Enter your name" required>
+											</div>
+
+											<div class="input-field">
+												<label for="birthdate">Date of Birth</label>
+												<input id="birthdate" type="date" placeholder="Enter your name" required>
+											</div>
+
+											<div class="input-field">
+												<label for="email">email</label>
+												<input id="email" type="text" placeholder="Enter your name" required>
+											</div>
+
+											<div class="input-field">
+												<label for="full-name">Full Name</label>
+												<input id="full-name" type="text" placeholder="Enter your name" required>
+											</div>
+
+											<div class="input-field">
+												<label for="birthdate">Date of Birth</label>
+												<input id="birthdate" type="date" placeholder="Enter your name" required>
+											</div>
+
+											<div class="input-field">
+												<label for="email">email</label>
+												<input id="email" type="text" placeholder="Enter your name" required>
+											</div>
+										</div>
+
+										<button class="nextBtn">
+											<span class="btnText">Next</span>
+											<i class="fa-regular fa-hand-point-right"></i>
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	  
+	</body>
+</html>

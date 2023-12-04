@@ -1,0 +1,133 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    /* Colors */
+    --body-color: #CEF2C6;
+    --sidebar-color: #40ad26;
+    --primary-color: #31851d;
+    --primary-color-light: #F6F5FF;
+    --text-color: #f0fbee;
+    --border-color: #205613;
+    --active-color: #047508;
+    --hover-color: #04750880;
+
+    /* Transitions */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+}
+
+body{
+    min-height: 100vh;
+    background: var(--body-color);
+}
+
+.form-container{
+    position: relative;
+    width: 97%;
+    background-color: white;
+    border-radius: 6px;
+    padding: 20px;
+    /* margin-top: 15px; */
+    /* margin-left: 40px; */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    height: 88%;
+    /* align-self: center; */
+    margin: 20px;
+    float: right;
+}
+
+.form-header::before{
+    content: "";
+    border-radius:8px;
+    position:absolute;
+    bottom: -2px;
+    height: 3px;
+    width: 27px;
+    background-color: var(--active-color);
+}
+
+.form-header{
+    position: relative;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--active-color);
+}
+
+.form-container form{
+    position: relative;
+    min-height: 400px;
+}
+
+.title{
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight:500;
+    margin: 6px 0 ;
+    color: var(--sidebar-color);
+}
+
+.fields{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.input-field{
+    display:flex;
+    width:calc(100% / 3 - 15px);
+    flex-direction: column;
+    margin: 4px 0;
+}
+
+.input-field label{
+    font-size: 13px;
+    font-weight: 500;
+    color : #2e2e2e;
+}
+
+.input-field input{
+    outline: none;
+    font-size: 14px;
+    font-weigh: 400;
+    color: #333;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 42px;
+    margin: 8px 0;
+}
+
+.input-field input:is(:focus, :valid){
+    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+}
+
+.input-field input[type="date"]{
+    color: #707070;
+}
+
+.input-field input[type="date"]:valid{
+    color: #333;
+}
+
+form button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    max-width: 200px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: var(--sidebar-color);
+    color: var(--text-color);
+    border-radius: 5px;
+}
+
+
