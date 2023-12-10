@@ -1,7 +1,8 @@
 <html>
 	<head>
 		<title>Admin Dashboard</title>
-		<script type="text/javascript" src="script/scripts.js"></script>
+		<script type="text/javascript" src="script/sidebarscripts.js"></script>
+		<script type="text/javascript" src="script/formscripts.js"></script>
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="fontawesome/js/all.js"></script>
 
@@ -130,77 +131,158 @@
 
 						<div class="form-container">
 							<form action="#">
-								<div class="form first">
+								<div class="formcls first">
 									<div class="details personal">
 										<span class="title">Personal Details</span>
 										<div class="fields">
 											<div class="input-field">
 												<label for="full-name">Full Name</label>
-												<input id="full-name" type="text" placeholder="Enter your name" required>
+												<input id="full-name" type="text" placeholder="Enter your name" >
 											</div>
 
 											<div class="input-field">
 												<label for="birthdate">Date of Birth</label>
-												<input id="birthdate" type="date" placeholder="Enter your name" required>
+												<input id="birthdate" type="date" placeholder="Enter your name" >
 											</div>
 
 											<div class="input-field">
 												<label for="email">email</label>
-												<input id="email" type="text" placeholder="Enter your name" required>
+												<input id="email" type="text" placeholder="Enter your name" >
 											</div>
 
 											<div class="input-field">
-												<label for="full-name">Full Name</label>
-												<input id="full-name" type="text" placeholder="Enter your name" required>
+												<label for="identity">Full Name</label>
+												<input id="identity" type="text" placeholder="Enter your name" >
 											</div>
 
 											<div class="input-field">
-												<label for="birthdate">Date of Birth</label>
-												<input id="birthdate" type="date" placeholder="Enter your name" required>
+												<label for="gender">Date of Birth</label>
+												<input id="gender" type="date" placeholder="Enter your name" >
 											</div>
 
 											<div class="input-field">
-												<label for="email">email</label>
-												<input id="email" type="text" placeholder="Enter your name" required>
+												<label for="home">email</label>
+												<input id="home" type="text" placeholder="Enter your name" >
 											</div>
 										</div>
 										<span class="title">Personal Details</span>
 										<div class="fields">
 											<div class="input-field">
-												<label for="full-name">Full Name</label>
-												<input id="full-name" type="text" placeholder="Enter your name" required>
+												<label for="a">Full Name</label>
+												<input id="a" type="text" placeholder="Enter your name" >
 											</div>
 
 											<div class="input-field">
-												<label for="birthdate">Date of Birth</label>
-												<input id="birthdate" type="date" placeholder="Enter your name" required>
+												<label for="b">Date of Birth</label>
+												<input id="b" type="date" placeholder="Enter your name" >
 											</div>
 
 											<div class="input-field">
-												<label for="email">email</label>
-												<input id="email" type="text" placeholder="Enter your name" required>
+												<label for="e">email</label>
+												<input id="e" type="text" placeholder="Enter your name" >
 											</div>
 
 											<div class="input-field">
-												<label for="full-name">Full Name</label>
-												<input id="full-name" type="text" placeholder="Enter your name" required>
+												<label for="f">Full Name</label>
+												<input id="f" type="text" placeholder="Enter your name">
 											</div>
 
 											<div class="input-field">
-												<label for="birthdate">Date of Birth</label>
-												<input id="birthdate" type="date" placeholder="Enter your name" required>
+												<label for="o">Date of Birth</label>
+												<input id="o" type="date" placeholder="Enter your name">
 											</div>
 
 											<div class="input-field">
-												<label for="email">email</label>
-												<input id="email" type="text" placeholder="Enter your name" required>
+												<label for="z">email</label>
+												<input id="z" type="text" placeholder="Enter your name">
 											</div>
 										</div>
 
-										<button class="nextBtn">
+										<button class="nextBtn" onclick="swapNext()">
 											<span class="btnText">Next</span>
 											<i class="fa-regular fa-hand-point-right"></i>
 										</button>
+									</div>
+								</div>
+
+								<div class="formcls second">
+									<div class="details business">
+										<span class="title">Business Details</span>
+										<div class="fields">
+											<div class="input-field">
+												<label for="p">Full Name</label>
+												<input id="p" type="text" placeholder="Enter your name" >
+											</div>
+
+											<div class="input-field">
+												<label for="q">Date of Birth</label>
+												<input id="q" type="date" placeholder="Enter your name" >
+											</div>
+
+											<div class="input-field">
+												<label for="r">email</label>
+												<input id="r" type="text" placeholder="Enter your name" >
+											</div>
+
+											<div class="input-field">
+												<label for="s">Full Name</label>
+												<input id="s" type="text" placeholder="Enter your name" >
+											</div>
+
+											<div class="input-field">
+												<label for="t">Date of Birth</label>
+												<input id="t" type="date" placeholder="Enter your name" >
+											</div>
+
+											<div class="input-field">
+												<label for="u">email</label>
+												<input id="u" type="text" placeholder="Enter your name" >
+											</div>
+										</div>
+										<span class="title">Personal Details</span>
+										<div class="fields">
+											<div class="input-field">
+												<label for="v">Full Name</label>
+												<input id="v" type="text" placeholder="Enter your name" >
+											</div>
+
+											<div class="input-field">
+												<label for="w">Date of Birth</label>
+												<input id="w" type="date" placeholder="Enter your name" >
+											</div>
+
+											<div class="input-field">
+												<label for="x">email</label>
+												<input id="x" type="text" placeholder="Enter your name" >
+											</div>
+
+											<div class="input-field">
+												<label for="y">Full Name</label>
+												<input id="y" type="text" placeholder="Enter your name" >
+											</div>
+
+											<div class="input-field">
+												<label for="z">Date of Birth</label>
+												<input id="z" type="date" placeholder="Enter your name" >
+											</div>
+
+											<div class="input-field">
+												<label for="alpha">email</label>
+												<input id="alpha" type="text" placeholder="Enter your name" >
+											</div>
+										</div>
+
+										<div class="buttons" onclick="swapBack()">
+											<button class="backBtn">
+												<i class="fa-regular fa-hand-point-left"></i>
+												<span class="btnText">Back</span>
+											</button>
+
+											<button class="nextBtn">
+												<span class="btnText">Next</span>
+												<i class="fa-regular fa-hand-point-right"></i>
+											</button>
+										</div>
 									</div>
 								</div>
 							</form>

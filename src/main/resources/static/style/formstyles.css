@@ -64,6 +64,27 @@ body{
     min-height: 400px;
 }
 
+.form-container form .formcls{
+    position: absolute;
+    background-color: white;
+    transition: 0.3s ease;
+}
+
+.form-container form .formcls.second{
+    opacity: 0;
+    pointer-events: none;
+}
+
+form.secActive .formcls.first{
+    opacity: 0;
+    pointer-events: none;
+}
+
+form.secActive .formcls.second{
+    opacity: 1;
+    pointer-events: auto;
+}
+
 .title{
     display: block;
     margin-bottom: 8px;
@@ -116,7 +137,7 @@ body{
     color: #333;
 }
 
-form button{
+form button, .nextBtn, .backBtn{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -128,6 +149,34 @@ form button{
     background-color: var(--sidebar-color);
     color: var(--text-color);
     border-radius: 5px;
+    cursor: pointer;
 }
 
+form button, 
+form .backBtn{
+    font-size : 14px;
+    font-weight: 400;
+}
 
+form button:hover{
+    background-color: var(--active-color);
+}
+
+form button i,
+form .backBtn i{
+    margin: 0 6px;
+}
+
+form .buttons{
+    display: flex;
+    align-items: center;
+}
+
+form .buttons  button , .nextBtn{
+    margin-top: 20px;
+    margin-right: 14px;
+}
+
+.btnText{
+    margin: 0 10px 0 10px;
+}
