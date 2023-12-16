@@ -67,7 +67,7 @@ body{
 .form-container form .formcls{
     position: absolute;
     background-color: white;
-    transition: 0.3s ease;
+    
 }
 
 .form-container form .formcls.second{
