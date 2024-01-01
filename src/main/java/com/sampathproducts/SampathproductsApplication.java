@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@RestController
+@RestController // to get the servlet mapping by Rest
 public class SampathproductsApplication {
 
 	public static void main(String[] args) {

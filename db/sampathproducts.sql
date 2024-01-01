@@ -1,2 +1,1 @@
-create database sampathproducts;
-show databases;
+SELECT * FROM sampathproducts.material_details;
