@@ -17,7 +17,7 @@ public class MaterialController {
     }
 
     // create mapping ui
-    @RequestMapping(value = "/material")
+    @RequestMapping(value = "/materials")
     public ModelAndView materialUI() {
         ModelAndView viewMaterial = new ModelAndView();
         viewMaterial.setViewName("Material.html");
@@ -25,7 +25,7 @@ public class MaterialController {
     }
 
     // get database values as json data
-    @GetMapping(value = "/material/findall", produces = "application/json")
+    @GetMapping(value = "/materials/findall", produces = "application/json")
     public List<Material> findAll() {
         return dao.findAll();
     }

@@ -1,4 +1,4 @@
-fetch("/material/findall")
+fetch("/materials/findall")
 .then(function(response){
     return response.json();
 })

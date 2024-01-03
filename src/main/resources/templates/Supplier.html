@@ -1,10 +1,11 @@
 <html>
 	<head>
-		<title>Admin Dashboard</title>
+		<title>Supplier Data</title>
 		<script type="text/javascript" src="script/sidebarscripts.js"></script>
 		<script type="text/javascript" src="script/formscripts.js"></script>
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="fontawesome/js/all.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/supplierdata.js"></script>
 
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
 		<link rel="stylesheet" href="fontawesome/css/all.css" />
@@ -88,7 +89,7 @@
 											<span class="text nav-text">Production</span>
 										</a>
 									</li>
-									<li class="nav-link has-submenu">
+									<li class="nav-link">
 										<a href="/quotations">
 											<i class="fa-solid fa-sheet-plastic icon"></i>
 											<span class="text nav-text">Quotations</span>
@@ -132,37 +133,23 @@
 
 					<div class="content">
 						<div class="head-title">
-							Admin Dashboard
+							Supplier Details
 						</div>
 						<div class="table-container">
 							<table class="table table-striped">
 								<thead>
 								<tr>
-									<th scope="col">#</th>
-									<th scope="col">First</th>
-									<th scope="col">Last</th>
-									<th scope="col">Handle</th>
+									<th scope="col">ID</th>
+									<th scope="col">Supplier Name</th>
+									<th scope="col">Supplier Code</th>
+									<th scope="col">Contact No</th>
+									<th scope="col">Email</th>
+									<th scope="col">Business Name</th>
+									<th scope="col">City</th>
 								</tr>
 								</thead>
-								<tbody>
-								<tr>
-									<th scope="row">1</th>
-									<td>Mark</td>
-									<td>Otto</td>
-									<td>@mdo</td>
-								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>Jacob</td>
-									<td>Thornton</td>
-									<td>@fat</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Larry</td>
-									<td>the Bird</td>
-									<td>@twitter</td>
-								</tr>
+								<tbody id="data-output">
+
 								</tbody>
 							</table>
 						</div>
