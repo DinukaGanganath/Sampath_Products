@@ -33,12 +33,12 @@ public class Supplier {
     @NotNull
     private String supplier_code;
 
-    @Column(name = "supplier_address_line_one")
+    @Column(name = "supplier_address_line1")
     @NotNull
-    private String supplier_address_line_one;
+    private String supplier_address_line1;
 
-    @Column(name = "supplier_address_line_two")
-    private String supplier_address_line_two;
+    @Column(name = "supplier_address_line2")
+    private String supplier_address_line2;
 
     @Column(name = "supplier_address_city")
     private String supplier_address_city;
@@ -49,12 +49,12 @@ public class Supplier {
     @Column(name = "supplier_business_name")
     private String supplier_business_name;
 
-    @Column(name = "supplier_contact_no_one")
+    @Column(name = "supplier_contact_no1")
     @NotNull
-    private String supplier_contact_no_one;
+    private String supplier_contact_no1;
 
-    @Column(name = "supplier_contact_no_two")
-    private String supplier_contact_no_two;
+    @Column(name = "supplier_contact_no2")
+    private String supplier_contact_no2;
 
     @Column(name = "supplier_email", unique = true)
     @NotNull
