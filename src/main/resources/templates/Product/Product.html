@@ -1,11 +1,11 @@
 <html>
 	<head>
-		<title>Supplier Data</title>
+		<title>Material Data</title>
 		<script type="text/javascript" src="script/sidebarscripts.js"></script>
 		<script type="text/javascript" src="script/formscripts.js"></script>
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="fontawesome/js/all.js"></script>
-		<script type="text/javascript" src="script/controllerscripts/supplierdata.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/productdata.js"></script>
 
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
 		<link rel="stylesheet" href="fontawesome/css/all.css" />
@@ -59,7 +59,7 @@
 											<span class="text nav-text">Dashboard</span>
 										</a>
 									</li>
-									<li class="nav-link active">
+									<li class="nav-link">
 										<a href="/supplier">
 											<i class="fa-solid fa-people-carry-box icon"></i>
 											<span class="text nav-text">Supplier</span>
@@ -71,7 +71,7 @@
 											<span class="text nav-text">Sales Rep</span>
 										</a>
 									</li>
-									<li class="nav-link">
+									<li class="nav-link active">
 										<a href="/products">
 											<i class="fa-solid fa-box-archive icon"></i>
 											<span class="text nav-text">Products</span>
@@ -133,19 +133,18 @@
 
 					<div class="content">
 						<div class="head-title">
-							Supplier Details
+							Product Details
 						</div>
 						<div class="table-container">
+							<button class="addBtn" onclick="">Add</button>
 							<table class="table table-striped">
 								<thead>
 								<tr>
 									<th scope="col">ID</th>
-									<th scope="col">Supplier Name</th>
-									<th scope="col">Supplier Code</th>
-									<th scope="col">Contact No</th>
-									<th scope="col">Email</th>
-									<th scope="col">Business Name</th>
-									<th scope="col">City</th>
+									<th scope="col">Material Name</th>
+									<th scope="col">Quantity</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Usable months</th>
 								</tr>
 								</thead>
 								<tbody id="data-output">

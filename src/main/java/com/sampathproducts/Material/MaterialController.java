@@ -20,8 +20,15 @@ public class MaterialController {
     @RequestMapping(value = "/materials")
     public ModelAndView materialUI() {
         ModelAndView viewMaterial = new ModelAndView();
-        viewMaterial.setViewName("Material.html");
+        viewMaterial.setViewName("Material/Material.html");
         return viewMaterial;
+    }
+
+    @RequestMapping(value = "/materialadd")
+    public ModelAndView materialAddUI() {
+        ModelAndView viewMaterialAdd = new ModelAndView();
+        viewMaterialAdd.setViewName("Material/MaterialAdd.html");
+        return viewMaterialAdd;
     }
 
     // get database values as json data

@@ -20,7 +20,7 @@ public class SupplierController {
     @RequestMapping(value = "/supplier")
     public ModelAndView supplierUI() {
         ModelAndView viewSupplier = new ModelAndView();
-        viewSupplier.setViewName("Supplier.html");
+        viewSupplier.setViewName("Supplier/Supplier.html");
         return viewSupplier;
     }
 

@@ -20,7 +20,7 @@ public class ProductController {
     @RequestMapping(value = "/products")
     public ModelAndView materialUI() {
         ModelAndView viewMaterial = new ModelAndView();
-        viewMaterial.setViewName("Product.html");
+        viewMaterial.setViewName("Product/Product.html");
         return viewMaterial;
     }
 

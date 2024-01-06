@@ -59,6 +59,46 @@ thead th{
     float: right;
 }
 
+.addBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    width: auto;
+    border: none;
+    outline: none;
+    background-color: var(--sidebar-color);
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+    float: right;
+    margin-bottom: 10px;
+}
+
+.addBtn:hover{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    width: auto;
+    border: none;
+    outline: none;
+    background-color: var(--active-color);
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+    float: right;
+    margin-bottom: 10px;
+}
+
+.addBtn a{
+    text-decoration: none;
+    height : 100%;
+    align-items: center;
+    display: flex;
+    color: var(--text-color);
+}
+
 @media (max-width: 767px){
     thead{
         display: none;

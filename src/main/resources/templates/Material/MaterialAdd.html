@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Material Data</title>
+		<title>Material Add</title>
 		<script type="text/javascript" src="script/sidebarscripts.js"></script>
 		<script type="text/javascript" src="script/formscripts.js"></script>
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
@@ -11,11 +11,10 @@
 		<link rel="stylesheet" href="fontawesome/css/all.css" />
 		<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
 		<link rel="stylesheet" href="style/sidenavbarstyles.css" />
-		<link rel="stylesheet" href="style/tablestyles.css" />
+		<link rel="stylesheet" href="style/formstyles.css" />
 		<link rel="stylesheet" href="style/contentstyles.css" />
 		<link rel="icon" href="images/logo_white.png">
-		
-		
+
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -101,7 +100,7 @@
 											<span class="text nav-text">Customers</span>
 										</a>
 									</li>
-									<li class="nav-link active">
+									<li class="nav-link  active">
 										<a href="/materials">
 											<i class="fa-solid fa-bread-slice icon"></i>
 											<span class="text nav-text">Materials</span>
@@ -133,27 +132,33 @@
 
 					<div class="content">
 						<div class="head-title">
-							Material Details
+							Material Add
 						</div>
-						<div class="table-container">
-							<table class="table table-striped">
-								<thead>
-								<tr>
-									<th scope="col">ID</th>
-									<th scope="col">Material Name</th>
-									<th scope="col">Material Code</th>
-								</tr>
-								</thead>
-								<tbody id="data-output">
+						<!--header class="form-header">Registration</header-->
 
-								</tbody>
-							</table>
+						<div class="form-container">
+							<div class="add-container">
+								<h2>Material Information</h2>
+								<form id="materialForm">
+								  <div class="form-group">
+									<label for="materialCode">Material Code</label>
+									<input type="text" id="materialCode" name="materialCode" required>
+								  </div>
+								  <div class="form-group">
+									<label for="materialID">Material ID</label>
+									<input type="text" id="materialID" name="materialID" required>
+								  </div>
+								  <div class="form-group">
+									<label for="materialName">Material Name</label>
+									<input type="text" id="materialName" name="materialName" required>
+								  </div>
+								  <button type="submit">Submit</button>
+								</form>
+							  </div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		  
 	</body>
 </html>

@@ -27,6 +27,25 @@ body{
     background: var(--body-color);
 }
 
+.add-container {
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  input[type="text"] {
+    width: calc(100% - 12px);
+    padding: 5px;
+  }
+
 .form-container{
     position: relative;
     width: 97%;
@@ -84,6 +103,10 @@ form.secActive .formcls.first{
 form.secActive .formcls.second{
     opacity: 1;
     pointer-events: auto;
+}
+
+.popup-container{
+    background-color: red;
 }
 
 .title{
@@ -181,3 +204,4 @@ form .buttons  button , .nextBtn{
 .btnText{
     margin: 0 10px 0 10px;
 }
+
