@@ -27,24 +27,24 @@ body{
     background: var(--body-color);
 }
 
-.add-container {
-    width: 80%;
-    margin: 0 auto;
-    border: 1px solid #ccc;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  .form-group {
+.form-group {
     margin-bottom: 15px;
-  }
-  label {
-    display: block;
-    font-weight: bold;
-  }
-  input[type="text"] {
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color : #2e2e2e;
+}
+
+.form-group input[type="text"] {
     width: calc(100% - 12px);
     padding: 5px;
-  }
+}
+
+.form-group input:is(:focus, :valid){
+    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+}
 
 .form-container{
     position: relative;
@@ -59,6 +59,7 @@ body{
     /* align-self: center; */
     margin: 20px;
     float: right;
+    
 }
 
 .form-header::before{
@@ -80,13 +81,14 @@ body{
 
 .form-container form{
     position: relative;
-    min-height: 400px;
+    min-height: auto;
     width: 90%
 }
 
 .form-container form .formcls{
     position: absolute;
     background-color: white;
+    width: 100%;
     
 }
 
@@ -103,10 +105,6 @@ form.secActive .formcls.first{
 form.secActive .formcls.second{
     opacity: 1;
     pointer-events: auto;
-}
-
-.popup-container{
-    background-color: red;
 }
 
 .title{
@@ -127,7 +125,7 @@ form.secActive .formcls.second{
 
 .input-field{
     display:flex;
-    width:calc(100% / 3 - 15px);
+    width:calc(100% / 4 - 15px);
     flex-direction: column;
     margin: 4px 0;
 }
@@ -138,7 +136,7 @@ form.secActive .formcls.second{
     color : #2e2e2e;
 }
 
-.input-field input{
+.input-field input, .input-field select{
     outline: none;
     font-size: 14px;
     font-weigh: 400;

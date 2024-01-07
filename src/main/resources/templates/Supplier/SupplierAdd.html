@@ -1,13 +1,11 @@
 <html>
 
 <head>
-	<title>Material Add</title>
+	<title>Add Supplier</title>
 	<script type="text/javascript" src="script/sidebarscripts.js"></script>
 	<script type="text/javascript" src="script/formscripts.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="fontawesome/js/all.js"></script>
-	<script type="text/javascript" src="script/controllerscripts/materialdata.js"></script>
-	<script type="text/javascript" src="script/validationscripts/validation.js"></script>
 
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
 	<link rel="stylesheet" href="fontawesome/css/all.css" />
@@ -15,8 +13,8 @@
 	<link rel="stylesheet" href="style/sidenavbarstyles.css" />
 	<link rel="stylesheet" href="style/formstyles.css" />
 	<link rel="stylesheet" href="style/contentstyles.css" />
-
 	<link rel="icon" href="images/logo_white.png">
+
 
 </head>
 
@@ -56,7 +54,7 @@
 						<div class="menu-bar">
 							<div class="menu">
 								<ul class="menu-links">
-									<li class="nav-link">
+									<li class="nav-link active">
 										<a href="/home">
 											<i class="fa-solid fa-house icon"></i>
 											<span class="text nav-text">Dashboard</span>
@@ -104,7 +102,7 @@
 											<span class="text nav-text">Customers</span>
 										</a>
 									</li>
-									<li class="nav-link  active">
+									<li class="nav-link">
 										<a href="/materials">
 											<i class="fa-solid fa-bread-slice icon"></i>
 											<span class="text nav-text">Materials</span>
@@ -136,28 +134,123 @@
 
 				<div class="content">
 					<div class="head-title">
-						Material Add
+						Add Supplier
 					</div>
 					<!--header class="form-header">Registration</header-->
 
 					<div class="form-container">
-						<div class="form-group">
-							<label for="materialID">Material ID</label>
-							<input type="text" id="materialID" name="materialID" required>
-						</div>
-						<form id="materialForm">
-							<div class="form-group">
-								<label for="materialCode">Material Code</label>
-								<input type="text" id="materialCode" name="materialCode" required>
+						<form action="#" class="">
+							<div class="formcls">
+								<div class="details personal">
+									<span class="title">General Details</span>
+									<div class="fields">
+										<div class="input-field">
+											<label for="supplierId">ID</label>
+											<input id="supplierId" type="text">
+										</div>
+
+										<div class="input-field">
+											<label for="supplierCode">Supplier Code</label>
+											<input id="supplierCode" type="text">
+										</div>
+
+										<div class="input-field">
+											<label for="supplierName">Full Name</label>
+											<input id="supplierName" type="text" placeholder="Enter your name" required>
+										</div>
+
+										<div class="input-field">
+											<label for="supplierNIC">National Identity Card</label>
+											<input id="supplierNIC" type="text" placeholder="NIC ends with V,X or 12 characters" required>
+										</div>
+									</div>
+								</div>
+
+								<div class="details personal">
+									<span class="title">Address Details</span>
+									<div class="fields">
+										<div class="input-field">
+											<label for="supplierAddressOne">Line 1</label>
+											<input id="supplierAddressOne" type="text" placeholder="No.xxx, <street no.>" required>
+										</div>
+
+										<div class="input-field">
+											<label for="supplierAddressTwo">Line 2 - Area</label>
+											<select id="supplierAddressTwo" placeholder="select From the list" required>
+											</select>
+										</div>
+
+										<div class="input-field">
+											<label for="supplierCity">City</label>
+											<input id="supplierCity" type="text" placeholder="postal city">
+										</div>
+
+										<div class="input-field">
+											<label for="supplierPostalCode">Postal code</label>
+											<input id="supplierPostalCode" type="text">
+										</div>
+									</div>
+								</div>
+
+								<div class="details personal">
+									<span class="title">Contact Details</span>
+									<div class="fields">
+										<div class="input-field">
+											<label for="supplierLandPhone">Land phone</label>
+											<input id="supplierLandPhone" type="text" placeholder="starts with 0">
+										</div>
+
+										<div class="input-field">
+											<label for="supplierMobileOne">Mobile No 1</label>
+											<input id="supplierMobileOne" type="text" placeholder="starts with 0" required>
+										</div>
+
+										<div class="input-field">
+											<label for="supplierMobiletwo">Mobile No 2</label>
+											<input id="supplierMobileTwo" type="date" placeholder="starts with 0">
+										</div>
+
+										<div class="input-field">
+											<label for="supplierEmail">Email</label>
+											<input id="supplierEmail" type="text" required>
+										</div>
+									</div>
+								</div>
+
+								<div class="details personal">
+									<span class="title">Business Details</span>
+									<div class="fields">
+										<div class="input-field">
+											<label for="supplierBusinessName">Name of Business</label>
+											<input id="supplierBusinessName" type="date" placeholder="Full business name">
+										</div>
+
+										<div class="input-field">
+											<label for="supplierRegistration">Business Registration No</label>
+											<input id="supplierRegistration" type="text" placeholder="As the certificate">
+										</div>
+
+										<div class="input-field">
+											<label for="supplierBusinessType">Business Type</label>
+											<select id="supplierBusinessType" type="date">
+											</select>
+										</div>
+
+										<div class="input-field">
+											<label for="supplierMaterial">Material Supplied</label>
+											<select id="supplierMaterial" type="text" >
+											</select>
+										</div>
+									</div>
+
+									<button class="nextBtn" onclick="swapNext()">
+										<span class="btnText">Next</span>
+										<i class="fa-regular fa-hand-point-right"></i>
+									</button>
+								</div>
 							</div>
-							<div class="form-group">
-								<label for="materialName">Material Name</label>
-								<input type="text" id="materialName" name="materialName" required>
-							</div>
-							<button type="addMaterial">Submit</button>
 						</form>
 					</div>
-
 				</div>
 			</div>
 		</div>
