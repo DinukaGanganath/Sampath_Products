@@ -143,8 +143,22 @@ form.secActive .formcls.second{
     color: #333;
     border: 1px solid #aaa;
     padding: 0 15px;
-    height: 42px;
+    height: 30px;
     margin: 8px 0;
+}
+
+.input-field label.validMessage{
+    color:red;
+    font-size: 10px;
+}
+
+
+.input-field input.valid{
+    border-bottom: 2px solid #00ff00;
+}
+
+.input-field input.invalid{
+    border-bottom: 2px solid #ff0000;
 }
 
 .input-field input:is(:focus, :valid){
