@@ -2,10 +2,6 @@
 
 <head>
 	<title>Add Supplier</title>
-	<script type="text/javascript" src="script/sidebarscripts.js"></script>
-	<script type="text/javascript" src="script/formscripts.js"></script>
-	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="fontawesome/js/all.js"></script>
 
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
 	<link rel="stylesheet" href="fontawesome/css/all.css" />
@@ -13,6 +9,13 @@
 	<link rel="stylesheet" href="style/sidenavbarstyles.css" />
 	<link rel="stylesheet" href="style/formstyles.css" />
 	<link rel="stylesheet" href="style/contentstyles.css" />
+
+	<script type="text/javascript" src="script/sidebarscripts.js"></script>
+	<script type="text/javascript" src="script/formscripts.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="fontawesome/js/all.js"></script>
+	<script type="text/javascript" src="script/validationscripts/validation.js"></script>
+
 	<link rel="icon" href="images/logo_white.png">
 
 
@@ -147,21 +150,25 @@
 										<div class="input-field">
 											<label for="supplierId">ID</label>
 											<input id="supplierId" type="text">
+											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierCode">Supplier Code</label>
 											<input id="supplierCode" type="text">
+											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierName">Full Name</label>
-											<input id="supplierName" type="text" placeholder="Enter your name" required>
+											<input id="supplierName" class="valFullName" type="text" placeholder="Enter your name" required>
+											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierNIC">National Identity Card</label>
-											<input id="supplierNIC" type="text" placeholder="NIC ends with V,X or 12 characters" required>
+											<input id="supplierNIC" type="text" class="valIdentity" placeholder="NIC ends with V,X or 12 characters" required>
+											<label class="validMessage"></label>
 										</div>
 									</div>
 								</div>
@@ -171,23 +178,27 @@
 									<div class="fields">
 										<div class="input-field">
 											<label for="supplierAddressOne">Line 1</label>
-											<input id="supplierAddressOne" type="text" placeholder="No.xxx, <street no.>" required>
+											<input id="supplierAddressOne" type="text" placeholder="No.xxx, street no." required>
+											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierAddressTwo">Line 2 - Area</label>
 											<select id="supplierAddressTwo" placeholder="select From the list" required>
+											<label class="validMessage"></label>
 											</select>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierCity">City</label>
 											<input id="supplierCity" type="text" placeholder="postal city">
+											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierPostalCode">Postal code</label>
 											<input id="supplierPostalCode" type="text">
+											<label class="validMessage"></label>
 										</div>
 									</div>
 								</div>
@@ -197,22 +208,26 @@
 									<div class="fields">
 										<div class="input-field">
 											<label for="supplierLandPhone">Land phone</label>
-											<input id="supplierLandPhone" type="text" placeholder="starts with 0">
+											<input id="supplierLandPhone" class="valTelephone" type="text" placeholder="starts with 0">
+											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierMobileOne">Mobile No 1</label>
-											<input id="supplierMobileOne" type="text" placeholder="starts with 0" required>
+											<input id="supplierMobileOne" class="valTelephone" type="text" placeholder="starts with 0" required>
+											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="supplierMobiletwo">Mobile No 2</label>
-											<input id="supplierMobileTwo" type="date" placeholder="starts with 0">
+											<label for="supplierMobileTwo">Mobile No 2</label>
+											<input id="supplierMobileTwo" class="valTelephone" type="text" placeholder="starts with 0">
+											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierEmail">Email</label>
 											<input id="supplierEmail" type="text" required>
+											<label class="validMessage"></label>
 										</div>
 									</div>
 								</div>
@@ -223,23 +238,28 @@
 										<div class="input-field">
 											<label for="supplierBusinessName">Name of Business</label>
 											<input id="supplierBusinessName" type="date" placeholder="Full business name">
+											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierRegistration">Business Registration No</label>
 											<input id="supplierRegistration" type="text" placeholder="As the certificate">
+											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierBusinessType">Business Type</label>
 											<select id="supplierBusinessType" type="date">
+
 											</select>
+											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierMaterial">Material Supplied</label>
 											<select id="supplierMaterial" type="text" >
 											</select>
+											<label class="validMessage"></label>
 										</div>
 									</div>
 
