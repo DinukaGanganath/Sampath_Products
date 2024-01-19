@@ -152,6 +152,10 @@ form.secActive .formcls.second{
     font-size: 10px;
 }
 
+.input-field label span.reqMark{
+    color: red;
+}
+
 
 .input-field input.valid{
     border-bottom: 2px solid #00ff00;
@@ -216,4 +220,6 @@ form .buttons  button , .nextBtn{
 .btnText{
     margin: 0 10px 0 10px;
 }
+
+
 

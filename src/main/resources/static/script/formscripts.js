@@ -1,19 +1,18 @@
-function swapNext(){
-    const form = document.querySelector("form");
-    form.classList.add('secActive');
-    /*const allInput = form.querySelector(".first input");
-    alert("working");
-
-    allInput.forEach(input => {
-        if(input.value != ""){
-            form.classList.add('secActive');
-        }else{
-            form.classList.remove('secActive');
+function setOptions(url, ele, eleVal){
+    fetch(url)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(areas){
+        let options = document.querySelector(ele);
+        let out = "";
+        for(let area of areas){
+            out += `
+                <option>
+                    ${area[eleVal]}
+                </option>
+            `;
         }
-    })*/
-}
-
-function swapBack(){
-    const form = document.querySelector("form");
-    form.classList.remove('secActive');
+        options.innerHTML = out;
+    })
 }

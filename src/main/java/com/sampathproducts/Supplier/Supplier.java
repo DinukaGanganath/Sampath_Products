@@ -5,12 +5,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
+
+import com.sampathproducts.Area.Area;
+import com.sampathproducts.BusinessTypes.Types;
 
 @Entity // convert to the Entity class
 @Table(name = "supplier_details") // map with supplier_details table
@@ -69,4 +74,11 @@ public class Supplier {
     @Column(name = "deleted_date_time")
     private LocalDateTime deleted_date_time;
 
+    @OneToOne
+    @JoinColumn(name = "supplier_area_id", referencedColumnName = "area_id")
+    private Area supplier_area_id;
+
+    @OneToOne
+    @JoinColumn(name = "supplier_business_type", referencedColumnName = "type_id")
+    private Types supplier_business_type;
 }

@@ -141,11 +141,11 @@
 					<!--header class="form-header">Registration</header-->
 
 					<div class="form-container">
-						<div class="form-group">
-							<label for="materialID">Material ID</label>
-							<input type="text" id="materialID" name="materialID" required>
-						</div>
-						<form id="materialForm">
+						<form id="materialForm" onsubmit="return false">
+							<div class="form-group">
+								<label for="materialID">Material ID</label>
+								<input type="text" id="materialID" name="materialID" required>
+							</div>
 							<div class="form-group">
 								<label for="materialCode">Material Code</label>
 								<input type="text" id="materialCode" name="materialCode" required>
@@ -154,7 +154,7 @@
 								<label for="materialName">Material Name</label>
 								<input type="text" class = "valFullName" id="materialName" name="materialName" required>
 							</div>
-							<button type="addMaterial">Submit</button>
+							<button type="addMaterial" onclick="validForm()">Submit</button>
 						</form>
 					</div>
 

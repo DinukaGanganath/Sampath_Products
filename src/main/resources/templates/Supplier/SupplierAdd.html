@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="fontawesome/js/all.js"></script>
 	<script type="text/javascript" src="script/validationscripts/validation.js"></script>
+	<script type="text/javascript" src="script/controllerscripts/supplierdata.js"></script>
 
 	<link rel="icon" href="images/logo_white.png">
 
@@ -142,7 +143,7 @@
 					<!--header class="form-header">Registration</header-->
 
 					<div class="form-container">
-						<form action="#" class="">
+						<form action="#" class="" onsubmit="return false">
 							<div class="formcls">
 								<div class="details personal">
 									<span class="title">General Details</span>
@@ -185,8 +186,8 @@
 										<div class="input-field">
 											<label for="supplierAddressTwo">Line 2 - Area</label>
 											<select id="supplierAddressTwo" placeholder="select From the list" required>
-											<label class="validMessage"></label>
 											</select>
+											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
@@ -226,7 +227,7 @@
 
 										<div class="input-field">
 											<label for="supplierEmail">Email</label>
-											<input id="supplierEmail" type="text" required>
+											<input id="supplierEmail" class="valEmail" type="text" required>
 											<label class="validMessage"></label>
 										</div>
 									</div>
@@ -237,7 +238,7 @@
 									<div class="fields">
 										<div class="input-field">
 											<label for="supplierBusinessName">Name of Business</label>
-											<input id="supplierBusinessName" type="date" placeholder="Full business name">
+											<input id="supplierBusinessName" class="valFullName" type="text" placeholder="Full business name">
 											<label class="validMessage"></label>
 										</div>
 
@@ -249,8 +250,7 @@
 
 										<div class="input-field">
 											<label for="supplierBusinessType">Business Type</label>
-											<select id="supplierBusinessType" type="date">
-
+											<select id="supplierBusinessType">
 											</select>
 											<label class="validMessage"></label>
 										</div>
@@ -262,11 +262,7 @@
 											<label class="validMessage"></label>
 										</div>
 									</div>
-
-									<button class="nextBtn" onclick="swapNext()">
-										<span class="btnText">Next</span>
-										<i class="fa-regular fa-hand-point-right"></i>
-									</button>
+									<button onclick="validForm()">Submit</button>
 								</div>
 							</div>
 						</form>

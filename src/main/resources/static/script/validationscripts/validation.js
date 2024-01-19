@@ -1,8 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const fields = document.querySelectorAll('input');
-    console.log(fields);
+    const fields = document.querySelectorAll('input, select');
+    var newObject = {};
 
     fields.forEach(field => {
+        
+        if(field.hasAttribute('required')){
+            const fieldLabel =  field.previousElementSibling;
+            fieldLabel.innerHTML += '<span class="reqMark"> *</span>';
+
+        }
+
         field.addEventListener('keyup', function(){
             
             if(field.classList.contains('valTelephone')){
@@ -20,10 +27,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 const messageStr = "Enter name with capitalized each words and keep space between two names."
                 checkValidate(field, regexStr, messageStr);
             }
-            
+            if(field.classList.contains('valEmail')){
+                const regexStr = new RegExp('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$');
+                const messageStr = "Enter a valid email address. ex: someone@outlook.com."
+                checkValidate(field, regexStr, messageStr);
+            }
         });
+        
     });
-
 
 });	
 
@@ -50,4 +61,52 @@ function checkRquired(field){
             field.nextElementSibling.innerHTML="";
         }
     }
+}
+
+function validForm(){
+    var errorStr = "";
+    errorStr += checkForRequired();
+    if(errorStr.trim().length>0)
+        alert(errorStr.trim());
+    else
+        alert(userConfirmation());
+}
+
+function checkForRequired(){
+    var fields = document.querySelectorAll('input, select');
+    var errorMsg ='Enter values for Required values : \n';
+    var initLen = errorMsg.length;
+    fields.forEach(field => {
+        if(field.hasAttribute('required') && field.value.trim() === ''){
+
+            var indexOfLessThan = field.previousElementSibling.innerHTML.indexOf('<');
+            var resultString = field.previousElementSibling.innerHTML.substring(0, indexOfLessThan);
+            errorMsg += "Enter value for " + resultString + "\n"
+
+        }
+    })
+    if(errorMsg.length>initLen){
+        return errorMsg;
+    }else{
+        return '';
+    }
+}
+
+function userConfirmation(){
+    var fields = document.querySelectorAll('input, select');
+    var confirmString = 'Are you sure to submit following details: \n';
+    fields.forEach(field => {
+
+        if(field.previousElementSibling.innerHTML.includes("<")){
+            var indexOfLessThan = field.previousElementSibling.innerHTML.indexOf('<');
+            var resultString = field.previousElementSibling.innerHTML.substring(0, indexOfLessThan);
+            confirmString += resultString + " : " + field.value +"\n";
+        }else{
+            confirmString += field.previousElementSibling.innerHTML + " : " + field.value +"\n";
+        }
+
+
+    })
+
+    return confirmString;
 }
