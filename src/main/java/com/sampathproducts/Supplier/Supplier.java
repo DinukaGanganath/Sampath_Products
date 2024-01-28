@@ -42,9 +42,6 @@ public class Supplier {
     @NotNull
     private String supplier_address_line1;
 
-    @Column(name = "supplier_address_line2")
-    private String supplier_address_line2;
-
     @Column(name = "supplier_address_city")
     private String supplier_address_city;
 

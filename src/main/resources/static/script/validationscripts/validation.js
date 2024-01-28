@@ -1,5 +1,6 @@
+// Validation is going to be done when the form is loadedx.
 document.addEventListener('DOMContentLoaded', function() {
-    const fields = document.querySelectorAll('input, select');
+    const fields = document.querySelectorAll('input, select'); // Get 
     var newObject = {};
 
     fields.forEach(field => {
@@ -63,50 +64,4 @@ function checkRquired(field){
     }
 }
 
-function validForm(){
-    var errorStr = "";
-    errorStr += checkForRequired();
-    if(errorStr.trim().length>0)
-        alert(errorStr.trim());
-    else
-        alert(userConfirmation());
-}
 
-function checkForRequired(){
-    var fields = document.querySelectorAll('input, select');
-    var errorMsg ='Enter values for Required values : \n';
-    var initLen = errorMsg.length;
-    fields.forEach(field => {
-        if(field.hasAttribute('required') && field.value.trim() === ''){
-
-            var indexOfLessThan = field.previousElementSibling.innerHTML.indexOf('<');
-            var resultString = field.previousElementSibling.innerHTML.substring(0, indexOfLessThan);
-            errorMsg += "Enter value for " + resultString + "\n"
-
-        }
-    })
-    if(errorMsg.length>initLen){
-        return errorMsg;
-    }else{
-        return '';
-    }
-}
-
-function userConfirmation(){
-    var fields = document.querySelectorAll('input, select');
-    var confirmString = 'Are you sure to submit following details: \n';
-    fields.forEach(field => {
-
-        if(field.previousElementSibling.innerHTML.includes("<")){
-            var indexOfLessThan = field.previousElementSibling.innerHTML.indexOf('<');
-            var resultString = field.previousElementSibling.innerHTML.substring(0, indexOfLessThan);
-            confirmString += resultString + " : " + field.value +"\n";
-        }else{
-            confirmString += field.previousElementSibling.innerHTML + " : " + field.value +"\n";
-        }
-
-
-    })
-
-    return confirmString;
-}

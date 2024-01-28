@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 @RestController
 public class SupplierController {
 
@@ -35,6 +38,17 @@ public class SupplierController {
     @GetMapping(value = "/supplier/findall", produces = "application/json")
     public List<Supplier> findAll() {
         return dao.findAll();
+    }
+
+    // Save a Supplier with post method
+    @PostMapping(value = "/supplier/save", produces = "application/json")
+    public String saveSupplier(@RequestBody Supplier supplier) {
+        try {
+            dao.save(supplier);
+            return "OK";
+        } catch (Exception e) {
+            return "Save not Completed." + e.getMessage();
+        }
     }
 
 }
