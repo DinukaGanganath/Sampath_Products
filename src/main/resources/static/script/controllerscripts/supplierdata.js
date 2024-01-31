@@ -152,19 +152,23 @@ function finishConfirmation(){
     if(userConfirm){
         let responseStatus;
         var object = createObject();
+        console.log(object);
 
         $.ajax('/supplier/save', {
             async : false,
             method : "POST",
-            data : JSON.stringify(object),
+            data : object,
             dataType : 'json',
-            success : function (data, status, ahr){
-                console.log("success " + status + " " + ahr);
+            contentType: 'application/json',
+
+            
+            success : function (data, status, xhr){
+                console.log("success " + status + " " + xhr);
                 responseStatus = data;
             },
 
-            error : function (ahr, status, errormsg){
-                console.log("fail " + errormsg + " " + status +" " + ahr);
+            error : function (xhr, status, errormsg){
+                console.log("fail " + errormsg + " " + status +" " + xhr);
                 responseStatus = errormsg;
             },
         });

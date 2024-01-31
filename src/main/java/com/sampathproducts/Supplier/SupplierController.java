@@ -41,8 +41,8 @@ public class SupplierController {
     }
 
     // Save a Supplier with post method
-    @PostMapping(value = "/supplier/save", produces = "application/json")
-    public String saveSupplier(@RequestBody Supplier supplier) {
+    @PostMapping(value = "/supplierSave", produces = "application/json")
+    public String save(@RequestBody Supplier supplier) {
         try {
             dao.save(supplier);
             return "OK";
