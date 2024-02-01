@@ -151,17 +151,15 @@ function finishConfirmation(){
 
     if(userConfirm){
         let responseStatus;
-        var object = createObject();
-        console.log(object);
+        var supplier = createObject();
+        console.log(supplier);
 
         $.ajax('/supplier/save', {
             async : false,
-            method : "POST",
-            data : object,
-            dataType : 'json',
+            type : "POST",
+            data : supplier,
             contentType: 'application/json',
 
-            
             success : function (data, status, xhr){
                 console.log("success " + status + " " + xhr);
                 responseStatus = data;
