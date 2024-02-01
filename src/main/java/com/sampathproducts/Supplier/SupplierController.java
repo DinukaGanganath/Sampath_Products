@@ -41,14 +41,15 @@ public class SupplierController {
     }
 
     // Save a Supplier with post method
-    @PostMapping(value = "/supplier/save", produces = "application/json")
-    public String saveSupplier(@RequestBody Supplier supplier) {
+    @PostMapping(value = "/supplier/save")
+    public String save(@RequestBody Supplier supplier) {
         try {
             dao.save(supplier);
-            return "OK";
+            return "Ok";
         } catch (Exception e) {
-            return "Save not Completed." + e.getMessage();
+            return "Save not complerted" + e.getMessage();
         }
+
     }
 
 }
