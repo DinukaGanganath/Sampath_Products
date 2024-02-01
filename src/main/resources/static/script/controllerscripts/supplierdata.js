@@ -29,13 +29,15 @@ fetch("/areas/findall")
     let options = document.querySelector("#supplierAddressTwo");
     let out = "<option selected disabled>Select Area</option>";
     for(let area of areas){
+        
         out += `
-            <option value="${area.area_id}">
+            <option value=` + JSON.stringify(area) +`>
                 ${area.area_name}
             </option>
         `;
     }
     options.innerHTML = out;
+    console.log(out);
 })
 
 fetch("/materials/findall")
@@ -47,7 +49,7 @@ fetch("/materials/findall")
     let out = "<option selected disabled>Select Material</option>";
     for(let material of materials){
         out += `
-            <option value="${material.material_id}">
+            <option value=` + JSON.stringify(material) `+ >
                 ${material.material_name}
             </option>
         `;
@@ -64,7 +66,7 @@ fetch("/types/findall")
     let out = "<option selected disabled>Select Business Type</option>";
     for(let type of types){
         out += `
-            <option value="${type.type_id}">
+            <option value=` + JSON.stringify(type) + `>
                 ${type.type_name}
             </option>
         `;
@@ -157,12 +159,13 @@ function finishConfirmation(){
         $.ajax('/supplier/save', {
             async : false,
             type : "POST",
-            data : supplier,
+            data : JSON.stringify(supplier),
             contentType: 'application/json',
 
             success : function (data, status, xhr){
                 console.log("success " + status + " " + xhr);
                 responseStatus = data;
+                console.log(responseStatus);
             },
 
             error : function (xhr, status, errormsg){
@@ -171,11 +174,11 @@ function finishConfirmation(){
             },
         });
 
-        if (responseStatus=='OK'){
+        if (responseStatus=='Ok'){
             
 
             
-            //alert('Supplier Saved Succesfully...');
+            alert('Supplier Saved Succesfully...');
             //window.location.href = "/supplier";
         }else{
             alert('Some Errors has Occured...');
@@ -215,8 +218,8 @@ function createObject(){
     object.supplier_contact_no1 = document.getElementById("supplierMobileOne").value; 
     object.supplier_contact_no2 = document.getElementById("supplierMobileTwo").value; 
     object.supplier_email = document.getElementById("supplierEmail").value;
-    object.supplier_area_id = parseInt(document.getElementById("supplierAddressTwo").value, 10); 
-    object.supplier_business_type = parseInt(document.getElementById("supplierBusinessType").value, 10);
+    object.supplier_area_id = JSON.parse(document.getElementById("supplierAddressTwo").value); 
+    object.supplier_business_type = JSON.parse(document.getElementById("supplierBusinessType").value);
     //object.created_date_time = document.getElementById("supplierId").value; 
     //object.updated_date_time = document.getElementById("supplierId").value; 
     //object.deleted_date_time = document.getElementById("supplierId").value;
