@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="fontawesome/js/all.js"></script>
 	<script type="text/javascript" src="script/validationscripts/validation.js"></script>
-	<script type="text/javascript" src="script/controllerscripts/supplierdata.js"></script>
+	<script type="text/javascript" src="script/controllerscripts/supplieredit.js"></script>
 	<script type="text/javascript" src="script/jquery.js"></script>
 
 	<link rel="icon" href="images/logo_white.png">
@@ -139,7 +139,7 @@
 
 				<div class="content">
 					<div class="head-title">
-						Add Supplier
+						Edit or Delete Supplier
 					</div>
 					<!--header class="form-header">Registration</header-->
 
@@ -151,13 +151,13 @@
 									<div class="fields">
 										<div class="input-fieldlong">
 											<label for="supplierName">Full Name</label>
-											<input id="supplierName" class="valFullName" type="text" placeholder="Enter your name" required>
+											<input id="supplierName" class="valFullName" type="text" placeholder="Enter your name" required disabled>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierNIC">National Identity Card</label>
-											<input id="supplierNIC" type="text" class="valIdentity" placeholder="NIC ends with V,X or 12 characters" required>
+											<input id="supplierNIC" type="text" class="valIdentity" placeholder="NIC ends with V,X or 12 characters" required disabled>
 											<label class="validMessage"></label>
 										</div>
 									</div>
@@ -168,26 +168,25 @@
 									<div class="fields">
 										<div class="input-field">
 											<label for="supplierAddressOne">Line 1</label>
-											<input id="supplierAddressOne" type="text" placeholder="No.xxx, street no." required>
+											<input id="supplierAddressOne" type="text" placeholder="No.xxx, street no." required disabled>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierAddressTwo">Line 2 - Area</label>
-											<select id="supplierAddressTwo" placeholder="select From the list" required>
-											</select>
+											<input id="supplierAddressTwo" type="text" placeholder="select From the list" required disabled>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierCity">City</label>
-											<input id="supplierCity" type="text" placeholder="postal city">
+											<input id="supplierCity" type="text" placeholder="postal city"  disabled>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierPostalCode">Postal code</label>
-											<input id="supplierPostalCode" type="text">
+											<input id="supplierPostalCode" type="text"  disabled>
 											<label class="validMessage"></label>
 										</div>
 									</div>
@@ -198,25 +197,25 @@
 									<div class="fields">
 										<div class="input-field">
 											<label for="supplierLandPhone">Land phone</label>
-											<input id="supplierLandPhone" class="valTelephone" type="text" placeholder="starts with 0" required>
+											<input id="supplierLandPhone" class="valTelephone" type="text" placeholder="starts with 0"  disabled>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierMobileOne">Mobile No 1</label>
-											<input id="supplierMobileOne" class="valMobphone" type="text" placeholder="starts with 0" required>
+											<input id="supplierMobileOne" class="valMobphone" type="text" placeholder="starts with 0" required  disabled>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierMobileTwo">Mobile No 2</label>
-											<input id="supplierMobileTwo" class="valMobphone" type="text" placeholder="starts with 0">
+											<input id="supplierMobileTwo" class="valMobphone" type="text" placeholder="starts with 0"  disabled>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierEmail">Email</label>
-											<input id="supplierEmail" class="valEmail" type="text" required>
+											<input id="supplierEmail" class="valEmail" type="text" required  disabled>
 											<label class="validMessage"></label>
 										</div>
 									</div>
@@ -227,27 +226,26 @@
 									<div class="fields">
 										<div class="input-field">
 											<label for="supplierBusinessName">Name of Business</label>
-											<input id="supplierBusinessName" class="valFullName" type="text" placeholder="Full business name">
+											<input id="supplierBusinessName" class="valFullName" type="text" placeholder="Full business name"  disabled>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierRegistration">Business Registration No</label>
-											<input id="supplierRegistration" class="valReg" type="text" placeholder="As the certificate">
+											<input id="supplierRegistration" class="valReg" type="text" placeholder="As the certificate"  disabled>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierBusinessType">Business Type</label>
-											<select id="supplierBusinessType">
+											<input id="supplierBusinessType" type = "text" >
 											</select>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplierMaterial">Material Supplied</label>
-											<select id="supplierMaterial" type="text" >
-											</select>
+											<input id="supplierMaterial" type = "text">
 											<label class="validMessage"></label>
 										</div>
 									</div>

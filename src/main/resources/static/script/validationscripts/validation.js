@@ -14,8 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
         field.addEventListener('keyup', function(){
             
             if(field.classList.contains('valTelephone')){
+                const regexStr = new RegExp('^[0][1234568][1-8][0-9]{7}$');
+                const messageStr = "Enter Telephone No 01xxxxxxxx format."
+                checkValidate(field, regexStr, messageStr);
+            }
+            if(field.classList.contains('valMobephone')){
                 const regexStr = new RegExp('^[0][7][01245678][0-9]{7}$');
-                const messageStr = "Enter Telephone No 07xxxxxxxx format."
+                const messageStr = "Enter Mobile No 07xxxxxxxx format."
                 checkValidate(field, regexStr, messageStr);
             }
             if(field.classList.contains('valIdentity')){
@@ -31,6 +36,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if(field.classList.contains('valEmail')){
                 const regexStr = new RegExp('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$');
                 const messageStr = "Enter a valid email address. ex: someone@outlook.com."
+                checkValidate(field, regexStr, messageStr);
+            }
+            if(field.classList.contains('valReg')){
+                const regexStr = new RegExp('^[A-Za-z]{1,2}[0-9]{5,6}$');
+                const messageStr = "Enter a business registration no with correct format."
                 checkValidate(field, regexStr, messageStr);
             }
         });

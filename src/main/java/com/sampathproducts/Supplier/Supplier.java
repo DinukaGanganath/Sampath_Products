@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 
 import com.sampathproducts.Area.Area;
 import com.sampathproducts.BusinessTypes.Types;
+import com.sampathproducts.Material.Material;
 
 @Entity // convert to the Entity class
 @Table(name = "supplier_details") // map with supplier_details table
@@ -27,11 +28,14 @@ public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "supplier_id", unique = true)
-    private Integer supplier_id;
+    private Integer supplierid;
 
     @Column(name = "supplier_name")
     @NotNull
     private String supplier_name;
+
+    @Column(name = "supplier_nic")
+    private String supplier_nic;
 
     @Column(name = "supplier_code", unique = true)
     @NotNull
@@ -49,6 +53,13 @@ public class Supplier {
 
     @Column(name = "supplier_business_name")
     private String supplier_business_name;
+
+    @Column(name = "supplier_business_reg")
+    private String supplier_business_reg;
+
+    @Column(name = "supplier_land_phone")
+    @NotNull
+    private String supplier_land_phone;
 
     @Column(name = "supplier_contact_no1")
     @NotNull
@@ -77,4 +88,8 @@ public class Supplier {
     @OneToOne
     @JoinColumn(name = "supplier_business_type", referencedColumnName = "type_id")
     private Types supplier_business_type;
+
+    @OneToOne
+    @JoinColumn(name = "supplier_material_id", referencedColumnName = "material_id")
+    private Material supplier_material_id;
 }

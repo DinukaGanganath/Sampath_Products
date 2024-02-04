@@ -7,14 +7,14 @@ fetch("/supplier/findall")
     var out = "";
     for(let supplier of suppliers){
         out += `
-            <tr class="sup_raw" ondblclick="directEditDelete(${supplier.supplier_id})">
-                <td>${supplier.supplier_id}</td>
+            <tr class="sup_raw" ondblclick='directEditform(` + JSON.stringify(supplier) + `)'>
                 <td>${supplier.supplier_name}</td>
                 <td>${supplier.supplier_code}</td>
                 <td>${supplier.supplier_contact_no1}</td>
                 <td>${supplier.supplier_email}</td>
                 <td>${supplier.supplier_business_name}</td>
                 <td>${supplier.supplier_area_id.area_name}</td>
+                <td>${supplier.supplier_material_id.material_name}</td>
             </tr>
         `;
     }
@@ -49,7 +49,7 @@ fetch("/materials/findall")
     let out = "<option selected disabled>Select Material</option>";
     for(let material of materials){
         out += `
-            <option value=` + JSON.stringify(material) `+ >
+            <option value=` + JSON.stringify(material) +` >
                 ${material.material_name}
             </option>
         `;
@@ -74,10 +74,10 @@ fetch("/types/findall")
     options.innerHTML = out;
 })
 
-function directEditDelete(id){
-    console.log(id);
+function directEditform(supplier){
+    console.log(supplier);
+    window.location.href = `/supplieredit?id=${supplier.supplierid}`;
 }
-
 
 function validForm(){
     var errorStr = "";
@@ -175,11 +175,8 @@ function finishConfirmation(){
         });
 
         if (responseStatus=='Ok'){
-            
-
-            
             alert('Supplier Saved Succesfully...');
-            //window.location.href = "/supplier";
+            window.location.href = "/supplier";
         }else{
             alert('Some Errors has Occured...');
         }
@@ -189,37 +186,39 @@ function finishConfirmation(){
 function createObject(){
 
     object = {
-        "supplier_id" : "", 
-        "supplier_name" : "", 
-        "supplier_code"  : "",
+        "supplier_name" : "",
+        "supplier_nic" : "", 
         "supplier_address_line1" : "", 
         "supplier_address_city" : "",
         "supplier_address_postal" : "", 
         "supplier_business_name" : "", 
-        "supplier_business_reg" : "", 
+        "supplier_business_reg" : "",
+        "supplier_land_phone" : "", 
         "supplier_contact_no1" : "", 
         "supplier_contact_no2" : "", 
         "supplier_email" : "",
         "supplier_area_id" : 0, 
         "supplier_business_type" : 0,
+        "supplier_material_id" : "",
         "created_date_time" : null, 
         "updated_date_time" : null, 
         "deleted_date_time" : null
     };
 
-    object.supplier_id = parseInt(document.getElementById("supplierId").value, 10); 
     object.supplier_name = document.getElementById("supplierName").value; 
-    object.supplier_code  = document.getElementById("supplierCode").value;
+    object.supplier_nic = document.getElementById("supplierNIC").value;
     object.supplier_address_line1 = document.getElementById("supplierAddressOne").value; 
     object.supplier_address_city = document.getElementById("supplierCity").value;
     object.supplier_address_postal = document.getElementById("supplierPostalCode").value; 
     object.supplier_business_name = document.getElementById("supplierBusinessName").value; 
-    object.supplier_business_reg = document.getElementById("supplierRegistration").value; 
+    object.supplier_business_reg = document.getElementById("supplierRegistration").value;
+    object.supplier_land_phone = document.getElementById("supplierLandPhone").value;
     object.supplier_contact_no1 = document.getElementById("supplierMobileOne").value; 
     object.supplier_contact_no2 = document.getElementById("supplierMobileTwo").value; 
     object.supplier_email = document.getElementById("supplierEmail").value;
     object.supplier_area_id = JSON.parse(document.getElementById("supplierAddressTwo").value); 
     object.supplier_business_type = JSON.parse(document.getElementById("supplierBusinessType").value);
+    object.supplier_material_id = JSON.parse(document.getElementById("supplierMaterial").value);
     //object.created_date_time = document.getElementById("supplierId").value; 
     //object.updated_date_time = document.getElementById("supplierId").value; 
     //object.deleted_date_time = document.getElementById("supplierId").value;

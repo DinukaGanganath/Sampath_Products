@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,15 +21,12 @@ public class Material {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "material_id", unique = true) // mapping column
-    @NotNull
     private Integer material_id;
 
     @Column(name = "material_name")
-    @NotNull
     private String material_name;
 
     @Column(name = "material_code", unique = true)
-    @NotNull
     private String material_code;
 
     @Column(name = "material_added_date")

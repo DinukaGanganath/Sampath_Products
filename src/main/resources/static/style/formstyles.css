@@ -130,13 +130,34 @@ form.secActive .formcls.second{
     margin: 4px 0;
 }
 
-.input-field label{
+.input-fieldlong{
+    display:flex;
+    width:calc(100% * 3 / 4 - 15px);
+    flex-direction: column;
+    margin: 4px 0;
+}
+
+.input-fieldhalf{
+    display:flex;
+    width:calc(100% / 2 - 15px);
+    flex-direction: column;
+    margin: 4px 0;
+}
+
+.input-fieldonethird{
+    display:flex;
+    width:calc(100% / 3 - 15px);
+    flex-direction: column;
+    margin: 4px 0;
+}
+
+.input-field label, .input-fieldlong label, .input-fieldhalf label, .input-fieldonethird label{
     font-size: 13px;
     font-weight: 500;
     color : #2e2e2e;
 }
 
-.input-field input, .input-field select{
+.input-field input, .input-field select, .input-fieldlong input, .input-fieldlong select, .input-fieldhalf input, .input-fieldhalf select, .input-fieldonethird input, .input-fieldonethird select{
     outline: none;
     font-size: 14px;
     font-weigh: 400;
@@ -147,25 +168,25 @@ form.secActive .formcls.second{
     margin: 8px 0;
 }
 
-.input-field label.validMessage{
+.input-field label.validMessage, .input-fieldlong label.validMessage, .input-fieldhalf label.validMessage, .input-fieldonethird label.validMessage{
     color:red;
     font-size: 10px;
 }
 
-.input-field label span.reqMark{
+.input-field label span.reqMark, .input-fieldlong label span.reqMark, .input-fieldhalf label span.reqMark, .input-fieldonethird label span.reqMark{
     color: red;
 }
 
 
-.input-field input.valid{
+.input-field input.valid, .input-fieldlong input.valid, .input-fieldhalf input.valid, .input-fieldonethird input.valid{
     border-bottom: 2px solid #00ff00;
 }
 
-.input-field input.invalid{
+.input-field input.invalid, .input-fieldlong input.invalid, .input-fieldhalf input.invalid, .input-fieldonethird input.invalid{
     border-bottom: 2px solid #ff0000;
 }
 
-.input-field input:is(:focus, :valid){
+.input-field input:is(:focus, :valid), .input-fieldlong input:is(:focus, :valid), .input-fieldhalf input:is(:focus, :valid), .input-fieldonethird input:is(:focus, :valid){
     box-shadow: 0 3px 6px rgba(0,0,0,0.13);
 }
 
@@ -177,7 +198,7 @@ form.secActive .formcls.second{
     color: #333;
 }
 
-form button, .nextBtn, .backBtn{
+form button, .nextBtn, .backBtn, .submitBtn{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -190,6 +211,39 @@ form button, .nextBtn, .backBtn{
     color: var(--text-color);
     border-radius: 5px;
     cursor: pointer;
+    margin : 5px;
+}
+
+.btnDelete{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    max-width: 200px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: red;
+    color: var(--text-color);
+    border-radius: 5px;
+    cursor: pointer;
+    margin : 5px;
+}
+
+.btnEdit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    max-width: 200px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #FCAE1E;
+    color: var(--text-color);
+    border-radius: 5px;
+    cursor: pointer;
+    margin : 5px;
 }
 
 form button, 
@@ -219,6 +273,18 @@ form .buttons  button , .nextBtn{
 
 .btnText{
     margin: 0 10px 0 10px;
+}
+
+.hidden{
+    display : none;
+}
+
+.horizontal{
+    display : flex;
+}
+
+.addBtn{
+    text-color : white;
 }
 
 

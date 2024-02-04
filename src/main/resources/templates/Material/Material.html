@@ -2,6 +2,7 @@
 
 	<head>
 		<title>Material Data</title>
+		<script type="text/javascript" src="script/jquery.js"></script>
 		<script type="text/javascript" src="script/sidebarscripts.js"></script>
 		<script type="text/javascript" src="script/formscripts.js"></script>
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
@@ -12,8 +13,9 @@
 		<link rel="stylesheet" href="fontawesome/css/all.css" />
 		<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
 		<link rel="stylesheet" href="style/sidenavbarstyles.css" />
-		<link rel="stylesheet" href="style/tablestyles.css" />
+		<link rel="stylesheet" href="style/formstyles.css" />
 		<link rel="stylesheet" href="style/contentstyles.css" />
+		<link rel="stylesheet" href="style/tablestyles.css" />
 		<link rel="icon" href="images/logo_white.png">
 	</head>
 
@@ -136,23 +138,33 @@
 							Material Details
 						</div>
 						<div class="table-container">
-							<button class="addBtn">
-								<a href="/materialadd">
+							<button class="addBtn" onclick="showAddForm()">
+								<a>
 									Add
 								</a>
 							</button>
 							<table class="table table-striped">
 								<thead>
 									<tr>
-										<th scope="col">ID</th>
 										<th scope="col">Material Name</th>
 										<th scope="col">Material Code</th>
+										<th scope="col"></th>
 									</tr>
 								</thead>
 								<tbody id="data-output">
 
 								</tbody>
 							</table>
+							<span class="addForm hidden" id="materialAddForm">
+								<div class="input-fieldhalf">
+									<label for="materialName">Material Name</label>
+									<input id="materialName" type="text">
+								</div>
+								<div class="input-fieldonethird" style="text-align: right;">
+									<button class="submitBtn" onclick="saveMaterial()">Submit</button>
+								</div>
+							</span>
+
 						</div>
 					</div>
 				</div>
