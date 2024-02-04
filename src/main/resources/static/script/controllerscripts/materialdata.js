@@ -12,14 +12,16 @@ fetch("/materials/findall")
                 <td>${material.material_code}</td>
                 <td>
                     <div style="display:flex">
-                        <button class="btnEdit">Edit</button>
-                        <button class="btnDelete">Delete</button>
+                        <button class="btnEdit" onclick='editMaterial(` + JSON.stringify(material) + `)'>Edit</button>
+                        <button class="btnDelete" onclick='deleteMaterial(` + JSON.stringify(material) + `)'>Delete</button>
                     </div>
                 </td>
             </tr>
         `;
     }
     placeholder.innerHTML = out;
+
+    console.log(out);
 })
 
 
@@ -54,6 +56,66 @@ function addMaterialPost(){
     $.ajax('/material/save', {
         async : false,
         type : "POST",
+        data : JSON.stringify(material),
+        contentType: 'application/json',
+
+        success : function (data, status, xhr){
+            console.log("success " + status + " " + xhr);
+            responseStatus = data;
+            console.log(responseStatus);
+        },
+
+        error : function (xhr, status, errormsg){
+            console.log("fail " + errormsg + " " + status +" " + xhr);
+            responseStatus = errormsg;
+        },
+    });
+
+    if (responseStatus=='Ok'){
+        alert('Material Saved Succesfully...');
+        window.location.href = "/materials";
+    }else{
+        alert('Some Errors has Occured...');
+    }
+}
+
+function deleteMaterial(material){
+
+    console.log(material);
+
+    $.ajax('/material/delete', {
+        async : false,
+        type : "DELETE",
+        data : JSON.stringify(material),
+        contentType: 'application/json',
+
+        success : function (data, status, xhr){
+            console.log("success " + status + " " + xhr);
+            responseStatus = data;
+            console.log(responseStatus);
+        },
+
+        error : function (xhr, status, errormsg){
+            console.log("fail " + errormsg + " " + status +" " + xhr);
+            responseStatus = errormsg;
+        },
+    });
+
+    if (responseStatus=='ok'){
+        alert('Material Deleted Succesfully...');
+        window.location.href = "/materials";
+    }else{
+        alert('Some Errors has Occured...');
+    }
+}
+
+function editMaterial(material){
+
+    console.log(material);
+
+    $.ajax('/material/delete', {
+        async : false,
+        type : "PUT",
         data : JSON.stringify(material),
         contentType: 'application/json',
 
