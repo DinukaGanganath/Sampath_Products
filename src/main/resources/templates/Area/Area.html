@@ -7,7 +7,7 @@
 		<script type="text/javascript" src="script/formscripts.js"></script>
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="fontawesome/js/all.js"></script>
-		<script type="text/javascript" src="script/controllerscripts/materialdata.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/areadata.js"></script>
 
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
 		<link rel="stylesheet" href="fontawesome/css/all.css" />
@@ -103,13 +103,13 @@
 												<span class="text nav-text">Customers</span>
 											</a>
 										</li>
-										<li class="nav-link active">
+										<li class="nav-link">
 											<a href="/materials">
 												<i class="fa-solid fa-bread-slice icon"></i>
 												<span class="text nav-text">Materials</span>
 											</a>
 										</li>
-										<li class="nav-link">
+										<li class="nav-link active">
 											<a href="/areas">
 												<i class="fa-solid fa-map-location-dot icon"></i>
 												<span class="text nav-text">Areas</span>
@@ -141,7 +141,7 @@
 
 					<div class="content">
 						<div class="head-title">
-							Material Details
+							Area Details
 						</div>
 						<div class="table-container">
 							<button class="addBtn" onclick="showAddForm()">
@@ -152,8 +152,8 @@
 							<table class="table table-striped">
 								<thead>
 									<tr>
-										<th scope="col">Material Name</th>
-										<th scope="col">Material Code</th>
+										<th scope="col">Area Name</th>
+										<th scope="col">Area Code</th>
 										<th scope="col"></th>
 									</tr>
 								</thead>
@@ -161,13 +161,13 @@
 
 								</tbody>
 							</table>
-							<span class="addForm hidden" id="materialAddForm">
+							<span class="addForm hidden" id="areaAddForm">
 								<div class="input-fieldhalf">
-									<label for="materialName">Material Name</label>
-									<input id="materialName" type="text">
+									<label for="areaName">Area Name</label>
+									<input id="areaName" type="text">
 								</div>
 								<div class="input-fieldonethird" style="text-align: right;">
-									<button class="submitBtn" onclick="saveMaterial()">Submit</button>
+									<button class="submitBtn" onclick="saveArea()">Submit</button>
 								</div>
 							</span>
 
