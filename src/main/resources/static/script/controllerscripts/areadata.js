@@ -12,8 +12,8 @@ fetch("/areas/findall")
                 <td>${area.area_code}</td>
                 <td>
                     <div style="display:flex">
-                        <button class="btnEdit" onclick='editMaterial(` + JSON.stringify(area) + `)'>Edit</button>
-                        <button class="btnDelete" onclick='deleteMaterial(` + JSON.stringify(area) + `)'>Delete</button>
+                        <button class="btnEdit" onclick='editArea(` + JSON.stringify(area) + `)'>Edit</button>
+                        <button class="btnDelete" onclick='deleteArea(` + JSON.stringify(area) + `)'>Delete</button>
                     </div>
                 </td>
             </tr>
@@ -25,10 +25,10 @@ fetch("/areas/findall")
 })
 
 
-function showAddForm(){
-    if(document.getElementById('areaAddForm').classList.contains('hidden')){
-        document.getElementById('areaAddForm').classList.remove('hidden');
-        document.getElementById('areaAddForm').classList.add('horizontal');
+function showForm(viewId){
+    if(document.getElementById(viewId).classList.contains('hidden')){
+        document.getElementById(viewId).classList.remove('hidden');
+        document.getElementById(viewId).classList.add('horizontal');
         //document.getElementById('addBtn').disabled = true;
     }
 }
@@ -40,6 +40,21 @@ function saveArea(){
         //document.getElementById('addBtn').disabled = false;
         addAreaPost();
     }
+}
+
+
+function editArea(area){
+
+    showForm('areaEditForm');
+
+    if(document.getElementById('areaEditForm').classList.contains('horizontal')){
+        document.getElementById('areaEditForm').classList.remove('horizontal');
+        document.getElementById('areaEditForm').classList.add('hidden');
+        //document.getElementById('addBtn').disabled = false;
+    }
+
+    document.getElementById('areaCode').value = area.area_code;
+    document.getElementById('areaName').value = area.area_name;
 }
 
 function addAreaPost(){
@@ -72,21 +87,21 @@ function addAreaPost(){
     });
 
     if (responseStatus=='Ok'){
-        alert('Material Saved Succesfully...');
+        alert('Area Saved Succesfully...');
         window.location.href = "/areas";
     }else{
         alert('Some Errors has Occured...');
     }
 }
 
-function deleteMaterial(material){
+function deleteArea(area){
 
-    console.log(material);
+    console.log(area);
 
-    $.ajax('/material/delete', {
+    $.ajax('/area/delete', {
         async : false,
         type : "DELETE",
-        data : JSON.stringify(material),
+        data : JSON.stringify(area),
         contentType: 'application/json',
 
         success : function (data, status, xhr){
@@ -102,21 +117,27 @@ function deleteMaterial(material){
     });
 
     if (responseStatus=='ok'){
-        alert('Material Deleted Succesfully...');
-        window.location.href = "/materials";
+        alert('Area Deleted Succesfully...');
+        window.location.href = "/areas";
     }else{
         alert('Some Errors has Occured...');
     }
 }
 
-function editMaterial(material){
+function editAreaPut(){
 
-    console.log(material);
+    var area = {
+        "area_name" : ""
+    };
 
-    $.ajax('/material/delete', {
+    area.area_name = document.getElementById("areaName").value;
+
+    console.log(area);
+
+    $.ajax('/area/delete', {
         async : false,
         type : "PUT",
-        data : JSON.stringify(material),
+        data : JSON.stringify(area),
         contentType: 'application/json',
 
         success : function (data, status, xhr){
@@ -132,8 +153,8 @@ function editMaterial(material){
     });
 
     if (responseStatus=='Ok'){
-        alert('Material Saved Succesfully...');
-        window.location.href = "/materials";
+        alert('Area Saved Succesfully...');
+        window.location.href = "/areas";
     }else{
         alert('Some Errors has Occured...');
     }

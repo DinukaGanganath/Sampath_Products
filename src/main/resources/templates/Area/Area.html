@@ -144,7 +144,7 @@
 							Area Details
 						</div>
 						<div class="table-container">
-							<button class="addBtn" onclick="showAddForm()">
+							<button class="addBtn" onclick="showForm('areaAddForm')">
 								<a>
 									Add
 								</a>
@@ -168,6 +168,20 @@
 								</div>
 								<div class="input-fieldonethird" style="text-align: right;">
 									<button class="submitBtn" onclick="saveArea()">Submit</button>
+								</div>
+							</span>
+
+							<span class="editForm hidden" id="areaEditForm">
+								<div class="input-fieldonethird">
+									<label for="areaCode">Area Code</label>
+									<input id="areaCode" type="text" disabled>
+								</div>
+								<div class="input-fieldonethird">
+									<label for="areaName">Area Name</label>
+									<input id="areaName" type="text">
+								</div>
+								<div class="input-fieldonethird" style="text-align: right;">
+									<button class="submitBtn" onclick="editAreaPut()">Submit</button>
 								</div>
 							</span>
 
