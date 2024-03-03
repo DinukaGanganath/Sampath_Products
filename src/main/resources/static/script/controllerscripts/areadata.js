@@ -58,40 +58,17 @@ function editArea(area){
 }
 
 function addAreaPost(){
-
+    // create new area object
     var area = {
         "area_name" : ""
     };
 
     area.area_name = document.getElementById("areaName").value;
-
-    let responseStatus;
     console.log(area);
 
-    $.ajax('/area/save', {
-        async : false,
-        type : "POST",
-        data : JSON.stringify(area),
-        contentType: 'application/json',
+    //call POST function
+    restFunction('/area/save', area, "POST", "/areas", "Area");
 
-        success : function (data, status, xhr){
-            console.log("success " + status + " " + xhr);
-            responseStatus = data;
-            console.log(responseStatus);
-        },
-
-        error : function (xhr, status, errormsg){
-            console.log("fail " + errormsg + " " + status +" " + xhr);
-            responseStatus = errormsg;
-        },
-    });
-
-    if (responseStatus=='Ok'){
-        alert('Area Saved Succesfully...');
-        window.location.href = "/areas";
-    }else{
-        alert('Some Errors has Occured...');
-    }
 }
 
 function deleteArea(area){

@@ -20,8 +20,6 @@ fetch("/materials/findall")
         `;
     }
     placeholder.innerHTML = out;
-
-    console.log(out);
 })
 
 
@@ -44,69 +42,22 @@ function saveMaterial(){
 
 function addMaterialPost(){
 
+    //create Material Object
     var material = {
         "material_name" : ""
     };
 
     material.material_name = document.getElementById("materialName").value;
 
-    let responseStatus;
-    console.log(material);
-
-    $.ajax('/material/save', {
-        async : false,
-        type : "POST",
-        data : JSON.stringify(material),
-        contentType: 'application/json',
-
-        success : function (data, status, xhr){
-            console.log("success " + status + " " + xhr);
-            responseStatus = data;
-            console.log(responseStatus);
-        },
-
-        error : function (xhr, status, errormsg){
-            console.log("fail " + errormsg + " " + status +" " + xhr);
-            responseStatus = errormsg;
-        },
-    });
-
-    if (responseStatus=='Ok'){
-        alert('Material Saved Succesfully...');
-        window.location.href = "/materials";
-    }else{
-        alert('Some Errors has Occured...');
-    }
+    //save the material
+    restFunction('/material/save', material, "POST", '/materials', "Material");
+  
 }
 
 function deleteMaterial(material){
 
     console.log(material);
 
-    $.ajax('/material/delete', {
-        async : false,
-        type : "DELETE",
-        data : JSON.stringify(material),
-        contentType: 'application/json',
-
-        success : function (data, status, xhr){
-            console.log("success " + status + " " + xhr);
-            responseStatus = data;
-            console.log(responseStatus);
-        },
-
-        error : function (xhr, status, errormsg){
-            console.log("fail " + errormsg + " " + status +" " + xhr);
-            responseStatus = errormsg;
-        },
-    });
-
-    if (responseStatus=='ok'){
-        alert('Material Deleted Succesfully...');
-        window.location.href = "/materials";
-    }else{
-        alert('Some Errors has Occured...');
-    }
 }
 
 function editMaterial(material){
