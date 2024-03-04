@@ -43,14 +43,19 @@ function saveMaterial(){
 function addMaterialPost(){
 
     //create Material Object
-    var material = {
-        "material_name" : ""
-    };
+    if(document.getElementById("materialName").value != ""){
+        var material = {
+            "material_name" : ""
+        };
 
-    material.material_name = document.getElementById("materialName").value;
+        material.material_name = document.getElementById("materialName").value;
 
-    //save the material
-    restFunction('/material/save', material, "POST", '/materials', "Material");
+        //save the material
+        restFunction('/material/save', material, "POST", '/materials', "Material");
+    }else{
+        alert("Enter a Material Name");
+        window.location.href = "/materials";
+    }
   
 }
 

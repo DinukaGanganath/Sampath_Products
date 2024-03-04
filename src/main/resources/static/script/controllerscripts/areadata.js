@@ -25,21 +25,28 @@ fetch("/areas/findall")
 })
 
 
-function showForm(viewId){
-    if(document.getElementById(viewId).classList.contains('hidden')){
-        document.getElementById(viewId).classList.remove('hidden');
-        document.getElementById(viewId).classList.add('horizontal');
-        //document.getElementById('addBtn').disabled = true;
-    }
+function showForm(){
+
+    $("#area_tab tbody").prepend("<tr><td id= newItem></td><td></td><td id= newAddBtn></td></tr>");
+
+    var inputFieldData = document.getElementById("newItem");
+    var inputField = document.createElement("input");
+    inputField.type = "text";
+    inputField.className = "areaName";
+    inputFieldData.appendChild(inputField);
+
+    var buttonFieldData = document.getElementById("newAddBtn");
+    var buttonField = document.createElement('button');
+    buttonField.innerHTML = 'Submit';
+    buttonField.className = 'btnEdit';
+    buttonField.id = 'buttonAdd';
+    buttonField.onclick = saveArea();
+    buttonFieldData.appendChild(buttonField);
 }
 
 function saveArea(){
-    if(document.getElementById('areaAddForm').classList.contains('horizontal')){
-        document.getElementById('areaAddForm').classList.remove('horizontal');
-        document.getElementById('areaAddForm').classList.add('hidden');
-        //document.getElementById('addBtn').disabled = false;
-        addAreaPost();
-    }
+    var areaNew = document.getElementById('areaName').value;
+    addAreaPost(areaNew);
 }
 
 
@@ -57,17 +64,23 @@ function editArea(area){
     document.getElementById('areaName').value = area.area_name;
 }
 
-function addAreaPost(){
+function addAreaPost(areaNew){
     // create new area object
-    var area = {
-        "area_name" : ""
-    };
+    var area;
+    if(areaNew != ""){
+        area = {
+            "area_name" : ""
+        };
 
-    area.area_name = document.getElementById("areaName").value;
-    console.log(area);
+        area.area_name = areaNew;
+        console.log(area);
 
-    //call POST function
-    restFunction('/area/save', area, "POST", "/areas", "Area");
+        //call POST function
+        restFunction('/area/save', area, "POST", "/areas", "Area");
+    }else{
+        alert("Enter a Area Name !!!");
+        window.location.href = "/areas";
+    }
 
 }
 

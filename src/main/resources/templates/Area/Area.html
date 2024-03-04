@@ -145,12 +145,12 @@
 							Area Details
 						</div>
 						<div class="table-container">
-							<button class="addBtn" onclick="showForm('areaAddForm')">
+							<button class="addBtn" onclick="showForm()">
 								<a>
 									Add
 								</a>
 							</button>
-							<table class="table table-striped">
+							<table class="table table-striped" id="area_tab">
 								<thead>
 									<tr>
 										<th scope="col">Area Name</th>
@@ -162,15 +162,6 @@
 
 								</tbody>
 							</table>
-							<span class="addForm hidden" id="areaAddForm">
-								<div class="input-fieldhalf">
-									<label for="areaName">Area Name</label>
-									<input id="areaName" type="text">
-								</div>
-								<div class="input-fieldonethird" style="text-align: right;">
-									<button class="submitBtn" onclick="saveArea()">Submit</button>
-								</div>
-							</span>
 
 							<span class="editForm hidden" id="areaEditForm">
 								<div class="input-fieldonethird">
