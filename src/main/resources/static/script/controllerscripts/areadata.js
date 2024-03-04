@@ -12,7 +12,7 @@ fetch("/areas/findall")
                 <td>${area.area_code}</td>
                 <td>
                     <div style="display:flex">
-                        <button class="btnEdit" onclick='editArea(` + JSON.stringify(area) + `)'>Edit</button>
+                        <button class="btnEdit" onclick='editArea(` + JSON.stringify(area) + `,this)'>Edit</button>
                         <button class="btnDelete" onclick='deleteArea(` + JSON.stringify(area) + `)'>Delete</button>
                     </div>
                 </td>
@@ -27,12 +27,12 @@ fetch("/areas/findall")
 
 function showForm(){
 
-    $("#area_tab tbody").prepend("<tr><td id= newItem></td><td></td><td id= newAddBtn></td></tr>");
+    $("#area_tab tbody").prepend("<tr><td id= newItem></td><td></td><td id= newAddBtn onclick=saveArea()></td></tr>");
 
     var inputFieldData = document.getElementById("newItem");
     var inputField = document.createElement("input");
     inputField.type = "text";
-    inputField.className = "areaName";
+    inputField.id = "areaName";
     inputFieldData.appendChild(inputField);
 
     var buttonFieldData = document.getElementById("newAddBtn");
@@ -40,8 +40,11 @@ function showForm(){
     buttonField.innerHTML = 'Submit';
     buttonField.className = 'btnEdit';
     buttonField.id = 'buttonAdd';
-    buttonField.onclick = saveArea();
     buttonFieldData.appendChild(buttonField);
+}
+
+function editRowShow(){
+
 }
 
 function saveArea(){
@@ -50,18 +53,16 @@ function saveArea(){
 }
 
 
-function editArea(area){
+function editArea(area, ele){
 
-    showForm('areaEditForm');
+    var editValInput = document.createElement("input");
+    editValInput.type = "text";
+    editValInput.id = "editValue";
+    ele.parentElement.parentElement.parentElement.firstElementChild.innerHTML = "";
+    ele.parentElement.parentElement.parentElement.firstElementChild.appendChild(editValInput);
+    document.getElementById('editValue').value = area.area_name;
 
-    if(document.getElementById('areaEditForm').classList.contains('horizontal')){
-        document.getElementById('areaEditForm').classList.remove('horizontal');
-        document.getElementById('areaEditForm').classList.add('hidden');
-        //document.getElementById('addBtn').disabled = false;
-    }
-
-    document.getElementById('areaCode').value = area.area_code;
-    document.getElementById('areaName').value = area.area_name;
+    editAreaPut(document.getElementById('editValue').value);
 }
 
 function addAreaPost(areaNew){
@@ -114,13 +115,13 @@ function deleteArea(area){
     }
 }
 
-function editAreaPut(){
+function editAreaPut(editedValue){
 
     var area = {
         "area_name" : ""
     };
 
-    area.area_name = document.getElementById("areaName").value;
+    area.area_name = editedValue;
 
     console.log(area);
 
