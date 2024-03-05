@@ -20,8 +20,6 @@ fetch("/areas/findall")
         `;
     }
     placeholder.innerHTML = out;
-
-    console.log(out);
 })
 
 
@@ -62,7 +60,25 @@ function editArea(area, ele){
     ele.parentElement.parentElement.parentElement.firstElementChild.appendChild(editValInput);
     document.getElementById('editValue').value = area.area_name;
 
-    editAreaPut(document.getElementById('editValue').value);
+    var editBtnDiv = document.createElement("div");
+    var editBtn = document.createElement("button");
+    editBtn.className = "btnEdit";
+    editBtn.innerHTML = "Edit";
+
+    var discardBtn = document.createElement("button");
+    discardBtn.className = "btnDelete";
+    discardBtn.innerHTML = "Discard";
+
+    editBtnDiv.appendChild(editBtn);
+    editBtnDiv.appendChild(discardBtn);
+    editBtnDiv.style = "display:flex";
+
+    ele.parentElement.parentElement.removeChild(ele.parentElement.parentElement.firstElementChild);
+    
+    console.log(ele.parentElement);
+    //ele.parentElement.parentElement.appendChild(editBtnDiv);
+
+    //editAreaPut(document.getElementById('editValue').value);
 }
 
 function addAreaPost(areaNew){
