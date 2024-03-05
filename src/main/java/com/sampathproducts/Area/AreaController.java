@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 public class AreaController {
@@ -71,6 +73,18 @@ public class AreaController {
     @DeleteMapping(value = "/area/delete")
     public String delete(@RequestBody Area area) {
         try {
+            return "ok";
+        } catch (Exception e) {
+            return "Delete not completed : " + e.getMessage();
+        }
+    }
+
+    @PutMapping("/area/update/{code}")
+    public String updateArea(@PathVariable String code, @RequestBody Area area) {
+
+        try {
+            area.setArea_code(code);
+            dao.save(area);
             return "ok";
         } catch (Exception e) {
             return "Delete not completed : " + e.getMessage();

@@ -8,12 +8,16 @@ fetch("/areas/findall")
     for(let area of areas){
         out += `
             <tr>
-                <td>${area.area_name}</td>
+                <td id="rowAreaName">${area.area_name}</td>
                 <td>${area.area_code}</td>
                 <td>
-                    <div style="display:flex">
+                    <div id="basicBtn" style="display:flex">
                         <button class="btnEdit" onclick='editArea(` + JSON.stringify(area) + `,this)'>Edit</button>
                         <button class="btnDelete" onclick='deleteArea(` + JSON.stringify(area) + `)'>Delete</button>
+                    </div>
+                    <div id="secondaryBtn"  style="display:none">
+                        <button class="btnEdit" onclick='editRowArea()'>save</button>
+                        <button class="btnDelete" onclick='discardRowArea()'>Discard</button>
                     </div>
                 </td>
             </tr>
@@ -41,8 +45,14 @@ function showForm(){
     buttonFieldData.appendChild(buttonField);
 }
 
-function editRowShow(){
+function editRowArea(){
+    var newValue = document.getElementById("editValue").value;
+    alert(newValue);
+    //editAreaPut(newValue);
+}
 
+function discardRowArea(){
+    window.location.href = "/areas";
 }
 
 function saveArea(){
@@ -60,25 +70,10 @@ function editArea(area, ele){
     ele.parentElement.parentElement.parentElement.firstElementChild.appendChild(editValInput);
     document.getElementById('editValue').value = area.area_name;
 
-    var editBtnDiv = document.createElement("div");
-    var editBtn = document.createElement("button");
-    editBtn.className = "btnEdit";
-    editBtn.innerHTML = "Edit";
+    document.getElementById("basicBtn").style.display = "none";
+    document.getElementById("secondaryBtn").style.display = "flex";
 
-    var discardBtn = document.createElement("button");
-    discardBtn.className = "btnDelete";
-    discardBtn.innerHTML = "Discard";
-
-    editBtnDiv.appendChild(editBtn);
-    editBtnDiv.appendChild(discardBtn);
-    editBtnDiv.style = "display:flex";
-
-    ele.parentElement.parentElement.removeChild(ele.parentElement.parentElement.firstElementChild);
     
-    console.log(ele.parentElement);
-    //ele.parentElement.parentElement.appendChild(editBtnDiv);
-
-    //editAreaPut(document.getElementById('editValue').value);
 }
 
 function addAreaPost(areaNew){

@@ -37,4 +37,5 @@ public class Area {
 
     @Column(name = "area_deleted_date")
     private LocalDateTime area_deleted_date;
+
 }
