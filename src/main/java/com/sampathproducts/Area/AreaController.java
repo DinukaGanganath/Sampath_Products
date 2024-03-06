@@ -79,15 +79,14 @@ public class AreaController {
         }
     }
 
-    @PutMapping("/area/update/{code}")
-    public String updateArea(@PathVariable String code, @RequestBody Area area) {
+    @PutMapping("/area/update")
+    public String updateArea(@RequestBody Area area) {
 
         try {
-            area.setArea_code(code);
             dao.save(area);
             return "ok";
         } catch (Exception e) {
-            return "Delete not completed : " + e.getMessage();
+            return "Update not completed : " + e.getMessage();
         }
     }
 

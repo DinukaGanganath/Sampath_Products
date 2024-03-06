@@ -16,7 +16,7 @@ fetch("/areas/findall")
                         <button class="btnDelete" onclick='deleteArea(` + JSON.stringify(area) + `)'>Delete</button>
                     </div>
                     <div id="secondaryBtn"  style="display:none">
-                        <button class="btnEdit" onclick='editRowArea()'>save</button>
+                        <button class="btnEdit" onclick='editRowArea(this)'>save</button>
                         <button class="btnDelete" onclick='discardRowArea()'>Discard</button>
                     </div>
                 </td>
@@ -45,10 +45,10 @@ function showForm(){
     buttonFieldData.appendChild(buttonField);
 }
 
-function editRowArea(){
+function editRowArea(ele){
     var newValue = document.getElementById("editValue").value;
-    alert(newValue);
-    //editAreaPut(newValue);
+    var areaCode = ele.parentElement.parentElement.parentElement.children[1].innerHTML;
+    editAreaPut(newValue, areaCode);
 }
 
 function discardRowArea(){
@@ -126,38 +126,22 @@ function deleteArea(area){
     }
 }
 
-function editAreaPut(editedValue){
+function editAreaPut(editedValue, editedCode){
 
-    var area = {
-        "area_name" : ""
-    };
+    var area;
+    if(editedValue != ""){
+        area = {
+            "area_code" : `${editedCode}`,
+            "area_name" : ""
+        };
 
-    area.area_name = editedValue;
+        area.area_name = editedValue;
+        console.log(area);
 
-    console.log(area);
-
-    $.ajax('/area/delete', {
-        async : false,
-        type : "PUT",
-        data : JSON.stringify(area),
-        contentType: 'application/json',
-
-        success : function (data, status, xhr){
-            console.log("success " + status + " " + xhr);
-            responseStatus = data;
-            console.log(responseStatus);
-        },
-
-        error : function (xhr, status, errormsg){
-            console.log("fail " + errormsg + " " + status +" " + xhr);
-            responseStatus = errormsg;
-        },
-    });
-
-    if (responseStatus=='Ok'){
-        alert('Area Saved Succesfully...');
-        window.location.href = "/areas";
+        //call PUT function
+        restFunction('/area/update', area, "PUT", "/areas", "Area");
     }else{
-        alert('Some Errors has Occured...');
+        alert("Enter a Area Name !!!");
+        window.location.href = "/areas";
     }
 }
