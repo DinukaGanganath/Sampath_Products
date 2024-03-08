@@ -31,7 +31,6 @@ fetch("/materials/findall")
         `;
     }
     optionList.innerHTML = out;
-    console.log(out);
 })
 
 fetch("/types/findall")
@@ -76,7 +75,9 @@ fetch("/supplier/findall")
             document.getElementById('supplierBusinessName').value = supplier.supplier_business_name;
             document.getElementById('supplierRegistration').value = supplier.supplier_business_reg;
             document.getElementById('supplierBusinessType').value = supplier.supplier_business_type.type_name;
-            document.getElementById('supplierMaterial').value = supplier.supplier_material_id.material_name;      
+            document.getElementById('supplierMaterial').value = supplier.supplier_material_id.material_name; 
+            
+            console.log(document.querySelector('#supplierAddressTwo').value);
         }
     }
 })

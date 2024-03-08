@@ -7,7 +7,7 @@ fetch("/areas/findall")
     let out = "";
     for(let area of areas){
         out += `
-            <tr>
+            <tr id=`+ area.area_id +`>
                 <td id="rowAreaName">${area.area_name}</td>
                 <td>${area.area_code}</td>
                 <td>
@@ -24,6 +24,7 @@ fetch("/areas/findall")
         `;
     }
     placeholder.innerHTML = out;
+    test();
 })
 
 
@@ -144,4 +145,9 @@ function editAreaPut(editedValue, editedCode){
         alert("Enter a Area Name !!!");
         window.location.href = "/areas";
     }
+}
+
+function test(){
+    var divBtn = createButtonDiv(["myid", "test", "flex"],[["btn1","btnDelete","Button Ok", "doSomething();"], ["btn1","btnEdit","Button 2", "doSomething();"], ["btn1","btnSubmit","Button 3", "doSomething();"]]);
+    document.getElementById('area_tab').appendChild(divBtn);
 }
