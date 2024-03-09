@@ -1,3 +1,6 @@
+initLayout("Material", "Material Details");
+sidebarLoader("/materials");
+
 fetch("/materials/findall")
 .then(function(response){
     return response.json();

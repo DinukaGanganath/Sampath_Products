@@ -1,3 +1,6 @@
+initLayout("Supplier Edit", "Supplier Edit");
+sidebarLoader("/supplier");
+
 fetch("/areas/findall")
 .then(function(response){
     return response.json();

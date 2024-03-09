@@ -24,8 +24,7 @@ function createButtonDiv(divDetails, btnList){
     btnDiv.style.display = divDetails[2];
     
     for(var i = 0 ; i<btnList.length; i++){
-        
-        console.log(btnList[i]);
+    
         var newBtn = document.createElement("button");
         newBtn.id = btnList[i][0];
         newBtn.classList.add(btnList[i][1]);

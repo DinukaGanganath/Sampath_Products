@@ -1,3 +1,6 @@
+initLayout("Area", "Area Details");
+sidebarLoader("/areas");
+
 fetch("/areas/findall")
 .then(function(response){
     return response.json();
@@ -24,9 +27,7 @@ fetch("/areas/findall")
         `;
     }
     placeholder.innerHTML = out;
-    test();
 })
-
 
 function showForm(){
 
@@ -145,9 +146,4 @@ function editAreaPut(editedValue, editedCode){
         alert("Enter a Area Name !!!");
         window.location.href = "/areas";
     }
-}
-
-function test(){
-    var divBtn = createButtonDiv(["myid", "test", "flex"],[["btn1","btnDelete","Button Ok", "doSomething();"], ["btn1","btnEdit","Button 2", "doSomething();"], ["btn1","btnSubmit","Button 3", "doSomething();"]]);
-    document.getElementById('area_tab').appendChild(divBtn);
 }

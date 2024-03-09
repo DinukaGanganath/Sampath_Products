@@ -1,3 +1,6 @@
+initLayout("Supplier", "Supplier Details");
+sidebarLoader("/supplier");
+
 fetch("/supplier/findall")
 .then(function(response){
     return response.json();

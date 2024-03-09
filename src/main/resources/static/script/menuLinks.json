@@ -1,0 +1,52 @@
+[
+    {
+        "link": "/home",
+        "icon": "fa-solid fa-house icon",
+        "text": "Dashboard"
+    },
+    {
+        "link": "/supplier",
+        "icon": "fa-solid fa-people-carry-box icon",
+        "text": "Supplier"
+    },
+    {
+        "link": "/salesrep",
+        "icon": "fa-solid fa-truck-fast icon",
+        "text": "Sales Rep"
+    },
+    {
+        "link": "/products",
+        "icon": "fa-solid fa-box-archive icon",
+        "text": "Products"
+    },
+    {
+        "link": "/stores",
+        "icon": "fa-solid fa-boxes-stacked icon",
+        "text": "Stores"
+    },
+    {
+        "link": "/production",
+        "icon": "fa-solid fa-truck-ramp-box icon",
+        "text": "Production"
+    },
+    {
+        "link": "/quotations",
+        "icon": "fa-solid fa-sheet-plastic icon",
+        "text": "Quotations"
+    },
+    {
+        "link": "/customers",
+        "icon": "fa-solid fa-users icon",
+        "text": "Customers"
+    },
+    {
+        "link": "/materials",
+        "icon": "fa-solid fa-bread-slice icon",
+        "text": "Materials"
+    },
+    {
+        "link": "/areas",
+        "icon": "fa-solid fa-map-location-dot icon",
+        "text": "Areas"
+    }
+]

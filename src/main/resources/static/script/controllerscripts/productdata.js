@@ -1,3 +1,6 @@
+initLayout("Products", "Product Details");
+sidebarLoader("/products");
+
 fetch("/products/findall")
 .then(function(response){
     return response.json();

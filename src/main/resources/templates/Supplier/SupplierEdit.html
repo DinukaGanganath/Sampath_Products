@@ -1,7 +1,6 @@
 <html>
 
 <head>
-	<title>Add Supplier</title>
 
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
 	<link rel="stylesheet" href="fontawesome/css/all.css" />
@@ -9,14 +8,6 @@
 	<link rel="stylesheet" href="style/sidenavbarstyles.css" />
 	<link rel="stylesheet" href="style/formstyles.css" />
 	<link rel="stylesheet" href="style/contentstyles.css" />
-
-	<script type="text/javascript" src="script/sidebarscripts.js"></script>
-	<script type="text/javascript" src="script/formscripts.js"></script>
-	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="fontawesome/js/all.js"></script>
-	<script type="text/javascript" src="script/validationscripts/validation.js"></script>
-	<script type="text/javascript" src="script/controllerscripts/supplieredit.js"></script>
-	<script type="text/javascript" src="script/jquery.js"></script>
 
 	<link rel="icon" href="images/logo_white.png">
 
@@ -35,117 +26,16 @@
 					</div>
 				</div>
 			</div>
-			<div class="column">
-				<div class="sidebar show mobmenuhide">
-					<div class="logo-details">
-						<header>
-							<!--Side bar Logo-->
-							<div class="image-text">
-								<!--Image-->
-								<span class="image">
-									<img src="images/logo_white.png" alt="logo" />
-								</span>
-								<!--image text-->
-								<div class="text header-text">
-									<h5 class="name">Sampath Products</h5>
-								</div>
-								<!--Chevoren mark-->
-								<div class="toggle">
-									<i class="icon fa-solid fa-circle-chevron-left" onclick="menuToggle(this)"></i>
-								</div>
-							</div>
-						</header>
-						<!--Menu items-->
-						<div class="menu-bar">
-							<div class="menu">
-								<ul class="menu-links">
-									<li class="nav-link">
-										<a href="/home">
-											<i class="fa-solid fa-house icon"></i>
-											<span class="text nav-text">Dashboard</span>
-										</a>
-									</li>
-									<li class="nav-link active">
-										<a href="/supplier">
-											<i class="fa-solid fa-people-carry-box icon"></i>
-											<span class="text nav-text">Supplier</span>
-										</a>
-									</li>
-									<li class="nav-link">
-										<a href="/salesrep">
-											<i class="fa-solid fa-truck-fast icon"></i>
-											<span class="text nav-text">Sales Rep</span>
-										</a>
-									</li>
-									<li class="nav-link">
-										<a href="/products">
-											<i class="fa-solid fa-box-archive icon"></i>
-											<span class="text nav-text">Products</span>
-										</a>
-									</li>
-									<li class="nav-link">
-										<a href="/stores">
-											<i class="fa-solid fa-boxes-stacked icon"></i>
-											<span class="text nav-text">Stores</span>
-										</a>
-									</li>
-									<li class="nav-link">
-										<a href="/production">
-											<i class="fa-solid fa-truck-ramp-box icon"></i>
-											<span class="text nav-text">Production</span>
-										</a>
-									</li>
-									<li class="nav-link">
-										<a href="/quotations">
-											<i class="fa-solid fa-sheet-plastic icon"></i>
-											<span class="text nav-text">Quotations</span>
-										</a>
-									</li>
-									<li class="nav-link">
-										<a href="/customers">
-											<i class="fa-solid fa-users icon"></i>
-											<span class="text nav-text">Customers</span>
-										</a>
-									</li>
-									<li class="nav-link">
-										<a href="/materials">
-											<i class="fa-solid fa-bread-slice icon"></i>
-											<span class="text nav-text">Materials</span>
-										</a>
-									</li>
-									<li class="nav-link">
-										<a href="/areas">
-											<i class="fa-solid fa-map-location-dot icon"></i>
-											<span class="text nav-text">Areas</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div class="bottom-content">
-								<li class="nav-link">
-									<a href="#">
-										<img class="user-image" src="images/myphoto.jpeg" alt="User Image">
-										<span class="text nav-text">Dinuka</span>
-									</a>
-								</li>
-								<li class="nav-link">
-									<a href="#">
-										<i class="fa-solid fa-sign-out icon"></i>
-										<span class="text nav-text">Signout</span>
-									</a>
-								</li>
-							</div>
-						</div>
-					</div>
-				</div>
+			<div class="column" id="sidebarContainer">
+					
 			</div>
 
 
 			<div class="content-container">
 
 				<div class="content">
-					<div class="head-title">
-						Edit or Delete Supplier
+					<div class="head-title" id="heading">
+						
 					</div>
 					<!--header class="form-header">Registration</header-->
 
@@ -265,6 +155,15 @@
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript" src="script/sidebarscripts.js"></script>
+	<script type="text/javascript" src="script/objects.js"></script>
+	<script type="text/javascript" src="script/formscripts.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="fontawesome/js/all.js"></script>
+	<script type="text/javascript" src="script/validationscripts/validation.js"></script>
+	<script type="text/javascript" src="script/controllerscripts/supplieredit.js"></script>
+	<script type="text/javascript" src="script/jquery.js"></script>
 </body>
 
 </html>
