@@ -8,14 +8,16 @@ fetch("/areas/findall")
 .then(function(areas){
     let placeholder = document.querySelector("#data-output");
     let out = "";
+    let parentElements = '["td", "p"]';
     for(let area of areas){
         out += `
             <tr id=`+ area.area_id +`>
-                <td id="rowAreaName">${area.area_name}</td>
-                <td>${area.area_code}</td>
+                <td id="area_name">${area.area_name}</td>
+                <td id="area_code">${area.area_code}</td>
                 <td>
                     <div id="basicBtn" style="display:flex">
-                        <button class="btnEdit" onclick='editArea(` + JSON.stringify(area) + `,this)'>Edit</button>
+                        <!--button class="btnEdit" onclick='editArea(` + JSON.stringify(area) + `,this)'>Edit</button-->
+                        <button class="btnEdit" onclick='createJson(` + area.area_id +`, ${parentElements})'>Edit</button>
                         <button class="btnDelete" onclick='deleteArea(` + JSON.stringify(area) + `)'>Delete</button>
                     </div>
                     <div id="secondaryBtn"  style="display:none">

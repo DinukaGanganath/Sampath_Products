@@ -188,7 +188,7 @@ function finishConfirmation(){
 
 function createObject(){
 
-    object = {
+    /*object = {
         "supplier_name" : "",
         "supplier_nic" : "", 
         "supplier_address_line1" : "", 
@@ -226,7 +226,9 @@ function createObject(){
     //object.updated_date_time = document.getElementById("supplierId").value; 
     //object.deleted_date_time = document.getElementById("supplierId").value;
 
-    return object;
+    return object; */
+
+    console.log(createJson("supplierAddForm", ["input", "select"]));
 
 }
 
