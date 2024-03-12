@@ -44,6 +44,10 @@ thead th{
     color: var(--active-color);
 }
 
+tr{
+    height: 7.15%;
+}
+
 .table-container{
     position: relative;
     width: 95%;

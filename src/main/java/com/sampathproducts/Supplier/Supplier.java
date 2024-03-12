@@ -81,6 +81,9 @@ public class Supplier {
     @Column(name = "deleted_date_time")
     private LocalDateTime deleted_date_time;
 
+    @Column(name = "supplier_deleted")
+    private Integer supplier_deleted;
+
     @OneToOne
     @JoinColumn(name = "supplier_area_id", referencedColumnName = "area_id")
     private Area supplier_area_id;

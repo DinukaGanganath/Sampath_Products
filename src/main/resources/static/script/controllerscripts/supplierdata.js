@@ -9,17 +9,19 @@ fetch("/supplier/findall")
     var placeholder = document.querySelector("#data-output");
     var out = "";
     for(let supplier of suppliers){
-        out += `
-            <tr class="sup_raw" ondblclick='directEditform(` + JSON.stringify(supplier) + `)'>
-                <td>${supplier.supplier_name}</td>
-                <td>${supplier.supplier_code}</td>
-                <td>${supplier.supplier_contact_no1}</td>
-                <td>${supplier.supplier_email}</td>
-                <td>${supplier.supplier_business_name}</td>
-                <td>${supplier.supplier_area_id.area_name}</td>
-                <td>${supplier.supplier_material_id.material_name}</td>
-            </tr>
-        `;
+        if(supplier.supplier_deleted == 0){
+            out += `
+                <tr class="sup_raw" ondblclick='directEditform(` + JSON.stringify(supplier) + `)'>
+                    <td>${supplier.supplier_name}</td>
+                    <td>${supplier.supplier_code}</td>
+                    <td>${supplier.supplier_contact_no1}</td>
+                    <td>${supplier.supplier_email}</td>
+                    <td>${supplier.supplier_business_name}</td>
+                    <td>${supplier.supplier_area_id.area_name}</td>
+                    <td>${supplier.supplier_material_id.material_name}</td>
+                </tr>
+            `;
+        }
     }
     placeholder.innerHTML = out;
 })
@@ -29,7 +31,7 @@ fetch("/areas/findall")
     return response.json();
 })
 .then(function(areas){
-    let options = document.querySelector("#supplierAddressTwo");
+    let options = document.querySelector("#supplier_area_id");
     let out = "<option selected disabled>Select Area</option>";
     for(let area of areas){
         
@@ -48,7 +50,7 @@ fetch("/materials/findall")
     return response.json();
 })
 .then(function(materials){
-    let options = document.querySelector("#supplierMaterial");
+    let options = document.querySelector("#supplier_material_id");
     let out = "<option selected disabled>Select Material</option>";
     for(let material of materials){
         out += `
@@ -65,7 +67,7 @@ fetch("/types/findall")
     return response.json();
 })
 .then(function(types){
-    let options = document.querySelector("#supplierBusinessType");
+    let options = document.querySelector("#supplier_business_type");
     let out = "<option selected disabled>Select Business Type</option>";
     for(let type of types){
         out += `
@@ -156,7 +158,7 @@ function finishConfirmation(){
 
     if(userConfirm){
         let responseStatus;
-        var supplier = createObject();
+        var supplier = createJson("supplierAddForm", ["input", "select"]);
         console.log(supplier);
 
         $.ajax('/supplier/save', {
@@ -228,7 +230,8 @@ function createObject(){
 
     return object; */
 
-    console.log(createJson("supplierAddForm", ["input", "select"]));
+    var object = createJson("supplierAddForm", ["input", "select"]);
+    return object;
 
 }
 

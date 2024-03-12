@@ -32,14 +32,14 @@ body{
 /*Side bar styling*/
 .sidebar-container{
     position: absolute;
-    height: 100vh;
+    height: 100%;
 }
 
 .sidebar{
     position : static;
     top: 0;
     left: 0;
-    height: 100vh;
+    height: 100%;
     width: 250px;
     padding: 20px 0px;
     background: var(--sidebar-color); 

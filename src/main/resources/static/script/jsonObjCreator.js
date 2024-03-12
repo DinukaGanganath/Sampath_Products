@@ -1,29 +1,33 @@
 function createJson(eleid, parentEle){
-    var jsonObj = '';
+    var jsonObj = {};
+    var formProperties = [];
+
     for(pEle of parentEle){
         var jsonAttr = document.getElementById(eleid).querySelectorAll(parentEle);
-        for(attr of jsonAttr){
+        for(var attr of jsonAttr){
             if(attr.id != ""){
-                /*switch(attr.localName){
+
+                var oneProperty=[];
+                switch(attr.localName){
                     case "td":
-                        jsonObj += `"${attr.id}":"${attr.innerHTML}",`;
+                        oneProperty.push(attr.id, attr.innerHTML);
                         break;
                     case "input":
-                        jsonObj += `"${attr.id}":"${attr.value}",`;
+                        oneProperty.push(attr.id, attr.value);
                         break;
                     case "select":
-                        jsonObj += `"${attr.id}": ${JSON.parse(attr.value)} ,`;
-                }*/
-
-                jsonObj += `"${attr.id}":"",`;
-                
+                        oneProperty.push(attr.id, JSON.parse(attr.value));
+                }
+                formProperties.push(oneProperty);
             }
         }
     }
-    
-    jsonObj = jsonObj.slice(0, -1);
-    console.log(jsonObj);
-    var obj = JSON.parse('{'+jsonObj+'}');
 
-    console.log(Object.keys(obj));
+    for(prop of formProperties){
+        jsonObj[prop[0]] = prop[1];
+    }
+
+    console.log(jsonObj);
+    return jsonObj;
+    
 }

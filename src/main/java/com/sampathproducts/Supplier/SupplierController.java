@@ -41,6 +41,13 @@ public class SupplierController {
         return viewSupplierAdd;
     }
 
+    @RequestMapping(value = "/supplierldelete")
+    public ModelAndView supplierDeletedItems() {
+        ModelAndView viewSupplierAdd = new ModelAndView();
+        viewSupplierAdd.setViewName("Supplier/SupplierDeleted.html");
+        return viewSupplierAdd;
+    }
+
     @RequestMapping(value = "/supplieredit")
     public ModelAndView supplierEditUI() {
         ModelAndView viewSupplierEdit = new ModelAndView();
@@ -60,6 +67,7 @@ public class SupplierController {
 
         try {
             supplier.setCreated_date_time(LocalDateTime.now());
+            supplier.setSupplier_deleted(0);
 
             String nextSupplierCode = dao.getNextSupplierCode();
 
