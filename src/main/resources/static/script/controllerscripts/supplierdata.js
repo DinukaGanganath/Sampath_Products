@@ -11,7 +11,7 @@ fetch("/supplier/findall")
     for(let supplier of suppliers){
         if(supplier.supplier_deleted == 0){
             out += `
-                <tr class="sup_raw" ondblclick='directEditform(` + JSON.stringify(supplier) + `)'>
+                <tr class="sup_raw"  onclick='showContextMenu(` + JSON.stringify(supplier) + `, event)'>
                     <td>${supplier.supplier_name}</td>
                     <td>${supplier.supplier_code}</td>
                     <td>${supplier.supplier_contact_no1}</td>
@@ -80,8 +80,8 @@ fetch("/types/findall")
 })
 
 function directEditform(supplier){
-    console.log(supplier);
-    window.location.href = `/supplieredit?id=${supplier.supplierid}`;
+    alert(supplier.supplier_address_city);
+    window.location.href = `/supplieredit`;
 }
 
 function validForm(){

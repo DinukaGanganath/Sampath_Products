@@ -106,7 +106,28 @@ tr{
 
 .hidden{
     display : none;
+}   
+
+#context-menu{
+	position:fixed;
+	z-index: 10000;
+	width: 150px;
+	background: var(--sidebar-color);
+	transform:scale(0);
+	transform-origin: top left;	
 }
+
+#context-menu.active{
+	transform: scale(1);
+	
+}
+
+#context-menu .item{
+	padding: 8px 10px;
+	font-size: 15px;
+	color: var(--text-color);
+}
+    
 
 @media (max-width: 767px){
     thead{

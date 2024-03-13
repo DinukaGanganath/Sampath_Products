@@ -55,7 +55,7 @@ body{
     align-items: center;
 }
 
-.sidebar li:hover{
+.sidebar li:hover, #context-menu .item:hover{
     margin-top: 5px;
     width:100%;
     list-style: none;
