@@ -11,7 +11,7 @@ fetch("/supplier/findall")
     for(let supplier of suppliers){
         if(supplier.supplier_deleted == 1){
             out += `
-                <tr class="sup_raw" ondblclick='directEditform(` + JSON.stringify(supplier) + `)'>
+                <tr class="sup_raw" onclick='showContextMenu(` + JSON.stringify(supplier) + `, event)'>
                     <td>${supplier.supplier_name}</td>
                     <td>${supplier.supplier_code}</td>
                     <td>${supplier.supplier_contact_no1}</td>

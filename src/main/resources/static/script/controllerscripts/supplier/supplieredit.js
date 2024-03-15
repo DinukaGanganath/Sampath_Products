@@ -1,5 +1,14 @@
+var receivedData = JSON.parse(sessionStorage.getItem("dataToSend"));
+console.log(receivedData);
+
 initLayout("Supplier Edit", "Supplier Edit");
 sidebarLoader("/supplier");
+
+/*var queryString = window.location.search;
+var urlParams = new URLSearchParams(queryString);
+var encodedData = urlParams.get('data');
+var myObject = JSON.parse(decodeURIComponent(encodedData));
+console.log(myObject);*/
 
 fetch("/areas/findall")
 .then(function(response){

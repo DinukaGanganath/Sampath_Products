@@ -55,6 +55,13 @@ public class SupplierController {
         return viewSupplierEdit;
     }
 
+    @RequestMapping(value = "/supplierview")
+    public ModelAndView supplierViewUI() {
+        ModelAndView viewSupplierView = new ModelAndView();
+        viewSupplierView.setViewName("Supplier/SupplierView.html");
+        return viewSupplierView;
+    }
+
     // get database values as json data
     @GetMapping(value = "/supplier/findall", produces = "application/json")
     public List<Supplier> findAll() {

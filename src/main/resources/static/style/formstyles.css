@@ -246,6 +246,38 @@ form button, .nextBtn, .backBtn, .submitBtn{
     margin : 5px;
 }
 
+.btnEditWide{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    max-width: 200px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #FCAE1E;
+    color: var(--text-color);
+    border-radius: 5px;
+    cursor: pointer;
+    margin : 5px;
+}
+
+.btnDeleteWide{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    max-width: 200px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #FCAE1E;
+    color: var(--text-color);
+    border-radius: 5px;
+    cursor: pointer;
+    margin : 5px;
+}
+
 form button, 
 form .backBtn{
     font-size : 14px;

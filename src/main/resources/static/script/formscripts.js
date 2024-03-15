@@ -35,3 +35,39 @@ function createButtonDiv(divDetails, btnList){
 
     return btnDiv;
 }
+
+function objectToForm(formId, jsonObj, objValList) {
+    var form = document.getElementById(formId);
+    var keys = Object.keys(jsonObj);
+
+    keys.forEach(function(key) {
+        var inputField = form.elements[key];
+        if (inputField) {
+            if(typeof(jsonObj[key]) != 'string' && jsonObj[key] != null){
+                var cmnval = commonValue(Object.keys(jsonObj[key]),objValList);
+                console.log(cmnval);
+                inputField.value = jsonObj[key][cmnval];
+            }else{
+                inputField.value = jsonObj[key];
+            }
+        }
+    });
+}
+
+function commonValue(arr1, arr2) {
+    for (var i = 0; i < arr1.length; i++) {
+        if (arr2.includes(arr1[i])) {
+            return arr1[i] ;
+        }
+    }
+    return "-1";
+}
+
+
+function btnConfig(btnId, btnUrl, btnClass){
+    document.getElementById(btnId).addEventListener("click", function() {
+        window.location.href = btnUrl;
+    });
+
+    document.getElementById("redirectButton").classList.add(btnClass);
+}

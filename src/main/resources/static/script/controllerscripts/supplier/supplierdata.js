@@ -1,6 +1,8 @@
+//configure the GUI and window parameters
 initLayout("Supplier", "Supplier Details");
 sidebarLoader("/supplier");
 
+//Create the table initial values
 fetch("/supplier/findall")
 .then(function(response){
     return response.json();
@@ -26,6 +28,7 @@ fetch("/supplier/findall")
     placeholder.innerHTML = out;
 })
 
+//Load the area names options to the Select tag
 fetch("/areas/findall")
 .then(function(response){
     return response.json();
@@ -45,6 +48,7 @@ fetch("/areas/findall")
     console.log(out);
 })
 
+//Load the Material names options to the Select tag
 fetch("/materials/findall")
 .then(function(response){
     return response.json();
@@ -62,6 +66,7 @@ fetch("/materials/findall")
     options.innerHTML = out;
 })
 
+//Load the Business types options to the Select tag
 fetch("/types/findall")
 .then(function(response){
     return response.json();
@@ -79,11 +84,7 @@ fetch("/types/findall")
     options.innerHTML = out;
 })
 
-function directEditform(supplier){
-    alert(supplier.supplier_address_city);
-    window.location.href = `/supplieredit`;
-}
-
+//validate the form & making the alert msg
 function validForm(){
     var errorStr = "";
     errorStr += checkForRequired();
@@ -94,6 +95,7 @@ function validForm(){
         finishConfirmation();
 }
 
+//checking the required values
 function checkForRequired(){
     var fields = document.querySelectorAll('input, select');
     var errorMsg ='Enter values for Required values : \n';
@@ -114,6 +116,7 @@ function checkForRequired(){
     }
 }
 
+//checking for errors
 function checkForErrors(){
     var fields = document.querySelectorAll('input, select');
     var errorMsg ='\n\nEnter values in correct form for following details : \n';
@@ -134,6 +137,7 @@ function checkForErrors(){
     }
 }
 
+//getting user confirmation
 function userConfirmation(){
     var fields = document.querySelectorAll('input, select');
     var confirmString = 'Are you sure to submit following details: \n';
@@ -153,6 +157,7 @@ function userConfirmation(){
     return confirmString;
 }
 
+//finishing the confirmation
 function finishConfirmation(){
     let userConfirm = window.confirm(userConfirmation());
 
@@ -235,4 +240,36 @@ function createObject(){
 
 }
 
- 
+////////////////////////// 
+///// Supplier View //////
+//////////////////////////
+
+function viewSupplier(){
+    var objvalue = getRowObject();
+    sessionStorage.setItem("dataToSend", JSON.stringify(objvalue));
+    window.location.href = '/supplierview';
+}
+
+////////////////////////// 
+///// Supplier Edit //////
+//////////////////////////
+
+function editSupplier(){
+    
+}
+
+////////////////////////// 
+//// Supplier Delete /////
+//////////////////////////
+
+function deleteSupplier(){
+    
+}
+
+////////////////////////// 
+/// Supplier Restore /////
+//////////////////////////
+
+function restoreSupplier(){
+    
+}

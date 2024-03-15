@@ -30,7 +30,6 @@ function sidebarLoader(selected){
             `;
             }
         }
-        console.log(menus);
 
         document.getElementById("sidebarContainer").innerHTML = `
             <div class="sidebar show mobmenuhide">
