@@ -166,30 +166,8 @@ function finishConfirmation(){
         var supplier = createJson("supplierAddForm", ["input", "select"]);
         console.log(supplier);
 
-        $.ajax('/supplier/save', {
-            async : false,
-            type : "POST",
-            data : JSON.stringify(supplier),
-            contentType: 'application/json',
+        restFunction('/supplier/save', supplier, "POST", "/supplier", "Supplier");
 
-            success : function (data, status, xhr){
-                console.log("success " + status + " " + xhr);
-                responseStatus = data;
-                console.log(responseStatus);
-            },
-
-            error : function (xhr, status, errormsg){
-                console.log("fail " + errormsg + " " + status +" " + xhr);
-                responseStatus = errormsg;
-            },
-        });
-
-        if (responseStatus=='Ok'){
-            alert('Supplier Saved Succesfully...');
-            window.location.href = "/supplier";
-        }else{
-            alert('Some Errors has Occured...');
-        }
     }
 }
 
@@ -263,13 +241,7 @@ function editSupplier(){
 //////////////////////////
 
 function deleteSupplier(){
-    
-}
-
-////////////////////////// 
-/// Supplier Restore /////
-//////////////////////////
-
-function restoreSupplier(){
-    
+    var objvalue = getRowObject();
+    restFunction('/supplier/delete', objvalue, "DELETE", "/supplier", "Supplier");
+    window.location.href = '/supplier';
 }

@@ -78,6 +78,7 @@ public class AreaController {
         }
     }
 
+    @SuppressWarnings("null")
     @PutMapping("/area/update")
     public String updateArea(@RequestBody Area area) {
 

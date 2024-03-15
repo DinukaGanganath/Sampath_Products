@@ -271,7 +271,7 @@ form button, .nextBtn, .backBtn, .submitBtn{
     width: 100%;
     border: none;
     outline: none;
-    background-color: #FCAE1E;
+    background-color: red;
     color: var(--text-color);
     border-radius: 5px;
     cursor: pointer;

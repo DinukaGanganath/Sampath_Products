@@ -24,4 +24,14 @@ fetch("/supplier/findall")
         }
     }
     placeholder.innerHTML = out;
-})
+});
+
+////////////////////////// 
+/// Supplier Restore /////
+//////////////////////////
+
+function restoreSupplier(){
+    var objvalue = getRowObject();
+    restFunction('/supplier/restore', objvalue, "PUT", "/supplier", "Supplier");
+    //window.location.href = '/supplier';
+}
