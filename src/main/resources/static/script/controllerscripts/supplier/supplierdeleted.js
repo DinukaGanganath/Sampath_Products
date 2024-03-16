@@ -32,6 +32,7 @@ fetch("/supplier/findall")
 
 function restoreSupplier(){
     var objvalue = getRowObject();
+    console.log(objvalue);
     restFunction('/supplier/restore', objvalue, "PUT", "/supplier", "Supplier");
     //window.location.href = '/supplier';
 }
