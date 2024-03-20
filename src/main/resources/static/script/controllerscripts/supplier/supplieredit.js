@@ -13,7 +13,7 @@ var optionIdList = [
 initLayout("Supplier Edit", `Supplier Edit - ${receivedData.supplier_code}`);
 sidebarLoader("/supplier");
 
-optionInput(optionIdList);
+optionInput(optionIdList, receivedData);
 
 objectToForm('supplierEditForm', receivedData, ["type_name","area_name","material_name"]);
 

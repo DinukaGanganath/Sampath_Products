@@ -76,8 +76,7 @@ function checkRquired(field){
 
 //validate the form & making the alert msg
 function validForm(formId, eleList, url, method, loadAfter, navigator, idVal){
-    var formObj = createJson(formId, eleList, idVal);
-    console.log(formObj);
+    var formObj = createJson(formId, eleList);
     var errorStr = "";
     errorStr += checkForRequired();
     errorStr += checkForErrors()
@@ -87,6 +86,7 @@ function validForm(formId, eleList, url, method, loadAfter, navigator, idVal){
     else{
         let userConfirm = window.confirm(userConfirmation(formObj));
         if(userConfirm){
+            console.log(formObj);
             restFunction(url, formObj, method, loadAfter, navigator);
             //restFunction('/supplier/save', supplier, "POST", "/supplier", "Supplier");
         }
@@ -145,6 +145,7 @@ function userConfirmation(obj){
     var rule;
     var valueJson;
     var confirmString = 'Are you sure to submit following details: \n';
+    console.log(Object.keys(obj));
     for(key of Object.keys(obj)){
         if(obj[key] != ""){
             valueJson = obj[key];
@@ -156,15 +157,17 @@ function userConfirmation(obj){
                     }
                 }
             }
-
-            console.log(document.querySelector(`#${key}`));
+            
+            //console.log(document.querySelector(`#${key}`));
             var keyString = document.querySelector(`#${key}`).previousElementSibling.innerHTML;
-            if(keyString.includes("<")){
-                indexOfLessThan = keyString.indexOf('<');
-                keyString = keyString.substring(0, indexOfLessThan);
+            if(!document.querySelector(`#${key}`).classList.contains("avoid")){
+                if(keyString.includes("<")){
+                    indexOfLessThan = keyString.indexOf('<');
+                    keyString = keyString.substring(0, indexOfLessThan);
+                }
+                rule = (keyString + ' : ' + valueJson +'\n');
+                confirmString += rule;
             }
-            rule = (keyString + ' : ' + valueJson +'\n');
-            confirmString += rule;
         }
     }
     

@@ -1,10 +1,8 @@
-function createJson(eleid, parentEle, idVal){
+function createJson(eleid, parentEle){
     
     var jsonObj = {};
     var formProperties = [];
-    if(idVal != null){
-        jsonObj[idVal[0]] = idVal[1];
-    }
+    
     for(pEle of parentEle){
         var jsonAttr = document.getElementById(eleid).querySelectorAll(parentEle);
         for(var attr of jsonAttr){

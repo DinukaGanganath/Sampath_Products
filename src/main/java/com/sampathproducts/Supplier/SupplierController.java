@@ -116,7 +116,6 @@ public class SupplierController {
         try {
             @SuppressWarnings("null")
             Supplier extSupplier = dao.getReferenceById(supplier.getSupplierid());
-
             extSupplier.setSupplier_deleted(0);
             dao.save(extSupplier);
 
@@ -132,7 +131,6 @@ public class SupplierController {
         try {
             @SuppressWarnings("null")
             Supplier extSupplier = dao.getReferenceById(supplier.getSupplierid());
-
             extSupplier.setUpdated_date_time(LocalDateTime.now());
             dao.save(extSupplier);
 

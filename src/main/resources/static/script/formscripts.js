@@ -51,7 +51,6 @@ function objectToForm(formId, jsonObj, objValList) {
                     inputField.value = jsonObj[key];
                 }
             }else{
-                console.log(jsonObj);
                 for(attr of Object.keys(jsonObj[key])){
                     for(objVal of objValList){
                         if(attr == objVal){
@@ -82,7 +81,7 @@ function btnConfig(btnId, btnUrl, btnClass){
     document.getElementById("redirectButton").classList.add(btnClass);
 }
 
-function optionInput(optionIdList){
+function optionInput(optionIdList, recievedObj){
     for(items of optionIdList){
         var sib = document.getElementById(items[1]);
 
@@ -92,9 +91,9 @@ function optionInput(optionIdList){
         optInput.onclick = function() {
             viewOptions(this,optionIdList);
         };
-
+        optInput.setAttribute("value",JSON.stringify(recievedObj[items[1]]));
+        //console.log(recievedObj[items[1]]);
         sib.parentNode.insertBefore(optInput, sib);
-
     }
 }
 
