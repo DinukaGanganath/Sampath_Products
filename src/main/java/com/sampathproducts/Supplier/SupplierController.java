@@ -101,6 +101,7 @@ public class SupplierController {
             Supplier extSupplier = dao.getReferenceById(supplier.getSupplierid());
 
             extSupplier.setSupplier_deleted(1);
+            extSupplier.setDeleted_date_time(LocalDateTime.now());
             dao.save(extSupplier);
 
             return "Ok";
@@ -111,10 +112,10 @@ public class SupplierController {
 
     @PutMapping(value = "/supplier/restore")
     public String restore(@RequestBody Supplier supplier) {
+        System.out.println(supplier.getSupplierid());
         try {
             @SuppressWarnings("null")
             Supplier extSupplier = dao.getReferenceById(supplier.getSupplierid());
-            extSupplier.setDeleted_date_time(LocalDateTime.now());
 
             extSupplier.setSupplier_deleted(0);
             dao.save(extSupplier);
@@ -122,6 +123,22 @@ public class SupplierController {
             return "Ok";
         } catch (Exception e) {
             return "Save not completed" + e.getMessage();
+        }
+    }
+
+    @PutMapping(value = "/supplier/edit")
+    public String edit(@RequestBody Supplier supplier) {
+        System.out.println(supplier.getSupplierid());
+        try {
+            @SuppressWarnings("null")
+            Supplier extSupplier = dao.getReferenceById(supplier.getSupplierid());
+
+            extSupplier.setUpdated_date_time(LocalDateTime.now());
+            dao.save(extSupplier);
+
+            return "Ok";
+        } catch (Exception e) {
+            return "Update not completed" + e.getMessage();
         }
     }
 

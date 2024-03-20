@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const messageStr = "Enter Telephone No 01xxxxxxxx format."
                 checkValidate(field, regexStr, messageStr);
             }
-            if(field.classList.contains('valMobephone')){
+            if(field.classList.contains('valMobphone')){
                 const regexStr = new RegExp('^[0][7][01245678][0-9]{7}$');
                 const messageStr = "Enter Mobile No 07xxxxxxxx format."
                 checkValidate(field, regexStr, messageStr);
@@ -64,7 +64,7 @@ function checkValidate(field, regexStr, messageStr){
 
 function checkRquired(field){
     if(field.hasAttribute("required")){
-        if(field.value.trim() === ''){
+        if(field.value.trim() == ''){
             field.classList.add('invalid');
             field.nextElementSibling.innerHTML="This field is required";
         }
@@ -72,6 +72,104 @@ function checkRquired(field){
             field.nextElementSibling.innerHTML="";
         }
     }
+}
+
+//validate the form & making the alert msg
+function validForm(formId, eleList, url, method, loadAfter, navigator, idVal){
+    var formObj = createJson(formId, eleList, idVal);
+    console.log(formObj);
+    var errorStr = "";
+    errorStr += checkForRequired();
+    errorStr += checkForErrors()
+    console.log(errorStr);
+    if(errorStr.trim().length>0)
+        alert(errorStr.trim());
+    else{
+        let userConfirm = window.confirm(userConfirmation(formObj));
+        if(userConfirm){
+            restFunction(url, formObj, method, loadAfter, navigator);
+            //restFunction('/supplier/save', supplier, "POST", "/supplier", "Supplier");
+        }
+    }
+        //finishConfirmation();
+}
+
+//checking the required values
+function checkForRequired(){
+    var fields = document.querySelectorAll('input, select');
+    var errorMsg ='Enter values for Required values : \n';
+    var initLen = errorMsg.length;
+    fields.forEach(field => {
+        if(field.hasAttribute('required') && field.value.trim() === ''){
+
+            var indexOfLessThan = field.previousElementSibling.innerHTML.indexOf('<');
+            var resultString = field.previousElementSibling.innerHTML.substring(0, indexOfLessThan);
+            errorMsg += "Enter value for " + resultString + "\n"
+
+        }
+    })
+    if(errorMsg.length>initLen){
+        return errorMsg;
+    }else{
+        return '';
+    }
+}
+
+//checking for errors
+function checkForErrors(){
+    var fields = document.querySelectorAll('input, select');
+    var errorMsg ='\n\nEnter values in correct form for following details : \n';
+    var initLen = errorMsg.length;
+    fields.forEach(field => {
+        if(field.classList.contains('invalid')){
+
+            var indexOfLessThan; 
+            var resultString = field.previousElementSibling.innerHTML;
+            if(resultString.includes("<")){
+                indexOfLessThan = resultString.indexOf('<');
+                resultString = resultString.substring(0, indexOfLessThan);
+            }
+            errorMsg += resultString + "\n"
+
+        }
+    })
+    if(errorMsg.length>initLen){
+        return errorMsg;
+    }else{
+        return '';
+    }
+}
+
+//getting user confirmation
+function userConfirmation(obj){
+    var rule;
+    var valueJson;
+    var confirmString = 'Are you sure to submit following details: \n';
+    for(key of Object.keys(obj)){
+        if(obj[key] != ""){
+            valueJson = obj[key];
+            
+            if(typeof(obj[key]) == "object"){
+                for(nameKey in obj[key]){
+                    if(nameKey.includes('name')){
+                        valueJson = obj[key][nameKey];
+                    }
+                }
+            }
+
+            console.log(document.querySelector(`#${key}`));
+            var keyString = document.querySelector(`#${key}`).previousElementSibling.innerHTML;
+            if(keyString.includes("<")){
+                indexOfLessThan = keyString.indexOf('<');
+                keyString = keyString.substring(0, indexOfLessThan);
+            }
+            rule = (keyString + ' : ' + valueJson +'\n');
+            confirmString += rule;
+        }
+    }
+    
+    console.log(confirmString);
+    return confirmString;
 }
 
 

@@ -1,15 +1,15 @@
-function setOptions(url, ele, eleVal){
+function loadOptionVal(url, eleId, eleVal, type){
     fetch(url)
     .then(function(response){
         return response.json();
     })
-    .then(function(areas){
-        let options = document.querySelector(ele);
-        let out = "";
-        for(let area of areas){
+    .then(function(objs){
+        let options = document.querySelector('#'+eleId);
+        let out = `<option value='' selected disabled>Select ${type}</option>`;
+        for(let obj of objs){
             out += `
-                <option>
-                    ${area[eleVal]}
+                <option value=` + JSON.stringify(obj) +` >
+                    ${obj[eleVal]}
                 </option>
             `;
         }
@@ -41,14 +41,25 @@ function objectToForm(formId, jsonObj, objValList) {
     var keys = Object.keys(jsonObj);
 
     keys.forEach(function(key) {
-        var inputField = form.elements[key];
+        var inputField = document.getElementById(key);
         if (inputField) {
-            if(typeof(jsonObj[key]) != 'string' && jsonObj[key] != null){
-                var cmnval = commonValue(Object.keys(jsonObj[key]),objValList);
-                console.log(cmnval);
-                inputField.value = jsonObj[key][cmnval];
+            if(inputField.tagName != "SELECT"){
+                if(typeof(jsonObj[key]) != 'string' && jsonObj[key] != null){
+                    var cmnval = commonValue(Object.keys(jsonObj[key]),objValList);
+                    inputField.value = jsonObj[key][cmnval];
+                }else{
+                    inputField.value = jsonObj[key];
+                }
             }else{
-                inputField.value = jsonObj[key];
+                console.log(jsonObj);
+                for(attr of Object.keys(jsonObj[key])){
+                    for(objVal of objValList){
+                        if(attr == objVal){
+                           
+                        }
+                    }
+                }
+
             }
         }
     });
@@ -63,7 +74,6 @@ function commonValue(arr1, arr2) {
     return "-1";
 }
 
-
 function btnConfig(btnId, btnUrl, btnClass){
     document.getElementById(btnId).addEventListener("click", function() {
         window.location.href = btnUrl;
@@ -71,3 +81,32 @@ function btnConfig(btnId, btnUrl, btnClass){
 
     document.getElementById("redirectButton").classList.add(btnClass);
 }
+
+function optionInput(optionIdList){
+    for(items of optionIdList){
+        var sib = document.getElementById(items[1]);
+
+        var optInput = document.createElement("input");
+        optInput.setAttribute("id", items[1]);
+        optInput.setAttribute("type", "text");
+        optInput.onclick = function() {
+            viewOptions(this,optionIdList);
+        };
+
+        sib.parentNode.insertBefore(optInput, sib);
+
+    }
+}
+
+function viewOptions(ele, optionIdList){
+    ele.nextElementSibling.style.display = "block";
+    ele.style.display = "none";
+
+    for(optionId of optionIdList){
+        if(ele.nextElementSibling.id==optionId[1]){
+            ele.remove();
+            loadOptionVal(optionId[0], optionId[1], optionId[2], optionId[3]);
+        }
+    }
+}
+

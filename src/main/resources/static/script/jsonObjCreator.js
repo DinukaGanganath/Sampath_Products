@@ -1,7 +1,10 @@
-function createJson(eleid, parentEle){
+function createJson(eleid, parentEle, idVal){
+    
     var jsonObj = {};
     var formProperties = [];
-
+    if(idVal != null){
+        jsonObj[idVal[0]] = idVal[1];
+    }
     for(pEle of parentEle){
         var jsonAttr = document.getElementById(eleid).querySelectorAll(parentEle);
         for(var attr of jsonAttr){
@@ -16,7 +19,10 @@ function createJson(eleid, parentEle){
                         oneProperty.push(attr.id, attr.value);
                         break;
                     case "select":
-                        oneProperty.push(attr.id, JSON.parse(attr.value));
+                        if(attr.value == '')
+                            oneProperty.push(attr.id, attr.value);
+                        else
+                            oneProperty.push(attr.id, JSON.parse(attr.value));
                 }
                 formProperties.push(oneProperty);
             }
@@ -27,7 +33,6 @@ function createJson(eleid, parentEle){
         jsonObj[prop[0]] = prop[1];
     }
 
-    console.log(jsonObj);
     return jsonObj;
     
 }

@@ -181,8 +181,8 @@
 										</div>
 									</div>
 									<div id="basicBtn" style="display:flex">
-										<button href="/supplieredit" class="btnEdit" id="redirectButton">Edit</button>
-										<button href="/supplierdelete" class="btnDelete" id="deleteButton">Delete</button>
+										<button href="/supplieredit" id="redirectButton" class="btnEditWide" onclick="editSupplier()">Edit</button>
+										<button href="/supplierdelete" id="deleteButton" class="btnDeleteWide" onclick="deleteFormSupplier()">Delete</button>
 									</div>
 								</div>
 							</div>
@@ -194,11 +194,14 @@
 	</div>
 	<script type="text/javascript" src="script/sidebarscripts.js"></script>
 	<script type="text/javascript" src="script/objects.js"></script>
+	<script type="text/javascript" src="script/restfunction.js"></script>
 	<script type="text/javascript" src="script/formscripts.js"></script>
+	<script type="text/javascript" src="script/tablescript.js"></script>
 	<script type="text/javascript" src="script/jsonObjCreator.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="fontawesome/js/all.js"></script>
 	<script type="text/javascript" src="script/validationscripts/validation.js"></script>
+	<script type="text/javascript" src="script/controllerscripts/supplier/supplierdata.js"></script>
 	<script type="text/javascript" src="script/controllerscripts/supplier/supplierview.js"></script>
 	<script type="text/javascript" src="script/jquery.js"></script>
 </body>

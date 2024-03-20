@@ -7,5 +7,10 @@ sidebarLoader("/supplier");
 
 objectToForm('supplierEditForm', receivedData, ["type_name","area_name","material_name"]);
 
-btnConfig("redirectButton", "/supplieredit", "btnEditWide");
-btnConfig("deleteButton", "/supplierdelete", "btnDeleteWide")
+function deleteFormSupplier(){
+    restFunction('/supplier/delete', receivedData, "DELETE", "/supplier", "Supplier");
+    window.location.href = '/supplier';
+}
+
+//btnConfig("redirectButton", "/supplieredit", "btnEditWide");
+//btnConfig("deleteButton", "/supplierdelete", "btnDeleteWide");

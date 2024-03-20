@@ -8,7 +8,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,18 +30,15 @@ public class Supplier {
     private Integer supplierid;
 
     @Column(name = "supplier_name")
-    @NotNull
     private String supplier_name;
 
     @Column(name = "supplier_nic")
     private String supplier_nic;
 
     @Column(name = "supplier_code", unique = true)
-    @NotNull
     private String supplier_code;
 
     @Column(name = "supplier_address_line1")
-    @NotNull
     private String supplier_address_line1;
 
     @Column(name = "supplier_address_city")
@@ -58,18 +54,15 @@ public class Supplier {
     private String supplier_business_reg;
 
     @Column(name = "supplier_land_phone")
-    @NotNull
     private String supplier_land_phone;
 
     @Column(name = "supplier_contact_no1")
-    @NotNull
     private String supplier_contact_no1;
 
     @Column(name = "supplier_contact_no2")
     private String supplier_contact_no2;
 
     @Column(name = "supplier_email", unique = true)
-    @NotNull
     private String supplier_email;
 
     @Column(name = "created_date_time")
