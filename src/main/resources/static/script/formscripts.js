@@ -1,3 +1,4 @@
+//this is to load the option list from the data base and load it
 function loadOptionVal(url, eleId, eleVal, type){
     fetch(url)
     .then(function(response){
@@ -17,6 +18,7 @@ function loadOptionVal(url, eleId, eleVal, type){
     })
 }
 
+//create a div with different buttons
 function createButtonDiv(divDetails, btnList){
     var btnDiv = document.createElement("div");
     btnDiv.id = divDetails[0];
@@ -36,6 +38,7 @@ function createButtonDiv(divDetails, btnList){
     return btnDiv;
 }
 
+//when the object is given to the function it will be filled
 function objectToForm(formId, jsonObj, objValList) {
     var form = document.getElementById(formId);
     var keys = Object.keys(jsonObj);
@@ -64,6 +67,7 @@ function objectToForm(formId, jsonObj, objValList) {
     });
 }
 
+//get the common values in two arrays
 function commonValue(arr1, arr2) {
     for (var i = 0; i < arr1.length; i++) {
         if (arr2.includes(arr1[i])) {
@@ -73,6 +77,7 @@ function commonValue(arr1, arr2) {
     return "-1";
 }
 
+//create a button which can be used to direct the path
 function btnConfig(btnId, btnUrl, btnClass){
     document.getElementById(btnId).addEventListener("click", function() {
         window.location.href = btnUrl;
@@ -81,6 +86,7 @@ function btnConfig(btnId, btnUrl, btnClass){
     document.getElementById("redirectButton").classList.add(btnClass);
 }
 
+//used when loading the form. can be used to create input text element before the select element
 function optionInput(optionIdList, recievedObj){
     for(items of optionIdList){
         var sib = document.getElementById(items[1]);
@@ -91,15 +97,22 @@ function optionInput(optionIdList, recievedObj){
         optInput.onclick = function() {
             viewOptions(this,optionIdList);
         };
+        optInput.classList.add("optVal");
         optInput.setAttribute("value",JSON.stringify(recievedObj[items[1]]));
-        //console.log(recievedObj[items[1]]);
         sib.parentNode.insertBefore(optInput, sib);
+        optInput.nextElementSibling.classList.add("avoid");
+        optInput.setAttribute('required', 'required');
+        optInput.nextElementSibling.removeAttribute('required', 'required');
     }
 }
 
+//used for whole option lists
 function viewOptions(ele, optionIdList){
     ele.nextElementSibling.style.display = "block";
+    ele.nextElementSibling.classList.remove("avoid");
     ele.style.display = "none";
+    ele.nextElementSibling.setAttribute('required', 'required');
+    ele.removeAttribute('required', 'required');
 
     for(optionId of optionIdList){
         if(ele.nextElementSibling.id==optionId[1]){

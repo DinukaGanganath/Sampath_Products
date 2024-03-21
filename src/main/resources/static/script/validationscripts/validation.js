@@ -76,22 +76,27 @@ function checkRquired(field){
 
 //validate the form & making the alert msg
 function validForm(formId, eleList, url, method, loadAfter, navigator, idVal){
-    var formObj = createJson(formId, eleList);
+    var formObj = createJson(formId, eleList, idVal);
     var errorStr = "";
     errorStr += checkForRequired();
     errorStr += checkForErrors()
     console.log(errorStr);
     if(errorStr.trim().length>0)
         alert(errorStr.trim());
-    else{
-        let userConfirm = window.confirm(userConfirmation(formObj));
-        if(userConfirm){
-            console.log(formObj);
-            restFunction(url, formObj, method, loadAfter, navigator);
-            //restFunction('/supplier/save', supplier, "POST", "/supplier", "Supplier");
-        }
-    }
+    else
+        getUserConfirmation(formObj,url, formObj, method, loadAfter, navigator);
         //finishConfirmation();
+}
+
+function getUserConfirmation(formObj,url, formObj, method, loadAfter, navigator ){
+    let userConfirm;
+    if(method=="POST" || method=="PUT")
+        userConfirm = window.confirm(userConfirmation(formObj));
+    if(method=="DELETE")
+        userConfirm = window.confirm(`Are you sure to delete ${navigator}`);
+    if(userConfirm)
+        restFunction(url, formObj, method, loadAfter, navigator);
+        //restFunction('/supplier/save', supplier, "POST", "/supplier", "Supplier");
 }
 
 //checking the required values
@@ -170,8 +175,6 @@ function userConfirmation(obj){
             }
         }
     }
-    
-    console.log(confirmString);
     return confirmString;
 }
 

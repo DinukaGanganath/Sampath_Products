@@ -1,8 +1,8 @@
 var receivedData = JSON.parse(sessionStorage.getItem("dataToSend"));
-console.log(receivedData);
+//console.log(receivedData);
 
-var idVal = ["supplierid", receivedData["supplierid"]];
-console.log(idVal);
+var idVal = [["supplierid", `${receivedData["supplierid"]}`], ["supplier_code", `${receivedData["supplier_code"]}`]];
+//console.log(idVal);
 
 var optionIdList = [
     ["/areas/findall", "supplier_area_id", "area_name", "Area"],
@@ -22,6 +22,12 @@ for(ele of document.querySelectorAll("input")){
 }
 
 function editObj(formId, eleList, url, method, loadAfter, navigator){
+    for(ele of document.querySelectorAll("select")){
+        if(ele.childNodes.length === 0){
+            ele.parentNode.removeChild(ele);
+        }
+    }
+
     validForm(formId, eleList, url, method, loadAfter, navigator, idVal);
 }
 

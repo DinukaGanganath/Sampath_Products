@@ -59,6 +59,9 @@ function editSupplier(){
 
 function deleteSupplier(){
     var objvalue = getRowObject();
-    restFunction('/supplier/delete', objvalue, "DELETE", "/supplier", "Supplier");
+    let userConfirm = window.confirm(`Are you sure to delete ${objvalue.supplier_code} - ${objvalue.supplier_name}`);
+    if(userConfirm){
+        restFunction('/supplier/delete', objvalue, "DELETE", "/supplier", "Supplier");
+    }
     window.location.href = '/supplier';
 }

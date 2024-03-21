@@ -71,7 +71,7 @@
 
 										<div class="input-field">
 											<label for="supplier_area_id">Line 2 - Area</label>
-											<select id="supplier_area_id" placeholder="select From the list" required style="display:none">
+											<select id="supplier_area_id" placeholder="select From the list" style="display:none">
 											</select>
 											<label class="validMessage"></label>
 										</div>
@@ -183,9 +183,9 @@
 											</div>
 										</div>
 									</div>
-									<div>
+									<div id="basicBtn" style="display:flex">
 										<button class="btnEditWide" onclick='editObj("supplierEditForm",["input", "select"], "/supplier/edit", "PUT", "/supplier", "Supplier")'>Edit</button>
-										<button class="btnDeleteWide" href="/supplier">Delete</button>
+										<button class="btnDeleteWide" href="/supplier" onclick='editObj("supplierEditForm",["input", "select"], "/supplier/delete", "DELETE", "/supplier", "Supplier")'>Delete</button>
 									</div>
 								</div>
 							</div>

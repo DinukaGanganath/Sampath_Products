@@ -99,7 +99,6 @@ public class SupplierController {
         try {
             @SuppressWarnings("null")
             Supplier extSupplier = dao.getReferenceById(supplier.getSupplierid());
-
             extSupplier.setSupplier_deleted(1);
             extSupplier.setDeleted_date_time(LocalDateTime.now());
             dao.save(extSupplier);
@@ -127,10 +126,13 @@ public class SupplierController {
 
     @PutMapping(value = "/supplier/edit")
     public String edit(@RequestBody Supplier supplier) {
-        System.out.println(supplier.getSupplierid());
+
         try {
+
             @SuppressWarnings("null")
             Supplier extSupplier = dao.getReferenceById(supplier.getSupplierid());
+            extSupplier = supplier;
+            supplier.setSupplier_deleted(0);
             extSupplier.setUpdated_date_time(LocalDateTime.now());
             dao.save(extSupplier);
 

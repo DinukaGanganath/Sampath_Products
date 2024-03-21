@@ -1,36 +1,50 @@
-function createJson(eleid, parentEle){
+//form filled values are turned to JSON object
+function createJson(eleid, parentEle, idVal){
     
     var jsonObj = {};
     var formProperties = [];
+
+    if(idVal !== undefined){
+        for(val of idVal)
+            formProperties.push(val);
+    }
     
     for(pEle of parentEle){
-        var jsonAttr = document.getElementById(eleid).querySelectorAll(parentEle);
+        var jsonAttr = document.getElementById(eleid).querySelectorAll(pEle);
         for(var attr of jsonAttr){
-            if(attr.id != ""){
-
+            console.log(typeof(attr.value));
+            if(attr.id != "" && !attr.classList.contains("avoid")){
                 var oneProperty=[];
                 switch(attr.localName){
                     case "td":
                         oneProperty.push(attr.id, attr.innerHTML);
                         break;
-                    case "input":
-                        oneProperty.push(attr.id, attr.value);
+                    case "input": 
+                        if(attr.classList.contains("optVal")){
+                            var attrVal = attr.getAttribute('value');
+                            //console.log(attrVal);
+                            oneProperty.push(attr.id, JSON.parse(attrVal));
+                        }else
+                            oneProperty.push(attr.id, attr.value);
                         break;
                     case "select":
                         if(attr.value == '')
                             oneProperty.push(attr.id, attr.value);
-                        else
+                        else{
+                            //console.log(attr);
+                            //console.log(attr.value);
                             oneProperty.push(attr.id, JSON.parse(attr.value));
+                        }
                 }
                 formProperties.push(oneProperty);
             }
         }
     }
 
+    console.log(formProperties);
     for(prop of formProperties){
         jsonObj[prop[0]] = prop[1];
     }
-
     return jsonObj;
     
 }
