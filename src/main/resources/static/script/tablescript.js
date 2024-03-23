@@ -1,21 +1,87 @@
 var object;
+var currPage = 1;
+var thisUrl, thisTabVal;
 
 function showContextMenu(str, event){
-    //console.log(str);
-    //console.log(event);
     object = str;
     var contextElement = document.getElementById("context-menu");
     contextElement.style.left = event.clientX + "px";
     contextElement.style.top = event.clientY + "px";
     contextElement.classList.add("active");
-
-    // document.getElementById('context_edit').onclick = function (){
-    //     console.log(str);
-    //     directEditform(str);
-    // };
-    
-    //contextElement.classList.remove("active");
       
+}
+
+function dataLoadTable(url, tableValList){
+    thisUrl = url;
+    thisTabVal = tableValList;
+
+    console.log(url);
+    console.log(tableValList)
+
+    fetch(url)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(objs){
+        var placeholder = document.querySelector("#data-output");
+        let rowNo = objs.length;
+        let maxRow = 9;
+        let pageNo = Math.ceil(rowNo/maxRow);
+        let pagDataList = [];
+        
+        var start = (currPage-1)*maxRow;
+        var stop = currPage*maxRow;
+
+        if(rowNo<stop)
+            stop = rowNo;
+
+        for(var i = start; i<stop; i++){
+            pagDataList.push(objs[i]);
+        }
+
+        console.log(`pag :\n ${pagDataList} \n start : ${start} \n end : ${stop} \n curr : ${currPage} \n page : ${pageNo}`);
+        document.getElementById("pagMiddle").innerHTML = `<b>${currPage}</b> of ${pageNo}`;
+
+        visualizePag(currPage, pageNo);
+        placeholder.innerHTML = setDataSet(pagDataList, tableValList);
+    });
+    
+}
+
+function loadPrevious(){
+    currPage--;
+    dataLoadTable(thisUrl, thisTabVal);
+}
+
+function loadNext(){
+    currPage++;
+    dataLoadTable(thisUrl, thisTabVal);
+}
+
+function setDataSet(pagDataList, tableValList){
+    var tdList = "";
+    var out = "";
+    for(let obj of pagDataList){
+        for(val of tableValList){
+            if(typeof(val)=="string"){
+                tdList += `<td>${obj[val]}</td>`
+            }
+            else{
+                var ele = obj[val[0]];
+                for(var i=1; i<val.length; i++){
+                    ele = ele[val[i]];
+                }
+                tdList += `<td>${ele}</td>`
+            }
+        }
+        out += `
+            <tr class="sup_raw"  onclick='showContextMenu(` + JSON.stringify(obj) + `, event)'>
+                ${tdList}
+            </tr>
+        `;
+        tdList="";
+    }
+    return out;
 }
 
 function onClickItem(ele){
@@ -35,3 +101,55 @@ function directEditform(object, url){
 function getRowObject(){
     return object;
 }
+
+function tableInnerContentLoader(objs, tableValList){
+    var tdList = "";
+    var out = "";
+    for(let obj of objs){
+        for(val of tableValList){
+            if(typeof(val)=="string"){
+                tdList += `<td>${obj[val]}</td>`
+            }
+            else{
+                var ele = obj[val[0]];
+                for(var i=1; i<val.length; i++){
+                    ele = ele[val[i]];
+                }
+                tdList += `<td>${ele}</td>`
+            }
+
+        }
+        out += `
+            <tr class="sup_raw"  onclick='showContextMenu(` + JSON.stringify(obj) + `, event)'>
+                ${tdList}
+            </tr>
+        `;
+        tdList="";
+    }
+    return out;
+}
+
+function visualizePag(currentPage, pageNo){
+    if(currentPage == 1 && pageNo != 1){
+        document.getElementById("pagLeftBtn").style.display = "none";
+        document.getElementById("pagRightBtn").style.display = "block";
+    }
+    if(currentPage == pageNo){
+        document.getElementById("pagRightBtn").style.display = "none";
+        document.getElementById("pagLeftBtn").style.display = "block";
+    }
+    if(currentPage != pageNo && currentPage != 1){
+        document.getElementById("pagRightBtn").style.display = "block";
+        document.getElementById("pagLeftBtn").style.display = "block";
+    }
+    if(pageNo==1){
+        document.getElementById("pagRightBtn").style.display = "none";
+        document.getElementById("pagLeftBtn").style.display = "none";
+    }
+    if(pageNo==0){
+        document.getElementById("pagRightBtn").style.display = "none";
+        document.getElementById("pagLeftBtn").style.display = "none";
+        document.getElementById("pagMiddle").style.display = "none";
+    }
+}
+

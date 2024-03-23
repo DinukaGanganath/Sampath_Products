@@ -43,7 +43,7 @@ public class SupplierController {
         return viewSupplierAdd;
     }
 
-    @RequestMapping(value = "/supplierldeleted")
+    @RequestMapping(value = "/supplierdeleted")
     public ModelAndView supplierDeletedItems() {
         ModelAndView viewSupplierAdd = new ModelAndView();
         viewSupplierAdd.setViewName("Supplier/SupplierDeleted.html");
@@ -68,6 +68,18 @@ public class SupplierController {
     @GetMapping(value = "/supplier/findall", produces = "application/json")
     public List<Supplier> findAll() {
         return dao.findAll(Sort.by(Direction.DESC, "supplierid"));
+    }
+
+    // get database values as json data
+    @GetMapping(value = "/supplier/findall/deleted", produces = "application/json")
+    public List<Supplier> findAllDeleted() {
+        return dao.getDeletedSupplier();
+    }
+
+    // get database exsisting values as json data
+    @GetMapping(value = "/supplier/findall/exist", produces = "application/json")
+    public List<Supplier> findAllExist() {
+        return dao.getExistingSupplier();
     }
 
     // Save a Supplier with post method

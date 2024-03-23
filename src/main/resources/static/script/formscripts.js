@@ -122,3 +122,8 @@ function viewOptions(ele, optionIdList){
     }
 }
 
+function disableForm(formId, attrList){
+    for(ele of document.getElementById(formId).querySelectorAll(attrList))
+        ele.setAttribute('disabled', true);
+}
+

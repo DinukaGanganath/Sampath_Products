@@ -27,7 +27,6 @@ function editObj(formId, eleList, url, method, loadAfter, navigator){
             ele.parentNode.removeChild(ele);
         }
     }
-
     validForm(formId, eleList, url, method, loadAfter, navigator, idVal);
 }
 

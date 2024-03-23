@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -26,7 +27,7 @@ public class MaterialController {
      */
 
     // create mapping ui
-    @RequestMapping(value = "/materials")
+    @RequestMapping(value = "/material")
     public ModelAndView materialUI() {
         ModelAndView viewMaterial = new ModelAndView();
         viewMaterial.setViewName("Material/Material.html");
@@ -44,6 +45,18 @@ public class MaterialController {
     @GetMapping(value = "/materials/findall", produces = "application/json")
     public List<Material> findAll() {
         return dao.findAll();
+    }
+
+    // get database deleted values as json data
+    @GetMapping(value = "/material/findall/deleted", produces = "application/json")
+    public List<Material> findAllDeleted() {
+        return dao.getDeletedMaterial();
+    }
+
+    // get database exsisting values as json data
+    @GetMapping(value = "/material/findall/exist", produces = "application/json")
+    public List<Material> findAllExist() {
+        return dao.getExistingMaterial();
     }
 
     // Save a Material with post method
@@ -73,9 +86,37 @@ public class MaterialController {
     @DeleteMapping(value = "/material/delete")
     public String delete(@RequestBody Material material) {
         try {
-            return "ok";
+            @SuppressWarnings("null")
+            Material extSupplier = dao.getReferenceById(material.getMaterial_id());
+            extSupplier.setMaterial_deleted_date(LocalDateTime.now());
+            extSupplier.setMaterial_deleted(1);
+            dao.save(extSupplier);
+
+            return "Ok";
         } catch (Exception e) {
             return "Delete not completed : " + e.getMessage();
+        }
+    }
+
+    @RequestMapping(value = "/materialdeleted")
+    public ModelAndView materialDeletedItems() {
+        ModelAndView viewSupplierAdd = new ModelAndView();
+        viewSupplierAdd.setViewName("Material/MaterialDeleted.html");
+        return viewSupplierAdd;
+    }
+
+    @PutMapping(value = "/material/restore")
+    public String restore(@RequestBody Material supplier) {
+        System.out.println(supplier.getMaterial_id());
+        try {
+            @SuppressWarnings("null")
+            Material extSupplier = dao.getReferenceById(supplier.getMaterial_id());
+            extSupplier.setMaterial_deleted(0);
+            dao.save(extSupplier);
+
+            return "Ok";
+        } catch (Exception e) {
+            return "Save not completed" + e.getMessage();
         }
     }
 

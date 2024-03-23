@@ -127,7 +127,85 @@ tr{
 	font-size: 15px;
 	color: var(--text-color);
 }
-    
+
+.leftCorner{
+    float: left;
+    width: 50%;
+    padding-left: 10%;
+}
+
+.rightCorner{
+    float: right;
+    width: 50%;
+    padding-right: 5%;
+}
+
+.paginationFooter{
+    display: flex;
+    width: 95%;
+}
+
+.container {
+    display: flex;
+    width: 250px;
+    float: left;
+  }
+
+  .half-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--sidebar-color);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .half-circle.left {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .half-circle.right {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .half-circle:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -25px;
+    width: 30px;
+    height: 30px;
+    background-color: var(--sidebar-color);
+    border-radius: 50%;
+  }
+
+  .half-circle.right:before {
+    left: auto;
+    right: -25px;
+  }
+
+  .button-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+  }
+
+  #pagLeftBtn:hover, #pagRightBtn:hover {
+    background-color: var(--active-color);
+    cursor: pointer;
+  }
+
+#pagMiddle{
+    width: 80px; 
+    height: 30px; 
+    background-color: var(--body-color);
+    text-align: center;
+} 
+
 
 @media (max-width: 767px){
     thead{

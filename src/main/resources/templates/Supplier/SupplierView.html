@@ -41,7 +41,7 @@
 					<!--header class="form-header">Registration</header-->
 
 					<div class="form-container">
-						<form action="#" class="" id="supplierEditForm" onsubmit="return false">
+						<form action="#" class="" id="supplierViewForm" onsubmit="return false">
 							<div class="formcls">
 								<div class="details personal">
 									<span class="title">General Details</span>
@@ -182,7 +182,7 @@
 									</div>
 									<div id="basicBtn" style="display:flex">
 										<button href="/supplieredit" id="redirectButton" class="btnEditWide" onclick="editFormSupplier()">Edit</button>
-										<button href="/supplierdelete" id="deleteButton" class="btnDeleteWide" onclick='editObj("supplierEditForm",["input", "select"], "/supplier/delete", "DELETE", "/supplier", "Supplier")'>Delete</button>
+										<button class="btnDeleteWide" href="/supplier" onclick='editObj("supplierViewForm",["input", "select"], "/supplier/delete", "DELETE", "/supplier", "Supplier")'>Delete</button>
 									</div>
 								</div>
 							</div>
@@ -205,5 +205,6 @@
 	<script type="text/javascript" src="script/controllerscripts/supplier/supplierview.js"></script>
 	<script type="text/javascript" src="script/jquery.js"></script>
 </body>
+
 
 </html>

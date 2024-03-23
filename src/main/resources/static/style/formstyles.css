@@ -282,6 +282,8 @@ form button,
 form .backBtn{
     font-size : 14px;
     font-weight: 400;
+    background-color: var(--sidebar-color);
+    color: var(--text-color);
 }
 
 form button:hover{
@@ -293,7 +295,8 @@ form .backBtn i{
     margin: 0 6px;
 }
 
-form .buttons{
+form .buttons,
+.pagBtn{
     display: flex;
     align-items: center;
 }

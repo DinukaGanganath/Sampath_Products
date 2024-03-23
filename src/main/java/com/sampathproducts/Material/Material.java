@@ -29,6 +29,9 @@ public class Material {
     @Column(name = "material_code", unique = true)
     private String material_code;
 
+    @Column(name = "material_deleted", unique = true)
+    private Integer material_deleted;
+
     @Column(name = "material_added_date")
     private LocalDateTime material_added_date;
 

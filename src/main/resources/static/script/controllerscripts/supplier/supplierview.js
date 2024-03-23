@@ -7,7 +7,8 @@ var idVal = [["supplierid", `${receivedData["supplierid"]}`], ["supplier_code", 
 initLayout("Supplier", `Supplier View - ${receivedData.supplier_code}`);
 sidebarLoader("/supplier");
 
-objectToForm('supplierEditForm', receivedData, ["type_name","area_name","material_name"]);
+objectToForm('supplierViewForm', receivedData, ["type_name","area_name","material_name"]);
+disableForm('supplierViewForm', ['input', 'select']);
 
 function deleteFormSupplier(){
     restFunction('/supplier/delete', receivedData, "DELETE", "/supplier", "Supplier");
@@ -19,6 +20,12 @@ function editFormSupplier(){
     window.location.href = '/supplieredit';
 }
 
+function editObj(formId, eleList, url, method, loadAfter, navigator){
+    for(ele of document.querySelectorAll("select")){
+        if(ele.childNodes.length === 0){
+            ele.parentNode.removeChild(ele);
+        }
+    }
 
-//btnConfig("redirectButton", "/supplieredit", "btnEditWide");
-//btnConfig("deleteButton", "/supplierdelete", "btnDeleteWide");
+    validForm(formId, eleList, url, method, loadAfter, navigator, idVal);
+}
