@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
@@ -32,8 +33,15 @@ public class AreaController {
         return viewArea;
     }
 
+    @RequestMapping(value = "/areadeleted")
+    public ModelAndView areaDeletedUI() {
+        ModelAndView viewAreaAdd = new ModelAndView();
+        viewAreaAdd.setViewName("Area/AreaDeleted.html");
+        return viewAreaAdd;
+    }
+
     @RequestMapping(value = "/aeraAdd")
-    public ModelAndView materialAddUI() {
+    public ModelAndView areaAddUI() {
         ModelAndView viewAreaAdd = new ModelAndView();
         viewAreaAdd.setViewName("Area/AreaAdd.html");
         return viewAreaAdd;
@@ -43,6 +51,18 @@ public class AreaController {
     @GetMapping(value = "/areas/findall", produces = "application/json")
     public List<Area> findAll() {
         return dao.findAll();
+    }
+
+    // get database deleted values as json data
+    @GetMapping(value = "/areas/findall/deleted", produces = "application/json")
+    public List<Area> findAllDeleted() {
+        return dao.getDeletedArea();
+    }
+
+    // get database exsisting values as json data
+    @GetMapping(value = "/areas/findall/exist", produces = "application/json")
+    public List<Area> findAllExist() {
+        return dao.getExistingArea();
     }
 
     // Save a Material with post method
@@ -59,7 +79,8 @@ public class AreaController {
             } else {
                 area.setArea_code(nextAreaCode);
             }
-
+            area.setArea_added_date(LocalDateTime.now());
+            area.setArea_deleted(0);
             dao.save(area);
             System.out.println(area);
             return "Ok";
@@ -69,23 +90,46 @@ public class AreaController {
 
     }
 
+    @PutMapping(value = "/area/restore")
+    public String restore(@RequestBody Area area) {
+        System.out.println(area.getArea_id());
+        try {
+            @SuppressWarnings("null")
+            Area extArea = dao.getReferenceById(area.getArea_id());
+            extArea.setArea_deleted(0);
+            dao.save(extArea);
+
+            return "Ok";
+        } catch (Exception e) {
+            return "Save not completed" + e.getMessage();
+        }
+    }
+
     @DeleteMapping(value = "/area/delete")
     public String delete(@RequestBody Area area) {
         try {
-            return "ok";
+            @SuppressWarnings("null")
+            Area extArea = dao.getReferenceById(area.getArea_id());
+            extArea.setArea_deleted(1);
+            extArea.setArea_deleted_date(LocalDateTime.now());
+            dao.save(extArea);
+
+            return "Ok";
         } catch (Exception e) {
-            return "Delete not completed : " + e.getMessage();
+            return "Save not completed" + e.getMessage();
         }
     }
 
     @SuppressWarnings("null")
-    @PutMapping("/area/update")
+    @PutMapping("/area/edit")
     public String updateArea(@RequestBody Area area) {
 
         try {
-
+            Area extArea = dao.getReferenceById(area.getArea_id());
+            extArea = area;
+            extArea.setArea_updated_date(LocalDateTime.now());
             dao.save(area);
-            return "ok";
+            return "Ok";
         } catch (Exception e) {
             return "Update not completed : " + e.getMessage();
         }

@@ -3,7 +3,7 @@ initLayout("Supplier", "Supplier Details");
 sidebarLoader("/supplier");
 
 //Create the table initial values
-dataLoadTable("/supplier/findall/exist", ["supplier_name","supplier_code","supplier_contact_no1","supplier_email","supplier_business_name",["supplier_area_id","area_name"],["supplier_material_id","material_name"]]);
+dataLoadTable("/supplier/findall/exist", ["supplier_name","supplier_code","supplier_contact_no1","supplier_email","supplier_business_name",["supplier_area_id","area_name"],["supplier_material_id","material_name"]],7);
 
 ////////////////////////// 
 ///// Supplier View //////

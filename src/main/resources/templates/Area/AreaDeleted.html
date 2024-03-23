@@ -34,11 +34,6 @@
 							
 						</div>
 						<div class="table-container">
-							<button class="addBtn" onclick="showForm()">
-								<a>
-									Add
-								</a>
-							</button>
 							<table class="table table-striped" id="area_tab">
 								<thead>
 									<tr>
@@ -51,20 +46,6 @@
 
 								</tbody>
 							</table>
-
-							<span class="editForm hidden" id="areaEditForm">
-								<div class="input-fieldonethird">
-									<label for="areaCode">Area Code</label>
-									<input id="areaCode" type="text" disabled>
-								</div>
-								<div class="input-fieldonethird">
-									<label for="areaName">Area Name</label>
-									<input id="areaName" type="text">
-								</div>
-								<div class="input-fieldonethird" style="text-align: right;">
-									<button class="submitBtn" onclick="editAreaPut()">Submit</button>
-								</div>
-							</span>
 						</div>
 						<div class="paginationFooter">
 							<div class="leftCorner">
@@ -83,7 +64,7 @@
 								</div>  
 							</div>
 							<div class="rightCorner">
-								<a style="text-align: right; color: black; float: right;" href="/areadeleted">Deleted Suppliers</a>
+								<a style="text-align: right; color: black; float: right;" href="/areas">Area Details</a>
 							</div>
 						</div>
 					</div>
@@ -100,6 +81,6 @@
 	<script type="text/javascript" src="script/jsonObjCreator.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="fontawesome/js/all.js"></script>
-	<script type="text/javascript" src="script/controllerscripts/area/areadata.js"></script>
+	<script type="text/javascript" src="script/controllerscripts/area/areadeleted.js"></script>
 
 </html>

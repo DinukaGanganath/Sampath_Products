@@ -11,7 +11,7 @@ function showContextMenu(str, event){
       
 }
 
-function dataLoadTable(url, tableValList){
+function dataLoadTable(url, tableValList, maxRow){
     thisUrl = url;
     thisTabVal = tableValList;
 
@@ -25,7 +25,6 @@ function dataLoadTable(url, tableValList){
     .then(function(objs){
         var placeholder = document.querySelector("#data-output");
         let rowNo = objs.length;
-        let maxRow = 9;
         let pageNo = Math.ceil(rowNo/maxRow);
         let pagDataList = [];
         

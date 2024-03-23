@@ -26,6 +26,9 @@ public class Area {
     @Column(name = "area_name")
     private String area_name;
 
+    @Column(name = "area_deleted")
+    private Integer area_deleted;
+
     @Column(name = "area_code")
     private String area_code;
 

@@ -13,7 +13,7 @@ function loadTable(){
     .then(function(materials){
         let placeholder = document.querySelector("#data-output");
         let rowNo = materials.length;
-        let maxRow = 2;
+        let maxRow = 9;
         let pageNo = Math.ceil(rowNo/maxRow);
         let pagDataList = [];
         
