@@ -1,4 +1,4 @@
-initLayout("Area", "Area Details");
+initLayout("Area", "Deleted Area");
 sidebarLoader("/areas");
 
 let currentPage = 1;
@@ -90,11 +90,6 @@ function loadPrevious(){
 function loadNext(){
     currentPage++;
     loadTable();
-}
-
-function saveArea(){
-    var areaNew = document.getElementById('areaName').value;
-    addAreaPost(areaNew);
 }
 
 function restoreArea(area){

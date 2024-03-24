@@ -68,12 +68,12 @@ public class MaterialController {
 
             String nextMaterialCode = dao.getNextMaterialCode();
 
-            if (nextMaterialCode == "" || nextMaterialCode == null) {
+            if (nextMaterialCode == "" || nextMaterialCode == null)
                 material.setMaterial_code("mat/001");
-            } else {
+            else
                 material.setMaterial_code(nextMaterialCode);
-            }
 
+            material.setMaterial_deleted(0);
             dao.save(material);
             System.out.println(material);
             return "Ok";
@@ -117,6 +117,21 @@ public class MaterialController {
             return "Ok";
         } catch (Exception e) {
             return "Save not completed" + e.getMessage();
+        }
+    }
+
+    @SuppressWarnings("null")
+    @PutMapping("/material/edit")
+    public String updateArea(@RequestBody Material material) {
+
+        try {
+            Material extArea = dao.getReferenceById(material.getMaterial_id());
+            extArea = material;
+            extArea.setMaterial_updated_date(LocalDateTime.now());
+            dao.save(material);
+            return "Ok";
+        } catch (Exception e) {
+            return "Update not completed : " + e.getMessage();
         }
     }
 

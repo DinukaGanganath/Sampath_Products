@@ -10,10 +10,10 @@ function loadTable(){
     .then(function(response){
         return response.json();
     })
-    .then(function(materials){
+    .then(function(areas){
         let placeholder = document.querySelector("#data-output");
-        let rowNo = materials.length;
-        let maxRow = 9;
+        let rowNo = areas.length;
+        let maxRow = 7;
         let pageNo = Math.ceil(rowNo/maxRow);
         let pagDataList = [];
         
@@ -24,7 +24,7 @@ function loadTable(){
             stop = rowNo;
 
         for(var i = start; i<stop; i++){
-            pagDataList.push(materials[i]);
+            pagDataList.push(areas[i]);
         }
 
         console.log(`pag :\n ${pagDataList} \n start : ${start} \n end : ${stop}`);
@@ -64,12 +64,12 @@ function setDataSet(pagDataList){
     var out ="";
     for(let material of pagDataList){
         out += `
-            <tr>
-                <td>${material.material_name}</td>
-                <td>${material.material_code}</td>
+            <tr id=`+ material.material_id +`>
+                <td id="material_name">${material.material_name}</td>
+                <td id="material_code">${material.material_code}</td>
                 <td>
-                    <div style="display:flex">
-                        <button class="btnEdit" onclick='editMaterial(` + JSON.stringify(material) + `)'>Edit</button>
+                    <div id="basicBtn" style="display:flex">
+                        <button class="btnEdit" onclick='editMaterial(` + JSON.stringify(material) + `, this)'>Edit</button>
                         <button class="btnDelete" onclick='deleteMaterial(` + JSON.stringify(material) + `)'>Delete</button>
                     </div>
                 </td>
@@ -89,40 +89,29 @@ function loadNext(){
     loadTable();
 }
 
-function showAddForm(){
-    if(document.getElementById('materialAddForm').classList.contains('hidden')){
-        document.getElementById('materialAddForm').classList.remove('hidden');
-        document.getElementById('materialAddForm').classList.add('horizontal');
-        //document.getElementById('addBtn').disabled = true;
-    }
+function showForm(){
+
+    $("#material_tab tbody").prepend("<tr><td id= newItem></td><td></td><td id= newAddBtn onclick=saveMaterial()></td></tr>");
+
+    var inputFieldData = document.getElementById("newItem");
+    var inputField = document.createElement("input");
+    inputField.type = "text";
+    inputField.id = "materialName";
+    inputFieldData.appendChild(inputField);
+
+    var buttonFieldData = document.getElementById("newAddBtn");
+    var buttonField = document.createElement('button');
+    buttonField.innerHTML = 'Submit';
+    buttonField.className = 'btnEdit';
+    buttonField.id = 'buttonAdd';
+    buttonFieldData.appendChild(buttonField);
 }
 
 function saveMaterial(){
-    if(document.getElementById('materialAddForm').classList.contains('horizontal')){
-        document.getElementById('materialAddForm').classList.remove('horizontal');
-        document.getElementById('materialAddForm').classList.add('hidden');
-        //document.getElementById('addBtn').disabled = false;
-        addMaterialPost();
-    }
-}
-
-function addMaterialPost(){
-
-    //create Material Object
-    if(document.getElementById("materialName").value != ""){
-        var material = {
-            "material_name" : ""
-        };
-
-        material.material_name = document.getElementById("materialName").value;
-
-        //save the material
-        restFunction('/material/save', material, "POST", '/materials', "Material");
-    }else{
-        alert("Enter a Material Name");
-        window.location.href = "/materials";
-    }
-  
+    var materialNew = document.getElementById('materialName').value;
+    var area = {};
+    area['material_name'] = materialNew;
+    restFunction('/material/save', area, "POST", "/material", "Material");
 }
 
 function deleteMaterial(material){
@@ -132,9 +121,15 @@ function deleteMaterial(material){
 
 }
 
-function editMaterial(material){
+function editMaterial(material, ele){
+    var trObj = ele.parentNode.parentNode.parentNode;
+    trObj.querySelector("#material_name").innerHTML = `<input id="materialInput" placeholder = '${material.material_name}'/>`;
+    trObj.querySelector("#basicBtn").innerHTML = `<button class='btnEdit' onclick='editRowMaterial(${JSON.stringify(material)})'>save</button>`; 
+}
 
+function editRowMaterial(material){
+    var materialName = document.getElementById('materialInput').value;
+    material.material_name = materialName;
     console.log(material);
-    restFunction('/material/edit', material, "PUT", "/materials", "Material");
-
+    restFunction('/material/edit', material, "PUT", "/material", "Material");
 }

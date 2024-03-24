@@ -62,6 +62,29 @@ function loadNext(){
     loadTable();
 }
 
+function visualizePag(pageNo){
+    if(currentPage == 1 && pageNo != 1){
+        document.getElementById("pagLeftBtn").style.display = "none";
+        document.getElementById("pagRightBtn").style.display = "block";
+    }
+    if(currentPage == pageNo){
+        document.getElementById("pagRightBtn").style.display = "none";
+        document.getElementById("pagLeftBtn").style.display = "block";
+    }
+    if(currentPage != pageNo && currentPage != 1){
+        document.getElementById("pagRightBtn").style.display = "block";
+        document.getElementById("pagLeftBtn").style.display = "block";
+    }
+    if(pageNo==1){
+        document.getElementById("pagRightBtn").style.display = "none";
+        document.getElementById("pagLeftBtn").style.display = "none";
+    }
+    if(pageNo==0){
+        document.getElementById("pagRightBtn").style.display = "none";
+        document.getElementById("pagLeftBtn").style.display = "none";
+        document.getElementById("pagMiddle").style.display = "none";
+    }
+}
 
 function showAddForm(){
     if(document.getElementById('materialAddForm').classList.contains('hidden')){

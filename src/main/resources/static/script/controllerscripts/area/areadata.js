@@ -72,10 +72,6 @@ function setDataSet(pagDataList){
                         <button class="btnEdit" onclick='editArea(` + JSON.stringify(area) +`, this)'>Edit</button>
                         <button class="btnDelete" onclick='deleteArea(` + JSON.stringify(area) + `)'>Delete</button>
                     </div>
-                    <div id="secondaryBtn"  style="display:none">
-                        <button class="btnEdit" onclick='editRowArea(this)'>save</button>
-                        <button class="btnDelete" onclick='discardRowArea()'>Discard</button>
-                    </div>
                 </td>
             </tr>
         `;
@@ -115,16 +111,14 @@ function saveArea(){
     var areaNew = document.getElementById('areaName').value;
     var area = {};
     area['area_name'] = areaNew;
-    
     restFunction('/area/save', area, "POST", "/areas", "Area");
 }
 
 function editArea(area, ele){
     var trObj = ele.parentNode.parentNode.parentNode;
-    trObj.querySelector("#area_name").innerHTML = `<input id="areaInput" placeholder = '${area.area_name}'/>`;
-    trObj.querySelector("#basicBtn").innerHTML = `<button class='btnEdit' onclick='editRowArea(${JSON.stringify(area)})'>save</button>`;
     console.log(trObj);
-    console.log(ele);  
+    trObj.querySelector("#area_name").innerHTML = `<input id="areaInput" placeholder = '${area.area_name}'/>`;
+    trObj.querySelector("#basicBtn").innerHTML = `<button class='btnEdit' onclick='editRowArea(${JSON.stringify(area)})'>save</button>`; 
 }
 
 function editRowArea(area){
