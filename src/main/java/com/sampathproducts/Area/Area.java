@@ -2,11 +2,15 @@ package com.sampathproducts.Area;
 
 import java.time.LocalDateTime;
 
+import com.sampathproducts.Division.Division;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,5 +44,9 @@ public class Area {
 
     @Column(name = "area_deleted_date")
     private LocalDateTime area_deleted_date;
+
+    @OneToOne
+    @JoinColumn(name = "postal_division_id", referencedColumnName = "postal_division_id")
+    private Division postal_division_id;
 
 }

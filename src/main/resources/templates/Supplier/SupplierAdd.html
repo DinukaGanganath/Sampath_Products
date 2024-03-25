@@ -71,20 +71,20 @@
 
 										<div class="input-field">
 											<label for="supplier_area_id">Line 2 - Area</label>
-											<select id="supplier_area_id" placeholder="select From the list" required>
+											<select id="supplier_area_id" onchange="loadDivisionVal(this)" placeholder="select From the list" required>
 											</select>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplier_address_city">City</label>
-											<input id="supplier_address_city" type="text" placeholder="postal city">
+											<input id="supplier_address_city" type="text" placeholder="postal city" value="" disabled>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
 											<label for="supplier_address_postal">Postal code</label>
-											<input id="supplier_address_postal" type="text">
+											<input id="supplier_address_postal" type="text" value="" disabled>
 											<label class="validMessage"></label>
 										</div>
 									</div>

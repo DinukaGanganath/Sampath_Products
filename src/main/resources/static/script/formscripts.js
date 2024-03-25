@@ -127,3 +127,14 @@ function disableForm(formId, attrList){
         ele.setAttribute('disabled', true);
 }
 
+function loadDivisionVal(ele){
+
+    var city = document.getElementById("supplier_address_city");
+    var code = document.getElementById("supplier_address_postal");
+
+    city.value = JSON.parse(ele.value).postal_division_id.postal_division_name;
+    code.value = JSON.parse(ele.value).postal_division_id.postal_division_code;
+    
+    city.setAttribute("disabled","disabled");
+}
+

@@ -67,6 +67,7 @@ function setDataSet(pagDataList){
             <tr id=`+ area.area_id +`>
                 <td id="area_name">${area.area_name}</td>
                 <td id="area_code">${area.area_code}</td>
+                <td id="area_code">${area.postal_division_id.postal_division_name}</td>
                 <td>
                     <div id="basicBtn" style="display:flex">
                         <button class="btnEdit" onclick='editArea(` + JSON.stringify(area) +`, this)'>Edit</button>
