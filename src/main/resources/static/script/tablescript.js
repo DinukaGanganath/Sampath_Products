@@ -7,8 +7,7 @@ function showContextMenu(str, event){
     var contextElement = document.getElementById("context-menu");
     contextElement.style.left = event.clientX + "px";
     contextElement.style.top = event.clientY + "px";
-    contextElement.classList.add("active");
-      
+    contextElement.classList.add("active"); 
 }
 
 function dataLoadTable(url, tableValList, maxRow){
