@@ -1,23 +1,23 @@
 var receivedData = JSON.parse(sessionStorage.getItem("dataToSend"));
 console.log(receivedData);
 
-var idVal = [["supplierid", `${receivedData["supplierid"]}`], ["supplier_code", `${receivedData["supplier_code"]}`]];
+var idVal = [["customerid", `${receivedData["customerid"]}`], ["customer_code", `${receivedData["customer_code"]}`]];
 
 //configure the GUI and window parameters
-initLayout("Supplier", `Supplier View - ${receivedData.supplier_code}`);
-sidebarLoader("/supplier");
+initLayout("Customer", `Customer View - ${receivedData.customer_code}`);
+sidebarLoader("/customer");
 
-objectToForm('supplierViewForm', receivedData, ["type_name","area_name","material_name"]);
-disableForm('supplierViewForm', ['input', 'select']);
+objectToForm('customerViewForm', receivedData, ["type_name","area_name"]);
+disableForm('customerViewForm', ['input', 'select']);
 
-function deleteFormSupplier(){
-    restFunction('/supplier/delete', receivedData, "DELETE", "/supplier", "Supplier");
-    window.location.href = '/supplier';
+function deleteFormCustomer(){
+    restFunction('/customer/delete', receivedData, "DELETE", "/customer", "Customer");
+    window.location.href = '/customer';
 }
 
-function editFormSupplier(){
+function editFormCustomer(){
     sessionStorage.setItem("dataToSend", JSON.stringify(receivedData));
-    window.location.href = '/supplieredit';
+    window.location.href = '/customeredit';
 }
 
 function editObj(formId, eleList, url, method, loadAfter, navigator){
@@ -32,8 +32,8 @@ function editObj(formId, eleList, url, method, loadAfter, navigator){
 
 function loadDivisionVal(ele){
 
-    var city = document.getElementById("supplier_address_city");
-    var code = document.getElementById("supplier_address_postal");
+    var city = document.getElementById("customer_address_city");
+    var code = document.getElementById("customer_address_postal");
 
     city.value = JSON.parse(ele.value).postal_division_id.postal_division_name;
     code.value = JSON.parse(ele.value).postal_division_id.postal_division_code;

@@ -41,20 +41,20 @@
 					<!--header class="form-header">Registration</header-->
 
 					<div class="form-container">
-						<form action="#" class="" id="supplierEditForm" onsubmit="return false">
+						<form action="#" class="" id="customerEditForm" onsubmit="return false">
 							<div class="formcls">
 								<div class="details personal">
 									<span class="title">General Details</span>
 									<div class="fields">
 										<div class="input-fieldlong">
-											<label for="supplier_name">Full Name</label>
-											<input id="supplier_name" class="valFullName" type="text" placeholder="Enter your name" required>
+											<label for="customer_name">Full Name</label>
+											<input id="customer_name" class="valFullName" type="text" placeholder="Enter your name" required>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="supplier_nic">National Identity Card</label>
-											<input id="supplier_nic" type="text" class="valIdentity" placeholder="NIC ends with V,X or 12 characters" required>
+											<label for="customer_nic">National Identity Card</label>
+											<input id="customer_nic" type="text" class="valIdentity" placeholder="NIC ends with V,X or 12 characters" required>
 											<label class="validMessage"></label>
 										</div>
 									</div>
@@ -64,27 +64,27 @@
 									<span class="title">Address Details</span>
 									<div class="fields">
 										<div class="input-field">
-											<label for="supplier_address_line1">Line 1</label>
-											<input id="supplier_address_line1" type="text" placeholder="No.xxx, street no." required>
+											<label for="customer_address_line1">Line 1</label>
+											<input id="customer_address_line1" type="text" placeholder="No.xxx, street no." required>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="supplier_area_id">Line 2 - Area</label>
-											<select id="supplier_area_id" onchange="loadDivisionVal(this)" placeholder="select From the list" style="display:none">
+											<label for="customer_area_id">Line 2 - Area</label>
+											<select id="customer_area_id" onchange="loadDivisionVal(this)" placeholder="select From the list" style="display:none">
 											</select>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="supplier_address_city">City</label>
-											<input id="supplier_address_city" type="text" placeholder="postal city" disabled>
+											<label for="customer_address_city">City</label>
+											<input id="customer_address_city" type="text" placeholder="postal city" disabled>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="supplier_address_postal">Postal code</label>
-											<input id="supplier_address_postal" type="text" disabled>
+											<label for="customer_address_postal">Postal code</label>
+											<input id="customer_address_postal" type="text" disabled>
 											<label class="validMessage"></label>
 										</div>
 									</div>
@@ -94,26 +94,26 @@
 									<span class="title">Contact Details</span>
 									<div class="fields">
 										<div class="input-field">
-											<label for="supplier_land_phone">Land phone</label>
-											<input id="supplier_land_phone" class="valTelephone" type="text" placeholder="starts with 0" required>
+											<label for="customer_land_phone">Land phone</label>
+											<input id="customer_land_phone" class="valTelephone" type="text" placeholder="starts with 0" required>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="supplier_contact_no1">Mobile No 1</label>
-											<input id="supplier_contact_no1" class="valMobphone" type="text" placeholder="starts with 0" required>
+											<label for="customer_contact_no1">Mobile No 1</label>
+											<input id="customer_contact_no1" class="valMobphone" type="text" placeholder="starts with 0" required>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="supplier_contact_no2">Mobile No 2</label>
-											<input id="supplier_contact_no2" class="valMobphone" type="text" placeholder="starts with 0">
+											<label for="customer_contact_no2">Mobile No 2</label>
+											<input id="customer_contact_no2" class="valMobphone" type="text" placeholder="starts with 0">
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="supplier_email">Email</label>
-											<input id="supplier_email" class="valEmail" type="text" required>
+											<label for="customer_email">Email</label>
+											<input id="customer_email" class="valEmail" type="text" required>
 											<label class="validMessage"></label>
 										</div>
 									</div>
@@ -123,42 +123,34 @@
 									<span class="title">Business Details</span>
 									<div class="fields">
 										<div class="input-field">
-											<label for="supplier_business_name">Name of Business</label>
-											<input id="supplier_business_name" class="valFullName" type="text" placeholder="Full business name">
+											<label for="customer_business_name">Name of Business</label>
+											<input id="customer_business_name" class="valFullName" type="text" placeholder="Full business name">
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="supplier_business_reg">Business Registration No</label>
-											<input id="supplier_business_reg" class="valReg" type="text" placeholder="As the certificate">
+											<label for="customer_business_reg">Business Registration No</label>
+											<input id="customer_business_reg" class="valReg" type="text" placeholder="As the certificate">
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="supplier_business_type">Business Type</label>
-											<select id="supplier_business_type" style="display:none">
+											<label for="customer_business_type">Business Type</label>
+											<select id="customer_business_type" style="display:none">
 											</select>
 											<label class="validMessage"></label>
 										</div>
-
-										<div class="input-field">
-											<label for="supplier_material_id">Material Supplied</label>
-											<select id="supplier_material_id" type="text" style="display:none">
-											</select>
-											<label class="validMessage"></label>
-										</div>
-
-										
+	
 											<div style="display: none;">
 												<div class="input-field">
-													<label for="supplierid">Business Registration No</label>
-													<input id="supplierid" class="valReg avoid" type="text" placeholder="As the certificate">
+													<label for="customer_id">Business Registration No</label>
+													<input id="customer_id" class="valReg avoid" type="text" placeholder="As the certificate">
 													<label class="validMessage"></label>
 												</div>
 
 												<div class="input-field">
-													<label for="supplier_code">Business Registration No</label>
-													<input id="supplier_code" class="valReg avoid" type="text" placeholder="As the certificate">
+													<label for="customer_code">Business Registration No</label>
+													<input id="customer_code" class="valReg avoid" type="text" placeholder="As the certificate">
 													<label class="validMessage"></label>
 												</div>
 
@@ -184,8 +176,8 @@
 										</div>
 									</div>
 									<div id="basicBtn" style="display:flex">
-										<button class="btnEditWide" onclick='editObj("supplierEditForm",["input", "select"], "/supplier/edit", "PUT", "/supplier", "Supplier")'>Edit</button>
-										<button class="btnDeleteWide" href="/supplier" onclick='editObj("supplierEditForm",["input", "select"], "/supplier/delete", "DELETE", "/supplier", "Supplier")'>Delete</button>
+										<button class="btnEditWide" onclick='editObj("customerEditForm",["input", "select"], "/customer/edit", "PUT", "/customer", "Customer")'>Edit</button>
+										<button class="btnDeleteWide" href="/customer" onclick='editObj("customerEditForm",["input", "select"], "/customer/delete", "DELETE", "/customer", "Customer")'>Delete</button>
 									</div>
 								</div>
 							</div>
@@ -200,7 +192,7 @@
 	<script type="text/javascript" src="script/restfunction.js"></script>
 	<script type="text/javascript" src="script/validationscripts/validation.js"></script>
 	<script type="text/javascript" src="script/formscripts.js"></script>
-	<script type="text/javascript" src="script/controllerscripts/supplier/supplieredit.js"></script>
+	<script type="text/javascript" src="script/controllerscripts/customer/customeredit.js"></script>
 	<script type="text/javascript" src="script/tablescript.js"></script>
 	<script type="text/javascript" src="script/jsonObjCreator.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>

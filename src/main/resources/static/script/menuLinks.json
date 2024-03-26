@@ -35,7 +35,7 @@
         "text": "Quotations"
     },
     {
-        "link": "/customers",
+        "link": "/customer",
         "icon": "fa-solid fa-users icon",
         "text": "Customers"
     },

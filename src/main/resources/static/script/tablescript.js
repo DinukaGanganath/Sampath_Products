@@ -38,7 +38,7 @@ function dataLoadTable(url, tableValList, maxRow){
             pagDataList.push(objs[i]);
         }
 
-        console.log(`pag :\n ${pagDataList} \n start : ${start} \n end : ${stop} \n curr : ${currPage} \n page : ${pageNo}`);
+        console.log(`pag :\n ${pagDataList} \n start : ${start} \n end : ${stop} \n curr : ${currPage} \n page : ${pageNo} \n max no : ${maxRow}`);
         document.getElementById("pagMiddle").innerHTML = `<b>${currPage}</b> of ${pageNo}`;
 
         visualizePag(currPage, pageNo);
