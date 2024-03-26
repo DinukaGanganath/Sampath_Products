@@ -92,13 +92,21 @@ function loadNext(){
 
 function showForm(){
 
-    $("#area_tab tbody").prepend("<tr><td id= newItem></td><td></td><td id= newAddBtn onclick=saveArea()></td></tr>");
+    $("#area_tab tbody").prepend("<tr><td id= newItem><td></td></td><td id= newdivision></td><td id= newAddBtn onclick=saveArea()></td></tr>");
 
     var inputFieldData = document.getElementById("newItem");
     var inputField = document.createElement("input");
     inputField.type = "text";
     inputField.id = "areaName";
     inputFieldData.appendChild(inputField);
+
+    var selectFieldData = document.getElementById("newdivision");
+    var selectField = document.createElement("select");
+    selectField.type = "text";
+    selectField.id = "areaDiv";
+    selectFieldData.appendChild(selectField);
+    loadOptionVal("/division/findall", "areaDiv", "postal_division_name", "Division");
+    //console.log(document.getElementById("areaDiv"));
 
     var buttonFieldData = document.getElementById("newAddBtn");
     var buttonField = document.createElement('button');
@@ -110,8 +118,10 @@ function showForm(){
 
 function saveArea(){
     var areaNew = document.getElementById('areaName').value;
+    var divNew= JSON.parse(document.getElementById('areaDiv').value);
     var area = {};
     area['area_name'] = areaNew;
+    area['postal_division_id'] = divNew;
     restFunction('/area/save', area, "POST", "/areas", "Area");
 }
 

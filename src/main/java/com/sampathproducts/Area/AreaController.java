@@ -81,6 +81,7 @@ public class AreaController {
             }
             area.setArea_added_date(LocalDateTime.now());
             area.setArea_deleted(0);
+
             dao.save(area);
             System.out.println(area);
             return "Ok";
@@ -94,7 +95,7 @@ public class AreaController {
     public String restore(@RequestBody Area area) {
         System.out.println(area.getArea_id());
         try {
-            @SuppressWarnings("null")
+            // @SuppressWarnings("null")
             Area extArea = dao.getReferenceById(area.getArea_id());
             extArea.setArea_deleted(0);
             dao.save(extArea);

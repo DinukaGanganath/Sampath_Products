@@ -37,6 +37,7 @@ function restFunction(url, object, method, loadAfter, objectType){
         alert(objectType + ' ' + activity + ' Succesfully...');
         window.location.href = loadAfter;
     }else{
+        console.log(responseStatus);
         alert('Some Errors has Occured...');
     }
 }

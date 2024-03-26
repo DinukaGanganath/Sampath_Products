@@ -20,7 +20,7 @@ public class Division {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "postal_division_id", unique = true) // mapping column
-    private Integer area_id;
+    private Integer postal_division_id;
 
     @Column(name = "postal_division_code")
     private String postal_division_code;
