@@ -65,6 +65,7 @@ function objectToForm(formId, jsonObj, objValList) {
             }
         }
     });
+    console.log(jsonObj);
 }
 
 //get the common values in two arrays

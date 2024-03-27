@@ -1,23 +1,23 @@
 var receivedData = JSON.parse(sessionStorage.getItem("dataToSend"));
 console.log(receivedData);
 
-var idVal = [["supplierid", `${receivedData["supplierid"]}`], ["supplier_code", `${receivedData["supplier_code"]}`]];
+var idVal = [["vehicle_id", `${receivedData["vehicle_id"]}`], ["vehicle_code", `${receivedData["vehicle_code"]}`]];
 
 //configure the GUI and window parameters
-initLayout("Supplier", `Supplier View - ${receivedData.supplier_code}`);
-sidebarLoader("/supplier");
+initLayout("Vehicle", `Vehicle View - ${receivedData.vehicle_code}`);
+sidebarLoader("/vehicle");
 
-objectToForm('supplierViewForm', receivedData, ["type_name","area_name","material_name"]);
-disableForm('supplierViewForm', ['input', 'select']);
+objectToForm('vehicleViewForm', receivedData, ["vehicle_types_description"]);
+disableForm('vehicleViewForm', ['input', 'select']);
 
-function deleteFormSupplier(){
-    restFunction('/supplier/delete', receivedData, "DELETE", "/supplier", "Supplier");
-    window.location.href = '/supplier';
+function deleteFormVehicle(){
+    restFunction('/vehicle/delete', receivedData, "DELETE", "/vehicle", "Vehicle");
+    window.location.href = '/vehicle';
 }
 
-function editFormSupplier(){
+function editFormVehicle(){
     sessionStorage.setItem("dataToSend", JSON.stringify(receivedData));
-    window.location.href = '/supplieredit';
+    window.location.href = '/vehicleedit';
 }
 
 function editObj(formId, eleList, url, method, loadAfter, navigator){
@@ -28,15 +28,4 @@ function editObj(formId, eleList, url, method, loadAfter, navigator){
     }
 
     validForm(formId, eleList, url, method, loadAfter, navigator, idVal);
-}
-
-function loadDivisionVal(ele){
-
-    var city = document.getElementById("supplier_address_city");
-    var code = document.getElementById("supplier_address_postal");
-
-    city.value = JSON.parse(ele.value).postal_division_id.postal_division_name;
-    code.value = JSON.parse(ele.value).postal_division_id.postal_division_code;
-    
-    city.setAttribute("disabled","disabled");
 }

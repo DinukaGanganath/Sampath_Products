@@ -41,152 +41,117 @@
 					<!--header class="form-header">Registration</header-->
 
 					<div class="form-container">
-						<form action="#" class="" id="supplierEditForm" onsubmit="return false">
+						<form action="#" class="" id="vehicleEditForm" onsubmit="return false">
 							<div class="formcls">
 								<div class="details personal">
-									<span class="title">General Details</span>
+									<span class="title">Vehicle Details</span>
 									<div class="fields">
-										<div class="input-fieldlong">
-											<label for="supplier_name">Full Name</label>
-											<input id="supplier_name" class="valFullName" type="text" placeholder="Enter your name" required>
+										<div class="input-fieldonethird">
+											<label for="vehicle_no">Vehicle Number</label>
+											<input id="vehicle_no" class="valVehicleNo" type="text" placeholder="format: WP AAA 1234" required>
 											<label class="validMessage"></label>
 										</div>
-
-										<div class="input-field">
-											<label for="supplier_nic">National Identity Card</label>
-											<input id="supplier_nic" type="text" class="valIdentity" placeholder="NIC ends with V,X or 12 characters" required>
+			
+										<div class="input-fieldonethird">
+											<label for="vehicle_chasis">Chassis Number</label>
+											<input id="vehicle_chasis" type="text" class="valChasis" placeholder="As the Registration Details" required>
+											<label class="validMessage"></label>
+										</div>
+			
+										<div class="input-fieldonethird">
+											<label for="vehicle_engine">Engine Number</label>
+											<input id="vehicle_engine" type="text" class="valEngine" placeholder="As the Registration Details" required>
 											<label class="validMessage"></label>
 										</div>
 									</div>
 								</div>
-
+			
 								<div class="details personal">
-									<span class="title">Address Details</span>
+									<span class="title">Owner's Details</span>
 									<div class="fields">
-										<div class="input-field">
-											<label for="supplier_address_line1">Line 1</label>
-											<input id="supplier_address_line1" type="text" placeholder="No.xxx, street no." required>
+										<div class="input-fieldonethird">
+											<label for="vehicle_owner_name">Full Name</label>
+											<input id="vehicle_owner_name" class="valFullName" type="text"
+												placeholder="Enter owner's name" required>
 											<label class="validMessage"></label>
 										</div>
-
-										<div class="input-field">
-											<label for="supplier_area_id">Line 2 - Area</label>
-											<select id="supplier_area_id" onchange="loadDivisionVal(this)" placeholder="select From the list" style="display:none">
-											</select>
+			
+										<div class="input-fieldonethird">
+											<label for="vehicle_owner_nic">National Identity Card</label>
+											<input id="vehicle_owner_nic" type="text" class="valIdentity"
+												placeholder="NIC ends with V,X or 12 characters" required>
 											<label class="validMessage"></label>
 										</div>
-
-										<div class="input-field">
-											<label for="supplier_address_city">City</label>
-											<input id="supplier_address_city" type="text" placeholder="postal city" disabled>
-											<label class="validMessage"></label>
-										</div>
-
-										<div class="input-field">
-											<label for="supplier_address_postal">Postal code</label>
-											<input id="supplier_address_postal" type="text" disabled>
+										<div class="input-fieldonethird">
+											<label for="vehicle_owner_contact">Land phone</label>
+											<input id="vehicle_owner_contact" class="valMobphone" type="text"
+												placeholder="starts with 0" required>
 											<label class="validMessage"></label>
 										</div>
 									</div>
 								</div>
-
+			
 								<div class="details personal">
-									<span class="title">Contact Details</span>
+									<span class="title">Additional Details</span>
 									<div class="fields">
-										<div class="input-field">
-											<label for="supplier_land_phone">Land phone</label>
-											<input id="supplier_land_phone" class="valTelephone" type="text" placeholder="starts with 0" required>
+										<div class="input-fieldonethird">
+											<label for="vehicle_types_id">Vehicle Type</label>
+											<select id="vehicle_types_id" style="display:none" required>
+											</select>
 											<label class="validMessage"></label>
 										</div>
-
-										<div class="input-field">
-											<label for="supplier_contact_no1">Mobile No 1</label>
-											<input id="supplier_contact_no1" class="valMobphone" type="text" placeholder="starts with 0" required>
+			
+										<div class="input-fieldonethird">
+											<label for="vehicle_last_serviced_date">Last Service Date</label>
+											<input id="vehicle_last_serviced_date" type="datetime-local" required>
 											<label class="validMessage"></label>
 										</div>
-
-										<div class="input-field">
-											<label for="supplier_contact_no2">Mobile No 2</label>
-											<input id="supplier_contact_no2" class="valMobphone" type="text" placeholder="starts with 0">
-											<label class="validMessage"></label>
-										</div>
-
-										<div class="input-field">
-											<label for="supplier_email">Email</label>
-											<input id="supplier_email" class="valEmail" type="text" required>
+			
+										<div class="input-fieldonethird">
+											<label for="vehicle_licence">Licence No.</label>
+											<input id="vehicle_licence" class="valLicesnce" type="text"
+												placeholder="According to the license documents." required>
 											<label class="validMessage"></label>
 										</div>
 									</div>
 								</div>
-
+			
 								<div class="details personal">
-									<span class="title">Business Details</span>
-									<div class="fields">
+									<div style="display: none;">
 										<div class="input-field">
-											<label for="supplier_business_name">Name of Business</label>
-											<input id="supplier_business_name" class="valFullName" type="text" placeholder="Full business name">
+											<label for="vehicle_id">Business Registration No</label>
+											<input id="vehicle_id" class="valReg avoid" type="text" placeholder="As the certificate">
 											<label class="validMessage"></label>
 										</div>
-
+				
 										<div class="input-field">
-											<label for="supplier_business_reg">Business Registration No</label>
-											<input id="supplier_business_reg" class="valReg" type="text" placeholder="As the certificate">
+											<label for="vehicle_code">Business Registration No</label>
+											<input id="vehicle_code" class="valReg avoid" type="text" placeholder="As the certificate">
 											<label class="validMessage"></label>
 										</div>
-
+				
 										<div class="input-field">
-											<label for="supplier_business_type">Business Type</label>
-											<select id="supplier_business_type" style="display:none">
-											</select>
+											<label for="created_date_time">Business Registration No</label>
+											<input id="created_date_time" class="valReg avoid" type="text" placeholder="As the certificate">
 											<label class="validMessage"></label>
 										</div>
-
+				
 										<div class="input-field">
-											<label for="supplier_material_id">Material Supplied</label>
-											<select id="supplier_material_id" type="text" style="display:none">
-											</select>
+											<label for="updated_date_time">Business Registration No</label>
+											<input id="updated_date_time" class="valReg avoid" type="text" placeholder="As the certificate">
 											<label class="validMessage"></label>
 										</div>
-
-										
-											<div style="display: none;">
-												<div class="input-field">
-													<label for="supplierid">Business Registration No</label>
-													<input id="supplierid" class="valReg avoid" type="text" placeholder="As the certificate">
-													<label class="validMessage"></label>
-												</div>
-
-												<div class="input-field">
-													<label for="supplier_code">Business Registration No</label>
-													<input id="supplier_code" class="valReg avoid" type="text" placeholder="As the certificate">
-													<label class="validMessage"></label>
-												</div>
-
-												<div class="input-field">
-													<label for="created_date_time">Business Registration No</label>
-													<input id="created_date_time" class="valReg avoid" type="text" placeholder="As the certificate">
-													<label class="validMessage"></label>
-												</div>
-
-												<div class="input-field">
-													<label for="updated_date_time">Business Registration No</label>
-													<input id="updated_date_time" class="valReg avoid" type="text" placeholder="As the certificate">
-													<label class="validMessage"></label>
-												</div>
-
-												<div class="input-field">
-													<label for="deleted_date_time">Business Registration No</label>
-													<input id="deleted_date_time" class="valReg avoid" type="text" placeholder="As the certificate">
-													<label class="validMessage"></label>
-												</div>
-											
-											</div>
+				
+										<div class="input-field">
+											<label for="deleted_date_time">Business Registration No</label>
+											<input id="deleted_date_time" class="valReg avoid" type="text" placeholder="As the certificate">
+											<label class="validMessage"></label>
 										</div>
 									</div>
-									<div id="basicBtn" style="display:flex">
-										<button class="btnEditWide" onclick='editObj("supplierEditForm",["input", "select"], "/supplier/edit", "PUT", "/supplier", "Supplier")'>Edit</button>
-										<button class="btnDeleteWide" href="/supplier" onclick='editObj("supplierEditForm",["input", "select"], "/supplier/delete", "DELETE", "/supplier", "Supplier")'>Delete</button>
-									</div>
+								</div>
+								<div id="basicBtn" style="display:flex">
+									<button class="btnEditWide" onclick='editObj("vehicleEditForm",["input", "select"], "/vehicle/edit", "PUT", "/vehicle", "Vehicle")'>Edit</button>
+									<button class="btnDeleteWide" href="/vehicle" onclick='editObj("vehicleEditForm",["input", "select"], "/vehicle/delete", "DELETE", "/vehicle", "Vehicle")'>Delete</button>
 								</div>
 							</div>
 						</form>
@@ -200,7 +165,7 @@
 	<script type="text/javascript" src="script/restfunction.js"></script>
 	<script type="text/javascript" src="script/validationscripts/validation.js"></script>
 	<script type="text/javascript" src="script/formscripts.js"></script>
-	<script type="text/javascript" src="script/controllerscripts/supplier/supplieredit.js"></script>
+	<script type="text/javascript" src="script/controllerscripts/vehicle/vehicleedit.js"></script>
 	<script type="text/javascript" src="script/tablescript.js"></script>
 	<script type="text/javascript" src="script/jsonObjCreator.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>

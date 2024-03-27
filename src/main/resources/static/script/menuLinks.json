@@ -5,29 +5,14 @@
         "text": "Dashboard"
     },
     {
+        "link": "/material",
+        "icon": "fa-solid fa-bread-slice icon",
+        "text": "Materials"
+    },
+    {
         "link": "/supplier",
         "icon": "fa-solid fa-people-carry-box icon",
         "text": "Supplier"
-    },
-    {
-        "link": "/salesrep",
-        "icon": "fa-solid fa-truck-fast icon",
-        "text": "Sales Rep"
-    },
-    {
-        "link": "/products",
-        "icon": "fa-solid fa-box-archive icon",
-        "text": "Products"
-    },
-    {
-        "link": "/stores",
-        "icon": "fa-solid fa-boxes-stacked icon",
-        "text": "Stores"
-    },
-    {
-        "link": "/production",
-        "icon": "fa-solid fa-truck-ramp-box icon",
-        "text": "Production"
     },
     {
         "link": "/quotations",
@@ -35,14 +20,29 @@
         "text": "Quotations"
     },
     {
-        "link": "/customer",
-        "icon": "fa-solid fa-users icon",
-        "text": "Customers"
+        "link": "/products",
+        "icon": "fa-solid fa-box-archive icon",
+        "text": "Products"
     },
     {
-        "link": "/material",
-        "icon": "fa-solid fa-bread-slice icon",
-        "text": "Materials"
+        "link": "/production",
+        "icon": "fa-solid fa-truck-ramp-box icon",
+        "text": "Production"
+    },
+    {
+        "link": "/stores",
+        "icon": "fa-solid fa-boxes-stacked icon",
+        "text": "Stores"
+    },
+    {
+        "link": "/salesrep",
+        "icon": "fa-solid fa-truck-fast icon",
+        "text": "Sales Rep"
+    },
+    {
+        "link": "/vehicle",
+        "icon": "fa-solid fa-car icon",
+        "text": "Vehicles"
     },
     {
         "link": "/areas",
@@ -50,8 +50,8 @@
         "text": "Areas"
     },
     {
-        "link": "/vehicle",
-        "icon": "fa-solid fa-car icon",
-        "text": "Vehicles"
-    }
+        "link": "/customer",
+        "icon": "fa-solid fa-users icon",
+        "text": "Customers"
+    }    
 ]
