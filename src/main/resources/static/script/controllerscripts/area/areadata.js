@@ -67,7 +67,7 @@ function setDataSet(pagDataList){
             <tr id=`+ area.area_id +`>
                 <td id="area_name">${area.area_name}</td>
                 <td id="area_code">${area.area_code}</td>
-                <td id="area_code">${area.postal_division_id.postal_division_name}</td>
+                <td id="area_div">${area.postal_division_id.postal_division_name}</td>
                 <td>
                     <div id="basicBtn" style="display:flex">
                         <button class="btnEdit" onclick='editArea(` + JSON.stringify(area) +`, this)'>Edit</button>
@@ -92,7 +92,7 @@ function loadNext(){
 
 function showForm(){
 
-    $("#area_tab tbody").prepend("<tr><td id= newItem><td></td></td><td id= newdivision></td><td id= newAddBtn onclick=saveArea()></td></tr>");
+    $("#area_tab tbody").prepend("<tr><td id= newItem><td></td></td><td id='newdivision'></td><td id= newAddBtn onclick=saveArea()></td></tr>");
 
     var inputFieldData = document.getElementById("newItem");
     var inputField = document.createElement("input");
@@ -127,7 +127,8 @@ function saveArea(){
 
 function editArea(area, ele){
     var trObj = ele.parentNode.parentNode.parentNode;
-    console.log(trObj);
+    trObj.querySelector("#area_div").innerHTML = `<select id="newAreaSelect"></select>`;
+    loadOptionVal("/division/findall", "newAreaSelect", "postal_division_name", "Division");
     trObj.querySelector("#area_name").innerHTML = `<input id="areaInput" placeholder = '${area.area_name}'/>`;
     trObj.querySelector("#basicBtn").innerHTML = `<button class='btnEdit' onclick='editRowArea(${JSON.stringify(area)})'>save</button>`; 
 }
@@ -135,6 +136,7 @@ function editArea(area, ele){
 function editRowArea(area){
     var areaName = document.getElementById('areaInput').value;
     area.area_name = areaName;
+    area.postal_division_id = JSON.parse(document.getElementById('newAreaSelect').value);
     console.log(area);
     restFunction('/area/edit', area, "PUT", "/areas", "Area");
 }

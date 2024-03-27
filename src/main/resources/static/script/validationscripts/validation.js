@@ -43,6 +43,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 const messageStr = "Enter a business registration no with correct format."
                 checkValidate(field, regexStr, messageStr);
             }
+            if(field.classList.contains('valVehicleNo')){
+                const regexStr = new RegExp('^(?:CP|EP|NC|NE|NW|SB|SP|UP|WP)[" "][A-Z]{2,3}[-][0-9]{4}$');
+                const messageStr = "Enter Letters Capital and Valid Province Identifier."
+                checkValidate(field, regexStr, messageStr);
+            }
+            if(field.classList.contains('valEngine')){
+                const regexStr = new RegExp('^[A-Z0-9]{6,12}$');
+                const messageStr = "Check the format again."
+                checkValidate(field, regexStr, messageStr);
+            }
+            if(field.classList.contains('valChasis')){
+                const regexStr = new RegExp('^[A-HJ-NPR-Z0-9]{17}$');
+                const messageStr = "Check the format again."
+                checkValidate(field, regexStr, messageStr);
+            }
         });
         
     });

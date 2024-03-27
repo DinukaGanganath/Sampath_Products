@@ -28,6 +28,9 @@ body{
     background: var(--body-color);
 }
 
+#sidebarContainer{
+    height :100vh;
+}
 
 /*Side bar styling*/
 .sidebar-container{
@@ -48,7 +51,7 @@ body{
 }
 
 .sidebar li{
-    height: 46px;
+    height: 38px;
     margin-top: 5px;
     list-style: none;
     display: flex;

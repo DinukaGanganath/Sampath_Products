@@ -1,5 +1,5 @@
 //configure the GUI and window parameters
-initLayout("Supplier", "Supplier Details");
+initLayout("Supplier", "Supplier Add");
 sidebarLoader("/supplier");
 
 document.getElementById("supplier_address_city").value = "";

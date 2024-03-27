@@ -31,8 +31,10 @@ function createJson(eleid, parentEle, idVal){
                         if(attr.value == '')
                             oneProperty.push(attr.id, attr.value);
                         else{
-                            //console.log(attr);
-                            //console.log(attr.value);
+                            console.log(attr);
+                            console.log(attr.id);
+                            console.log(attr.value);
+                            console.log(JSON.parse(attr.value));
                             oneProperty.push(attr.id, JSON.parse(attr.value));
                         }
                 }

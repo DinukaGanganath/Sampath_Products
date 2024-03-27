@@ -48,5 +48,10 @@
         "link": "/areas",
         "icon": "fa-solid fa-map-location-dot icon",
         "text": "Areas"
+    },
+    {
+        "link": "/vehicle",
+        "icon": "fa-solid fa-car icon",
+        "text": "Vehicles"
     }
 ]
