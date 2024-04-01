@@ -149,6 +149,8 @@ form.secActive .formcls.second{
     width:calc(100% / 3 - 15px);
     flex-direction: column;
     margin: 4px 0;
+    justify-content: center;
+    align-items: center;
 }
 
 .input-field label, .input-fieldlong label, .input-fieldhalf label, .input-fieldonethird label{
@@ -166,6 +168,7 @@ form.secActive .formcls.second{
     padding: 0 15px;
     height: 30px;
     margin: 8px 0;
+    width:100%;
 }
 
 .input-field label.validMessage, .input-fieldlong label.validMessage, .input-fieldhalf label.validMessage, .input-fieldonethird label.validMessage{
