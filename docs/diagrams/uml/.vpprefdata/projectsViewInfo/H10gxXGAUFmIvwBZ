@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ProjectsViewInfo>
 	<DiagramOpenInfos activeDiagramId="XtngxXGAUFmIvwWo">
-		<Info bounds="Re:0.0,0.0,1340.0,573.0" diagramId="XtngxXGAUFmIvwWo" maximized="true" offsetX="158" offsetY="0"/>
+		<Info bounds="Re:0.0,0.0,1340.0,573.0" diagramId="XtngxXGAUFmIvwWo" maximized="true" offsetX="455" offsetY="108"/>
 	</DiagramOpenInfos>
 	<DiagramLastActivated>
-		<Diagram id="XtngxXGAUFmIvwWo" time="1712132169627"/>
+		<Diagram id="XtngxXGAUFmIvwWo" time="1712210493932"/>
+		<Diagram id="Use Case Statement" time="0"/>
+		<Diagram id="Use Case" time="0"/>
+		<Diagram id="User Story" time="0"/>
+		<Diagram id="Sprint" time="0"/>
+		<Diagram id="Agile" time="0"/>
 	</DiagramLastActivated>
 </ProjectsViewInfo>
