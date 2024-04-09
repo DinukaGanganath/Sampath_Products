@@ -1,13 +1,86 @@
 //configure the GUI and window parameters
 initLayout("Privilage", "Privilage Details");
-sidebarLoader("/supplier");
+sidebarLoader("/privilage");
 
 //Load the names options to the Select tag
 loadOptionVal("/module/findall", "module_id", "module_name", "Module");
-loadOptionVal("/role/findall", "role_id", "role_name", "Role");
+//loadOptionVal("/role/findall", "role_id", "role_name", "Role");
+
 
 var attrList = ["cre", "sel", "edit", "del" ];
 
+function searchPrivilage(ele){
+    
+
+    loadCheckBox("/privilage/findall");
+    loadTable("/role/findall");
+    
+
+    var privilageTable = document.getElementById('data-output');
+    var trs = privilageTable.querySelectorAll('tr');
+    
+    
+    
+}
+
+
+function loadTable(url){
+    var privilageTable = document.getElementById('data-output');
+    privilageTable.innerHTML = "";
+
+    fetch(url)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(roleObjs){
+        for(var roleObj of roleObjs){
+            var tabRow = document.createElement('tr');
+            tabRow.id = roleObj.role_id;
+            var tabData = document.createElement('td');
+            tabData.innerHTML = roleObj.role_name;
+            tabRow.appendChild(tabData);
+            
+            for(var attr of attrList){
+                var checkTd = document.createElement('td');
+                var chk = document.createElement('input');
+                chk.type = 'checkbox';
+                chk.classList.add(attr);
+                checkTd.appendChild(chk);
+                tabRow.appendChild(checkTd);
+            }
+
+            privilageTable.appendChild(tabRow);
+        }
+    });
+}
+
+function loadCheckBox(url){
+    var module = JSON.parse(document.getElementById('module_id').value);
+    var moduleId = module.module_id;
+    fetch(url)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(privilages){
+        for(var priv of privilages){
+            if(moduleId == priv.module_id.module_id){
+                //privList.push(priv);
+                var privRole = document.getElementById(priv.role_id.role_id);
+                
+                for(var attr of attrList){
+                    if(priv[attr] == 1){
+                        var chkAttr = privRole.querySelector("."+attr);
+                        chkAttr.setAttribute('checked', 'checked');
+                        //console.log(priv.role_id.role_name + "  " + attr);
+                        
+                    }       
+                }
+            }
+        }
+    });
+}
+
+/*
 function searchPrivilage(ele){
     var module = JSON.parse(document.getElementById('module_id').value);
     var role = JSON.parse(document.getElementById('role_id').value);
@@ -128,4 +201,4 @@ function chkBoxVal(ele, eleId){
         return 0;
     }
 }
-
+*/

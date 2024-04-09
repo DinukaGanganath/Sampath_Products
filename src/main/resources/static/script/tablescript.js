@@ -46,6 +46,20 @@ function dataLoadTable(url, tableValList, maxRow){
     
 }
 
+function getDbData(url){
+    var listDb = [];
+    fetch(url)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(objs){
+        for(var obj of objs){
+            listDb.push(obj)
+        }
+    });
+    return listDb;
+}
+
 function loadPrevious(){
     currPage--;
     dataLoadTable(thisUrl, thisTabVal);
