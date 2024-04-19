@@ -47,7 +47,13 @@ function objectToForm(formId, jsonObj, objValList) {
         var inputField = document.getElementById(key);
         if (inputField) {
             if(inputField.tagName != "SELECT"){
-                if(typeof(jsonObj[key]) != 'string' && jsonObj[key] != null){
+                if(inputField.type == 'date'){
+                    var dateTimeString = jsonObj[key];
+                    var parts = dateTimeString.split("T");
+                    var TPart = parts[0];
+                    inputField.value = TPart;
+                    
+                }else if(typeof(jsonObj[key]) != 'string' && jsonObj[key] != null){
                     var cmnval = commonValue(Object.keys(jsonObj[key]),objValList);
                     inputField.value = jsonObj[key][cmnval];
                 }else{
@@ -126,5 +132,18 @@ function viewOptions(ele, optionIdList){
 function disableForm(formId, attrList){
     for(ele of document.getElementById(formId).querySelectorAll(attrList))
         ele.setAttribute('disabled', true);
+}
+
+function loadDivisionVal(ele, postalCity, postalCode){
+
+    var city = document.getElementById(postalCity);
+    var code = document.getElementById(postalCode);
+
+    console.log(JSON.parse(ele.value));
+
+    city.value = JSON.parse(ele.value).postal_division_id.postal_division_name;
+    code.value = JSON.parse(ele.value).postal_division_id.postal_division_code;
+    
+    city.setAttribute("disabled","disabled");
 }
 

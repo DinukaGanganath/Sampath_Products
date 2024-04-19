@@ -20,9 +20,10 @@ function createJson(eleid, parentEle, idVal){
                         oneProperty.push(attr.id, attr.innerHTML);
                         break;
                     case "input": 
-                        if(attr.classList.contains("optVal")){
+                        if(attr.type == 'date'){
+                            oneProperty.push(attr.id, attr.value+'T00:00');
+                        }else if(attr.classList.contains("optVal")){
                             var attrVal = attr.getAttribute('value');
-                            //console.log(attrVal);
                             oneProperty.push(attr.id, JSON.parse(attrVal));
                         }else
                             oneProperty.push(attr.id, attr.value);
@@ -30,7 +31,9 @@ function createJson(eleid, parentEle, idVal){
                     case "select":
                         if(attr.value == '')
                             oneProperty.push(attr.id, attr.value);
-                        else{
+                        else if(attr.classList.contains("genderSel")){
+                            oneProperty.push(attr.id, attr.value);
+                        }else{
                             console.log(attr);
                             console.log(attr.id);
                             console.log(attr.value);

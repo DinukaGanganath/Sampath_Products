@@ -14,15 +14,15 @@
 	
 	<body>
 		<div id="context-menu">
-			<div class="item" id="context_view" onclick="viewSupplier()">
+			<div class="item" id="context_view" onclick="viewSalesrep()">
 				<i class="fa-solid fa-eye"></i>
 				View
 			</div>
-			<div class="item" id="context_edit" onclick="editSupplier()">
+			<div class="item" id="context_edit" onclick="editSalesrep()">
 				<i class="fa-solid fa-pencil"></i>
 				Edit
 			</div>
-			<div class="item" id="context_delete" onclick="deleteSupplier()">
+			<div class="item" id="context_delete" onclick="deleteSalesrep()">
 				<i class="fa-solid fa-trash"></i>
 				Delete
 			</div>
@@ -52,20 +52,19 @@
 						</div>
 						<div class="table-container">
 							<button class="addBtn">
-								<a href="/supplieradd">
+								<a href="/salesrepadd">
 									Add
 								</a>
 							</button>
 							<table class="table table-striped">
 								<thead>
 								<tr>
-									<th scope="col">Supplier Name</th>
-									<th scope="col">Supplier Code</th>
+									<th scope="col">Salesrep Name</th>
+									<th scope="col">Salesrep Code</th>
 									<th scope="col">Contact No</th>
 									<th scope="col">Email</th>
-									<th scope="col">Business Name</th>
+									<th scope="col">Area</th>
 									<th scope="col">City</th>
-									<th scope="col">Material</th>
 								</tr>
 								</thead>
 								<tbody id="data-output">
@@ -91,7 +90,7 @@
 								</div>  
 							</div>
 							<div class="rightCorner">
-								<a style="text-align: right; color: black; float: right;" href="/supplierdeleted">Deleted Suppliers</a>
+								<a style="text-align: right; color: black; float: right;" href="/salesrepdeleted">Deleted Salesreps</a>
 							</div>
 						</div>
 					</div>
@@ -105,7 +104,7 @@
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="fontawesome/js/all.js"></script>
 		<script type="text/javascript" src="script/objects.js"></script>
-		<script type="text/javascript" src="script/controllerscripts/supplier/supplierdata.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/salesrep/salesrepdata.js"></script>
 		<script type="text/javascript" src="script/jquery.js"></script>
 		  
 	</body>

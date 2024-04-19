@@ -1,39 +1,39 @@
 //configure the GUI and window parameters
-initLayout("Supplier", "Supplier Details");
-sidebarLoader("/supplier");
+initLayout("Salesrep", "Salesrep Details");
+sidebarLoader("/salesrep");
 
 //Create the table initial values
-dataLoadTable("/supplier/findall/exist", ["supplier_name","supplier_code","supplier_contact_no1","supplier_email","supplier_business_name",["supplier_area_id","area_name"],["supplier_material_id","material_name"]],7);
+dataLoadTable("/salesrep/findall/exist", ["salesrep_name","salesrep_code","salesrep_contact_no1","salesrep_email",["salesrep_address_area_id","area_name"],"salesrep_address_city"],7);
 
 ////////////////////////// 
-///// Supplier View //////
+///// Salesrep View //////
 //////////////////////////
 
-function viewSupplier(){
+function viewSalesrep(){
     var objvalue = getRowObject();
     sessionStorage.setItem("dataToSend", JSON.stringify(objvalue));
-    window.location.href = '/supplierview';
+    window.location.href = '/salesrepview';
 }
 
 ////////////////////////// 
-///// Supplier Edit //////
+///// Salesrep Edit //////
 //////////////////////////
 
-function editSupplier(){
+function editSalesrep(){
     var objvalue = getRowObject();
     sessionStorage.setItem("dataToSend", JSON.stringify(objvalue));
-    window.location.href = '/supplieredit';
+    window.location.href = '/salesrepedit';
 }
 
 ////////////////////////// 
-//// Supplier Delete /////
+//// Salesrep Delete /////
 //////////////////////////
 
-function deleteSupplier(){
+function deleteSalesrep(){
     var objvalue = getRowObject();
-    let userConfirm = window.confirm(`Are you sure to delete ${objvalue.supplier_code} - ${objvalue.supplier_name}`);
+    let userConfirm = window.confirm(`Are you sure to delete ${objvalue.salesrep_code} - ${objvalue.salesrep_name}`);
     if(userConfirm){
-        restFunction('/supplier/delete', objvalue, "DELETE", "/supplier", "Supplier");
+        restFunction('/salesrep/delete', objvalue, "DELETE", "/salesrep", "Salesrep");
     }
-    window.location.href = '/supplier';
+    window.location.href = '/salesrep';
 }

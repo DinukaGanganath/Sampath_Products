@@ -150,7 +150,6 @@ form.secActive .formcls.second{
     flex-direction: column;
     margin: 4px 0;
     justify-content: center;
-    align-items: center;
 }
 
 .input-field label, .input-fieldlong label, .input-fieldhalf label, .input-fieldonethird label{

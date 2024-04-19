@@ -1,15 +1,15 @@
-initLayout("Deleted supplier", "Deleted Suppliers");
-sidebarLoader("/supplier");
+initLayout("Deleted salesrep", "Deleted Salesreps");
+sidebarLoader("/salesrep");
 
-dataLoadTable("/supplier/findall/deleted", ["supplier_name","supplier_code","supplier_contact_no1","supplier_email","supplier_business_name",["supplier_area_id","area_name"],["supplier_material_id","material_name"]],8);
+dataLoadTable("/salesrep/findall/deleted", ["salesrep_name","salesrep_code","salesrep_contact_no1","salesrep_email","salesrep_business_name",["salesrep_area_id","area_name"],["salesrep_material_id","material_name"]],8);
 
 ////////////////////////// 
-/// Supplier Restore /////
+/// Salesrep Restore /////
 //////////////////////////
 
-function restoreSupplier(){
+function restoreSalesrep(){
     var objvalue = getRowObject();
     console.log(objvalue);
-    restFunction('/supplier/restore', objvalue, "PUT", "/supplier", "Supplier");
-    window.location.href = '/supplier';
+    restFunction('/salesrep/restore', objvalue, "PUT", "/salesrep", "Salesrep");
+    window.location.href = '/salesrep';
 }

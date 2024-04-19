@@ -65,7 +65,7 @@ public class PrivilageController {
 
     }
 
-    @SuppressWarnings("null")
+    // @SuppressWarnings("null")
     @PutMapping("/privilage/edit")
     public String updatePrivilage(@RequestBody Privilage privilage) {
 

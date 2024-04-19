@@ -1,23 +1,23 @@
 var receivedData = JSON.parse(sessionStorage.getItem("dataToSend"));
 console.log(receivedData);
 
-var idVal = [["supplierid", `${receivedData["supplierid"]}`], ["supplier_code", `${receivedData["supplier_code"]}`]];
+var idVal = [["salesrepid", `${receivedData["salesrepid"]}`], ["salesrep_code", `${receivedData["salesrep_code"]}`]];
 
 //configure the GUI and window parameters
-initLayout("Supplier", `Supplier View - ${receivedData.supplier_code}`);
-sidebarLoader("/supplier");
+initLayout("Salesrep", `Salesrep View - ${receivedData.salesrep_code}`);
+sidebarLoader("/salesrep");
 
-objectToForm('supplierViewForm', receivedData, ["type_name","area_name","material_name"]);
-disableForm('supplierViewForm', ['input', 'select']);
+objectToForm('salesrepViewForm', receivedData, ["type_name","area_name","material_name"]);
+disableForm('salesrepViewForm', ['input', 'select']);
 
-function deleteFormSupplier(){
-    restFunction('/supplier/delete', receivedData, "DELETE", "/supplier", "Supplier");
-    window.location.href = '/supplier';
+function deleteFormSalesrep(){
+    restFunction('/salesrep/delete', receivedData, "DELETE", "/salesrep", "Salesrep");
+    window.location.href = '/salesrep';
 }
 
-function editFormSupplier(){
+function editFormSalesrep(){
     sessionStorage.setItem("dataToSend", JSON.stringify(receivedData));
-    window.location.href = '/supplieredit';
+    window.location.href = '/salesrepedit';
 }
 
 function editObj(formId, eleList, url, method, loadAfter, navigator){
