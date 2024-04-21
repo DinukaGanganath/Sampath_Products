@@ -23,8 +23,9 @@
 }
 
 body{
-    min-height: 100vh;
+    height: 100vh;
     background: var(--body-color);
+    overflow: hidden;
 }
 
 .form-group {
@@ -86,7 +87,7 @@ body{
 }
 
 .form-container form .formcls{
-    position: absolute;
+    position: inherit;
     background-color: white;
     width: 100%;
     

@@ -18,6 +18,26 @@ function loadOptionVal(url, eleId, eleVal, type){
     })
 }
 
+//load many to many checkbox group 
+function loadCheckboxVal(url, eleId, eleVal, objId){
+    fetch(url)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(objs){
+        let checkGroup = document.querySelector('#'+eleId);
+        let out = ``;
+        for(let obj of objs){
+            out += `
+                <input type="checkbox" id =${obj[objId]} value=` + JSON.stringify(obj) +`>
+                <label for=${obj[objId]}> ${obj[eleVal]}</label><br>
+            `;
+        }
+        checkGroup.innerHTML = out;
+    })
+}
+
+
 //create a div with different buttons
 function createButtonDiv(divDetails, btnList){
     var btnDiv = document.createElement("div");

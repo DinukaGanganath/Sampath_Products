@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="fontawesome/css/all.css" />
+		<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
+		<link rel="stylesheet" href="style/sidenavbarstyles.css" />
+		<link rel="stylesheet" href="style/tablestyles.css" />
+		<link rel="stylesheet" href="style/contentstyles.css" />
+		<link rel="icon" href="images/logo_white.png">
+		<link rel="stylesheet" href="style/formstyles.css" />
+		
+		
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="column">
+					<div class="mobile-icon">
+						<i class="fa-solid fa-bars mob-icon" onclick="mobMenuToggle()"></i>
+						<div class="part">
+							<img class="mob-image" src="images/logo_white.png" alt="logo" />
+							<h5 class="name mob-header">Sampath Products</h5>
+						</div>
+					</div>
+				</div>
+				<div class="column" id="sidebarContainer">
+	
+				</div>
+	
+				<div class="content-container">
+	
+					<div class="content">
+						<div class="head-title" id="heading">
+				
+						</div>
+						<!--header class="form-header">Registration</header-->
+						<div style="height:100%">
+							<div class="form-container" style="height:25%">
+								<form action="#" class="" onsubmit="return false">
+									<div class="formcls">
+										<div class="details personal">
+											<span class="title">Vehicle Details</span>
+											<div class="fields">
+												<div class="input-fieldonethird">
+													<label for="vehicle_no">Vehicle Number</label>
+													<input id="vehicle_no" class="valVehicleNo" type="text" placeholder="format: WP AAA 1234" required>
+													<label class="validMessage"></label>
+												</div>
+					
+												<div class="input-fieldonethird">
+													<label for="vehicle_chasis">Chassis Number</label>
+													<input id="vehicle_chasis" type="text" class="valChasis" placeholder="As the Registration Details" required>
+													<label class="validMessage"></label>
+												</div>
+					
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="form-container" style="height:50%">
+								<div class="formcls">
+									<span class="title">Vehicle Types</span>
+									<form id="vehicleTypeForm">
+										<div id="vehicleTypesCheckBox">
+
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="script/objects.js"></script>
+		<script type="text/javascript" src="script/tablescript.js"></script>
+		<script type="text/javascript" src="script/restfunction.js"></script>
+		<script type="text/javascript" src="script/jsonObjCreator.js"></script>
+		<script type="text/javascript" src="script/validationscripts/validation.js"></script>
+		<script type="text/javascript" src="script/jquery.js"></script>
+		<script type="text/javascript" src="script/sidebarscripts.js"></script>
+		<script type="text/javascript" src="script/formscripts.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="fontawesome/js/all.js"></script>
+		<script type="text/javascript" src="script/objects.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/salesrephasvehicle/salesrephasvehicledata.js"></script>
+		  
+	</body>
+</html>

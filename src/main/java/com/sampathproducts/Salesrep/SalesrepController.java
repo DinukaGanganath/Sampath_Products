@@ -154,4 +154,10 @@ public class SalesrepController {
         }
     }
 
+    // get the last added salesrep
+    @GetMapping("/lastsalesrep")
+    public List<Salesrep> latestSalesrep() {
+        return dao.getLatestSalesrep();
+    }
+
 }
