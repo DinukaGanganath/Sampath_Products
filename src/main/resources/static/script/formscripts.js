@@ -19,7 +19,7 @@ function loadOptionVal(url, eleId, eleVal, type){
 }
 
 //load many to many checkbox group 
-function loadCheckboxVal(url, eleId, eleVal, objId){
+function loadCheckboxVal(url, eleId,chkClass, eleVal, objId){
     fetch(url)
     .then(function(response){
         return response.json();
@@ -29,7 +29,7 @@ function loadCheckboxVal(url, eleId, eleVal, objId){
         let out = ``;
         for(let obj of objs){
             out += `
-                <input type="checkbox" id =${obj[objId]} value=` + JSON.stringify(obj) +`>
+                <input type="checkbox" id =${obj[objId]} value=` + JSON.stringify(obj) +` class= ${chkClass}>
                 <label for=${obj[objId]}> ${obj[eleVal]}</label><br>
             `;
         }
@@ -165,5 +165,28 @@ function loadDivisionVal(ele, postalCity, postalCode){
     code.value = JSON.parse(ele.value).postal_division_id.postal_division_code;
     
     city.setAttribute("disabled","disabled");
+}
+
+function setInnerForm(url, formAttrs){
+    fetch(url)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(objs){
+        for(var obj of objs)
+            for(var formAttr of formAttrs)
+                document.getElementById(formAttr[0]).value = obj[formAttr[1]];
+    });
+}
+
+function getMainFormObject(url, eleId){
+    fetch(url)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(objs){
+        for(var obj of objs)
+            document.getElementById(eleId).value = JSON.stringify(obj);
+    });
 }
 

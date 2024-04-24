@@ -39,17 +39,35 @@
 								<form action="#" class="" onsubmit="return false">
 									<div class="formcls">
 										<div class="details personal">
-											<span class="title">Vehicle Details</span>
+											<span class="title">Salesrep Details</span>
 											<div class="fields">
-												<div class="input-fieldonethird">
-													<label for="vehicle_no">Vehicle Number</label>
-													<input id="vehicle_no" class="valVehicleNo" type="text" placeholder="format: WP AAA 1234" required>
+												<div class="input-field">
+													<label for="salesrep_code">Salesrep Code</label>
+													<input id="salesrep_code" type="text" disabled>
 													<label class="validMessage"></label>
 												</div>
 					
-												<div class="input-fieldonethird">
-													<label for="vehicle_chasis">Chassis Number</label>
-													<input id="vehicle_chasis" type="text" class="valChasis" placeholder="As the Registration Details" required>
+												<div class="input-field">
+													<label for="salesrep_name">Salesrep Name</label>
+													<input id="salesrep_name" type="text" disabled>
+													<label class="validMessage"></label>
+												</div>
+
+												<div class="input-field">
+													<label for="salesrep_contact_no1">Contact Number</label>
+													<input id="salesrep_contact_no1" type="text" disabled>
+													<label class="validMessage"></label>
+												</div>
+					
+												<div class="input-field">
+													<label for="salesrep_nic">NIC Number</label>
+													<input id="salesrep_nic" type="text" disabled>
+													<label class="validMessage"></label>
+												</div>
+
+												<div class="input-field" hidden>
+													<label for="salesrep_id">Salesrep id</label>
+													<input id="salesrep_id" type="text" disabled>
 													<label class="validMessage"></label>
 												</div>
 					
@@ -66,6 +84,7 @@
 
 										</div>
 									</form>
+									<button onclick='submitVehicles();'>Submit</button>
 								</div>
 							</div>
 						</div>

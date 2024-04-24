@@ -16,7 +16,7 @@ import com.sampathproducts.Salesrep.Salesrep;
 import com.sampathproducts.VehicleTypes.VehicleTypes;
 
 @Entity // convert to the Entity class
-@Table(name = "salesrep_has_vehicle_types_details") // map with salesrepHasVehicleTypes_details table
+@Table(name = "salesrep_has_vehicle_types") // map with salesrepHasVehicleTypes_details table
 @Data // for getters and setters
 @NoArgsConstructor // default constructor
 @AllArgsConstructor // all argument constructor
@@ -34,8 +34,5 @@ public class SalesrepHasVehicleTypes {
     @OneToOne
     @JoinColumn(name = "vehicle_types_vehicle_types_id", referencedColumnName = "vehicle_types_id")
     private VehicleTypes vehicle_types_vehicle_types_id;
-
-    @Column(name = "salesrep_has_vehicle_deleted")
-    private Integer salesrep_has_vehicle_deleted;
 
 }
