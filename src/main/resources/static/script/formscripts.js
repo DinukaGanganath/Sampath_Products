@@ -74,6 +74,9 @@ function objectToForm(formId, jsonObj, objValList) {
                     inputField.value = TPart;
                     
                 }else if(typeof(jsonObj[key]) != 'string' && jsonObj[key] != null){
+                    console.log(jsonObj);
+                    console.log(key);
+                    console.log(jsonObj[key]);
                     var cmnval = commonValue(Object.keys(jsonObj[key]),objValList);
                     inputField.value = jsonObj[key][cmnval];
                 }else{
@@ -189,4 +192,5 @@ function getMainFormObject(url, eleId){
             document.getElementById(eleId).value = JSON.stringify(obj);
     });
 }
+
 

@@ -1,7 +1,7 @@
 initLayout("Deleted salesrep", "Deleted Salesreps");
 sidebarLoader("/salesrep");
 
-dataLoadTable("/salesrep/findall/deleted", ["salesrep_name","salesrep_code","salesrep_contact_no1","salesrep_email","salesrep_business_name",["salesrep_area_id","area_name"],["salesrep_material_id","material_name"]],8);
+dataLoadTable("/salesrep/findall/deleted", ["salesrep_name","salesrep_code","salesrep_contact_no1","salesrep_email",["salesrep_address_area_id","area_name"],"salesrep_address_city"],7);
 
 ////////////////////////// 
 /// Salesrep Restore /////
