@@ -53,5 +53,10 @@
         "link": "/customer",
         "icon": "fa-solid fa-users icon",
         "text": "Customers"
-    }    
+    },
+    {
+        "link": "/privilage",
+        "icon": "fa-solid fa-shield-halved icon",
+        "text": "Privilages"
+    }     
 ]

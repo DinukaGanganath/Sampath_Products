@@ -25,6 +25,7 @@
 body{
     height: 100vh;
     background: var(--body-color);
+    overflow: hidden;
 }
 
 .detail_list{

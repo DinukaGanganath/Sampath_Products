@@ -110,6 +110,7 @@ function getUserConfirmation(formObj,url, formObj, method, loadAfter, navigator 
     if(method=="DELETE")
         userConfirm = window.confirm(`Are you sure to delete ${navigator}`);
     if(userConfirm)
+        //console.log(formObj);
         restFunction(url, formObj, method, loadAfter, navigator);
         //restFunction('/supplier/save', supplier, "POST", "/supplier", "Supplier");
 }

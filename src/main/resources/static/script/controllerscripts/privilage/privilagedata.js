@@ -1,131 +1,119 @@
 //configure the GUI and window parameters
 initLayout("Privilage", "Privilage Details");
-sidebarLoader("/supplier");
+sidebarLoader("/privilage");
 
 //Load the names options to the Select tag
 loadOptionVal("/module/findall", "module_id", "module_name", "Module");
-loadOptionVal("/role/findall", "role_id", "role_name", "Role");
 
 var attrList = ["cre", "sel", "edit", "del" ];
+var roleObjs = [];
 
 function searchPrivilage(ele){
+    
+
+    loadCheckBox("/privilage/findall");
+    loadTable("/role/findall");
+    
+    var privilageTable = document.getElementById('data-output');
+    var trs = privilageTable.querySelectorAll('tr');
+     
+}
+
+function loadTable(url){
+    var privilageTable = document.getElementById('data-output');
+    privilageTable.innerHTML = "";
+
+    fetch(url)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(roleObjs){
+        for(var roleObj of roleObjs){
+            var tabRow = document.createElement('tr');
+            tabRow.id = roleObj.role_id;
+            var tabData = document.createElement('td');
+            tabData.innerHTML = roleObj.role_name;
+            tabRow.appendChild(tabData);
+            
+            for(var attr of attrList){
+                var checkTd = document.createElement('td');
+                var chk = document.createElement('input');
+                chk.type = 'checkbox';
+                chk.classList.add(attr);
+                checkTd.appendChild(chk);
+                tabRow.appendChild(checkTd);
+            }
+
+            var hidden = document.createElement('td');
+            hidden.innerHTML = JSON.stringify(roleObj);
+            hidden.style.display = 'none';
+            hidden.id = "hidden";
+            tabRow.appendChild(hidden);
+
+            privilageTable.appendChild(tabRow);
+        }
+    });
+}
+
+function loadCheckBox(url){
     var module = JSON.parse(document.getElementById('module_id').value);
-    var role = JSON.parse(document.getElementById('role_id').value);
     var moduleId = module.module_id;
-    var roleId = role.role_id;
-
-    var selectedPrivilages = [];
-    var rolePrivilages = [];
-
-    fetch("/privilage/findall")
+    fetch(url)
     .then(function(response){
         return response.json();
     })
     .then(function(privilages){
-        for(var privilage of privilages){
-            if(privilage.module_id.module_id == moduleId){
-                selectedPrivilages.push(privilage);
-                rolePrivilages.push(privilage.role_id.role_id);
-            }
-        }
-        if(rolePrivilages.includes(roleId)){
-            
-        }else{
-            newRowAdd();
-        }
-        if(selectedPrivilages.length != 0){
-            var tbdy = document.getElementById("data-output");
-            for(rows of selectedPrivilages){
-                var rowLine = document.createElement("tr");
-                rowLine.classList.add('newEdited');
-                rowLine.classList.add('tbodyTr');
-                rowLine.setAttribute('value', rows.privilage_id);
-
-                var roleIdTd = document.createElement('td');
-                roleIdTd.setAttribute("data-json", JSON.stringify(rows.role_id));
-                roleIdTd.id = "role_id";
-                roleIdTd.innerHTML = rows.role_id.role_name;
-                rowLine.appendChild(roleIdTd);
-
-                for(eles of attrList){
-                    var checkBoxTd = document.createElement('td');
-                    var checkBoxEles = document.createElement('input');
-                    checkBoxEles.type = "checkbox";
-                    checkBoxEles.id = eles;
-                    checkBoxTd.appendChild(checkBoxEles);
-                    rowLine.appendChild(checkBoxTd);
+        for(var priv of privilages){
+            if(moduleId == priv.module_id.module_id){
+                var privRole = document.getElementById(priv.role_id.role_id);
+                if(moduleId == priv.module_id.module_id && privRole.id == priv.role_id.role_id){
+                    var privId = document.createElement('td');
+                    privId.innerHTML = priv.privilage_id;
+                    privId.style.display='none';
+                    privId.id = "privId";
+                    privRole.appendChild(privId);
                 }
-                
-                tbdy.appendChild(rowLine);
-                rowLine.firstChild.nodeValue = JSON.stringify(rows.role_id);
-                for(var oneIn of rowLine.getElementsByTagName("input")){
-                    if(rows[oneIn.id] == 1){
-                        oneIn.setAttribute("checked", "checked");
-                    }
+                for(var attr of attrList){
+                    if(priv[attr] == 1){
+                        var chkAttr = privRole.querySelector("."+attr);
+                        chkAttr.setAttribute('checked', 'checked');
+                    }       
                 }
             }
-        }else
-            newRowAdd();
-        
-    })
+        }
+    });
 }
 
-function newRowAdd(){
-    var tbdy = document.getElementById("data-output");
-    var rowLine = document.createElement("tr");
-    rowLine.classList.add('newAdded');
-    rowLine.innerHTML =`
-        <td id="role_id" value='${document.getElementById('role_id').value}'>
-            ${JSON.parse(document.getElementById('role_id').value).role_name}
-        </td>
-        <td>
-            <input type="checkbox" id="cre">
-        </td>
-        <td>
-            <input type="checkbox" id="sel">
-        </td>
-        <td>
-            <input type="checkbox" id="edit">
-        </td>
-        <td>
-            <input type="checkbox" id="del">
-        </td>
-    `;
-    tbdy.appendChild(rowLine);
-    
-}
-
-function addPrivilage(){
-    var rowObj = {};
-    
+function savePrivilage(){
+    var module_id = JSON.parse(document.getElementById('module_id').value);
     var tbdy = document.getElementById('data-output');
-    var trs = document.getElementsByClassName('tbodyTr');
-    
-    
-    for (var rowItem of trs){
-        var tdEle = rowItem.querySelector('#role_id');
-        var x = tdEle.attributes
-        console.log(x);
-        //rowObj[role_id] = JSON.parse(rowItem.querySelector('#role_id').value);
-        rowObj[module_id] = JSON.parse(document.getElementById('module_id').value);
+    var trs = tbdy.getElementsByTagName('tr');
+    for(var row of trs){
+        var objRow = {};
+        objRow.module_id = module_id;
+        var str = row.querySelector("#hidden").innerHTML;
+        var obj = JSON.parse(str)
+        objRow.role_id = obj;
+        objRow.privilage_id = parseInt(row.querySelector("#privId").innerHTML);
+
+        for(var attr of attrList){
+            if(row.querySelector('.'+attr).checked){
+                objRow[attr] = 1;
+            }
+            else{
+                objRow[attr] = 0;
+            }
+        }
+
+        console.log(objRow);
+
+        $.ajax("/privilage/edit", {
+            async : false,
+            type : "PUT",
+            data : JSON.stringify(objRow),
+            contentType: 'application/json',
+        });
         
-        for(attr of attrList){
-            rowObj[attr] = chkBoxVal(rowItem, attr);
-        }
-        if(rowItem.classList.contains('newEdited')){
-            rowObj['privilage_id'] = rowItem.value;
-        }
-        if(rowItem.classList.contains('newAdded')){
-            //console.log(rowObj);
-        }
     }
+    
 }
-
-function chkBoxVal(ele, eleId){
-    if(ele.querySelector(`#${eleId}`).checked){
-        return 1;
-    }else{
-        return 0;
-    }
-}
-

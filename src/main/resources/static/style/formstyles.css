@@ -23,8 +23,9 @@
 }
 
 body{
-    min-height: 100vh;
+    height: 100vh;
     background: var(--body-color);
+    overflow: hidden;
 }
 
 .form-group {
@@ -86,7 +87,7 @@ body{
 }
 
 .form-container form .formcls{
-    position: absolute;
+    position: inherit;
     background-color: white;
     width: 100%;
     
@@ -150,7 +151,6 @@ form.secActive .formcls.second{
     flex-direction: column;
     margin: 4px 0;
     justify-content: center;
-    align-items: center;
 }
 
 .input-field label, .input-fieldlong label, .input-fieldhalf label, .input-fieldonethird label{
