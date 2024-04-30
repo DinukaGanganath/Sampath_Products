@@ -13,6 +13,7 @@ function showContextMenu(str, event){
 function dataLoadTable(url, tableValList, maxRow){
     thisUrl = url;
     thisTabVal = tableValList;
+    thisMaxRow = maxRow;
 
     console.log(url);
     console.log(tableValList)
@@ -24,11 +25,11 @@ function dataLoadTable(url, tableValList, maxRow){
     .then(function(objs){
         var placeholder = document.querySelector("#data-output");
         let rowNo = objs.length;
-        let pageNo = Math.ceil(rowNo/maxRow);
+        let pageNo = Math.ceil(rowNo/thisMaxRow);
         let pagDataList = [];
         
-        var start = (currPage-1)*maxRow;
-        var stop = currPage*maxRow;
+        var start = (currPage-1)*thisMaxRow;
+        var stop = currPage*thisMaxRow;
 
         if(rowNo<stop)
             stop = rowNo;
@@ -37,7 +38,7 @@ function dataLoadTable(url, tableValList, maxRow){
             pagDataList.push(objs[i]);
         }
 
-        console.log(`pag :\n ${pagDataList} \n start : ${start} \n end : ${stop} \n curr : ${currPage} \n page : ${pageNo} \n max no : ${maxRow}`);
+        console.log(`pag :\n ${pagDataList} \n start : ${start} \n end : ${stop} \n curr : ${currPage} \n page : ${pageNo} \n max no : ${thisMaxRow}`);
         document.getElementById("pagMiddle").innerHTML = `<b>${currPage}</b> of ${pageNo}`;
 
         visualizePag(currPage, pageNo);
@@ -62,12 +63,12 @@ function getDbData(url){
 
 function loadPrevious(){
     currPage--;
-    dataLoadTable(thisUrl, thisTabVal);
+    dataLoadTable(thisUrl, thisTabVal, thisMaxRow);
 }
 
 function loadNext(){
     currPage++;
-    dataLoadTable(thisUrl, thisTabVal);
+    dataLoadTable(thisUrl, thisTabVal, thisMaxRow);
 }
 
 function setDataSet(pagDataList, tableValList){

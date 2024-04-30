@@ -3,7 +3,7 @@ initLayout("Salesrep", "Salesrep Details");
 sidebarLoader("/salesrep");
 
 //Create the table initial values
-dataLoadTable("/salesrep/findall/exist", ["salesrep_name","salesrep_code","salesrep_contact_no1","salesrep_email",["salesrep_address_area_id","area_name"],"salesrep_address_city"],7);
+dataLoadTable("/salesrep/findall/exist", ["salesrep_name","salesrep_code","salesrep_contact_no1","salesrep_email",["salesrep_address_area_id","area_name"],"salesrep_address_city"],9);
 
 ////////////////////////// 
 ///// Salesrep View //////

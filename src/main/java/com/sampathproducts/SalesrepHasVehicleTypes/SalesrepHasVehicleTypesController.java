@@ -92,4 +92,15 @@ public class SalesrepHasVehicleTypesController {
 
     }
 
+    @PostMapping(value = "/salesrephasvehicletypes/saveall")
+    public String saveAllVehicles(@RequestBody List<SalesrepHasVehicleTypes> vehicleTypes) {
+
+        try {
+            dao.saveAll(vehicleTypes);
+            return "Ok";
+        } catch (Exception e) {
+            return "Save not completed" + e.getMessage();
+        }
+    }
+
 }
