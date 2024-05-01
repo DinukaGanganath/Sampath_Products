@@ -1,0 +1,106 @@
+<html>
+
+<head>
+
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+	<link rel="stylesheet" href="fontawesome/css/all.css" />
+	<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
+	<link rel="stylesheet" href="style/sidenavbarstyles.css" />
+	<link rel="stylesheet" href="style/formstyles.css" />
+	<link rel="stylesheet" href="style/contentstyles.css" />
+
+	
+
+	<link rel="icon" href="images/logo_white.png">
+
+
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="column">
+				<div class="mobile-icon">
+					<i class="fa-solid fa-bars mob-icon" onclick="mobMenuToggle()"></i>
+					<div class="part">
+						<img class="mob-image" src="images/logo_white.png" alt="logo" />
+						<h5 class="name mob-header">Sampath Products</h5>
+					</div>
+				</div>
+			</div>
+			<div class="column" id="sidebarContainer">
+					
+			</div>
+
+			<div class="content-container">
+
+				<div class="content">
+					<div class="head-title" id="heading">
+						
+					</div>
+					<!--header class="form-header">Registration</header-->
+
+					<div class="form-container">
+						<form action="#" class="" id="productAddForm" onsubmit="return false">
+							<div class="formcls">
+								
+								<div class="details personal">
+									<span class="title">General Details</span>
+									<div class="fields">
+										<div class="input-field">
+											<label for="product_name">Product Name</label>
+											<input id="product_name" type="text" placeholder="No.xxx, street no." required>
+											<label class="validMessage"></label>
+										</div>
+
+										<div class="input-field">
+											<label for="product_unit_quantity">Unit Quantity</label>
+											<select>
+												<option>100 g</option>
+												<option>250 g</option>
+												<option>500 g</option>
+												<option>1 kg</option>
+												<option>2 kg</option>
+												<option>5 kg</option>
+											</select>
+											<label class="validMessage"></label>
+										</div>
+
+										<div class="input-field">
+											<label for="product_unit_price">Product Price</label>
+											<div style="display:flex">
+												<div>Rs. </div>
+												<input id="product_unit_price" type="number" min="0" max="1000" step="0.01">
+											</div>
+											<label class="validMessage"></label>
+										</div>
+
+										<div class="input-field">
+											<label for="product_usable_time">Usable Time (in months)</label>
+											<input id="product_usable_time" type="text" value="" disabled>
+											<label class="validMessage"></label>
+										</div>
+									</div>
+								</div>
+									<button onclick='validForm("productAddForm",["input"], "/product/save", "POST", "/product", "Product")'>Submit</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="script/sidebarscripts.js"></script>
+	<script type="text/javascript" src="script/objects.js"></script>
+	<script type="text/javascript" src="script/formscripts.js"></script>
+	<script type="text/javascript" src="script/tablescripts.js"></script>
+	<script type="text/javascript" src="script/restfunction.js"></script>
+	<script type="text/javascript" src="script/jsonObjCreator.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="fontawesome/js/all.js"></script>
+	<script type="text/javascript" src="script/validationscripts/validation.js"></script>
+	<script type="text/javascript" src="script/controllerscripts/product/productadd.js"></script>
+	<script type="text/javascript" src="script/jquery.js"></script>
+</body>
+
+</html>

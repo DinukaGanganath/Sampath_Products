@@ -52,4 +52,7 @@ public class Product {
 
     @Column(name = "Product_deleted_date")
     private LocalDateTime Product_deleted_date;
+
+    @Column(name = "Product_deleted")
+    private Integer Product_deleted;
 }

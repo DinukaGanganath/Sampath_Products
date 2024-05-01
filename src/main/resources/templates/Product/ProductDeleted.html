@@ -11,20 +11,15 @@
 		
 		
 	</head>
-	
 	<body>
 		<div id="context-menu">
-			<div class="item" id="context_view" onclick="viewProduct()">
+			<div class="item" id="context_view" onclick="restoreProduct()">
+				<i class="fa-solid fa-trash-arrow-up"></i>
+				Restore
+			</div>
+			<div class="item" id="context_edit" onclick="viewProduct()">
 				<i class="fa-solid fa-eye"></i>
 				View
-			</div>
-			<div class="item" id="context_edit" onclick="editProduct()">
-				<i class="fa-solid fa-pencil"></i>
-				Edit
-			</div>
-			<div class="item" id="context_delete" onclick="deleteProduct()">
-				<i class="fa-solid fa-trash"></i>
-				Delete
 			</div>
 		</div>
 		<div class="container-fluid">
@@ -46,16 +41,10 @@
 				<div class="content-container">
 
 					<div class="content">
-						
 						<div class="head-title" id="heading">
 							
 						</div>
 						<div class="table-container">
-							<button class="addBtn">
-								<a href="/productadd">
-									Add
-								</a>
-							</button>
 							<table class="table table-striped">
 								<thead>
 								<tr>
@@ -69,7 +58,6 @@
 								<tbody id="data-output">
 
 								</tbody>
-													
 							</table>
 						</div>
 						<div class="paginationFooter">
@@ -89,21 +77,21 @@
 								</div>  
 							</div>
 							<div class="rightCorner">
-								<a style="text-align: right; color: black; float: right;" href="/productdeleted">Deleted Products</a>
+								<a style="text-align: right; color: black; float: right;" href="/product">Product Details</a>
 							</div>
-						</div>
+						</div>		
 					</div>
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript" src="script/sidebarscripts.js"></script>
-		<script type="text/javascript" src="script/formscripts.js"></script>
 		<script type="text/javascript" src="script/tablescript.js"></script>
+		<script type="text/javascript" src="script/formscripts.js"></script>
 		<script type="text/javascript" src="script/restfunction.js"></script>
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="fontawesome/js/all.js"></script>
 		<script type="text/javascript" src="script/objects.js"></script>
-		<script type="text/javascript" src="script/controllerscripts/product/productdata.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/product/productdeleted.js"></script>
 		<script type="text/javascript" src="script/jquery.js"></script>
 		  
 	</body>

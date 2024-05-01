@@ -1,0 +1,210 @@
+<html>
+
+<head>
+
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+	<link rel="stylesheet" href="fontawesome/css/all.css" />
+	<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
+	<link rel="stylesheet" href="style/sidenavbarstyles.css" />
+	<link rel="stylesheet" href="style/formstyles.css" />
+	<link rel="stylesheet" href="style/contentstyles.css" />
+
+	
+
+	<link rel="icon" href="images/logo_white.png">
+
+
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="column">
+				<div class="mobile-icon">
+					<i class="fa-solid fa-bars mob-icon" onclick="mobMenuToggle()"></i>
+					<div class="part">
+						<img class="mob-image" src="images/logo_white.png" alt="logo" />
+						<h5 class="name mob-header">Sampath Products</h5>
+					</div>
+				</div>
+			</div>
+			<div class="column" id="sidebarContainer">
+					
+			</div>
+
+			<div class="content-container">
+
+				<div class="content">
+					<div class="head-title" id="heading">
+						
+					</div>
+					<!--header class="form-header">Registration</header-->
+
+					<div class="form-container">
+						<form action="#" class="" id="productViewForm" onsubmit="return false">
+							<div class="formcls">
+								<div class="details personal">
+									<span class="title">General Details</span>
+									<div class="fields">
+										<div class="input-fieldlong">
+											<label for="product_name">Full Name</label>
+											<input id="product_name" class="valFullName" type="text" placeholder="Enter your name" required>
+											<label class="validMessage"></label>
+										</div>
+
+										<div class="input-field">
+											<label for="product_nic">National Identity Card</label>
+											<input id="product_nic" type="text" class="valIdentity" placeholder="NIC ends with V,X or 12 characters" required>
+											<label class="validMessage"></label>
+										</div>
+									</div>
+								</div>
+
+								<div class="details personal">
+									<span class="title">Address Details</span>
+									<div class="fields">
+										<div class="input-field">
+											<label for="product_address_line1">Line 1</label>
+											<input id="product_address_line1" type="text" placeholder="No.xxx, street no." required>
+											<label class="validMessage"></label>
+										</div>
+
+										<div class="input-field">
+											<label for="product_area_id">Line 2 - Area</label>
+											<input id="product_area_id" type="text" placeholder="No.xxx, street no." required>
+											<label class="validMessage"></label>
+										</div>
+
+										<div class="input-field">
+											<label for="product_address_city">City</label>
+											<input id="product_address_city" type="text" placeholder="postal city">
+											<label class="validMessage"></label>
+										</div>
+
+										<div class="input-field">
+											<label for="product_address_postal">Postal code</label>
+											<input id="product_address_postal" type="text">
+											<label class="validMessage"></label>
+										</div>
+									</div>
+								</div>
+
+								<div class="details personal">
+									<span class="title">Contact Details</span>
+									<div class="fields">
+										<div class="input-field">
+											<label for="product_land_phone">Land phone</label>
+											<input id="product_land_phone" class="valTelephone" type="text" placeholder="starts with 0" required>
+											<label class="validMessage"></label>
+										</div>
+
+										<div class="input-field">
+											<label for="product_contact_no1">Mobile No 1</label>
+											<input id="product_contact_no1" class="valMobphone" type="text" placeholder="starts with 0" required>
+											<label class="validMessage"></label>
+										</div>
+
+										<div class="input-field">
+											<label for="product_contact_no2">Mobile No 2</label>
+											<input id="product_contact_no2" class="valMobphone" type="text" placeholder="starts with 0">
+											<label class="validMessage"></label>
+										</div>
+
+										<div class="input-field">
+											<label for="product_email">Email</label>
+											<input id="product_email" class="valEmail" type="text" required>
+											<label class="validMessage"></label>
+										</div>
+									</div>
+								</div>
+
+								<div class="details personal">
+									<span class="title">Business Details</span>
+									<div class="fields">
+										<div class="input-field">
+											<label for="product_business_name">Name of Business</label>
+											<input id="product_business_name" class="valFullName" type="text" placeholder="Full business name">
+											<label class="validMessage"></label>
+										</div>
+
+										<div class="input-field">
+											<label for="product_business_reg">Business Registration No</label>
+											<input id="product_business_reg" class="valReg" type="text" placeholder="As the certificate">
+											<label class="validMessage"></label>
+										</div>
+
+										<div class="input-field">
+											<label for="product_business_type">Business Type</label>
+											<input id="product_business_type" class="valReg" type="text" placeholder="As the certificate">
+											<label class="validMessage"></label>
+										</div>
+
+										<div class="input-field">
+											<label for="product_material_id">Material Supplied</label>
+											<input id="product_material_id" class="valReg" type="text" placeholder="As the certificate">
+											<label class="validMessage"></label>
+										</div>
+
+										
+											<div style="display: none;">
+												<div class="input-field">
+													<label for="product_id">Business Registration No</label>
+													<input id="product_id" class="valReg" type="text" placeholder="As the certificate">
+													<label class="validMessage"></label>
+												</div>
+
+												<div class="input-field">
+													<label for="product_code">Business Registration No</label>
+													<input id="product_code" class="valReg" type="text" placeholder="As the certificate">
+													<label class="validMessage"></label>
+												</div>
+
+												<div class="input-field">
+													<label for="created_date_time">Business Registration No</label>
+													<input id="created_date_time" class="valReg" type="text" placeholder="As the certificate">
+													<label class="validMessage"></label>
+												</div>
+
+												<div class="input-field">
+													<label for="updated_date_time">Business Registration No</label>
+													<input id="updated_date_time" class="valReg" type="text" placeholder="As the certificate">
+													<label class="validMessage"></label>
+												</div>
+
+												<div class="input-field">
+													<label for="deleted_date_time">Business Registration No</label>
+													<input id="deleted_date_time" class="valReg" type="text" placeholder="As the certificate">
+													<label class="validMessage"></label>
+												</div>
+											
+											</div>
+										</div>
+									</div>
+									<div id="basicBtn" style="display:flex">
+										<button href="/productedit" id="redirectButton" class="btnEditWide" onclick="editFormProduct()">Edit</button>
+										<button class="btnDeleteWide" href="/product" onclick='editObj("productViewForm",["input", "select"], "/product/delete", "DELETE", "/product", "Product")'>Delete</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="script/sidebarscripts.js"></script>
+	<script type="text/javascript" src="script/objects.js"></script>
+	<script type="text/javascript" src="script/restfunction.js"></script>
+	<script type="text/javascript" src="script/formscripts.js"></script>
+	<script type="text/javascript" src="script/tablescript.js"></script>
+	<script type="text/javascript" src="script/jsonObjCreator.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="fontawesome/js/all.js"></script>
+	<script type="text/javascript" src="script/validationscripts/validation.js"></script>
+	<script type="text/javascript" src="script/controllerscripts/product/productdata.js"></script>
+	<script type="text/javascript" src="script/controllerscripts/product/productview.js"></script>
+	<script type="text/javascript" src="script/jquery.js"></script>
+</body>
+
+
+</html>
