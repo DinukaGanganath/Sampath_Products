@@ -41,26 +41,26 @@
 					<!--header class="form-header">Registration</header-->
 
 					<div class="form-container">
-						<form action="#" class="" id="salesrepViewForm" onsubmit="return false">
+						<form action="#" class="" id="employeeViewForm" onsubmit="return false">
 							<div class="formcls">
 								<div class="details personal">
 									<span class="title">General Details</span>
 									<div class="fields">
 										<div class="input-fieldlong">
-											<label for="salesrep_name">Full Name</label>
-											<input id="salesrep_name" class="valFullName" type="text" placeholder="Enter your name" required>
+											<label for="employee_name">Full Name</label>
+											<input id="employee_name" class="valFullName" type="text" placeholder="Enter your name" required>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="salesrep_nic">National Identity Card</label>
-											<input id="salesrep_nic" type="text" class="valIdentity" placeholder="NIC ends with V,X or 12 characters" onchange="loadIdDetails(this)" required>
+											<label for="employee_nic">National Identity Card</label>
+											<input id="employee_nic" type="text" class="valIdentity" placeholder="NIC ends with V,X or 12 characters" onchange="loadIdDetails(this)" required>
 											<label class="validMessage"></label>
 										</div>
 										<br />
 										<div class="input-fieldonethird">
-											<label for="salesrep_gender">Gender</label>
-											<select id="salesrep_gender" class="genderSel">
+											<label for="employee_gender">Gender</label>
+											<select id="employee_gender" class="genderSel">
 												<option value="male">Male</option>
 												<option value="female">Female</option>
 												<option value="other">Other</option>
@@ -69,14 +69,14 @@
 										</div>
 
 										<div class="input-fieldonethird">
-											<label for="salesrep_birthdate">Birth Date</label>
-											<input id="salesrep_birthdate" type="date">
+											<label for="employee_birthdate">Birth Date</label>
+											<input id="employee_birthdate" type="date">
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-fieldonethird">
-											<label for="salesrep_age">Age</label>
-											<input id="salesrep_age" type="text">
+											<label for="employee_age">Age</label>
+											<input id="employee_age" type="text">
 											<label class="validMessage"></label>
 										</div>
 									</div>
@@ -86,26 +86,26 @@
 									<span class="title">Address Details</span>
 									<div class="fields">
 										<div class="input-field">
-											<label for="salesrep_address_line1">Line 1</label>
-											<input id="salesrep_address_line1" type="text" placeholder="No.xxx, street no." required>
+											<label for="employee_address_line1">Line 1</label>
+											<input id="employee_address_line1" type="text" placeholder="No.xxx, street no." required>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="salesrep_address_area_id">Line 2 - Area</label>
-											<input id="salesrep_address_area_id" class="valReg" type="text" placeholder="As the certificate">
+											<label for="employee_address_area_id">Line 2 - Area</label>
+											<input id="employee_address_area_id" class="valReg" type="text" placeholder="As the certificate">
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="salesrep_address_city">City</label>
-											<input id="salesrep_address_city" type="text" placeholder="postal city">
+											<label for="employee_address_city">City</label>
+											<input id="employee_address_city" type="text" placeholder="postal city">
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="salesrep_address_postal">Postal code</label>
-											<input id="salesrep_address_postal" type="text">
+											<label for="employee_address_postal">Postal code</label>
+											<input id="employee_address_postal" type="text">
 											<label class="validMessage"></label>
 										</div>
 									</div>
@@ -115,26 +115,26 @@
 									<span class="title">Contact Details</span>
 									<div class="fields">
 										<div class="input-field">
-											<label for="salesrep_land_no">Land phone</label>
-											<input id="salesrep_land_no" class="valTelephone" type="text" placeholder="starts with 0" required>
+											<label for="employee_land_no">Land phone</label>
+											<input id="employee_land_no" class="valTelephone" type="text" placeholder="starts with 0" required>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="salesrep_contact_no1">Mobile No 1</label>
-											<input id="salesrep_contact_no1" class="valMobphone" type="text" placeholder="starts with 0" required>
+											<label for="employee_contact_no1">Mobile No 1</label>
+											<input id="employee_contact_no1" class="valMobphone" type="text" placeholder="starts with 0" required>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="salesrep_contact_no2">Mobile No 2</label>
-											<input id="salesrep_contact_no2" class="valMobphone" type="text" placeholder="starts with 0">
+											<label for="employee_contact_no2">Mobile No 2</label>
+											<input id="employee_contact_no2" class="valMobphone" type="text" placeholder="starts with 0">
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="salesrep_email">Email</label>
-											<input id="salesrep_email" class="valEmail" type="text" required>
+											<label for="employee_email">Email</label>
+											<input id="employee_email" class="valEmail" type="text" required>
 											<label class="validMessage"></label>
 										</div>
 									</div>
@@ -144,14 +144,14 @@
 									<span class="title">Contact Details</span>
 									<div class="fields">
 										<div class="input-field">
-											<label for="salesrep_id">"salesrep_id"</label>
-											<input id="salesrep_id" class="valTelephone avoid" type="text" placeholder="starts with 0">
+											<label for="employee_id">"employee_id"</label>
+											<input id="employee_id" class="valTelephone avoid" type="text" placeholder="starts with 0">
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="salesrep_code">"salesrep_code"</label>
-											<input id="salesrep_code" class="valMobphone avoid" type="text" placeholder="starts with 0">
+											<label for="employee_code">"employee_code"</label>
+											<input id="employee_code" class="valMobphone avoid" type="text" placeholder="starts with 0">
 											<label class="validMessage"></label>
 										</div>
 
@@ -175,8 +175,8 @@
 									</div>
 								</div>
 									<div id="basicBtn" style="display:flex">
-										<button href="/salesrepedit" id="redirectButton" class="btnEditWide" onclick="editFormSalesrep()">Edit</button>
-										<button class="btnDeleteWide" href="/salesrep" onclick='editObj("salesrepEditForm",["input", "select"], "/salesrep/delete", "DELETE", "/salesrep", "Salesrep")'>Delete</button>
+										<button href="/employeeedit" id="redirectButton" class="btnEditWide" onclick="editFormEmployee()">Edit</button>
+										<button class="btnDeleteWide" href="/employee" onclick='editObj("employeeEditForm",["input", "select"], "/employee/delete", "DELETE", "/employee", "Employee")'>Delete</button>
 									</div>
 								</div>
 							</div>
@@ -195,8 +195,8 @@
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="fontawesome/js/all.js"></script>
 	<script type="text/javascript" src="script/validationscripts/validation.js"></script>
-	<script type="text/javascript" src="script/controllerscripts/salesrep/salesrepadd.js"></script>
-	<script type="text/javascript" src="script/controllerscripts/salesrep/salesrepview.js"></script>
+	<script type="text/javascript" src="script/controllerscripts/employee/employeeadd.js"></script>
+	<script type="text/javascript" src="script/controllerscripts/employee/employeeview.js"></script>
 	<script type="text/javascript" src="script/jquery.js"></script>
 </body>
 

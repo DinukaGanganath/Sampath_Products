@@ -35,9 +35,9 @@
         "text": "Stores"
     },
     {
-        "link": "/salesrep",
-        "icon": "fa-solid fa-truck-fast icon",
-        "text": "Sales Rep"
+        "link": "/employee",
+        "icon": "fa-solid fa-address-card icon",
+        "text": "Employee"
     },
     {
         "link": "/vehicle",

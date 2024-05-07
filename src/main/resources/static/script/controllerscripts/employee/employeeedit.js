@@ -1,26 +1,26 @@
 var receivedData = JSON.parse(sessionStorage.getItem("dataToSend"));
 //console.log(receivedData);
 
-var idVal = [["salesrep_id", `${receivedData["salesrep_id"]}`], ["salesrep_code", `${receivedData["salesrep_code"]}`]];
+var idVal = [["employee_id", `${receivedData["employee_id"]}`], ["employee_code", `${receivedData["employee_code"]}`]];
 //console.log(idVal);
 
 var optionIdList = [
-    ["/areas/findall", "salesrep_address_area_id", "area_name", "Area"]
+    ["/areas/findall", "employee_address_area_id", "area_name", "Area"]
 ];
 
-initLayout("Salesrep Edit", `Salesrep Edit - ${receivedData.salesrep_code}`);
-sidebarLoader("/salesrep");
+initLayout("Employee Edit", `Employee Edit - ${receivedData.employee_code}`);
+sidebarLoader("/employee");
 
 
 optionInput(optionIdList, receivedData);
 
-objectToForm('salesrepEditForm', receivedData, ["area_name"]);
+objectToForm('employeeEditForm', receivedData, ["area_name"]);
 
-loadIdDetails(document.getElementById("salesrep_nic"));
+loadIdDetails(document.getElementById("employee_nic"));
 
 setAge();
 
-document.getElementById('salesrep_gender').value = receivedData['salesrep_gender'];
+document.getElementById('employee_gender').value = receivedData['employee_gender'];
 
 for(ele of document.querySelectorAll("input")){
     ele.classList.add("valid");
@@ -37,8 +37,8 @@ function editObj(formId, eleList, url, method, loadAfter, navigator){
 
 function loadDivisionVal(ele){
 
-    var city = document.getElementById("salesrep_address_city");
-    var code = document.getElementById("salesrep_address_postal");
+    var city = document.getElementById("employee_address_city");
+    var code = document.getElementById("employee_address_postal");
 
     console.log(JSON.parse(ele.value));
     city.value = JSON.parse(ele.value).postal_division_id.postal_division_name;

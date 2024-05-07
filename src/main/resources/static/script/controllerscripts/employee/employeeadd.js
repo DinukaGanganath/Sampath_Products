@@ -1,9 +1,9 @@
 //configure the GUI and window parameters
-initLayout("Salesrep", "Salesrep Details");
-sidebarLoader("/salesrep");
+initLayout("Employee", "Employee Details");
+sidebarLoader("/employee");
 
 //Load the names options to the Select tag
-loadOptionVal("/areas/findall", "salesrep_address_area_id", "area_name", "Area");
+loadOptionVal("/areas/findall", "employee_address_area_id", "area_name", "Area");
 
 //load identity card details
 function loadIdDetails(ele){
@@ -26,7 +26,7 @@ function loadIdDetails(ele){
 
     setGender(gender);
 
-    document.getElementById("salesrep_birthdate").value = year + "-" + month + "-" + date;
+    document.getElementById("employee_birthdate").value = year + "-" + month + "-" + date;
     setAge();
 
 }
@@ -79,7 +79,7 @@ function findMonthAndDate(dayOfYear) {
 }
 
 function setGender(val){
-    var selectElement = document.getElementById("salesrep_gender");
+    var selectElement = document.getElementById("employee_gender");
     for(var inputEle of selectElement.querySelectorAll('option')){
         if(inputEle.value == val){
             inputEle.setAttribute('selected', 'selected');
@@ -88,11 +88,11 @@ function setGender(val){
 }
 
 function setAge(){
-    var birthdayInput = document.getElementById("salesrep_birthdate").value;
+    var birthdayInput = document.getElementById("employee_birthdate").value;
     var today = new Date();
     var birthDate = new Date(birthdayInput);
     var age = today.getFullYear() - birthDate.getFullYear();
     console.log(birthdayInput);
-    document.getElementById('salesrep_age').value = age;
+    document.getElementById('employee_age').value = age;
 }
 
