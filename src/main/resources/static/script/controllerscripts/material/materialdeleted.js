@@ -39,7 +39,7 @@ function setDataSet(pagDataList){
     for(let material of pagDataList){
         out += `
         <tr>
-            <td>${material.material_name}</td>
+            <td>${material.material_name.replaceAll('_', ' ')}</td>
             <td>${material.material_code}</td>
             <td>
                 <div style="display:flex">

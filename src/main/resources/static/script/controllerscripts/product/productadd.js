@@ -2,6 +2,22 @@
 initLayout("Product", "Product Add");
 sidebarLoader("/product");
 
+var jsonList = [
+    {
+        "string" : "size",
+        "url" : "/size"
+    },
+    {
+        "string" : "type",
+        "url" : "/type"
+    },
+    {
+        "string" : "product",
+        "url" : "/product"
+    },
+]
+createThinLongDiv(jsonList);
+
 document.getElementById("product_address_city").value = "";
 document.getElementById("product_address_postal").value = "";
 

@@ -65,7 +65,7 @@ function setDataSet(pagDataList){
     for(let area of pagDataList){
         out += `
             <tr id=`+ area.area_id +`>
-                <td id="area_name">${area.area_name}</td>
+                <td id="area_name">${area.area_name.replaceAll('_', ' ')}</td>
                 <td id="area_code">${area.area_code}</td>
                 <td id="area_div">${area.postal_division_id.postal_division_name}</td>
                 <td>
@@ -117,7 +117,7 @@ function showForm(){
 }
 
 function saveArea(){
-    var areaNew = document.getElementById('areaName').value;
+    var areaNew = document.getElementById('areaName').value.replaceAll(' ', '_');
     var divNew= JSON.parse(document.getElementById('areaDiv').value);
     var area = {};
     area['area_name'] = areaNew;
