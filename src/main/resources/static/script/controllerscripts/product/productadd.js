@@ -4,15 +4,15 @@ sidebarLoader("/product");
 
 var jsonList = [
     {
-        "string" : "size",
+        "str" : "size",
         "url" : "/size"
     },
     {
-        "string" : "type",
+        "str" : "type",
         "url" : "/type"
     },
     {
-        "string" : "product",
+        "str" : "product",
         "url" : "/product"
     },
 ]

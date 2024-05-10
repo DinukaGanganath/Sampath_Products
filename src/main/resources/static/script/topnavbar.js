@@ -14,19 +14,19 @@ function createThinLongDiv(jsonList) {
     //childDiv.style.backgroundColor = "white"; 
 
 
-    jsonList.forEach(function (item) {
+    for (var obj of jsonList) {
+
         var partitionDiv = document.createElement("div");
-
-        partitionDiv.textContent = item.string; 
-        partitionDiv.style.flex = "1"; 
-
+        partitionDiv.className = "partitionDiv";
         var link = document.createElement("a");
-        link.href = item.url;
-        link.textContent = item.string; 
-        //partitionDiv.appendChild(link);
+        link.text = obj.str;
+        link.href = obj.url;
+        partitionDiv.appendChild(link);
+ 
+        partitionDiv.style.flex = "1";  
 
         childDiv.appendChild(partitionDiv);
-    });
+    }
 
     parentDiv.appendChild(childDiv);
 }

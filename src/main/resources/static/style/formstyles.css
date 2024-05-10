@@ -281,6 +281,15 @@ form button, .nextBtn, .backBtn, .submitBtn{
     margin : 5px;
 }
 
+.partitionDiv{
+    color : var(--text-color);
+    text-weigh : bold;
+}
+
+.partitionDiv:hover{
+    background-color : var(--active-color);
+}
+
 form button, 
 form .backBtn{
     font-size : 14px;
