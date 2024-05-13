@@ -1,0 +1,86 @@
+<html>
+
+	<head>
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="fontawesome/css/all.css" />
+		<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
+		<link rel="stylesheet" href="style/sidenavbarstyles.css" />
+		<link rel="stylesheet" href="style/formstyles.css" />
+		<link rel="stylesheet" href="style/contentstyles.css" />
+		<link rel="stylesheet" href="style/tablestyles.css" />
+		<link rel="icon" href="images/logo_white.png">
+	</head>
+
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="column">
+					<div class="mobile-icon">
+						<i class="fa-solid fa-bars mob-icon" onclick="mobMenuToggle()"></i>
+						<div class="part">
+							<img class="mob-image" src="images/logo_white.png" alt="logo" />
+							<h5 class="name mob-header">Sampath Products</h5>
+						</div>
+					</div>
+				</div>
+				<div class="column" id="sidebarContainer">
+					
+				</div>
+				
+				<div class="content-container">
+
+					<div class="content">
+						<div class="head-title" id="heading">
+							
+						</div>
+						<div class="table-container">
+							<table class="table table-striped" id="producttype_tab">
+								<thead>
+									<tr>
+										<th scope="col">Product Type Name</th>
+										<th scope="col">Product Type Code</th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody id="data-output">
+
+								</tbody>
+							</table>
+						</div>
+						<div class="paginationFooter">
+							<div class="leftCorner">
+								<div class="container">
+									<div id="pagLeftBtn" class="half-circle left pagBtn" onclick="loadPrevious()">
+										<span class="button-label">
+											<i class="icon fa-solid fa-chevron-left" style="height: 20px;"></i>
+										</span>
+									</div>
+									<div id="pagMiddle"></div>
+									<div id="pagRightBtn" class="half-circle right pagBtn" onclick="loadNext()">
+										<span class="button-label">
+											<i class="icon fa-solid fa-chevron-right" style="height: 20px;"></i>
+										</span>
+									</div>
+								</div>  
+							</div>
+							<div class="rightCorner">
+								<a style="text-align: right; color: black; float: right;" href="/producttypes">ProductType Details</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script type="text/javascript" src="script/jquery.js"></script>
+	<script type="text/javascript" src="script/sidebarscripts.js"></script>
+	<script type="text/javascript" src="script/restfunction.js"></script>
+	<script type="text/javascript" src="script/formscripts.js"></script>
+	<script type="text/javascript" src="script/objects.js"></script>
+	<script type="text/javascript" src="script/jsonObjCreator.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="fontawesome/js/all.js"></script>
+	<script type="text/javascript" src="script/controllerscripts/producttype/producttypedeleted.js"></script>
+
+</html>

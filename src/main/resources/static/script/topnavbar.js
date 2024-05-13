@@ -17,10 +17,16 @@ function createThinLongDiv(jsonList) {
     for (var obj of jsonList) {
 
         var partitionDiv = document.createElement("div");
+        
         partitionDiv.className = "partitionDiv";
         var link = document.createElement("a");
         link.text = obj.str;
         link.href = obj.url;
+        if(obj.status == "active"){
+            console.log(obj.str + ' = ' + obj.status);
+            partitionDiv.style.backgroundColor = "#047508";
+            link.style.color = "white";
+        }
         partitionDiv.appendChild(link);
  
         partitionDiv.style.flex = "1";  

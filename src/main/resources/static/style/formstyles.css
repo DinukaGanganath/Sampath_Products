@@ -281,13 +281,30 @@ form button, .nextBtn, .backBtn, .submitBtn{
     margin : 5px;
 }
 
+.partitionDiv a{
+    text-decoration :none;
+    color : var(--active-color);
+    text-weight : bold;
+}
+
+.partitionDiv:hover a{
+    color : white;
+    text-weight : bold;
+}
+
 .partitionDiv{
+    text-decoration :none;
     color : var(--text-color);
-    text-weigh : bold;
 }
 
 .partitionDiv:hover{
+    background-color : var(--hover-color);
+    color : white;
+}
+
+.navbarActive{
     background-color : var(--active-color);
+    color : white;
 }
 
 form button, 

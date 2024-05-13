@@ -4,16 +4,17 @@ sidebarLoader("/product");
 
 var jsonList = [
     {
-        "str" : "size",
-        "url" : "/size"
+        "str" : "Product size",
+        "url" : "/productsizes"
     },
     {
-        "str" : "type",
-        "url" : "/type"
+        "str" : "Product type",
+        "url" : "/producttypes"
     },
     {
-        "str" : "product",
-        "url" : "/product"
+        "str" : "Product",
+        "url" : "/product",
+        "status" : "active",
     },
 ]
 createThinLongDiv(jsonList);
