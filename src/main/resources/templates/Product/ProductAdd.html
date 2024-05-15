@@ -35,11 +35,14 @@
 			<div class="content-container">
 
 				<div class="content">
+					
 					<div class="head-title" id="heading">
 						
 					</div>
 					<!--header class="form-header">Registration</header-->
-
+					<div id="parentDiv" style="text-align: center;">
+						
+					</div>
 					<div class="form-container">
 						<form action="#" class="" id="productAddForm" onsubmit="return false">
 							<div class="formcls">
@@ -48,20 +51,15 @@
 									<span class="title">General Details</span>
 									<div class="fields">
 										<div class="input-field">
-											<label for="product_name">Product Name</label>
-											<input id="product_name" type="text" placeholder="No.xxx, street no." required>
+											<label for="producttype_id">Product Name</label>
+											<select id="producttype_id" placeholder="select From the list" onchange="loadDivisionVal(this, 'employee_address_city', 'employee_address_postal')" required>
+											</select>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="product_unit_quantity">Unit Quantity</label>
-											<select>
-												<option>100 g</option>
-												<option>250 g</option>
-												<option>500 g</option>
-												<option>1 kg</option>
-												<option>2 kg</option>
-												<option>5 kg</option>
+											<label for="productsize_id">Unit Quantity</label>
+											<select id="productsize_id" placeholder="select From the list" onchange="loadDivisionVal(this, 'employee_address_city', 'employee_address_postal')" required>
 											</select>
 											<label class="validMessage"></label>
 										</div>
@@ -82,7 +80,7 @@
 										</div>
 									</div>
 								</div>
-									<button onclick='validForm("productAddForm",["input"], "/product/save", "POST", "/product", "Product")'>Submit</button>
+									<button onclick='listRestOperation("productAddForm", "productMaterialForm", ["input","select"], "Product")'>Submit</button>
 							</div>
 						</form>
 					</div>
@@ -94,7 +92,9 @@
 	<script type="text/javascript" src="script/objects.js"></script>
 	<script type="text/javascript" src="script/formscripts.js"></script>
 	<script type="text/javascript" src="script/tablescripts.js"></script>
+	<script type="text/javascript" src="script/topnavbar.js"></script>
 	<script type="text/javascript" src="script/restfunction.js"></script>
+	<script type="text/javascript" src="script/manytomanyscripts.js"></script>
 	<script type="text/javascript" src="script/jsonObjCreator.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="fontawesome/js/all.js"></script>

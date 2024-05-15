@@ -65,7 +65,7 @@ function setDataSet(pagDataList){
     for(let material of pagDataList){
         out += `
             <tr id=`+ material.material_id +`>
-                <td id="material_name">${material.material_name}</td>
+                <td id="material_name">${material.material_name.replaceAll('_', ' ')}</td>
                 <td id="material_code">${material.material_code}</td>
                 <td>
                     <div id="basicBtn" style="display:flex">
@@ -108,7 +108,7 @@ function showForm(){
 }
 
 function saveMaterial(){
-    var materialNew = document.getElementById('materialName').value;
+    var materialNew = document.getElementById('materialName').value.replaceAll(' ', '_');
     var area = {};
     area['material_name'] = materialNew;
     restFunction('/material/save', area, "POST", "/material", "Material");

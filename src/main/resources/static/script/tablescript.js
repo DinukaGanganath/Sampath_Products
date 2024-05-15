@@ -76,15 +76,16 @@ function setDataSet(pagDataList, tableValList){
     var out = "";
     for(let obj of pagDataList){
         for(val of tableValList){
+            var str = obj[val];
             if(typeof(val)=="string"){
-                tdList += `<td>${obj[val]}</td>`
+                tdList += `<td>${str.replaceAll('_', ' ')}</td>`
             }
             else{
                 var ele = obj[val[0]];
                 for(var i=1; i<val.length; i++){
                     ele = ele[val[i]];
                 }
-                tdList += `<td>${ele}</td>`
+                tdList += `<td>${ele.replaceAll('_', ' ')}</td>`
             }
         }
         out += `
@@ -120,8 +121,9 @@ function tableInnerContentLoader(objs, tableValList){
     var out = "";
     for(let obj of objs){
         for(val of tableValList){
+            var str = obj[val];
             if(typeof(val)=="string"){
-                tdList += `<td>${obj[val]}</td>`
+                tdList += `<td>${str.replaceAll('_', ' ')}</td>`
             }
             else{
                 var ele = obj[val[0]];

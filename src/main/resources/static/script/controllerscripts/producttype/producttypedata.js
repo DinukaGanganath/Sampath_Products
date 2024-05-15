@@ -1,18 +1,35 @@
-initLayout("Area", "Area Details");
-sidebarLoader("/areas");
+initLayout("Product Types", "Product Types Details");
+sidebarLoader("/product");
+
+var jsonList = [
+    {
+        "str" : "Product size",
+        "url" : "/productsizes"
+    },
+    {
+        "str" : "Product type",
+        "url" : "/producttypes",
+        "status" : "active",
+    },
+    {
+        "str" : "Product",
+        "url" : "/product"
+    },
+]
+createThinLongDiv(jsonList);
 
 let currentPage = 1;
 
 loadTable();
 
 function loadTable(){
-    fetch("/areas/findall/exist")
+    fetch("/producttypes/findall/exist")
     .then(function(response){
         return response.json();
     })
-    .then(function(areas){
+    .then(function(producttypes){
         let placeholder = document.querySelector("#data-output");
-        let rowNo = areas.length;
+        let rowNo = producttypes.length;
         let maxRow = 7;
         let pageNo = Math.ceil(rowNo/maxRow);
         let pagDataList = [];
@@ -24,7 +41,7 @@ function loadTable(){
             stop = rowNo;
 
         for(var i = start; i<stop; i++){
-            pagDataList.push(areas[i]);
+            pagDataList.push(producttypes[i]);
         }
 
         console.log(`pag :\n ${pagDataList} \n start : ${start} \n end : ${stop}`);
@@ -62,16 +79,15 @@ function visualizePag(pageNo){
 function setDataSet(pagDataList){
     let out = "";
     let parentElements = '["td", "p"]';
-    for(let area of pagDataList){
+    for(let producttype of pagDataList){
         out += `
-            <tr id=`+ area.area_id +`>
-                <td id="area_name">${area.area_name.replaceAll('_', ' ')}</td>
-                <td id="area_code">${area.area_code}</td>
-                <td id="area_div">${area.postal_division_id.postal_division_name}</td>
+            <tr id=`+ producttype.producttype_id +`>
+                <td id="producttype_name">${producttype.producttype_name.replaceAll('_', ' ')}</td>
+                <td id="producttype_code">${producttype.producttype_code}</td>
                 <td>
                     <div id="basicBtn" style="display:flex">
-                        <button class="btnEdit" onclick='editArea(` + JSON.stringify(area) +`, this)'>Edit</button>
-                        <button class="btnDelete" onclick='deleteArea(` + JSON.stringify(area) + `)'>Delete</button>
+                        <button class="btnEdit" onclick='editProductType(` + JSON.stringify(producttype) +`, this)'>Edit</button>
+                        <button class="btnDelete" onclick='deleteProductType(` + JSON.stringify(producttype) + `)'>Delete</button>
                     </div>
                 </td>
             </tr>
@@ -92,21 +108,14 @@ function loadNext(){
 
 function showForm(){
 
-    $("#area_tab tbody").prepend("<tr><td id= newItem><td></td></td><td id='newdivision'></td><td id= newAddBtn onclick=saveArea()></td></tr>");
+    $("#producttype_tab tbody").prepend("<tr><td id= newItem><td></td></td><td id='newdivision'></td><td id= newAddBtn onclick=saveProductType()></td></tr>");
 
     var inputFieldData = document.getElementById("newItem");
     var inputField = document.createElement("input");
     inputField.type = "text";
-    inputField.id = "areaName";
+    inputField.id = "producttypeName";
     inputFieldData.appendChild(inputField);
 
-    var selectFieldData = document.getElementById("newdivision");
-    var selectField = document.createElement("select");
-    selectField.type = "text";
-    selectField.id = "areaDiv";
-    selectFieldData.appendChild(selectField);
-    loadOptionVal("/division/findall", "areaDiv", "postal_division_name", "Division");
-    //console.log(document.getElementById("areaDiv"));
 
     var buttonFieldData = document.getElementById("newAddBtn");
     var buttonField = document.createElement('button');
@@ -116,34 +125,29 @@ function showForm(){
     buttonFieldData.appendChild(buttonField);
 }
 
-function saveArea(){
-    var areaNew = document.getElementById('areaName').value.replaceAll(' ', '_');
-    var divNew= JSON.parse(document.getElementById('areaDiv').value);
-    var area = {};
-    area['area_name'] = areaNew;
-    area['postal_division_id'] = divNew;
-    restFunction('/area/save', area, "POST", "/areas", "Area");
+function saveProductType(){
+    var producttypeNew = document.getElementById('producttypeName').value.replaceAll(' ', '_');
+    var producttype = {};
+    producttype['producttype_name'] = producttypeNew;
+    restFunction('/producttype/save', producttype, "POST", "/producttypes", "ProductType");
 }
 
-function editArea(area, ele){
+function editProductType(producttype, ele){
     var trObj = ele.parentNode.parentNode.parentNode;
-    trObj.querySelector("#area_div").innerHTML = `<select id="newAreaSelect"></select>`;
-    loadOptionVal("/division/findall", "newAreaSelect", "postal_division_name", "Division");
-    trObj.querySelector("#area_name").innerHTML = `<input id="areaInput" placeholder = '${area.area_name}'/>`;
-    trObj.querySelector("#basicBtn").innerHTML = `<button class='btnEdit' onclick='editRowArea(${JSON.stringify(area)})'>save</button>`; 
+    
+    trObj.querySelector("#producttype_name").innerHTML = `<input id="producttypeInput" placeholder = '${producttype.producttype_name}'/>`;
+    trObj.querySelector("#basicBtn").innerHTML = `<button class='btnEdit' onclick='editRowProductType(${JSON.stringify(producttype)})'>save</button>`; 
 }
 
-function editRowArea(area){
-    var areaName = document.getElementById('areaInput').value;
-    area.area_name = areaName;
-    area.postal_division_id = JSON.parse(document.getElementById('newAreaSelect').value);
-    console.log(area);
-    restFunction('/area/edit', area, "PUT", "/areas", "Area");
+function editRowProductType(producttype){
+    var producttypeName = document.getElementById('producttypeInput').value;
+    producttype.producttype_name = producttypeName;
+    restFunction('/producttype/edit', producttype, "PUT", "/producttypes", "ProductType");
 }
 
-function deleteArea(area){
+function deleteProductType(producttype){
 
-    console.log(area);
-    restFunction('/area/delete', area, "DELETE", "/areas", "Area");
+    console.log(producttype);
+    restFunction('/producttype/delete', producttype, "DELETE", "/producttypes", "ProductType");
 
 }

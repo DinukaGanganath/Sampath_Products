@@ -32,7 +32,7 @@ function loadTable(url){
             var tabRow = document.createElement('tr');
             tabRow.id = roleObj.role_id;
             var tabData = document.createElement('td');
-            tabData.innerHTML = roleObj.role_name;
+            tabData.innerHTML = roleObj.role_name.replaceAll('_', ' ');
             tabRow.appendChild(tabData);
             
             for(var attr of attrList){

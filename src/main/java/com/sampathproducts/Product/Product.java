@@ -5,12 +5,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
+
+import com.sampathproducts.ProductSize.ProductSize;
+import com.sampathproducts.ProductType.ProductType;
 
 @Entity // convert to the Entity class
 @Table(name = "product_details") // map with product_details table
@@ -21,38 +26,40 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id", unique = true)
+    @Column(name = "product_id", unique = true) // mapping the column "product_id" of table "product_details"
     @NotNull
     private Integer product_id;
 
-    @Column(name = "product_name")
-    @NotNull
-    private String product_name;
-
-    @Column(name = "product_code", unique = true)
+    @Column(name = "product_code", unique = true) // mapping the column "product_code" of table "product_details"
     @NotNull
     private String product_code;
 
-    @Column(name = "product_usable_time")
+    @Column(name = "product_usable_time") // mapping the column "product_usable_time" of table "product_details"
     private Integer product_usable_time;
 
-    @Column(name = "product_unit_price")
+    @Column(name = "product_unit_price") // mapping the column "product_unit_price" of table "product_details"
     @NotNull
     private Double product_unit_price;
 
-    @Column(name = "product_unit_quantity")
-    @NotNull
-    private String product_unit_quantity;
-
-    @Column(name = "product_created_date")
+    @Column(name = "product_created_date") // mapping the column "product_created_date" of table "product_details"
     private LocalDateTime product_created_date;
 
-    @Column(name = "product_updated_date")
+    @Column(name = "product_updated_date") // mapping the column "product_updated_date" of table "product_details"
     private LocalDateTime product_updated_date;
 
-    @Column(name = "Product_deleted_date")
-    private LocalDateTime Product_deleted_date;
+    @Column(name = "product_deleted_date") // mapping the column "product_deleted_date" of table "product_details"
+    private LocalDateTime product_deleted_date;
 
-    @Column(name = "Product_deleted")
-    private Integer Product_deleted;
+    @Column(name = "product_deleted") // mapping the column "product_deleted" of table "product_details"
+    private Integer product_deleted;
+
+    @OneToOne
+    @JoinColumn(name = "producttype_id", referencedColumnName = "producttype_id") // mapping from "producttype_details"
+                                                                                  // table "producttype_id"
+    private ProductType producttype_id;
+
+    @OneToOne
+    @JoinColumn(name = "productsize_id", referencedColumnName = "productsize_id") // mapping from "productsize_details"
+                                                                                  // table "productsize_id"
+    private ProductSize producttype_size;
 }

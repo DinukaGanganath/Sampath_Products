@@ -1,18 +1,18 @@
-initLayout("Area", "Deleted Area");
-sidebarLoader("/areas");
+initLayout("Product Size", "Deleted Product Size");
+sidebarLoader("/product");
 
 let currentPage = 1;
 
 loadTable();
 
 function loadTable(){
-    fetch("/areas/findall/deleted")
+    fetch("/productsizes/findall/deleted")
     .then(function(response){
         return response.json();
     })
-    .then(function(areas){
+    .then(function(productsizes){
         let placeholder = document.querySelector("#data-output");
-        let rowNo = areas.length;
+        let rowNo = productsizes.length;
         let maxRow = 8;
         let pageNo = Math.ceil(rowNo/maxRow);
         let pagDataList = [];
@@ -24,7 +24,7 @@ function loadTable(){
             stop = rowNo;
 
         for(var i = start; i<stop; i++){
-            pagDataList.push(areas[i]);
+            pagDataList.push(productsizes[i]);
         }
 
         console.log(`pag :\n ${pagDataList} \n start : ${start} \n end : ${stop}`);
@@ -62,19 +62,18 @@ function visualizePag(pageNo){
 function setDataSet(pagDataList){
     let out = "";
     let parentElements = '["td", "p"]';
-    for(let area of pagDataList){
+    for(let productsize of pagDataList){
         out += `
-            <tr id=`+ area.area_id +`>
-                <td id="area_name">${area.area_name.replaceAll('_', ' ')}</td>
-                <td id="area_code">${area.area_code}</td>
-                <td id="area_code">${area.postal_division_id.postal_division_name}</td>
+            <tr id=`+ productsize.productsize_id +`>
+                <td id="productsize_name">${productsize.productsize_name.replaceAll('_', ' ')}</td>
+                <td id="productsize_code">${productsize.productsize_code}</td>
                 <td>
                     <div id="basicBtn" style="display:flex">
-                        <button class="btnEdit" onclick='restoreArea(` + JSON.stringify(area) + `)'>Restore</button>
+                        <button class="btnEdit" onclick='restoreProductType(` + JSON.stringify(productsize) + `)'>Restore</button>
                     </div>
                     <div id="secondaryBtn"  style="display:none">
-                        <button class="btnEdit" onclick='editRowArea(this)'>save</button>
-                        <button class="btnDelete" onclick='discardRowArea()'>Discard</button>
+                        <button class="btnEdit" onclick='editRowProductType(this)'>save</button>
+                        <button class="btnDelete" onclick='discardRowProductType()'>Discard</button>
                     </div>
                 </td>
             </tr>
@@ -93,7 +92,7 @@ function loadNext(){
     loadTable();
 }
 
-function restoreArea(area){
-    console.log(area);
-    restFunction('/area/restore', area, "PUT", "/areas", "Area");
+function restoreProductType(productsize){
+    console.log(productsize);
+    restFunction('/productsize/restore', productsize, "PUT", "/productsizes", "ProductType");
 }

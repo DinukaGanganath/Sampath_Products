@@ -20,25 +20,26 @@ public class Material {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "material_id", unique = true) // mapping column
+    @Column(name = "material_id", unique = true) // mappling the column "material_id" of table "material_details"
     private Integer material_id;
 
-    @Column(name = "material_name")
+    @Column(name = "material_name") // mappling the column "material_name" of table "material_details"
     private String material_name;
 
-    @Column(name = "material_code", unique = true)
+    @Column(name = "material_code", unique = true) // mappling the column "material_code" of table "material_details"
     private String material_code;
 
-    @Column(name = "material_deleted", unique = true)
+    @Column(name = "material_deleted", unique = true) // mappling the column "material_deleted" of table
+                                                      // "material_details"
     private Integer material_deleted;
 
-    @Column(name = "material_added_date")
+    @Column(name = "material_added_date") // mappling the column "material_added_date" of table "material_details"
     private LocalDateTime material_added_date;
 
-    @Column(name = "material_updated_date")
+    @Column(name = "material_updated_date") // mappling the column "material_updated_date" of table "material_details"
     private LocalDateTime material_updated_date;
 
-    @Column(name = "material_deleted_date")
+    @Column(name = "material_deleted_date") // mappling the column "material_deleted_date" of table "material_details"
     private LocalDateTime material_deleted_date;
 
 }

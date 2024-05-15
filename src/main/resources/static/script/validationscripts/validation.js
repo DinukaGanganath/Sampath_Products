@@ -90,6 +90,7 @@ function checkRquired(field){
 }
 
 //validate the form & making the alert msg
+//validForm("employeeAddForm",["input", "select"], "/employee/save", "POST", "/employee", "Employee")
 function validForm(formId, eleList, url, method, loadAfter, navigator, idVal){
     var formObj = createJson(formId, eleList, idVal);
     var errorStr = "";
