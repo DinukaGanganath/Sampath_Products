@@ -2,6 +2,9 @@
 initLayout("Product", "Product Add");
 sidebarLoader("/product");
 
+loadOptionVal("/productsizes/findall/exist", "productsize_id", "productsize_name", "Product Type");
+loadOptionVal("/producttypes/findall/exist", "producttype_id", "producttype_name", "Product Size");
+
 var jsonList = [
     {
         "str" : "Product size",
@@ -19,11 +22,4 @@ var jsonList = [
 ]
 createThinLongDiv(jsonList);
 
-document.getElementById("product_address_city").value = "";
-document.getElementById("product_address_postal").value = "";
-
-//Load the names options to the Select tag
-loadOptionVal("/areas/findall", "product_area_id", "area_name", "Area");
-loadOptionVal("/materials/findall", "product_material_id", "material_name", "Material");
-loadOptionVal("/types/findall", "product_business_type", "type_name", "Business Type");
 

@@ -20,25 +20,29 @@ import lombok.NoArgsConstructor;
 public class ProductSize {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "productsize_id", unique = true) // mapping column
+    @Column(name = "productsize_id", unique = true) // mapping "productsize_id" column with the table
+                                                    // "productsize_details"
     private Integer productsize_id;
 
-    @Column(name = "productsize_name")
+    @Column(name = "productsize_name") // mapping "productsize_name" column with the table "productsize_details"
     private String productsize_name;
 
-    @Column(name = "productsize_deleted")
+    @Column(name = "productsize_deleted") // mapping "productsize_deleted" column with the table "productsize_details"
     private Integer productsize_deleted;
 
-    @Column(name = "productsize_code")
+    @Column(name = "productsize_code") // mapping "productsize_code" column with the table "productsize_details"
     private String productsize_code;
 
-    @Column(name = "productsize_added_date")
+    @Column(name = "productsize_added_date") // mapping "productsize_added_date" column with the table
+                                             // "productsize_details"
     private LocalDateTime productsize_added_date;
 
-    @Column(name = "productsize_updated_date")
+    @Column(name = "productsize_updated_date") // mapping "productsize_updated_date" column with the table
+                                               // "productsize_details"
     private LocalDateTime productsize_updated_date;
 
-    @Column(name = "productsize_deleted_date")
+    @Column(name = "productsize_deleted_date") // mapping "productsize_deleted_date" column with the table
+                                               // "productsize_details"
     private LocalDateTime productsize_deleted_date;
 
 }

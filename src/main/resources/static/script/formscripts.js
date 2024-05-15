@@ -9,6 +9,7 @@ function loadOptionVal(url, eleId, eleVal, type){
         let out = `<option value='' selected disabled>Select ${type}</option>`;
         for(let obj of objs){
             var str = obj[eleVal];
+            console.log(eleVal);
             out += `
                 <option value=` + JSON.stringify(obj) +` >
                     ${str.replaceAll('_',' ')}

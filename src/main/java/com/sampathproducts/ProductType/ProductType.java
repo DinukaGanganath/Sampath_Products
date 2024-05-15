@@ -20,25 +20,29 @@ import lombok.NoArgsConstructor;
 public class ProductType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "producttype_id", unique = true) // mapping column
+    @Column(name = "producttype_id", unique = true) // mapping the column "producttype_id" of "producttype_details
+                                                    // table"
     private Integer producttype_id;
 
-    @Column(name = "producttype_name")
+    @Column(name = "producttype_name") // mapping the column "producttype_name" of "producttype_details table"
     private String producttype_name;
 
-    @Column(name = "producttype_deleted")
+    @Column(name = "producttype_deleted") // mapping the column "producttype_deleted" of "producttype_details table"
     private Integer producttype_deleted;
 
-    @Column(name = "producttype_code")
+    @Column(name = "producttype_code") // mapping the column "producttype_code" of "producttype_details table"
     private String producttype_code;
 
-    @Column(name = "producttype_added_date")
+    @Column(name = "producttype_added_date") // mapping the column "producttype_added_date" of "producttype_details
+                                             // table"
     private LocalDateTime producttype_added_date;
 
-    @Column(name = "producttype_updated_date")
+    @Column(name = "producttype_updated_date") // mapping the column "producttype_updated_date" of "producttype_details
+                                               // table"
     private LocalDateTime producttype_updated_date;
 
-    @Column(name = "producttype_deleted_date")
+    @Column(name = "producttype_deleted_date") // mapping the column "producttype_deleted_date" of "producttype_details
+                                               // table"
     private LocalDateTime producttype_deleted_date;
 
 }
