@@ -307,6 +307,19 @@ form button, .nextBtn, .backBtn, .submitBtn{
     color : white;
 }
 
+.useraddForm{
+    width : 50%;
+    position: absolute;
+    background-color: white;
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    height: 88%;
+    margin: 20px;
+    float: right;
+
+}
+
 form button, 
 form .backBtn{
     font-size : 14px;

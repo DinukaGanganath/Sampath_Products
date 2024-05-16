@@ -18,6 +18,12 @@ function loadOptionVal(url, eleId, eleVal, type){
         }
         options.innerHTML = out;
     })
+    
+
+}
+
+function newValForm(type){
+    console.log(type);
 }
 
 //load many to many checkbox group 

@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="fontawesome/css/all.css" />
+		<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
+		<link rel="stylesheet" href="style/sidenavbarstyles.css" />
+		<link rel="stylesheet" href="style/formstyles.css" />
+		<link rel="stylesheet" href="style/contentstyles.css" />
+		<link rel="stylesheet" href="style/tablestyles.css" />
+		<link rel="icon" href="images/logo_white.png">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="column">
+                    <div class="mobile-icon">
+                        <svg class="svg-inline--fa fa-bars mob-icon" onclick="mobMenuToggle()" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path></svg><!-- <i class="fa-solid fa-bars mob-icon" onclick="mobMenuToggle()"></i> Font Awesome fontawesome.com -->
+                        <div class="part">
+                            <img class="mob-image" src="images/logo_white.png" alt="logo">
+                            <h5 class="name mob-header">Sampath Products</h5>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="content-container">
+    
+                    <div class="content">
+                        <div class="head-title" id="heading">
+                            
+                        </div>
+                        <!--header class="form-header">Registration</header-->
+    
+                        <div class="userAddForm">
+                            <form action="#" class="" id="userAddForm" onsubmit="return false">
+                                <div class="formcls">
+                                    <div class="details personal">
+                                        <span class="title">General Details</span>
+                                        <div class="fields" style="justify-content: space-evenly">
+											<div class="input-fieldlong">
+                                                <label for="employee_id">Employee ID</label>
+                                                <select id="employee_id" placeholder="select From the list" required>
+												</select>
+                                                <label class="validMessage"></label>
+                                            </div>
+                                            <div class="input-fieldlong">
+                                                <label for="user_name">User Name</label>
+                                                <input id="user_name" class="valFullName" type="text" placeholder="Enter your name"required />
+                                                <label class="validMessage"></label>
+                                            </div>
+											<div class="input-fieldlong">
+                                                <label for="user_email">User Email</label>
+                                                <input id="user_email" class="valFullName" type="text" placeholder="Enter your email" required/>
+                                                <label class="validMessage"></label>
+                                            </div>
+											<div class="input-fieldlong">
+                                                <label for="user_password">Password</label>
+                                                <input id="user_password" class="valPassword" type="password" placeholder="Enter Password" required/>
+                                                <label class="validMessage"></label>
+                                            </div>
+											<div class="input-fieldlong">
+                                                <label for="user_confirmPwd">Confirm Password</label>
+                                                <input id="user_confirmPwd" type="password" class="valRePassword" placeholder="Re-enter Password" onkeyup="checkEquality('user_password', 'user_confirmPwd', 'Passwords you entered are different')">
+                                                <label class="validMessage"></label>
+                                            </div>
+											<div class="input-fieldlong">
+												<div style="display:flex">
+													<label for="user_status" style="width:auto">User Active</label>
+                                                	<input id="user_status" type="checkbox">
+												</div>
+                                                <label class="validMessage"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="script/sidebarscripts.js"></script>
+	<script type="text/javascript" src="script/objects.js"></script>
+	<script type="text/javascript" src="script/formscripts.js"></script>
+	<script type="text/javascript" src="script/tablescripts.js"></script>
+	<script type="text/javascript" src="script/topnavbar.js"></script>
+	<script type="text/javascript" src="script/restfunction.js"></script>
+	<script type="text/javascript" src="script/manytomanyscripts.js"></script>
+	<script type="text/javascript" src="script/jsonObjCreator.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="fontawesome/js/all.js"></script>
+	<script type="text/javascript" src="script/validationscripts/validation.js"></script>
+	<script type="text/javascript" src="script/controllerscripts/product/useradd.js"></script>
+	<script type="text/javascript" src="script/jquery.js"></script>
+</html>

@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         field.addEventListener('keyup', function(){
-            
+            // class names selects the method and regex expressions to use evaluate.
             if(field.classList.contains('valTelephone')){
                 const regexStr = new RegExp('^[0][1234568][1-8][0-9]{7}$');
                 const messageStr = "Enter Telephone No 01xxxxxxxx format."
@@ -58,13 +58,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 const messageStr = "Check the format again."
                 checkValidate(field, regexStr, messageStr);
             }
+            if(field.classList.contains('valPassword')){
+                const regexStr = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z0-9@$!%*?&]{8,}$'); // at least one simple letter (?=.*[a-z]) 
+                const messageStr = "Your password must be at least 8 characters long, and include at least one uppercase letter, one lowercase letter, one digit, and one special character (e.g., @$!%*?&).";
+                checkValidate(field, regexStr, messageStr);
+            }
         });
         
     });
 
 });	
 
+// check weather validation happening with given regex expression
 function checkValidate(field, regexStr, messageStr){
+    console.log(regexStr.test(field.value));
     if (regexStr.test(field.value)) {
         field.classList.remove('invalid');
         field.classList.add('valid');
@@ -77,6 +84,7 @@ function checkValidate(field, regexStr, messageStr){
     }
 }
 
+// check weather the given field is required or not
 function checkRquired(field){
     if(field.hasAttribute("required")){
         if(field.value.trim() == ''){
@@ -104,6 +112,7 @@ function validForm(formId, eleList, url, method, loadAfter, navigator, idVal){
         //finishConfirmation();
 }
 
+// dialog box opened and ge confirmations to do 
 function getUserConfirmation(formObj,url, formObj, method, loadAfter, navigator ){
     let userConfirm;
     if(method=="POST" || method=="PUT")
@@ -119,7 +128,7 @@ function getUserConfirmation(formObj,url, formObj, method, loadAfter, navigator 
 //checking the required values
 function checkForRequired(){
     var fields = document.querySelectorAll('input, select');
-    var errorMsg ='Enter values for Required values : \n';
+    var errorMsg ='Enter values for Required values : \n'; // final error msg
     var initLen = errorMsg.length;
     fields.forEach(field => {
         if(field.hasAttribute('required') && field.value.trim() === ''){
@@ -195,4 +204,21 @@ function userConfirmation(obj){
     return confirmString;
 }
 
+//check the two values are equals
+function checkEquality(firstEle, secondEle, messageStr){
+    var firstStr = document.getElementById(firstEle).value;
+    var secondStr = document.getElementById(secondEle).value;
+    var field = document.getElementById(secondEle);
+
+    if(firstStr == secondStr){
+        field.classList.remove('invalid'); 
+        field.classList.add('valid');
+        field.nextElementSibling.style.display="none"; // msg string hide
+    } else {
+        field.classList.remove('valid');
+        field.classList.add('invalid');
+        field.nextElementSibling.innerHTML=messageStr;
+        field.nextElementSibling.style.display="block"; // msg string show
+    }
+}
 
