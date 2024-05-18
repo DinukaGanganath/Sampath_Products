@@ -35,7 +35,7 @@
                                 <div class="formcls">
                                     <div class="details personal">
                                         <span class="title">General Details</span>
-                                        <div class="fields" style="justify-content: space-evenly">
+                                        <div class="fields">
 											<div class="input-fieldlong">
                                                 <label for="employee_id">Employee ID</label>
                                                 <select id="employee_id" placeholder="select From the list" required>
@@ -52,20 +52,27 @@
                                                 <input id="user_email" class="valFullName" type="text" placeholder="Enter your email" required/>
                                                 <label class="validMessage"></label>
                                             </div>
-											<div class="input-fieldlong">
+											<div class="input-fieldhalf">
                                                 <label for="user_password">Password</label>
                                                 <input id="user_password" class="valPassword" type="password" placeholder="Enter Password" required/>
                                                 <label class="validMessage"></label>
                                             </div>
-											<div class="input-fieldlong">
+											<div class="input-fieldhalf">
                                                 <label for="user_confirmPwd">Confirm Password</label>
                                                 <input id="user_confirmPwd" type="password" class="valRePassword" placeholder="Re-enter Password" onkeyup="checkEquality('user_password', 'user_confirmPwd', 'Passwords you entered are different')">
                                                 <label class="validMessage"></label>
-                                            </div>
-											<div class="input-fieldlong">
+                                            </div> <br />
+											<div class="input-field">
 												<div style="display:flex">
 													<label for="user_status" style="width:auto">User Active</label>
-                                                	<input id="user_status" type="checkbox">
+                                                	<input id="user_status" type="checkbox"> hi </input>
+												</div>
+                                                <label class="validMessage"></label>
+                                            </div>
+                                            <div class="input-fieldhalf">
+												<div style="display:flex">
+													<label for="user_photopath" style="width:auto">User Active</label>
+                                                	<input id="user_photopath" type="file" style="width: auto;">
 												</div>
                                                 <label class="validMessage"></label>
                                             </div>

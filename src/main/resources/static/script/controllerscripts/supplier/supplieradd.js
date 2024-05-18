@@ -2,6 +2,7 @@
 initLayout("Supplier", "Supplier Add");
 sidebarLoader("/supplier");
 
+//clear the city input and postal code input by val= ""
 document.getElementById("supplier_address_city").value = "";
 document.getElementById("supplier_address_postal").value = "";
 

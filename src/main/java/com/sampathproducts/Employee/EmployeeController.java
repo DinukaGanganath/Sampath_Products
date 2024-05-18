@@ -76,6 +76,12 @@ public class EmployeeController {
         return dao.getDeletedEmployee();
     }
 
+    // get database values as json data
+    @GetMapping(value = "/employee/findall/nouser", produces = "application/json")
+    public List<Employee> findAllNoUser() {
+        return dao.getEmployeeNoUser();
+    }
+
     // get database exsisting values as json data
     @GetMapping(value = "/employee/findall/exist", produces = "application/json")
     public List<Employee> findAllExist() {
