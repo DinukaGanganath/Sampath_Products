@@ -17,6 +17,7 @@
 </head>
 
 <body>
+	
 	<div class="container-fluid">
 		<div class="row">
 			<div class="column">
@@ -95,7 +96,6 @@
 											<label for="employee_address_area_id">Line 2 - Area</label>
 											<select id="employee_address_area_id" placeholder="select From the list" onchange="loadDivisionVal(this, 'employee_address_city', 'employee_address_postal')" required>
 											</select>
-											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
@@ -182,6 +182,12 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	<!--Popup window-->
+	<div id="popup-overlay" class="overlay">
+		<div class="popup" id="popup-id">
+			<div id="titleDiv"></div>
 		</div>
 	</div>
 	<script type="text/javascript" src="script/sidebarscripts.js"></script>

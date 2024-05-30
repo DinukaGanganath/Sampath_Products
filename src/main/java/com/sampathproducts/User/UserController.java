@@ -66,7 +66,7 @@ public class UserController {
     // get database values as json data
     @GetMapping(value = "/user/findall", produces = "application/json")
     public List<User> findAll() {
-        return dao.findAll(Sort.by(Direction.DESC, "userid"));
+        return dao.findAll(Sort.by(Direction.DESC, "user_id"));
     }
 
     // get database values as json data

@@ -50,6 +50,9 @@ function createJson(eleid, parentEle, idVal){
     for(prop of formProperties){
         jsonObj[prop[0]] = prop[1];
     }
+    for(var val of Object.keys(jsonObj)){
+        console.log(jsonObj[val]);
+    }
     return jsonObj;
     
 }

@@ -26,6 +26,7 @@ body{
     height: 100vh;
     background: var(--body-color);
     overflow: hidden;
+    //font-family: Arial, sans-serif;
 }
 
 .detail_list{

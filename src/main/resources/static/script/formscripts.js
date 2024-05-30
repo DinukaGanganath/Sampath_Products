@@ -6,10 +6,21 @@ function loadOptionVal(url, eleId, eleVal, type){
     })
     .then(function(objs){
         let options = document.querySelector('#'+eleId);
+        options.parentElement.style.display="flex";
+        if(options.nextElementSibling !== null){
+            options.nextElementSibling.innerHTML = `Add`;
+            options.nextElementSibling.style.width = `Auto`;
+            options.nextElementSibling.style.height = `Auto`;
+            options.nextElementSibling.style.padding = '2px';
+        }
         let out = `<option value='' selected disabled>Select ${type}</option>`;
         for(let obj of objs){
             var str = obj[eleVal];
-            console.log(eleVal);
+            for (const key in obj) {
+                if (typeof obj[key] === 'string') {
+                  obj[key] = obj[key].replaceAll(' ', '_');
+                }
+              }
             out += `
                 <option value=` + JSON.stringify(obj) +` >
                     ${str.replaceAll('_',' ')}
@@ -19,11 +30,7 @@ function loadOptionVal(url, eleId, eleVal, type){
         options.innerHTML = out;
     })
     
-
-}
-
-function newValForm(type){
-    console.log(type);
+    
 }
 
 //load many to many checkbox group 
@@ -38,7 +45,7 @@ function loadCheckboxVal(url, eleId,chkClass, eleVal, objId){
         for(let obj of objs){
             out += `
                 <input type="checkbox" id =${obj[objId]} value=` + JSON.stringify(obj) +` class= ${chkClass}>
-                <label for=${obj[objId]}> ${obj[eleVal]}</label><br>
+                <label for=${obj[objId]}> ${obj[eleVal].replaceAll('_',' ')}</label><br>
             `;
         }
         checkGroup.innerHTML = out;

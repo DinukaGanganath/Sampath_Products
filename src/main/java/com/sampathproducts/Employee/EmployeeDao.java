@@ -23,7 +23,7 @@ public interface EmployeeDao extends JpaRepository<Employee, Integer> {
     @Query(value = "select * from sampathproducts.employee_details where employee_id=(select max(employee_id) from sampathproducts.employee_details);", nativeQuery = true)
     public List<Employee> getLatestEmployee();
 
-    @Query(value = "select * from sampathproducts.employee_details e left join sampathproducts.user on e.employee_id = u.employee_id where u.employee_id is null;", nativeQuery = true)
+    @Query(value = "select * from sampathproducts.employee_details as e where e.employee_id not in (select u.employee_id from sampathproducts.user as u);", nativeQuery = true)
     public List<Employee> getEmployeeNoUser();
 
 }

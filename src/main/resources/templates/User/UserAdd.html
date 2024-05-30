@@ -1,25 +1,26 @@
 <html>
     <head>
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
-		<link rel="stylesheet" href="fontawesome/css/all.css" />
-		<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
-		<link rel="stylesheet" href="style/sidenavbarstyles.css" />
-		<link rel="stylesheet" href="style/formstyles.css" />
-		<link rel="stylesheet" href="style/contentstyles.css" />
-		<link rel="stylesheet" href="style/tablestyles.css" />
-		<link rel="icon" href="images/logo_white.png">
+        <link rel="stylesheet" href="fontawesome/css/all.css" />
+        <link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
+        <link rel="stylesheet" href="style/sidenavbarstyles.css" />
+        <link rel="stylesheet" href="style/formstyles.css" />
+        <link rel="stylesheet" href="style/contentstyles.css" />
     </head>
     <body>
         <div class="container-fluid">
             <div class="row">
                 <div class="column">
                     <div class="mobile-icon">
-                        <svg class="svg-inline--fa fa-bars mob-icon" onclick="mobMenuToggle()" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path></svg><!-- <i class="fa-solid fa-bars mob-icon" onclick="mobMenuToggle()"></i> Font Awesome fontawesome.com -->
+                        <i class="fa-solid fa-bars mob-icon" onclick="mobMenuToggle()"></i>
                         <div class="part">
-                            <img class="mob-image" src="images/logo_white.png" alt="logo">
+                            <img class="mob-image" src="images/logo_white.png" alt="logo" />
                             <h5 class="name mob-header">Sampath Products</h5>
                         </div>
                     </div>
+                </div>
+                <div class="column" id="sidebarContainer">
+                        
                 </div>
     
                 <div class="content-container">
@@ -29,60 +30,76 @@
                             
                         </div>
                         <!--header class="form-header">Registration</header-->
-    
-                        <div class="userAddForm">
-                            <form action="#" class="" id="userAddForm" onsubmit="return false">
-                                <div class="formcls">
-                                    <div class="details personal">
-                                        <span class="title">General Details</span>
-                                        <div class="fields">
-											<div class="input-fieldlong">
-                                                <label for="employee_id">Employee ID</label>
-                                                <select id="employee_id" placeholder="select From the list" required>
-												</select>
-                                                <label class="validMessage"></label>
-                                            </div>
-                                            <div class="input-fieldlong">
-                                                <label for="user_name">User Name</label>
-                                                <input id="user_name" class="valFullName" type="text" placeholder="Enter your name"required />
-                                                <label class="validMessage"></label>
-                                            </div>
-											<div class="input-fieldlong">
-                                                <label for="user_email">User Email</label>
-                                                <input id="user_email" class="valFullName" type="text" placeholder="Enter your email" required/>
-                                                <label class="validMessage"></label>
-                                            </div>
-											<div class="input-fieldhalf">
-                                                <label for="user_password">Password</label>
-                                                <input id="user_password" class="valPassword" type="password" placeholder="Enter Password" required/>
-                                                <label class="validMessage"></label>
-                                            </div>
-											<div class="input-fieldhalf">
-                                                <label for="user_confirmPwd">Confirm Password</label>
-                                                <input id="user_confirmPwd" type="password" class="valRePassword" placeholder="Re-enter Password" onkeyup="checkEquality('user_password', 'user_confirmPwd', 'Passwords you entered are different')">
-                                                <label class="validMessage"></label>
-                                            </div> <br />
-											<div class="input-field">
-												<div style="display:flex">
-													<label for="user_status" style="width:auto">User Active</label>
-                                                	<input id="user_status" type="checkbox"> hi </input>
-												</div>
-                                                <label class="validMessage"></label>
-                                            </div>
-                                            <div class="input-fieldhalf">
-												<div style="display:flex">
-													<label for="user_photopath" style="width:auto">User Active</label>
-                                                	<input id="user_photopath" type="file" style="width: auto;">
-												</div>
-                                                <label class="validMessage"></label>
+                        <div class="parentDiv">
+                            <div class="userAddForm">
+                                <form action="#" class="" id="userAddForm" onsubmit="return false">
+                                    <div class="formcls">
+                                        <div class="details personal">
+                                            <span class="title">General Details</span>
+                                            <div class="fields">
+                                                <div class="input-fieldhalf">
+                                                    <label for="employee_id">Employee ID</label>
+                                                    <select id="employee_id" placeholder="select From the list" required>
+                                                    </select>
+                                                </div>
+                                                <div class="input-fieldhalf">
+                                                    <label for="user_email">User Email</label>
+                                                    <input id="user_email" class="valEmail" type="text" placeholder="Enter your email" required/>
+                                                    <label class="validMessage"></label>
+                                                </div>
+                                                <div class="input-fieldfull">
+                                                    <label for="user_name">User Name</label>
+                                                    <input id="user_name"  type="text" placeholder="Enter your name" required />
+                                                    <label class="validMessage"></label>
+                                                </div>
+                                                <div class="input-fieldhalf">
+                                                    <label for="user_password">Password</label>
+                                                    <input id="user_password" class="valPassword" type="password" placeholder="Enter Password" required/>
+                                                    <label class="validMessage"></label>
+                                                </div>
+                                                <div class="input-fieldhalf">
+                                                    <label for="user_confirmPwd">Confirm Password</label>
+                                                    <input id="user_confirmPwd" type="password" class="valRePassword avoid" placeholder="Re-enter Password" onkeyup="checkEquality('user_password', 'user_confirmPwd', 'Passwords you entered are different')">
+                                                    <label class="validMessage"></label>
+                                                </div> <br />
+                                                <div class="input-fieldfull">
+                                                    <label for="user_status">User Active</label>
+                                                    <div style="display:flex;">
+                                                        <input id="user_status" type="checkbox" onchange="changeText();" style="width:20px; margin-right: 100px "/>
+                                                        <div id="checkText" style="padding-top : 5px"></div>
+                                                    </div>
+                                                    <label class="validMessage"></label>
+                                                </div>
+                                                <div class="input-fieldfull">
+                                                    <label for="user_photopath">User Image</label>
+                                                    <input id="user_photopath" type="file">
+                                                    <label class="validMessage"></label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                </form>
+                            </div>
+                            <div class="rightColumn">
+                                <div class="image-container">
+                                    <img src="images/users/default1.png" alt="Rounded Image" id="userImg">
                                 </div>
-                            </form>
+                                <div class="userroleForm">
+                                    <form action="#" class="" id="userroleForm" onsubmit="return false">
+                                        <div class="formcls">
+                                            <div class="details personal">
+                                                <span class="title">User Roles</span>
+                                                <div id="roleCheckBox">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <button onclick='createUserObject();'>Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -98,6 +115,6 @@
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="fontawesome/js/all.js"></script>
 	<script type="text/javascript" src="script/validationscripts/validation.js"></script>
-	<script type="text/javascript" src="script/controllerscripts/product/useradd.js"></script>
+	<script type="text/javascript" src="script/controllerscripts/user/useradd.js"></script>
 	<script type="text/javascript" src="script/jquery.js"></script>
 </html>

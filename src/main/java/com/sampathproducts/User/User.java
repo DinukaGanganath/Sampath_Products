@@ -1,22 +1,26 @@
 package com.sampathproducts.User;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
+import java.util.Set;
 
 import com.sampathproducts.Employee.Employee;
+import com.sampathproducts.Role.Role;
 
 @Entity // convert to the Entity class
-@Table(name = "user_details") // map with user_details table
+@Table(name = "user") // map with user table
 @Data // for getters and setters
 @NoArgsConstructor // default constructor
 @AllArgsConstructor // all argument constructor
@@ -42,14 +46,12 @@ public class User {
     @Column(name = "user_status")
     private Integer user_status;
 
-    @Column(name = "added_timedate")
-    private LocalDateTime added_timedate;
-
-    @Column(name = "note")
-    private String note;
-
     @OneToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
     private Employee employee_id;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "user_has_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> Roles;
 
 }
