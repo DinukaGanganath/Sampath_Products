@@ -14,15 +14,15 @@
 	
 	<body>
 		<div id="context-menu">
-			<div class="item" id="context_view" onclick="viewSupplier()">
+			<div class="item" id="context_view" onclick="viewUser()">
 				<i class="fa-solid fa-eye"></i>
 				View
 			</div>
-			<div class="item" id="context_edit" onclick="editSupplier()">
+			<div class="item" id="context_edit" onclick="editUser()">
 				<i class="fa-solid fa-pencil"></i>
 				Edit
 			</div>
-			<div class="item" id="context_delete" onclick="deleteSupplier()">
+			<div class="item" id="context_delete" onclick="deleteUser()">
 				<i class="fa-solid fa-trash"></i>
 				Delete
 			</div>
@@ -52,7 +52,7 @@
 						</div>
 						<div class="table-container">
 							<button class="addBtn">
-								<a href="/supplieradd">
+								<a href="/useradd">
 									Add
 								</a>
 							</button>
@@ -61,9 +61,7 @@
 								<tr>
 									<th scope="col">User Name</th>
 									<th scope="col">User Email</th> 
-									<th scope="col">Contact No.</th>
-									<th scope="col">Employee No.</th>
-									<th scope="col">Roles</th>
+									<th scope="col">Employee Code</th>
 								</tr>
 								</thead>
 								<tbody id="data-output">
@@ -89,7 +87,7 @@
 								</div>  
 							</div>
 							<div class="rightCorner">
-								<a style="text-align: right; color: black; float: right;" href="/supplierdeleted">Deleted Suppliers</a>
+								<a style="text-align: right; color: black; float: right;" href="/userdeleted">Deleted Users</a>
 							</div>
 						</div>
 					</div>

@@ -3,7 +3,7 @@ initLayout("User", "User Add");
 sidebarLoader("/privilage");
 
 //Create the table initial values
-dataLoadTable("/user/findall/exist", ["user_name", "user_email" ,"supplier_contact_no1",["employee_id","employee_code"]],7);
+dataLoadTable("/user/findall/exist", ["user_name", "user_email", ["employee_id","employee_code"]],7);
 
 ////////////////////////// 
 ///// User View //////

@@ -77,6 +77,7 @@ function setDataSet(pagDataList, tableValList){
     for(let obj of pagDataList){
         for(val of tableValList){
             var str = obj[val];
+            console.log(str);
             if(typeof(val)=="string"){
                 tdList += `<td>${str.replaceAll('_', ' ')}</td>`
             }
