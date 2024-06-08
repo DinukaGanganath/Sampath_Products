@@ -65,6 +65,8 @@ public class MaterialController {
 
         try {
             material.setMaterial_added_date(LocalDateTime.now());
+            material.setMaterial_has(0);
+            material.setMaterial_want(0);
 
             String nextMaterialCode = dao.getNextMaterialCode();
 

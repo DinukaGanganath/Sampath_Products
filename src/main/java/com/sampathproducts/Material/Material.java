@@ -33,6 +33,18 @@ public class Material {
                                                       // "material_details"
     private Integer material_deleted;
 
+    @Column(name = "material_has")
+    private Integer material_has;
+
+    @Column(name = "material_want")
+    private Integer material_want;
+
+    @Column(name = "material_unit")
+    private String material_unit;
+
+    @Column(name = "material_extra")
+    private Integer material_extra;
+
     @Column(name = "material_added_date") // mappling the column "material_added_date" of table "material_details"
     private LocalDateTime material_added_date;
 

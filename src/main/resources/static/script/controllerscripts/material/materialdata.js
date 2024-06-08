@@ -67,6 +67,7 @@ function setDataSet(pagDataList){
             <tr id=`+ material.material_id +`>
                 <td id="material_name">${material.material_name.replaceAll('_', ' ')}</td>
                 <td id="material_code">${material.material_code}</td>
+                <td id="material_extra">${material.material_extra +" " + material.material_unit}</td>
                 <td>
                     <div id="basicBtn" style="display:flex">
                         <button class="btnEdit" onclick='editMaterial(` + JSON.stringify(material) + `, this)'>Edit</button>
@@ -91,13 +92,20 @@ function loadNext(){
 
 function showForm(){
 
-    $("#material_tab tbody").prepend("<tr><td id= newItem></td><td></td><td id= newAddBtn onclick=saveMaterial()></td></tr>");
+    $("#material_tab tbody").prepend("<tr><td id= newItem><td></td></td><td id= extraQty></td><td id= newAddBtn onclick=saveMaterial()></td></tr>");
 
     var inputFieldData = document.getElementById("newItem");
     var inputField = document.createElement("input");
     inputField.type = "text";
     inputField.id = "materialName";
     inputFieldData.appendChild(inputField);
+
+    var extraQtyData = document.getElementById("extraQty");
+    var extraQtyField = document.createElement("input");
+    extraQtyField.placeholder = "Ex: 50 kg";
+    extraQtyField.type = "text";
+    extraQtyField.id = "materialExtra";
+    extraQtyData.appendChild(extraQtyField);
 
     var buttonFieldData = document.getElementById("newAddBtn");
     var buttonField = document.createElement('button');
@@ -109,9 +117,14 @@ function showForm(){
 
 function saveMaterial(){
     var materialNew = document.getElementById('materialName').value.replaceAll(' ', '_');
-    var area = {};
-    area['material_name'] = materialNew;
-    restFunction('/material/save', area, "POST", "/material", "Material");
+    var extraQty = document.getElementById('materialExtra').value;
+
+    var material = {};
+    material['material_name'] = materialNew;
+    material['material_extra'] = extraQty.split(" ")[0]
+    material['material_unit'] = extraQty.split(" ")[1];
+
+    restFunction('/material/save', material, "POST", "/material", "Material");
 }
 
 function deleteMaterial(material){
@@ -124,12 +137,16 @@ function deleteMaterial(material){
 function editMaterial(material, ele){
     var trObj = ele.parentNode.parentNode.parentNode;
     trObj.querySelector("#material_name").innerHTML = `<input id="materialInput" placeholder = '${material.material_name}'/>`;
+    trObj.querySelector("#material_extra").innerHTML = `<input id="materialExtra" placeholder = '${material.material_extra +" " + material.material_unit}'/>`;
     trObj.querySelector("#basicBtn").innerHTML = `<button class='btnEdit' onclick='editRowMaterial(${JSON.stringify(material)})'>save</button>`; 
 }
 
 function editRowMaterial(material){
-    var materialName = document.getElementById('materialInput').value;
+    var materialName = document.getElementById('materialInput').value.replaceAll(" ", "_");
+    var extraQty = document.getElementById('materialExtra').value;
     material.material_name = materialName;
+    material.material_extra = extraQty.split(" ")[0];
+    material.material_unit = extraQty.split(" ")[1];
     console.log(material);
     restFunction('/material/edit', material, "PUT", "/material", "Material");
 }
