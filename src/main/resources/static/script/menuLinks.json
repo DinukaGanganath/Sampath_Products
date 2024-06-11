@@ -15,7 +15,7 @@
         "text": "Supplier"
     },
     {
-        "link": "/quotations",
+        "link": "/quotation",
         "icon": "fa-solid fa-sheet-plastic icon",
         "text": "Quotations"
     },
