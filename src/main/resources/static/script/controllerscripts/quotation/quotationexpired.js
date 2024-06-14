@@ -5,23 +5,27 @@ sidebarLoader("/quotation");
 //submenu created
 var jsonList = [
     {
-        "str" : "All Quotation",
+        "str" : "Create",
+        "url" : "/createquot"
+    },
+    {
+        "str" : "All",
         "url" : "/quotation"
     },
     {
-        "str" : "Requested Quotation",
+        "str" : "Requested",
         "url" : "/requestedquot"
     },
     {
-        "str" : "Valid Quotation",
+        "str" : "Valid",
         "url" : "/validquot"
     },
     {
-        "str" : "Ending Quotation",
+        "str" : "Ending",
         "url" : "/endingquot"
     },
     {
-        "str" : "Expired Quotation",
+        "str" : "Expired",
         "url" : "/expiredquot",
         "status" : "active",
     },

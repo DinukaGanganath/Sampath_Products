@@ -1,0 +1,150 @@
+<html>
+
+	<head>		
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="fontawesome/css/all.css" />
+		<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
+		<link rel="stylesheet" href="style/sidenavbarstyles.css" />
+		<link rel="stylesheet" href="style/formstyles.css" />
+		<link rel="stylesheet" href="style/contentstyles.css" />
+		<link rel="stylesheet" href="style/tablestyles.css" />
+		<link rel="icon" href="images/logo_white.png">
+	</head>
+
+	<body>
+
+		<div id="modal" class="hidden">
+			<div class="modal-content">
+				<h3 id="quotationTitle">Add Quotation Details</h3>
+				<form>
+					<div class="formcls">
+						<div class="details personal">
+							<span class="title">General Details</span>
+							<div class="fields">
+								<div class="input-fieldhalf">
+									<label for="request_id">Request Code</label>
+									<input id="request_id" disabled />
+								</div>
+								<div class="input-fieldhalf">
+									<label for="request_date">Requested Date</label>
+									<input id="request_date" type="date" disabled />
+								</div>
+								<div class="input-fieldhalf">
+									<label for="business_name">Supplier Business</label>
+									<input id="business_name" disabled />
+								</div>
+								<div class="input-fieldhalf">
+									<label for="material">Material</label>
+									<input id="material" disabled />
+								</div>
+								<div class="input-fieldhalf">
+									<label for="request_units">Units</label>
+									<div style="display:flex">
+										<input id="request_units" type="number" min="1" />
+										<div style="padding-left: 15px; padding-top: 13px" id="unit"></div>
+									</div>
+								</div>
+								<div class="input-fieldhalf">
+									<label for="price">Price</label>
+									<div style="display:flex">
+										<div style="padding-right: 15px; padding-top: 15px">Rs.</div>
+										<input id="price"  type="number" />
+									</div>
+								</div>
+								<div class="input-fieldhalf">
+									<label for="quotation_date">Quotation Created Date</label>
+									<input id="quotation_date"  type="date" />
+								</div>
+								<div class="input-fieldhalf">
+									<label for="valid_days">Validity Period (Days)</label>
+									<input id="valid_days"  type="number" min="1" />
+								</div>
+							</div>
+							<button id="btnQuotaionSubmit">Add Quotation</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div id="overlay" class="hidden"></div>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="column">
+					<div class="mobile-icon">
+						<i class="fa-solid fa-bars mob-icon" onclick="mobMenuToggle()"></i>
+						<div class="part">
+							<img class="mob-image" src="images/logo_white.png" alt="logo" />
+							<h5 class="name mob-header">Sampath Products</h5>
+						</div>
+					</div>
+				</div>
+				<div class="column" id="sidebarContainer">
+					
+				</div>
+
+				<div class="content-container">
+
+					<div class="content">
+						<div class="head-title" id="heading">
+						</div>
+						<div id="parentDiv" style="text-align: center;">
+						
+						</div>
+						<div class="table-container">
+							<button class="addBtn" onclick="showForm()">
+								<a>
+									Add
+								</a>
+							</button>
+							<table class="table table-striped" id="material_tab">
+								<thead>
+									<tr>
+										<th scope="col">Request Code</th>
+										<th scope="col">Supplier</th>
+										<th scope="col">Supplier Code</th>
+										<th scope="col">Material</th>
+										<th scope="col">Requested Date</th>
+									</tr>
+								</thead>
+								<tbody id="data-output">
+
+								</tbody>
+							</table>
+						</div>
+						<div class="paginationFooter">
+							<div class="leftCorner">
+								<div class="container">
+									<div id="pagLeftBtn" class="half-circle left pagBtn" onclick="loadPrevious()">
+										<span class="button-label">
+											<i class="icon fa-solid fa-chevron-left" style="height: 20px;"></i>
+										</span>
+									</div>
+									<div id="pagMiddle"></div>
+									<div id="pagRightBtn" class="half-circle right pagBtn" onclick="loadNext()">
+										<span class="button-label">
+											<i class="icon fa-solid fa-chevron-right" style="height: 20px;"></i>
+										</span>
+									</div>
+								</div>  
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="script/jquery.js"></script>
+		<script type="text/javascript" src="script/sidebarscripts.js"></script>
+		<script type="text/javascript" src="script/restfunction.js"></script>
+		<script type="text/javascript" src="script/formscripts.js"></script>
+		<script type="text/javascript" src="script/objects.js"></script>
+		<script type="text/javascript" src="script/topnavbar.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="fontawesome/js/all.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/quotationrequest/quotationrequestdata.js"></script>
+
+	</body>
+
+</html>

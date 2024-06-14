@@ -162,7 +162,7 @@ function visualizePag(currentPage, pageNo){
         document.getElementById("pagRightBtn").style.display = "none";
         document.getElementById("pagLeftBtn").style.display = "none";
     }
-    if(pageNo==0){
+    if(pageNo==0 || pageNo==NaN){
         document.getElementById("pagRightBtn").style.display = "none";
         document.getElementById("pagLeftBtn").style.display = "none";
         document.getElementById("pagMiddle").style.display = "none";

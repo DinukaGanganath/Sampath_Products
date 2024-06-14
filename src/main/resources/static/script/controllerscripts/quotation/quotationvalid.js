@@ -2,34 +2,38 @@
 initLayout("Quotation", "Quotation Details");
 sidebarLoader("/quotation");
 
+//Create the table initial values
+dataLoadTable("/quotation/findall/exist", ["quotation_name","quotation_code","quotation_contact_no1","quotation_email","quotation_business_name",["quotation_area_id","area_name"],["quotation_material_id","material_name"]],7);
+
 //submenu created
 var jsonList = [
     {
-        "str" : "All Quotation",
+        "str" : "Create",
+        "url" : "/createquot"
+    },
+    {
+        "str" : "All",
         "url" : "/quotation"
     },
     {
-        "str" : "Requested Quotation",
-        "url" : "/requestedquot",
-        "status" : "active",
+        "str" : "Requested",
+        "url" : "/requestedquot"
     },
     {
-        "str" : "Valid Quotation",
-        "url" : "/validquot"
+        "str" : "Valid",
+        "url" : "/validquot",
+        "status" : "active"
     },
     {
-        "str" : "Ending Quotation",
+        "str" : "Ending",
         "url" : "/endingquot"
     },
     {
-        "str" : "Expired Quotation",
+        "str" : "Expired",
         "url" : "/expiredquot"
     },
 ]
 createThinLongDiv(jsonList);
-
-//Create the table initial values
-dataLoadTable("/quotation/findall/exist", ["quotation_name","quotation_code","quotation_contact_no1","quotation_email","quotation_business_name",["quotation_area_id","area_name"],["quotation_material_id","material_name"]],7);
 
 ////////////////////////// 
 ///// Quotation View //////

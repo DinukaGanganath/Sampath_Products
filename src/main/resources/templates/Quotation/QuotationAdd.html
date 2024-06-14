@@ -40,154 +40,104 @@
 					</div>
 					<!--header class="form-header">Registration</header-->
 
-					<div class="form-container">
-						<form action="#" class="" id="quotationAddForm" onsubmit="return false">
+					<div class="form-container" style="display:flex">
+						<form action="#" class="" id="quotationRequestForm" onsubmit="return false" style="padding: 10px; width: 50%">
 							<div class="formcls">
 								<div class="details personal">
 									<span class="title">General Details</span>
 									<div class="fields">
-										<div class="input-fieldlong">
-											<label for="quotation_name">Full Name</label>
-											<input id="quotation_name" class="valFullName" type="text" placeholder="Enter your name" required>
-											<label class="validMessage"></label>
-										</div>
-
-										<div class="input-field">
-											<label for="quotation_nic">National Identity Card</label>
-											<input id="quotation_nic" type="text" class="valIdentity" placeholder="NIC ends with V,X or 12 characters" required>
-											<label class="validMessage"></label>
-										</div>
-									</div>
-								</div>
-
-								<div class="details personal">
-									<span class="title">Address Details</span>
-									<div class="fields">
-										<div class="input-field">
-											<label for="quotation_address_line1">Line 1</label>
-											<input id="quotation_address_line1" type="text" placeholder="No.xxx, street no." required>
-											<label class="validMessage"></label>
-										</div>
-
-										<div class="input-field">
-											<label for="quotation_area_id">Line 2 - Area</label>
-											<select id="quotation_area_id" onchange="loadDivisionVal(this, 'quotation_address_city', 'quotation_address_postal')" placeholder="select From the list" required>
+										<div class="input-fieldhalf">
+											<label for="employee_id">Employee ID</label>
+											<select id="employee_id" placeholder="select From the list" required>
 											</select>
+										</div>
+										<div class="input-fieldhalf">
+											<label for="user_email">User Email</label>
+											<input id="user_email" class="valEmail" type="text" placeholder="Enter your email" required/>
 											<label class="validMessage"></label>
 										</div>
-
-										<div class="input-field">
-											<label for="quotation_address_city">City</label>
-											<input id="quotation_address_city" type="text" placeholder="postal city" value="" disabled>
+										<div class="input-fieldfull">
+											<label for="user_name">User Name</label>
+											<input id="user_name"  type="text" placeholder="Enter your name" required />
 											<label class="validMessage"></label>
 										</div>
-
-										<div class="input-field">
-											<label for="quotation_address_postal">Postal code</label>
-											<input id="quotation_address_postal" type="text" value="" disabled>
+										<div class="input-fieldhalf">
+											<label for="user_password">Password</label>
+											<input id="user_password" class="valPassword" type="password" placeholder="Enter Password" required/>
 											<label class="validMessage"></label>
 										</div>
-									</div>
-								</div>
-
-								<div class="details personal">
-									<span class="title">Contact Details</span>
-									<div class="fields">
-										<div class="input-field">
-											<label for="quotation_land_phone">Land phone</label>
-											<input id="quotation_land_phone" class="valTelephone" type="text" placeholder="starts with 0" required>
+										<div class="input-fieldhalf">
+											<label for="user_confirmPwd">Confirm Password</label>
+											<input id="user_confirmPwd" type="password" class="valRePassword avoid" placeholder="Re-enter Password" onkeyup="checkEquality('user_password', 'user_confirmPwd', 'Passwords you entered are different')">
 											<label class="validMessage"></label>
-										</div>
-
-										<div class="input-field">
-											<label for="quotation_contact_no1">Mobile No 1</label>
-											<input id="quotation_contact_no1" class="valMobphone" type="text" placeholder="starts with 0" required>
-											<label class="validMessage"></label>
-										</div>
-
-										<div class="input-field">
-											<label for="quotation_contact_no2">Mobile No 2</label>
-											<input id="quotation_contact_no2" class="valMobphone" type="text" placeholder="starts with 0">
-											<label class="validMessage"></label>
-										</div>
-
-										<div class="input-field">
-											<label for="quotation_email">Email</label>
-											<input id="quotation_email" class="valEmail" type="text" required>
-											<label class="validMessage"></label>
-										</div>
-									</div>
-								</div>
-
-								<div class="details personal">
-									<span class="title">Business Details</span>
-									<div class="fields">
-										<div class="input-field">
-											<label for="quotation_business_name">Name of Business</label>
-											<input id="quotation_business_name" class="valFullName" type="text" placeholder="Full business name">
-											<label class="validMessage"></label>
-										</div>
-
-										<div class="input-field">
-											<label for="quotation_business_reg">Business Registration No</label>
-											<input id="quotation_business_reg" class="valReg" type="text" placeholder="As the certificate">
-											<label class="validMessage"></label>
-										</div>
-
-										<div class="input-field">
-											<label for="quotation_business_type">Business Type</label>
-											<select id="quotation_business_type" required>
-											</select>
-											<label class="validMessage"></label>
-										</div>
-
-										<div class="input-field">
-											<label for="quotation_material_id">Material Supplied</label>
-											<select id="quotation_material_id" type="text" required>
-											</select>
-											<label class="validMessage"></label>
-										</div>
-
-										
-											<div style="display: none;">
-												<div class="input-field">
-													<label for="quotation_id">Business Registration No</label>
-													<input id="quotation_id" class="valReg" type="text" placeholder="As the certificate">
-													<label class="validMessage"></label>
-												</div>
-
-												<div class="input-field">
-													<label for="quotation_code">Business Registration No</label>
-													<input id="quotation_code" class="valReg" type="text" placeholder="As the certificate">
-													<label class="validMessage"></label>
-												</div>
-
-												<div class="input-field">
-													<label for="created_date_time">Business Registration No</label>
-													<input id="created_date_time" class="valReg" type="text" placeholder="As the certificate">
-													<label class="validMessage"></label>
-												</div>
-
-												<div class="input-field">
-													<label for="updated_date_time">Business Registration No</label>
-													<input id="updated_date_time" class="valReg" type="text" placeholder="As the certificate">
-													<label class="validMessage"></label>
-												</div>
-
-												<div class="input-field">
-													<label for="deleted_date_time">Business Registration No</label>
-													<input id="deleted_date_time" class="valReg" type="text" placeholder="As the certificate">
-													<label class="validMessage"></label>
-												</div>
-											
+										</div> <br />
+										<div class="input-fieldfull">
+											<label for="user_status">User Active</label>
+											<div style="display:flex;">
+												<input id="user_status" type="checkbox" onchange="changeText();" style="width:20px; margin-right: 100px "/>
+												<div id="checkText" style="padding-top : 5px"></div>
 											</div>
+											<label class="validMessage"></label>
+										</div>
+										<div class="input-fieldfull">
+											<label for="user_photopath">User Image</label>
+											<input id="user_photopath" type="file">
+											<label class="validMessage"></label>
 										</div>
 									</div>
-									<button onclick='validForm("quotationAddForm",["input", "select"], "/quotation/save", "POST", "/quotation", "Quotation")'>Submit</button>
+								</div>
+
+							</div>
+						</form>
+						<form action="#" class="" id="quotationAddForm" onsubmit="return false" style="padding: 10px;width: 50%">
+							<div class="formcls">
+								<div class="details personal">
+									<span class="title">General Details</span>
+									<div class="fields">
+										<div class="input-fieldhalf">
+											<label for="employee_id">Employee ID</label>
+											<select id="employee_id" placeholder="select From the list" required>
+											</select>
+										</div>
+										<div class="input-fieldhalf">
+											<label for="user_email">User Email</label>
+											<input id="user_email" class="valEmail" type="text" placeholder="Enter your email" required/>
+											<label class="validMessage"></label>
+										</div>
+										<div class="input-fieldfull">
+											<label for="user_name">User Name</label>
+											<input id="user_name"  type="text" placeholder="Enter your name" required />
+											<label class="validMessage"></label>
+										</div>
+										<div class="input-fieldhalf">
+											<label for="user_password">Password</label>
+											<input id="user_password" class="valPassword" type="password" placeholder="Enter Password" required/>
+											<label class="validMessage"></label>
+										</div>
+										<div class="input-fieldhalf">
+											<label for="user_confirmPwd">Confirm Password</label>
+											<input id="user_confirmPwd" type="password" class="valRePassword avoid" placeholder="Re-enter Password" onkeyup="checkEquality('user_password', 'user_confirmPwd', 'Passwords you entered are different')">
+											<label class="validMessage"></label>
+										</div> <br />
+										<div class="input-fieldfull">
+											<label for="user_status">User Active</label>
+											<div style="display:flex;">
+												<input id="user_status" type="checkbox" onchange="changeText();" style="width:20px; margin-right: 100px "/>
+												<div id="checkText" style="padding-top : 5px"></div>
+											</div>
+											<label class="validMessage"></label>
+										</div>
+										<div class="input-fieldfull">
+											<label for="user_photopath">User Image</label>
+											<input id="user_photopath" type="file">
+											<label class="validMessage"></label>
+										</div>
+									</div>
 								</div>
 							</div>
 						</form>
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -197,6 +147,7 @@
 	<script type="text/javascript" src="script/formscripts.js"></script>
 	<script type="text/javascript" src="script/tablescripts.js"></script>
 	<script type="text/javascript" src="script/restfunction.js"></script>
+	<script type="text/javascript" src="script/topnavbar.js"></script>
 	<script type="text/javascript" src="script/jsonObjCreator.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="fontawesome/js/all.js"></script>

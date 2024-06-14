@@ -37,14 +37,6 @@ public class QuotationController {
     }
 
     // create mapping ui
-    @RequestMapping(value = "/requestedquot")
-    public ModelAndView quotationRequestedUI() {
-        ModelAndView viewQuotation = new ModelAndView();
-        viewQuotation.setViewName("Quotation/QuotationRequested.html");
-        return viewQuotation;
-    }
-
-    // create mapping ui
     @RequestMapping(value = "/validquot")
     public ModelAndView quotationValidUI() {
         ModelAndView viewQuotation = new ModelAndView();
@@ -61,10 +53,18 @@ public class QuotationController {
     }
 
     // create mapping ui
-    @RequestMapping(value = "/expirededquot")
+    @RequestMapping(value = "/expiredquot")
     public ModelAndView quotationExpiredUI() {
         ModelAndView viewQuotation = new ModelAndView();
         viewQuotation.setViewName("Quotation/QuotationExpired.html");
+        return viewQuotation;
+    }
+
+    // create mapping ui
+    @RequestMapping(value = "/createquot")
+    public ModelAndView quotationCreateUI() {
+        ModelAndView viewQuotation = new ModelAndView();
+        viewQuotation.setViewName("Quotation/QuotationAdd.html");
         return viewQuotation;
     }
 
@@ -99,12 +99,6 @@ public class QuotationController {
     @GetMapping(value = "/quotation/findall/submitted", produces = "application/json")
     public List<Quotation> findAllExist() {
         return dao.getAllQuotation();
-    }
-
-    // get database values as json data
-    @GetMapping(value = "/quotation/findall/requested", produces = "application/json")
-    public List<Quotation> findAllRequested() {
-        return dao.getRequestedQuotation();
     }
 
     // get database values as json data

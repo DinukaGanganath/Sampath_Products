@@ -6,13 +6,7 @@ function loadOptionVal(url, eleId, eleVal, type){
     })
     .then(function(objs){
         let options = document.querySelector('#'+eleId);
-        options.parentElement.style.display="flex";
-        if(options.nextElementSibling !== null){
-            options.nextElementSibling.innerHTML = `Add`;
-            options.nextElementSibling.style.width = `Auto`;
-            options.nextElementSibling.style.height = `Auto`;
-            options.nextElementSibling.style.padding = '2px';
-        }
+        
         let out = `<option value='' selected disabled>Select ${type}</option>`;
         for(let obj of objs){
             var str = obj[eleVal];
