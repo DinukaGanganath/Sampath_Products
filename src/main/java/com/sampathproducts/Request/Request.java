@@ -1,4 +1,4 @@
-package com.sampathproducts.QuotationRequest;
+package com.sampathproducts.Request;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,7 +20,7 @@ import com.sampathproducts.Supplier.Supplier;
 @Data // for getters and setters
 @NoArgsConstructor // default constructor
 @AllArgsConstructor // all argument constructor
-public class QuotationRequest {
+public class Request {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

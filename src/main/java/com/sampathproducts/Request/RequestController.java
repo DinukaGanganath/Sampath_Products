@@ -1,4 +1,4 @@
-package com.sampathproducts.QuotationRequest;
+package com.sampathproducts.Request;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-public class QuotationRequestController {
+public class RequestController {
 
     @Autowired
-    private QuotationRequestDao dao;
+    private RequestDao dao;
 
     // create mapping ui
     @RequestMapping(value = "/requestedquot")
@@ -36,30 +36,30 @@ public class QuotationRequestController {
 
     // get database values as json data
     @GetMapping(value = "/requests/findall", produces = "application/json")
-    public List<QuotationRequest> findAll() {
+    public List<Request> findAll() {
         return dao.findAll();
     }
 
     // get database deleted values as json data
     @GetMapping(value = "/request/findall/created", produces = "application/json")
-    public List<QuotationRequest> findAllDeleted() {
+    public List<Request> findAllDeleted() {
         return dao.getCreatedQuotationRequest();
     }
 
     // get database exsisting values as json data
     @GetMapping(value = "/request/findall/requested", produces = "application/json")
-    public List<QuotationRequest> findAllExist() {
+    public List<Request> findAllExist() {
         return dao.getRequestedQuotationRequest();
     }
 
     @GetMapping(value = "/request/findall/valid", produces = "application/json")
-    public List<QuotationRequest> validRequests() {
+    public List<Request> validRequests() {
         return dao.getvalidQuotations();
     }
 
     // Save a Request with post method
     @PostMapping(value = "/request/save")
-    public String save(@RequestBody QuotationRequest request) {
+    public String save(@RequestBody Request request) {
 
         try {
             request.setRequest_date(LocalDateTime.now());
@@ -82,12 +82,12 @@ public class QuotationRequestController {
     }
 
     @PutMapping(value = "/request/edit")
-    public String edit(@RequestBody QuotationRequest quotation) {
+    public String edit(@RequestBody Request quotation) {
 
         try {
 
             @SuppressWarnings("null")
-            QuotationRequest extQuotation = dao.getReferenceById(quotation.getRequest_id());
+            Request extQuotation = dao.getReferenceById(quotation.getRequest_id());
             extQuotation = quotation;
             dao.save(extQuotation);
 
