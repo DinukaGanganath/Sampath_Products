@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -51,6 +52,11 @@ public class QuotationRequestController {
         return dao.getRequestedQuotationRequest();
     }
 
+    @GetMapping(value = "/request/findall/valid", produces = "application/json")
+    public List<QuotationRequest> validRequests() {
+        return dao.getvalidQuotations();
+    }
+
     // Save a Request with post method
     @PostMapping(value = "/request/save")
     public String save(@RequestBody QuotationRequest request) {
@@ -73,6 +79,22 @@ public class QuotationRequestController {
             return "Save not completed" + e.getMessage();
         }
 
+    }
+
+    @PutMapping(value = "/request/edit")
+    public String edit(@RequestBody QuotationRequest quotation) {
+
+        try {
+
+            @SuppressWarnings("null")
+            QuotationRequest extQuotation = dao.getReferenceById(quotation.getRequest_id());
+            extQuotation = quotation;
+            dao.save(extQuotation);
+
+            return "Ok";
+        } catch (Exception e) {
+            return "Update not completed" + e.getMessage();
+        }
     }
 
 }

@@ -30,9 +30,13 @@ public class QuotationRequest {
     @Column(name = "request_code", unique = true) // mappling the column "request_code" of table "request_quotation"
     private String request_code;
 
-    @Column(name = "request_created", unique = true) // mappling the column "request_created" of table
-                                                     // "request_quotation"
+    @Column(name = "request_created") // mappling the column "request_created" of table
+                                      // "request_quotation"
     private Integer request_created;
+
+    @Column(name = "request_deleted") // mappling the column "request_deleted" of table
+                                      // "request_quotation"
+    private Integer request_deleted;
 
     @Column(name = "request_date") // mappling the column "request_date" of table "request_quotation"
     private LocalDateTime request_date;

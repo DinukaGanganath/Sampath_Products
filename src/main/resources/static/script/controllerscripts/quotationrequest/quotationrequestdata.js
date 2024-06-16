@@ -100,7 +100,7 @@ function setDataSet(pagDataList){
                 <td id="request_code">${request.request_code}</td>
                 <td id="supplier_id">${request.supplier_id.supplier_business_name.replaceAll('_', ' ')}</td>
                 <td id="supplier_code" class='avoid'>${request.supplier_id.supplier_code}</td>
-                <td id="material" class='avoid'>${request.supplier_id.supplier_material_id.material_name.replaceAll('_',' ')}</td>
+                <td id="material_name" class='avoid'>${request.supplier_id.supplier_material_id.material_name.replaceAll('_',' ')}</td>
                 <td id="request_date">${request.request_date.split('T')[0]}</td>
                 <td></td>
                 <td>
@@ -136,6 +136,7 @@ function showForm(){
     
     document.getElementById('supplier_id').onchange = function (){
         var sup = JSON.parse(document.getElementById('supplier_id').value);
+        console.log(document.getElementById('material'));
         document.getElementById('supplier_code').innerHTML = sup.supplier_code;
         document.getElementById('material').innerHTML = sup.supplier_material_id.material_name.replaceAll('_',' ');
     }
@@ -158,7 +159,7 @@ function requestQuotation(){
 
     var request = {};
     request.supplier_id = supplier;
-    request.request_date = requestDate;
+    request.request_date = requestDate + 'T00:00:00';
 
     restFunction('/request/save', request, "POST", "/requestedquot", "Quotation Request");
 }
@@ -173,7 +174,7 @@ function addQuotation(object){
     document.getElementById("request_id").value = object.request_code;
     document.getElementById("request_date").value = object.request_date.split('T')[0];
     document.getElementById("business_name").value = object.supplier_id.supplier_business_name.replaceAll('_', ' ');
-    document.getElementById("material").value = object.supplier_id.supplier_material_id.material_name.replaceAll('_',' ');
+    document.getElementById("material_name_form").value = object.supplier_id.supplier_material_id.material_name.replaceAll('_',' ');
     document.getElementById("unit").innerHTML = object.supplier_id.supplier_material_id.material_unit.replaceAll('_',' ');
 
     document.getElementById("btnQuotaionSubmit").addEventListener("click", function(){
@@ -181,9 +182,11 @@ function addQuotation(object){
         object.request_units = document.getElementById("request_units").value;
         object.request_price = document.getElementById("price").value;
         object.request_validity = document.getElementById("valid_days").value;
-        object.request_created_date = document.getElementById("quotation_date").value;
+        object.request_created_date = document.getElementById("quotation_date").value + 'T00:00:00';
+        object.request_deleted = 0;
 
-        restFunction('/request/save', request, "POST", "/requestedquot", "Quotation Request");
+
+        restFunction('/request/edit', object, "PUT", "/requestedquot", "Quotation Request");
     })
 
 }

@@ -10,10 +10,22 @@ public interface QuotationRequestDao extends JpaRepository<QuotationRequest, Int
     public String getNextQuotationRequestCode();
 
     // get Deleted values
-    @Query(value = "select * from sampathproducts.request_quotation where request_created=1 order by request_id desc", nativeQuery = true)
+    @Query(value = "select * from sampathproducts.request_quotation where request_created=1 and request_deleted=0 order by request_id desc", nativeQuery = true)
     public List<QuotationRequest> getCreatedQuotationRequest();
 
     // get non deleted values
-    @Query(value = "select * from sampathproducts.request_quotation where request_created=0 order by request_id desc", nativeQuery = true)
+    @Query(value = "select * from sampathproducts.request_quotation where request_created=0 and request_deleted=0 order by request_id desc", nativeQuery = true)
     public List<QuotationRequest> getRequestedQuotationRequest();
+
+    // get expired quotation
+    @Query(value = "select * from sampathproducts.request_quotation where (DATE_ADD(request_created_date, Interval request_validity DAY) < CURDATE()) and request_created=1 and request_deleted=0 order by request_id desc;", nativeQuery = true)
+    public List<QuotationRequest> getExpiredQuotations();
+
+    // get ending quotations
+    @Query(value = "select * from sampathproducts.request_quotation where (CURDATE() between DATE_ADD(request_created_date, INTERVAL (request_validity - 3) DAY) AND DATE_ADD(request_created_date, INTERVAL request_validity DAY)) and request_created=1 and request_deleted=0 order by request_id desc;", nativeQuery = true)
+    public List<QuotationRequest> getEndingQuotations();
+
+    // get valid quotations
+    @Query(value = "select * from sampathproducts.request_quotation where (DATE_ADD(request_created_date, Interval (request_validity-3) DAY) > CURDATE()) and request_created=1 and request_deleted=0 order by request_id desc;", nativeQuery = true)
+    public List<QuotationRequest> getvalidQuotations();
 }
