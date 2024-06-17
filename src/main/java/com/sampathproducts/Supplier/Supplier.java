@@ -77,6 +77,9 @@ public class Supplier {
     @Column(name = "supplier_deleted") // Mapping from "supplier_details" entity column "supplier_deleted"
     private Integer supplier_deleted;
 
+    @Column(name = "supplier_agreement") // Mapping from "supplier_details" entity column "supplier_agreement"
+    private Integer supplier_agreement;
+
     @OneToOne
     @JoinColumn(name = "supplier_area_id", referencedColumnName = "area_id") // mapping "area_id" from "area"
     private Area supplier_area_id;

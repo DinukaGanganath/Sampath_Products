@@ -22,6 +22,12 @@ function createJson(eleid, parentEle, idVal){
                     case "input": 
                         if(attr.type == 'date'){
                             oneProperty.push(attr.id, attr.value+'T00:00');
+                        }else if(attr.type == 'checkbox'){
+                            if(attr.checked){
+                                oneProperty.push(attr.id, 1);
+                            }else{
+                                oneProperty.push(attr.id, 0);
+                            }
                         }else if(attr.classList.contains("optVal")){
                             var attrVal = attr.getAttribute('value');
                             oneProperty.push(attr.id, JSON.parse(attrVal));

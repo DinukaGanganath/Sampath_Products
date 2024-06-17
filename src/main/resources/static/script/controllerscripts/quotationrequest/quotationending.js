@@ -14,8 +14,7 @@ var jsonList = [
     },
     {
         "str" : "Requested",
-        "url" : "/requestedquot",
-        "status" : "active",
+        "url" : "/requestedquot"
     },
     {
         "str" : "Valid",
@@ -24,6 +23,7 @@ var jsonList = [
     {
         "str" : "Ending",
         "url" : "/endingquot",
+        "status" : "active"
     },
     {
         "str" : "Expired",
@@ -37,7 +37,7 @@ let currentPage = 1;
 loadTable();
 
 function loadTable(){
-    fetch("/request/findall/requested")
+    fetch("/request/findall/ending")
     .then(function(response){
         return response.json();
     })
@@ -95,19 +95,22 @@ function setDataSet(pagDataList){
     let currentDate = new Date().toJSON().slice(0, 10)
     var out ="";
     for(let request of pagDataList){
+                                        /*<th scope="col">Request Code</th>
+										<th scope="col">Supplier</th>
+										<th scope="col">Material</th>
+										<th scope="col">Created Date</th>
+										<th scope="col">Validity Period</th>
+										<th scope="col">Units</th>
+										<th scope="col">Price</th>*/
         out += `
             <tr id=`+ request.request_id +`>
                 <td id="request_code">${request.request_code}</td>
                 <td id="supplier_id">${request.supplier_id.supplier_business_name.replaceAll('_', ' ')}</td>
-                <td id="supplier_code" class='avoid'>${request.supplier_id.supplier_code}</td>
                 <td id="material_name" class='avoid'>${request.supplier_id.supplier_material_id.material_name.replaceAll('_',' ')}</td>
-                <td id="request_date">${request.request_date.split('T')[0]}</td>
-                <td></td>
-                <td>
-                    <div id="basicBtn" style="display:flex">
-                        <button class="btnEdit" onclick='addQuotation(` + JSON.stringify(request) + `, this)'>Add Quotation</button>
-                    </div>
-                </td>
+                <td id="request_date">${request.request_created_date.split('T')[0]}</td>
+                <td id="request_validity">${request.request_validity}</td>
+                <td id="material_units">${request.request_units + request.supplier_id.supplier_material_id.material_unit}</td>
+                <td id="request_price">${request.request_price}</td>
             </tr>
         `;
     }
@@ -126,13 +129,13 @@ function loadNext(){
 
 function showForm(){
 
-    $("#material_tab tbody").prepend("<tr><td></td><td id='supplier'></td><td id='supplier_code'></td><td id= 'material'></td><td id='date'></td><td></td><td id= 'newAddBtn' onclick=requestQuotation()></td></tr>");
+    $("#material_tab tbody").prepend("<tr><td></td><td id='supplier'></td><td id='supplier_code'></td><td id= 'material'></td><td id='date'></td><td id= 'newAddBtn' onclick=requestQuotation()></td></tr>");
 
     var inputFieldData = document.getElementById("supplier");
     var inputField = document.createElement("select");
     inputField.id = "supplier_id";
     inputFieldData.appendChild(inputField);
-    loadOptionVal("/supplier/findall/quotation", "supplier_id", "supplier_business_name", "Supplier");
+    loadOptionVal("/supplier/findall/exist", "supplier_id", "supplier_business_name", "Supplier");
     
     document.getElementById('supplier_id').onchange = function (){
         var sup = JSON.parse(document.getElementById('supplier_id').value);
@@ -177,11 +180,6 @@ function addQuotation(object){
     document.getElementById("material_name_form").value = object.supplier_id.supplier_material_id.material_name.replaceAll('_',' ');
     document.getElementById("unit").innerHTML = object.supplier_id.supplier_material_id.material_unit.replaceAll('_',' ');
 
-    if(object.supplier_id.supplier_agreement == 0){
-        document.getElementById("valid_days").value = 1;
-        document.getElementById("valid_days").setAttribute("disabled","disabled");
-    }
-
     document.getElementById("btnQuotaionSubmit").addEventListener("click", function(){
         object.request_created = 1;
         object.request_units = document.getElementById("request_units").value;
@@ -189,6 +187,7 @@ function addQuotation(object){
         object.request_validity = document.getElementById("valid_days").value;
         object.request_created_date = document.getElementById("quotation_date").value + 'T00:00:00';
         object.request_deleted = 0;
+
 
         restFunction('/request/edit', object, "PUT", "/requestedquot", "Quotation Request");
     })

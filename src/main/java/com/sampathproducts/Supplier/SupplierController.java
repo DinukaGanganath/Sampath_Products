@@ -82,6 +82,12 @@ public class SupplierController {
         return dao.getExistingSupplier();
     }
 
+    // get database quotation makeable values as json data
+    @GetMapping(value = "/supplier/findall/quotation", produces = "application/json")
+    public List<Supplier> findAllQuotationSupplier() {
+        return dao.getQuotationSupplier();
+    }
+
     // Save a Supplier with post method
     @PostMapping(value = "/supplier/save")
     public String save(@RequestBody Supplier supplier) {

@@ -20,6 +20,34 @@ public class RequestController {
     private RequestDao dao;
 
     // create mapping ui
+    @RequestMapping(value = "/quotation")
+    public ModelAndView quotationUI() {
+        ModelAndView viewRequest = new ModelAndView();
+        viewRequest.setViewName("QuotationRequest/Quotation.html");
+        return viewRequest;
+    }
+
+    @RequestMapping(value = "/validquot")
+    public ModelAndView quotationvalidUI() {
+        ModelAndView viewRequest = new ModelAndView();
+        viewRequest.setViewName("QuotationRequest/QuotationValid.html");
+        return viewRequest;
+    }
+
+    @RequestMapping(value = "/expiredquot")
+    public ModelAndView quotationExpiredUI() {
+        ModelAndView viewRequest = new ModelAndView();
+        viewRequest.setViewName("QuotationRequest/QuotationExpired.html");
+        return viewRequest;
+    }
+
+    @RequestMapping(value = "/endingquot")
+    public ModelAndView quotationEndingUI() {
+        ModelAndView viewRequest = new ModelAndView();
+        viewRequest.setViewName("QuotationRequest/QuotationEnding.html");
+        return viewRequest;
+    }
+
     @RequestMapping(value = "/requestedquot")
     public ModelAndView requestUI() {
         ModelAndView viewRequest = new ModelAndView();
@@ -55,6 +83,16 @@ public class RequestController {
     @GetMapping(value = "/request/findall/valid", produces = "application/json")
     public List<Request> validRequests() {
         return dao.getvalidQuotations();
+    }
+
+    @GetMapping(value = "/request/findall/ending", produces = "application/json")
+    public List<Request> endingRequests() {
+        return dao.getEndingQuotations();
+    }
+
+    @GetMapping(value = "/request/findall/expired", produces = "application/json")
+    public List<Request> expiredRequests() {
+        return dao.getExpiredQuotations();
     }
 
     // Save a Request with post method

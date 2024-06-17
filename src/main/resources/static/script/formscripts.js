@@ -81,7 +81,12 @@ function objectToForm(formId, jsonObj, objValList) {
                     var parts = dateTimeString.split("T");
                     var TPart = parts[0];
                     inputField.value = TPart;
-                    
+                }else if(inputField.type == 'checkbox'){
+                    if(jsonObj[key] == 1){
+                        inputField.checked = true;
+                    }else{
+                        inputField.checked = false;
+                    }       
                 }else if(typeof(jsonObj[key]) != 'string' && jsonObj[key] != null){
                     console.log(jsonObj);
                     console.log(key);

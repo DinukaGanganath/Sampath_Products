@@ -12,6 +12,10 @@
 	</head>
 
 	<body>
+
+
+		<div id="overlay" class="hidden"></div>
+
 		<div class="container-fluid">
 			<div class="row">
 				<div class="column">
@@ -32,14 +36,25 @@
 					<div class="content">
 						<div class="head-title" id="heading">
 						</div>
+						<div id="parentDiv" style="text-align: center;">
+						
+						</div>
 						<div class="table-container">
-							<table class="table table-striped">
+							<button class="addBtn" onclick="showForm()">
+								<a>
+									Add
+								</a>
+							</button>
+							<table class="table table-striped" id="material_tab">
 								<thead>
 									<tr>
-										<th scope="col">Material Name</th>
-										<th scope="col">Material Code</th>
-										<th scope="col">Material Stock Qty</th>
-										<th scope="col"></th>
+										<th scope="col">Request Code</th>
+										<th scope="col">Supplier</th>
+										<th scope="col">Material</th>
+										<th scope="col">Created Date</th>
+										<th scope="col">Validity Period</th>
+										<th scope="col">Units</th>
+										<th scope="col">Price</th>
 									</tr>
 								</thead>
 								<tbody id="data-output">
@@ -63,9 +78,7 @@
 									</div>
 								</div>  
 							</div>
-							<div class="rightCorner">
-								<a style="text-align: right; color: black; float: right;" href="/material">Material Data</a>
-							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -76,9 +89,10 @@
 		<script type="text/javascript" src="script/restfunction.js"></script>
 		<script type="text/javascript" src="script/formscripts.js"></script>
 		<script type="text/javascript" src="script/objects.js"></script>
+		<script type="text/javascript" src="script/topnavbar.js"></script>
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="fontawesome/js/all.js"></script>
-		<script type="text/javascript" src="script/controllerscripts/material/materialdeleted.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/quotationrequest/quotationending.js"></script>
 
 	</body>
 
