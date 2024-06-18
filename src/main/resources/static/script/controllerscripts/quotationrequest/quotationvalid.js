@@ -109,7 +109,7 @@ function setDataSet(pagDataList){
                 <td id="material_name" class='avoid'>${request.supplier_id.supplier_material_id.material_name.replaceAll('_',' ')}</td>
                 <td id="request_date">${request.request_created_date.split('T')[0]}</td>
                 <td id="request_validity">${request.request_validity}</td>
-                <td id="material_units">${request.request_units + request.supplier_id.supplier_material_id.material_unit}</td>
+                <td id="material_units">${request.request_units + " " +request.supplier_id.supplier_material_id.material_unit}</td>
                 <td id="request_price">${request.request_price}</td>
             </tr>
         `;

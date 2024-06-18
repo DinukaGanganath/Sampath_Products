@@ -20,7 +20,7 @@ public interface SupplierDao extends JpaRepository<Supplier, Integer> {
     public List<Supplier> getExistingSupplier();
 
     // get supplier better to make quotation
-    @Query(value = "select * from sampathproducts.supplier_details where supplier_id not in (select supplier_id from sampathproducts.request_quotation where (DATE_ADD(request_created_date, Interval (request_validity-3) DAY) > CURDATE()) and request_created=1 and request_deleted=0 order by request_id desc);", nativeQuery = true)
+    @Query(value = "select * from sampathproducts.supplier_details where supplier_id not in (select supplier_id from sampathproducts.request_quotation where ((DATE_ADD(request_created_date, Interval (request_validity-3) DAY) > CURDATE()) and request_created=1 and request_deleted=0) or (request_created=0) order by request_id desc);", nativeQuery = true)
     public List<Supplier> getQuotationSupplier();
 
 }

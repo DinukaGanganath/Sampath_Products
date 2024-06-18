@@ -160,6 +160,38 @@ function requestQuotation(){
     var request = {};
     request.supplier_id = supplier;
     request.request_date = requestDate + 'T00:00:00';
+    request.request_deleted = 0;
+
+    fetch("/request/findall/created")
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(quotations){
+        for(var quotation of quotations){
+            if(quotation.supplier_id.supplier_business_name == request.supplier_id.supplier_business_name.replaceAll("_", " ")){
+                var obj = quotation;
+                obj.request_deleted = 1;
+
+                $.ajax("/request/edit", {
+                    async : false,
+                    type : "PUT",
+                    data : JSON.stringify(obj),
+                    contentType: 'application/json',
+            
+                    success : function (data, status, xhr){
+                        console.log("success " + status + " " + xhr);
+                        responseStatus = data;
+                        console.log(responseStatus);
+                    },
+            
+                    error : function (xhr, status, errormsg){
+                        console.log("fail " + errormsg + " " + status +" " + xhr);
+                        responseStatus = errormsg;
+                    },
+                });
+            }
+        }
+    });
 
     restFunction('/request/save', request, "POST", "/requestedquot", "Quotation Request");
 }
