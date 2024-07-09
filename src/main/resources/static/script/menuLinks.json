@@ -20,6 +20,11 @@
         "text": "Quotations"
     },
     {
+        "link": "/purchaseorder",
+        "icon": "fa-solid fa-sheet-plastic icon",
+        "text": "Purchases"
+    },
+    {
         "link": "/product",
         "icon": "fa-solid fa-box-archive icon",
         "text": "Products"

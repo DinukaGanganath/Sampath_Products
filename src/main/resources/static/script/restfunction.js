@@ -1,3 +1,4 @@
+// handle the data sets with different URL used
 function restFunction(url, object, method, loadAfter, objectType){
     
     let responseStatus;
@@ -40,4 +41,23 @@ function restFunction(url, object, method, loadAfter, objectType){
         console.log(responseStatus);
         alert('Some Errors has Occured...');
     }
+}
+
+// get the array of records for given url
+function getRecords(url, attr){
+
+    var array=[];
+    fetch(url)
+    .then(function(response){
+        return response.json();
+    }).then(function(objs){
+        for(var obj of objs){
+            array.push(obj[attr]);
+        }
+    });
+    console.log(array);
+    console.log(array.length);
+    return array;
+
+    
 }

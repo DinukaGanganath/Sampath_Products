@@ -5,8 +5,7 @@ sidebarLoader("/material");
 var jsonList = [
     {
         "str" : "Types",
-        "url" : "/material",
-        "status" : "active"
+        "url" : "/material"
     },
     {
         "str" : "Needed",
@@ -18,7 +17,8 @@ var jsonList = [
     },
     {
         "str" : "Recieved",
-        "url" : "/materialreceived"
+        "url" : "/materialreceived",
+        "status" : "active"
     }
 ]
 createThinLongDiv(jsonList);

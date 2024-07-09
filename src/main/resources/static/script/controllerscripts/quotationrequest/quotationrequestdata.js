@@ -34,6 +34,7 @@ createThinLongDiv(jsonList);
 
 let currentPage = 1;
 
+//load table values
 loadTable();
 
 function loadTable(){
@@ -66,6 +67,7 @@ function loadTable(){
     })
 }
 
+// pagination vizualize
 function visualizePag(pageNo){
     if(currentPage == 1 && pageNo != 1){
         document.getElementById("pagLeftBtn").style.display = "none";
@@ -90,7 +92,7 @@ function visualizePag(pageNo){
     }
 }
 
-
+// innre tbody create
 function setDataSet(pagDataList){
     let currentDate = new Date().toJSON().slice(0, 10)
     var out ="";
@@ -114,6 +116,7 @@ function setDataSet(pagDataList){
     return out;
 }
 
+// pages directions
 function loadPrevious(){
     currentPage--;
     loadTable();
@@ -124,6 +127,7 @@ function loadNext(){
     loadTable();
 }
 
+// value add form
 function showForm(){
 
     $("#material_tab tbody").prepend("<tr><td></td><td id='supplier'></td><td id='supplier_code'></td><td id= 'material'></td><td id='date'></td><td></td><td id= 'newAddBtn' onclick=requestQuotation()></td></tr>");
@@ -152,6 +156,7 @@ function showForm(){
     buttonFieldData.appendChild(buttonField);
 }
 
+// request quotation button
 function requestQuotation(){
      
     var supplier = JSON.parse(document.getElementById('supplier_id').value);
@@ -196,6 +201,7 @@ function requestQuotation(){
     restFunction('/request/save', request, "POST", "/requestedquot", "Quotation Request");
 }
 
+// add quotaion button
 function addQuotation(object){
 
     console.log(object);

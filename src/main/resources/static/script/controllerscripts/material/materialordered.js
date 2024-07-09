@@ -5,8 +5,7 @@ sidebarLoader("/material");
 var jsonList = [
     {
         "str" : "Types",
-        "url" : "/material",
-        "status" : "active"
+        "url" : "/material"
     },
     {
         "str" : "Needed",
@@ -14,7 +13,8 @@ var jsonList = [
     },
     {
         "str" : "Ordered",
-        "url" : "/materialordered"
+        "url" : "/materialordered",
+        "status" : "active"
     },
     {
         "str" : "Recieved",

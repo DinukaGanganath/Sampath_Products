@@ -2,6 +2,7 @@
 initLayout("Quotation", "Quotation Details");
 sidebarLoader("/quotation");
 
+
 //submenu created
 var jsonList = [
     {
@@ -36,6 +37,7 @@ let currentPage = 1;
 
 loadTable();
 
+// table value load
 function loadTable(){
     fetch("/request/findall/created")
     .then(function(response){
@@ -66,6 +68,7 @@ function loadTable(){
     })
 }
 
+// show paginations
 function visualizePag(pageNo){
     if(currentPage == 1 && pageNo != 1){
         document.getElementById("pagLeftBtn").style.display = "none";
@@ -90,14 +93,23 @@ function visualizePag(pageNo){
     }
 }
 
-
+// data set creaing
 function setDataSet(pagDataList){
+    
+    var valid = getRecords("/request/findall/valid", "request_code");
+    var expired = getRecords("/request/findall/expired", "request_code");
+    var ending = getRecords("/request/findall/ending", "request_code");
+    var requested = getRecords("/request/findall/requested", "request_code");
+
+    var quotClass = "";
+
     let currentDate = new Date().toJSON().slice(0, 10)
     var out ="";
     for(let request of pagDataList){
+        
                                     
         out += `
-            <tr id=`+ request.request_id +`>
+            <tr id=`+ request.request_id +` class = ${quotClass}>
                 <td id="request_code">${request.request_code}</td>
                 <td id="supplier_id">${request.supplier_id.supplier_business_name.replaceAll('_', ' ')}</td>
                 <td id="material_name" class='avoid'>${request.supplier_id.supplier_material_id.material_name.replaceAll('_',' ')}</td>
@@ -111,6 +123,7 @@ function setDataSet(pagDataList){
     return out;
 }
 
+// load pagination pages
 function loadPrevious(){
     currentPage--;
     loadTable();
@@ -121,6 +134,7 @@ function loadNext(){
     loadTable();
 }
 
+// add form appear
 function showForm(){
 
     $("#material_tab tbody").prepend("<tr><td></td><td id='supplier'></td><td id='supplier_code'></td><td id= 'material'></td><td id='date'></td><td id= 'newAddBtn' onclick=requestQuotation()></td></tr>");
@@ -149,6 +163,7 @@ function showForm(){
     buttonFieldData.appendChild(buttonField);
 }
 
+// request  a quotation
 function requestQuotation(){
      
     var supplier = JSON.parse(document.getElementById('supplier_id').value);
@@ -161,6 +176,7 @@ function requestQuotation(){
     restFunction('/request/save', request, "POST", "/requestedquot", "Quotation Request");
 }
 
+// add a quotation
 function addQuotation(object){
 
     console.log(object);

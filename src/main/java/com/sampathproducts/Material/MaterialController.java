@@ -41,6 +41,13 @@ public class MaterialController {
         return viewMaterialAdd;
     }
 
+    @RequestMapping(value = "/materialneed")
+    public ModelAndView materialNeedUI() {
+        ModelAndView viewMaterialAdd = new ModelAndView();
+        viewMaterialAdd.setViewName("Material/MaterialNeed.html");
+        return viewMaterialAdd;
+    }
+
     // get database values as json data
     @GetMapping(value = "/materials/findall", produces = "application/json")
     public List<Material> findAll() {

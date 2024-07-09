@@ -1,0 +1,141 @@
+<html>
+	<head>
+		
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="fontawesome/css/all.css" />
+		<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
+		<link rel="stylesheet" href="style/sidenavbarstyles.css" />
+		<link rel="stylesheet" href="style/tablestyles.css" />
+		<link rel="stylesheet" href="style/formstyles.css" />
+		<link rel="stylesheet" href="style/contentstyles.css" />
+		<link rel="icon" href="images/logo_white.png">
+		
+		
+	</head>
+	
+	<body>
+		<div id="context-menu">
+			<div class="item" id="context_view" onclick="viewQuotation()">
+				<i class="fa-solid fa-eye"></i>
+				View
+			</div>
+			<div class="item" id="context_edit" onclick="editQuotation()">
+				<i class="fa-solid fa-pencil"></i>
+				Edit
+			</div>
+			<div class="item" id="context_delete" onclick="deleteQuotation()">
+				<i class="fa-solid fa-trash"></i>
+				Delete
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="column">
+					<div class="mobile-icon">
+						<i class="fa-solid fa-bars mob-icon" onclick="mobMenuToggle()"></i>
+						<div class="part">
+							<img class="mob-image" src="images/logo_white.png" alt="logo"/>
+							<h5 class="name mob-header">Sampath Products</h5>
+						</div>
+					</div>
+				</div>
+				<div class="column" id="sidebarContainer">
+					
+				</div>
+				
+			  
+				<div class="content-container">
+
+					<div class="content">
+						
+						<div class="head-title" id="heading">
+							
+						</div>
+						
+						<div id="parentDiv" style="text-align: center;">
+						
+						</div>
+
+						
+						<div class="table-container">
+							<div class="details personal">
+								<span class="title">Purchase Order Details</span>
+								<div class="fields">
+									<div class="input-field">
+										<label for="material">Material name</label>
+										<select id="material" placeholder="select From the list" onchange="loadQuotationList()">
+										</select>
+									</div>
+									<div class="input-field">
+										<label for="needed">Needed Quantity</label>
+										<div style="display:flex">
+											<input type="text" id="needed" disabled>
+											<label for="needed" class="unit"></label>
+										</div>
+									</div>
+									<div class="input-field">
+										<label for="ordered">Ordered Quantity</label>
+										<div style="display:flex">
+											<input type="text" id="ordered" disabled>
+											<label for="ordered" class="unit"></label>
+										</div>
+									</div>
+									<div class="input-field">
+										<label for="astement">Astement Price</label>
+										<div style="display:flex">
+											<label for="astement">Rs. </label>
+											<input type="text" id="astement" disabled>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div style="overflow-y:scroll; height:55%">
+								<span class="title">Valid Quotations</span>
+								<table class="table table-striped" >
+									<thead>
+									<tr>
+										<th scope="col">Supplier</th>
+										<th scope="col">Quantity Ready</th>
+										<th scope="col">Unit Price</th>
+										<th scope="col">Ordering Qty</th>
+										<th scope="col">Price</th>
+										<th></th>
+									</tr>
+									</thead>
+									<tbody id="data-output" class="tableValid" style="background: #00ff00aa;">
+
+									</tbody>					
+								</table>
+								<span class="title">Ending Quotations</span>
+								<table class="table table-striped" >
+									<thead>
+										<th scope="col">Supplier</th>
+										<th scope="col">Quantity Ready</th>
+										<th scope="col">Unit Price</th>
+										<th scope="col">Ordering Qty</th>
+										<th scope="col">Price</th>
+										<th></th>
+									</thead>
+									<tbody id="data-output" class="tableEnding" style="background: #ffff00aa;">
+
+									</tbody>					
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="script/sidebarscripts.js"></script>
+		<script type="text/javascript" src="script/formscripts.js"></script>
+		<script type="text/javascript" src="script/tablescript.js"></script>
+		<script type="text/javascript" src="script/restfunction.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="fontawesome/js/all.js"></script>
+		<script type="text/javascript" src="script/objects.js"></script>
+		<script type="text/javascript" src="script/topnavbar.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/purchaseorder/purchaseorder.js"></script>
+		<script type="text/javascript" src="script/jquery.js"></script>
+		  
+	</body>
+</html>

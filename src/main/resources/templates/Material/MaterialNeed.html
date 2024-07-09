@@ -1,0 +1,200 @@
+<html>
+	<head>
+		
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="fontawesome/css/all.css" />
+		<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
+		<link rel="stylesheet" href="style/formstyles.css" />
+		<link rel="stylesheet" href="style/sidenavbarstyles.css" />
+		<link rel="stylesheet" href="style/tablestyles.css" />
+		<link rel="stylesheet" href="style/contentstyles.css" />
+		<link rel="icon" href="images/logo_white.png">
+		
+		
+	</head>
+	
+	<body>
+		<div id="context-menu">
+			<div class="form-container" style="display:flex">
+				<form action="#" class="" id="quotationRequestForm" onsubmit="return false" style="padding: 10px; width: 50%">
+					<div class="formcls">
+						<div class="details personal">
+							<span class="title">General Details</span>
+							<div class="fields">
+								<div class="input-fieldhalf">
+									<label for="employee_id">Employee ID</label>
+									<select id="employee_id" placeholder="select From the list" required>
+									</select>
+								</div>
+								<div class="input-fieldhalf">
+									<label for="user_email">User Email</label>
+									<input id="user_email" class="valEmail" type="text" placeholder="Enter your email" required/>
+									<label class="validMessage"></label>
+								</div>
+								<div class="input-fieldfull">
+									<label for="user_name">User Name</label>
+									<input id="user_name"  type="text" placeholder="Enter your name" required />
+									<label class="validMessage"></label>
+								</div>
+								<div class="input-fieldhalf">
+									<label for="user_password">Password</label>
+									<input id="user_password" class="valPassword" type="password" placeholder="Enter Password" required/>
+									<label class="validMessage"></label>
+								</div>
+								<div class="input-fieldhalf">
+									<label for="user_confirmPwd">Confirm Password</label>
+									<input id="user_confirmPwd" type="password" class="valRePassword avoid" placeholder="Re-enter Password" onkeyup="checkEquality('user_password', 'user_confirmPwd', 'Passwords you entered are different')">
+									<label class="validMessage"></label>
+								</div> <br />
+								<div class="input-fieldfull">
+									<label for="user_status">User Active</label>
+									<div style="display:flex;">
+										<input id="user_status" type="checkbox" onchange="changeText();" style="width:20px; margin-right: 100px "/>
+										<div id="checkText" style="padding-top : 5px"></div>
+									</div>
+									<label class="validMessage"></label>
+								</div>
+								<div class="input-fieldfull">
+									<label for="user_photopath">User Image</label>
+									<input id="user_photopath" type="file">
+									<label class="validMessage"></label>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</form>
+				<form action="#" class="" id="quotationAddForm" onsubmit="return false" style="padding: 10px;width: 50%">
+					<div class="formcls">
+						<div class="details personal">
+							<span class="title">General Details</span>
+							<div class="fields">
+								<div class="input-fieldhalf">
+									<label for="employee_id">Employee ID</label>
+									<select id="employee_id" placeholder="select From the list" required>
+									</select>
+								</div>
+								<div class="input-fieldhalf">
+									<label for="user_email">User Email</label>
+									<input id="user_email" class="valEmail" type="text" placeholder="Enter your email" required/>
+									<label class="validMessage"></label>
+								</div>
+								<div class="input-fieldfull">
+									<label for="user_name">User Name</label>
+									<input id="user_name"  type="text" placeholder="Enter your name" required />
+									<label class="validMessage"></label>
+								</div>
+								<div class="input-fieldhalf">
+									<label for="user_password">Password</label>
+									<input id="user_password" class="valPassword" type="password" placeholder="Enter Password" required/>
+									<label class="validMessage"></label>
+								</div>
+								<div class="input-fieldhalf">
+									<label for="user_confirmPwd">Confirm Password</label>
+									<input id="user_confirmPwd" type="password" class="valRePassword avoid" placeholder="Re-enter Password" onkeyup="checkEquality('user_password', 'user_confirmPwd', 'Passwords you entered are different')">
+									<label class="validMessage"></label>
+								</div> <br />
+								<div class="input-fieldfull">
+									<label for="user_status">User Active</label>
+									<div style="display:flex;">
+										<input id="user_status" type="checkbox" onchange="changeText();" style="width:20px; margin-right: 100px "/>
+										<div id="checkText" style="padding-top : 5px"></div>
+									</div>
+									<label class="validMessage"></label>
+								</div>
+								<div class="input-fieldfull">
+									<label for="user_photopath">User Image</label>
+									<input id="user_photopath" type="file">
+									<label class="validMessage"></label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="column">
+					<div class="mobile-icon">
+						<i class="fa-solid fa-bars mob-icon" onclick="mobMenuToggle()"></i>
+						<div class="part">
+							<img class="mob-image" src="images/logo_white.png" alt="logo"/>
+							<h5 class="name mob-header">Sampath Products</h5>
+						</div>
+					</div>
+				</div>
+				<div class="column" id="sidebarContainer">
+					
+				</div>
+				
+			  
+				<div class="content-container">
+
+					<div class="content">
+						
+						<div class="head-title" id="heading">
+							
+						</div>
+						
+						<div id="parentDiv" style="text-align: center;">
+						
+						</div>
+
+						<div class="table-container">
+							<button class="addBtn">
+								<a href="/quotationadd">
+									Add
+								</a>
+							</button>
+							<table class="table table-striped">
+								<thead>
+								<tr>
+									<th scope="col">Material</th>
+									<th scope="col">Needed Quantity</th>
+									<th scope="col">Store Quantity</th>
+									<th scope="col">Extra Quantity</th>
+									<th scope="col">Quantity to Ordered</th>
+								</tr>
+								</thead>
+								<tbody id="data-output">
+
+								</tbody>
+													
+							</table>
+						</div>
+						<div class="paginationFooter">
+							<div class="leftCorner">
+								<div class="container">
+									<div id="pagLeftBtn" class="half-circle left pagBtn" onclick="loadPrevious()">
+										<span class="button-label">
+											<i class="icon fa-solid fa-chevron-left" style="height: 20px;"></i>
+										</span>
+									</div>
+									<div id="pagMiddle"></div>
+									<div id="pagRightBtn" class="half-circle right pagBtn" onclick="loadNext()">
+										<span class="button-label">
+											<i class="icon fa-solid fa-chevron-right" style="height: 20px;"></i>
+										</span>
+									</div>
+								</div>  
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="script/sidebarscripts.js"></script>
+		<script type="text/javascript" src="script/formscripts.js"></script>
+		<script type="text/javascript" src="script/tablescript.js"></script>
+		<script type="text/javascript" src="script/restfunction.js"></script>
+		<script type="text/javascript" src="script/topnavbar.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="fontawesome/js/all.js"></script>
+		<script type="text/javascript" src="script/objects.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/material/materialneed.js"></script>
+		<script type="text/javascript" src="script/jquery.js"></script>
+		  
+	</body>
+</html>
