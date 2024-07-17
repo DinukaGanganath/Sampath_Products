@@ -3,18 +3,14 @@ initLayout("Quotation", "Quotation Details");
 sidebarLoader("/quotation");
 
 //submenu created
-var jsonList = [
+var jsonList = [   
     {
-        "str" : "Create",
-        "url" : "/createquot"
+        "str" : "Requested",
+        "url" : "/requestedquot"
     },
     {
         "str" : "All",
         "url" : "/quotation"
-    },
-    {
-        "str" : "Requested",
-        "url" : "/requestedquot"
     },
     {
         "str" : "Valid",

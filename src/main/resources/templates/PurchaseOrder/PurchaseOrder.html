@@ -61,29 +61,36 @@
 							<div class="details personal">
 								<span class="title">Purchase Order Details</span>
 								<div class="fields">
-									<div class="input-field">
+									<div class="input-fieldshort">
 										<label for="material">Material name</label>
 										<select id="material" placeholder="select From the list" onchange="loadQuotationList()">
 										</select>
 									</div>
-									<div class="input-field">
+									<div class="input-fieldshort">
 										<label for="needed">Needed Quantity</label>
 										<div style="display:flex">
 											<input type="text" id="needed" disabled>
 											<label for="needed" class="unit"></label>
 										</div>
 									</div>
-									<div class="input-field">
+									<div class="input-fieldshort">
 										<label for="ordered">Ordered Quantity</label>
 										<div style="display:flex">
 											<input type="text" id="ordered" disabled>
 											<label for="ordered" class="unit"></label>
 										</div>
 									</div>
-									<div class="input-field">
+									<div class="input-fieldshort">
+										<label for="difference">Quantity Difference</label>
+										<div style="display:flex">
+											<input type="text" id="difference" disabled>
+											<label for="difference" class="unit"></label>
+										</div>
+									</div>
+									<div class="input-fieldshort">
 										<label for="astement">Astement Price</label>
 										<div style="display:flex">
-											<label for="astement">Rs. </label>
+											<label for="astement" class="currency">Rs. </label>
 											<input type="text" id="astement" disabled>
 										</div>
 									</div>
@@ -118,7 +125,14 @@
 									</thead>
 									<tbody id="data-output" class="tableEnding" style="background: #ffff00aa;">
 
-									</tbody>					
+									</tbody>
+									<tfoot>
+										<button class="addBtn" onclick="createOrder()">
+											<a>
+												Create Order
+											</a>
+										</button>
+									</tfoot>					
 								</table>
 							</div>
 						</div>

@@ -6,17 +6,13 @@ sidebarLoader("/quotation");
 //submenu created
 var jsonList = [
     {
-        "str" : "Create",
-        "url" : "/createquot"
+        "str" : "Requested",
+        "url" : "/requestedquot"
     },
     {
         "str" : "All",
         "url" : "/quotation",
         "status" : "active",
-    },
-    {
-        "str" : "Requested",
-        "url" : "/requestedquot"
     },
     {
         "str" : "Valid",

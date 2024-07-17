@@ -3,8 +3,6 @@ package com.sampathproducts.PurchaseOrder;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,13 +17,6 @@ public class PurchaseOrderController {
     @Autowired
     private PurchaseOrderDao dao;
 
-    /*
-     * public PurchaseOrderController(PurchaseOrderDao dao) {
-     * this.dao = dao;
-     * }
-     */
-
-    // create mapping ui
     @RequestMapping(value = "/purchaseorder")
     public ModelAndView purchaseorderUI() {
         ModelAndView viewPurchaseOrder = new ModelAndView();
@@ -63,8 +54,8 @@ public class PurchaseOrderController {
 
     // get database values as json data
     @GetMapping(value = "/purchaseorder/findall", produces = "application/json")
-    public List<PurchaseOrder> findAll() {
-        return dao.findAll(Sort.by(Direction.DESC, "purchaseorder_id"));
+    public List<PurchaseOrder> getAllData() {
+        return dao.findAll();
     }
 
     // get database values as json data

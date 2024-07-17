@@ -114,27 +114,45 @@ function loadNext(){
 
 function showForm(){
 
-    $("#material_tab tbody").prepend("<tr><td id= newItem><td></td></td><td id= extraQty></td><td id= newAddBtn onclick=saveMaterial()></td></tr>");
+    $("#material_tab tbody").prepend("<tr><td></td><td><select onChange=loadQuotation() id='material_id'></select></td><td><select id='supplier_id'><option selected disabled>Select Supplier</option></select></td><td id='qty'><input type='number' min=0 onchange=calculatePayment(this) /></td><td id='total'></td><td id='newAddBtn'></td></tr>");
 
-    var inputFieldData = document.getElementById("newItem");
-    var inputField = document.createElement("input");
-    inputField.type = "text";
-    inputField.id = "materialName";
-    inputFieldData.appendChild(inputField);
+    loadOptionVal("/materials/findall", "material_id", "material_name", "Material");
+}
 
-    var extraQtyData = document.getElementById("extraQty");
-    var extraQtyField = document.createElement("input");
-    extraQtyField.placeholder = "Ex: 50 kg";
-    extraQtyField.type = "text";
-    extraQtyField.id = "materialExtra";
-    extraQtyData.appendChild(extraQtyField);
+function calculatePayment(ele){
+    let qtyInput = document.getElementById('qty');
+    let previousSiblingVal = qtyInput.previousElementSibling.firstChild.value;
+    var obj = JSON.parse(previousSiblingVal);
 
-    var buttonFieldData = document.getElementById("newAddBtn");
-    var buttonField = document.createElement('button');
-    buttonField.innerHTML = 'Submit';
-    buttonField.className = 'btnEdit';
-    buttonField.id = 'buttonAdd';
-    buttonFieldData.appendChild(buttonField);
+    var unit_price = obj.request_price / obj.request_units;
+    console.log(unit_price);
+
+    document.getElementById('total').innerHTML = unit_price*ele.value;
+    
+
+
+    
+     
+}
+
+function loadQuotation(){
+    document.getElementById('supplier_id').innerHTML = '<option disabled selected>Select Supplier</option>';
+    fetch("/request/findall/created")
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(quotations){
+        let dropdown = document.querySelector("#supplier_id");
+        for(var val of quotations){
+            if(val.supplier_id.supplier_material_id.material_name == JSON.parse(document.getElementById('material_id').value).material_name){
+                var opt = document.createElement('option');
+                opt.innerHTML = val.supplier_id.supplier_name;
+                opt.value = JSON.stringify(val);
+                opt.class = "reqSupplier";
+                dropdown.appendChild(opt);
+            }
+        }
+    });
 }
 
 function saveMaterial(){

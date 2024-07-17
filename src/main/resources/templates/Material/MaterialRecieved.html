@@ -142,15 +142,20 @@
 						</div>
 
 						<div class="table-container">
-							
-							<table class="table table-striped">
+							<button class="addBtn" onclick="showForm()">
+								<a>
+									Add
+								</a>
+							</button>
+							<table class="table table-striped" id="material_tab">
 								<thead>
 								<tr>
+									<th scope="col">Recieve Note</th>
 									<th scope="col">Material</th>
 									<th scope="col">Supplier Bussiness</th>
-									<th scope="col">Quotation</th>
 									<th scope="col">Quantity</th>
-									<th scope="col">Price</th>
+									<th scope="col">Total</th>
+									<th></th>
 								</tr>
 								</thead>
 								<tbody id="data-output">
@@ -189,7 +194,7 @@
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="fontawesome/js/all.js"></script>
 		<script type="text/javascript" src="script/objects.js"></script>
-		<script type="text/javascript" src="script/controllerscripts/material/materialneed.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/material/materialrecieved.js"></script>
 		<script type="text/javascript" src="script/jquery.js"></script>
 		  
 	</body>
