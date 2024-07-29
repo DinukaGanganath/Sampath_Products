@@ -1,40 +1,28 @@
 <html>
-	<head>
-		
+
+	<head>		
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
 		<link rel="stylesheet" href="fontawesome/css/all.css" />
 		<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
 		<link rel="stylesheet" href="style/sidenavbarstyles.css" />
 		<link rel="stylesheet" href="style/formstyles.css" />
-		<link rel="stylesheet" href="style/tablestyles.css" />
 		<link rel="stylesheet" href="style/contentstyles.css" />
+		<link rel="stylesheet" href="style/tablestyles.css" />
 		<link rel="icon" href="images/logo_white.png">
-		
-		
 	</head>
-	
+
 	<body>
-		<div id="context-menu" onmouseout="hideContextMenu(event);">
-			<div class="item" id="context_view" onclick="viewCustomer()">
-				<i class="fa-solid fa-eye"></i>
-				View
-			</div>
-			<div class="item" id="context_edit" onclick="editCustomer()">
-				<i class="fa-solid fa-pencil"></i>
-				Edit
-			</div>
-			<div class="item" id="context_delete" onclick="deleteCustomer()">
-				<i class="fa-solid fa-trash"></i>
-				Delete
-			</div>
-		</div>
+
+
+		<div id="overlay" class="hidden"></div>
+
 		<div class="container-fluid">
 			<div class="row">
 				<div class="column">
 					<div class="mobile-icon">
 						<i class="fa-solid fa-bars mob-icon" onclick="mobMenuToggle()"></i>
 						<div class="part">
-							<img class="mob-image" src="images/logo_white.png" alt="logo"/>
+							<img class="mob-image" src="images/logo_white.png" alt="logo" />
 							<h5 class="name mob-header">Sampath Products</h5>
 						</div>
 					</div>
@@ -42,39 +30,32 @@
 				<div class="column" id="sidebarContainer">
 					
 				</div>
-				
-			  
+
 				<div class="content-container">
 
 					<div class="content">
-						
 						<div class="head-title" id="heading">
-							
 						</div>
 						<div id="parentDiv" style="text-align: center;">
 						
 						</div>
 						<div class="table-container">
-							<button class="addBtn">
-								<a href="/customeradd">
-									Add
-								</a>
-							</button>
-							<table class="table table-striped">
+							
+							<table class="table table-striped" id="material_tab">
 								<thead>
-								<tr>
-									<th scope="col">Customer Name</th>
-									<th scope="col">Customer Code</th>
-									<th scope="col">Contact No</th>
-									<th scope="col">Email</th>
-									<th scope="col">Business Name</th>
-									<th scope="col">City</th>
-								</tr>
+									<tr>
+										<th scope="col">Request Code</th>
+										<th scope="col">Supplier</th>
+										<th scope="col">Material</th>
+										<th scope="col">Created Date</th>
+										<th scope="col">Validity Period</th>
+										<th scope="col">Units</th>
+										<th scope="col">Price</th>
+									</tr>
 								</thead>
 								<tbody id="data-output">
 
 								</tbody>
-													
 							</table>
 						</div>
 						<div class="paginationFooter">
@@ -93,24 +74,22 @@
 									</div>
 								</div>  
 							</div>
-							<div class="rightCorner">
-								<a style="text-align: right; color: black; float: right;" href="/customerdeleted">Deleted Customers</a>
-							</div>
+							
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript" src="script/jquery.js"></script>
 		<script type="text/javascript" src="script/sidebarscripts.js"></script>
-		<script type="text/javascript" src="script/formscripts.js"></script>
-		<script type="text/javascript" src="script/tablescript.js"></script>
 		<script type="text/javascript" src="script/restfunction.js"></script>
+		<script type="text/javascript" src="script/formscripts.js"></script>
+		<script type="text/javascript" src="script/objects.js"></script>
 		<script type="text/javascript" src="script/topnavbar.js"></script>
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="fontawesome/js/all.js"></script>
-		<script type="text/javascript" src="script/objects.js"></script>
-		<script type="text/javascript" src="script/controllerscripts/customer/customerdata.js"></script>
-		<script type="text/javascript" src="script/jquery.js"></script>
-		  
+		<script type="text/javascript" src="script/controllerscripts/customerorder/customerorderexpired.js"></script>
+
 	</body>
+
 </html>

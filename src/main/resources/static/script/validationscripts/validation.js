@@ -189,7 +189,9 @@ function userConfirmation(obj){
                 }
             }
             
-            //console.log(document.querySelector(`#${key}`));
+            console.log(obj);
+            console.log(key);
+            console.log(document.querySelector(`#${key}`));
             var keyString = document.querySelector(`#${key}`).previousElementSibling.innerHTML;
             if(!document.querySelector(`#${key}`).classList.contains("avoid")){
                 if(keyString.includes("<")){

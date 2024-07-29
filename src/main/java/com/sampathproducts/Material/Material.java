@@ -33,16 +33,16 @@ public class Material {
                                                       // "material_details"
     private Integer material_deleted;
 
-    @Column(name = "material_has")
+    @Column(name = "material_has") // mappling the column "material_has" of table "material_details"
     private Integer material_has;
 
-    @Column(name = "material_want")
+    @Column(name = "material_want") // mappling the column "material_want" of table "material_details"
     private Integer material_want;
 
-    @Column(name = "material_unit")
+    @Column(name = "material_unit") // mappling the column "material_unit" of table "material_details"
     private String material_unit;
 
-    @Column(name = "material_extra")
+    @Column(name = "material_extra") // mappling the column "material_extra" of table "material_details"
     private Integer material_extra;
 
     @Column(name = "material_added_date") // mappling the column "material_added_date" of table "material_details"

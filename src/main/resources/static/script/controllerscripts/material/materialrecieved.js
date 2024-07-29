@@ -114,7 +114,7 @@ function loadNext(){
 
 function showForm(){
 
-    $("#material_tab tbody").prepend("<tr><td></td><td><select onChange=loadQuotation() id='material_id'></select></td><td><select id='supplier_id'><option selected disabled>Select Supplier</option></select></td><td id='qty'><input type='number' min=0 onchange=calculatePayment(this) /></td><td id='total'></td><td id='newAddBtn'></td></tr>");
+    $("#material_tab tbody").prepend("<tr><td></td><td><select onChange=loadQuotation() id='material_id'></select></td><td><select id='supplier_id'><option selected disabled>Select Supplier</option></select></td><td id='qty'><div style='display:flex'><input id='lineQty' type='number' min=0 onchange='calculatePayment(this);' style='width:50px' /><div id='lineUnit' style='padding-top:5px; padding-left:10px;'></div></div></td><td><input type='date' id='recievedDate' /></td><td id='total'></td><td id='newAddBtn'><button class='btnEdit' onclick='saveRecieved()'>Record</button></td></tr>");
 
     loadOptionVal("/materials/findall", "material_id", "material_name", "Material");
 }
@@ -124,15 +124,54 @@ function calculatePayment(ele){
     let previousSiblingVal = qtyInput.previousElementSibling.firstChild.value;
     var obj = JSON.parse(previousSiblingVal);
 
+    document.getElementById('lineUnit').innerHTML = obj.supplier_id.supplier_material_id.material_unit;
+    var date = new Date();
+    var month = (date.getMonth()+1)>9 ? date.getMonth()+1 : "0"+(date.getMonth()+1);
+    document.getElementById("recievedDate").max = date.getFullYear() + "-" + month + "-" + date.getDate();
+    document.getElementById("recievedDate").min = obj.request_created_date.split('T')[0];
+
     var unit_price = obj.request_price / obj.request_units;
     console.log(unit_price);
 
-    document.getElementById('total').innerHTML = unit_price*ele.value;
-    
+    document.getElementById('total').innerHTML = "Rs.  " + unit_price*ele.value;
+         
+}
+
+function saveRecieved(){
+    var object= {};
+
+    let qtyInput = document.getElementById('qty');
+    let previousSiblingVal = qtyInput.previousElementSibling.firstChild.value;
+    var obj = JSON.parse(previousSiblingVal);
+    var material = JSON.parse(document.getElementById('material_id').value);
+    material.material_has += parseInt(document.getElementById('lineQty').value);
+    object['request_id'] = obj;
+
+    object['recieve_note_qty'] = parseInt(document.getElementById('lineQty').value);
+    object['recieve_note_date'] = document.getElementById("recievedDate").value + "T00:00:00";
+    object['recieve_note_total'] = parseInt(document.getElementById("total").innerHTML.split(" ")[2]);
+
+    $.ajax("/material/edit", {
+        async : false,
+        type : "PUT",
+        data : JSON.stringify(material),
+        contentType: 'application/json',
+
+        success : function (data, status, xhr){
+            console.log("success " + status + " " + xhr);
+            responseStatus = data;
+            console.log(responseStatus);
+        },
+
+        error : function (xhr, status, errormsg){
+            console.log("fail " + errormsg + " " + status +" " + xhr);
+            responseStatus = errormsg;
+        },
+    });
+
+    restFunction('/recievenote/save', object, "POST", "/materialreceived", "Receive Note");
 
 
-    
-     
 }
 
 function loadQuotation(){
@@ -146,7 +185,7 @@ function loadQuotation(){
         for(var val of quotations){
             if(val.supplier_id.supplier_material_id.material_name == JSON.parse(document.getElementById('material_id').value).material_name){
                 var opt = document.createElement('option');
-                opt.innerHTML = val.supplier_id.supplier_name;
+                opt.innerHTML = val.supplier_id.supplier_business_name;
                 opt.value = JSON.stringify(val);
                 opt.class = "reqSupplier";
                 dropdown.appendChild(opt);

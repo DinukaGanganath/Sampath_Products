@@ -67,7 +67,7 @@
 										<div class="input-field">
 											<label for="product_unit_price">Product Price</label>
 											<div style="display:flex">
-												<div>Rs. </div>
+												<div style="padding-top:10px; padding-right:10px">Rs. </div>
 												<input id="product_unit_price" type="number" min="0" max="1000" step="0.01">
 											</div>
 											<label class="validMessage"></label>
@@ -75,12 +75,25 @@
 
 										<div class="input-field">
 											<label for="product_usable_time">Usable Time (in months)</label>
-											<input id="product_usable_time" type="text" value="" disabled>
+											<input id="product_usable_time" type="text" value="">
 											<label class="validMessage"></label>
 										</div>
 									</div>
 								</div>
-									<button onclick='listRestOperation("productAddForm", "productMaterialForm", ["input","select"], "Product")'>Submit</button>
+								
+								<span class="title">Material Details</span>
+								<table class="table table-striped" width="60%"> 
+									<thead>
+										<tr>
+											<th scope="col">Material Name</th>
+											<th scope="col">Unit Quantity</th>
+										</tr>
+									</thead>
+									<tbody id="data-output">
+	
+									</tbody>
+								</table>
+									<button onclick='createProduct();'>Submit</button>
 							</div>
 						</form>
 					</div>
@@ -91,7 +104,7 @@
 	<script type="text/javascript" src="script/sidebarscripts.js"></script>
 	<script type="text/javascript" src="script/objects.js"></script>
 	<script type="text/javascript" src="script/formscripts.js"></script>
-	<script type="text/javascript" src="script/tablescripts.js"></script>
+	<script type="text/javascript" src="script/tablescript.js"></script>
 	<script type="text/javascript" src="script/topnavbar.js"></script>
 	<script type="text/javascript" src="script/restfunction.js"></script>
 	<script type="text/javascript" src="script/manytomanyscripts.js"></script>

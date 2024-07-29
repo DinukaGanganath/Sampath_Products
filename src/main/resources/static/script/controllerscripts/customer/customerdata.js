@@ -5,6 +5,32 @@ sidebarLoader("/customer");
 //Create the table initial values
 dataLoadTable("/customer/findall/exist", ["customer_name","customer_code","customer_contact_no1","customer_email","customer_business_name",["customer_area_id","area_name"]],7);
 
+//submenu created
+var jsonList = [
+    {
+        "str" : "Customer",
+        "url" : "/customer",
+        "status" : "active",
+    },
+    {
+        "str" : "Order",
+        "url" : "/customerorder"
+    },
+    {
+        "str" : "Valid",
+        "url" : "/validcustomerorder"
+    },
+    {
+        "str" : "Ending",
+        "url" : "/endingcustomerorder",
+    },
+    {
+        "str" : "Expired",
+        "url" : "/expiredcustomerorder"
+    },
+]
+createThinLongDiv(jsonList);
+
 ////////////////////////// 
 ///// Customer View //////
 //////////////////////////

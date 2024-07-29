@@ -1,7 +1,7 @@
 var receivedData = JSON.parse(sessionStorage.getItem("dataToSend"));
 //console.log(receivedData);
 
-var idVal = [["customerid", `${receivedData["customerid"]}`], ["customer_code", `${receivedData["customer_code"]}`]];
+var idVal = [["customer_id", `${receivedData["customer_id"]}`], ["customer_code", `${receivedData["customer_code"]}`]];
 //console.log(idVal);
 
 var optionIdList = [
