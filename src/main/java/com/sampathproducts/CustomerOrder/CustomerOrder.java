@@ -59,5 +59,5 @@ public class CustomerOrder {
     private Customer customer_id;
 
     @OneToMany(mappedBy = "customer_order_id", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CustomerOrderHasProduct> CustomerOrderHasProductList;
+    private List<CustomerOrderHasProduct> customerOrderHasProductList;
 }

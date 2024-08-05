@@ -99,10 +99,6 @@ public class CustomerOrderController {
                 ohp.setCustomer_order_id(customerorder);
             }
 
-            // for (ProductHasMaterial phm : product.getProductHasMaterialList()) {
-            // phm.setProduct_id(product);
-            // }
-
             dao.save(customerorder);
             System.out.println(customerorder);
             return "Ok";

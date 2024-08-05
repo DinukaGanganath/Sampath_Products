@@ -42,3 +42,53 @@ function loadDivisionVal(ele){
     city.setAttribute("disabled","disabled");
 }
 
+function productNeed(productList){
+    for(var i of productList){
+        i[0].product_need = i[0].product_need + i[1];
+        var prodObj = i[0];
+        console.log(prodObj);
+        $.ajax("/product/edit", {
+            async : false,
+            type : "PUT",
+            data : JSON.stringify(prodObj),
+            contentType: 'application/json',
+    
+            success : function (data, status, xhr){
+                console.log("success " + status + " " + xhr);
+                responseStatus = data;
+                console.log(responseStatus);
+            },
+    
+            error : function (xhr, status, errormsg){
+                console.log("fail " + errormsg + " " + status +" " + xhr);
+                responseStatus = errormsg;
+            },
+        });
+        /*
+        for(var j of i[0].productHasMaterialList){
+            var matObj = j.material_id;
+            matObj.material_want = matObj.material_want + (j.quantity_needed * i[1]);
+            console.log(matObj);
+
+            $.ajax("/material/edit", {
+                async : false,
+                type : "PUT",
+                data : JSON.stringify(matObj),
+                contentType: 'application/json',
+        
+                success : function (data, status, xhr){
+                    console.log("success " + status + " " + xhr);
+                    responseStatus = data;
+                    console.log(responseStatus);
+                },
+        
+                error : function (xhr, status, errormsg){
+                    console.log("fail " + errormsg + " " + status +" " + xhr);
+                    responseStatus = errormsg;
+                },
+            });
+
+        }
+            */
+    }
+}

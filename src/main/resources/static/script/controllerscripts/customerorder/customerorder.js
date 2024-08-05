@@ -232,6 +232,7 @@ function showForm(){
 function createCustOrder(){
 
     var ordObject = {};
+    var productList = new Array();
     //ordObject.customer_order_id = {};
     //ordObject.customer_order_code ="";
     ordObject.customer_order_created = document.getElementById('customer_order_created').value + "T00:00";
@@ -241,7 +242,7 @@ function createCustOrder(){
     ordObject.customer_order_paid = parseFloat(document.getElementById('paid_price').value);
     ordObject.customer_id = JSON.parse(document.getElementById('customer_id').value);
 
-    ordObject.CustomerOrderHasProductList = new Array();
+    ordObject.customerOrderHasProductList = new Array();
     var trList = document.querySelectorAll('.ordLine');
     for(var trEle of trList){
 
@@ -249,10 +250,38 @@ function createCustOrder(){
         trObj.product_id = JSON.parse(trEle.querySelector('select').value);
         trObj.quantity = parseFloat(trEle.querySelector('#qty').value);
         trObj.price = parseFloat(trEle.querySelector('#trPrice').innerHTML.split(" ")[1]);
-        ordObject.CustomerOrderHasProductList.push(trObj);
+        ordObject.customerOrderHasProductList.push(trObj);
+
+        var productRow = new Array();
+        productRow.push(trObj.product_id);
+        productRow.push(trObj.quantity);
+        
+        productList.push(productRow);
+
+        var prodObj = trObj.product_id;
+        prodObj.material_want = prodObj.material_want + trObj.quantity;
+        console.log(prodObj);
+
+        $.ajax("/product/edit", {
+            async : false,
+            type : "PUT",
+            data : JSON.stringify(prodObj),
+            contentType: 'application/json',
+    
+            success : function (data, status, xhr){
+                console.log("success " + status + " " + xhr);
+                responseStatus = data;
+                console.log(responseStatus);
+            },
+    
+            error : function (xhr, status, errormsg){
+                console.log("fail " + errormsg + " " + status +" " + xhr);
+                responseStatus = errormsg;
+            },
+        });
     }
 
-    console.log(ordObject);
+    console.log(productList);
 
     $.ajax("/customerorder/save", {
         async : false,
@@ -268,16 +297,11 @@ function createCustOrder(){
 
         error : function (xhr, status, errormsg){
             console.log("fail " + errormsg + " " + status +" " + xhr);
+            console.log(xhr);
             responseStatus = errormsg;
         },
     });
 
-    if (responseStatus=='Ok'){
-        alert(objectType + ' ' + activity + ' Succesfully...');
-        window.location.href = loadAfter;
-    }else{
-        console.log(responseStatus);
-        alert('Some Errors has Occured...');
-    }
+   
     
 }

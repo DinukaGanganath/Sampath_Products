@@ -144,14 +144,10 @@ public class ProductController {
     public String edit(@RequestBody Product product) {
 
         try {
-
-            @SuppressWarnings("null")
             Product extProduct = dao.getReferenceById(product.getProduct_id());
             extProduct = product;
-            product.setProduct_deleted(0);
             extProduct.setProduct_updated_date(LocalDateTime.now());
             dao.save(extProduct);
-
             return "Ok";
         } catch (Exception e) {
             return "Update not completed" + e.getMessage();

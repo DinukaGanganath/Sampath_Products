@@ -12,7 +12,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,7 +41,6 @@ public class ProductHasMaterial {
     private Material material_id;
 
     @Column(name = "quantity_needed") // mapping "product_material_details" table column "quantity_needed"
-    @NotNull
     private Double quantity_needed;
 
 }
