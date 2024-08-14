@@ -39,7 +39,7 @@ public class Product {
     private Integer product_usable_time;
 
     @Column(name = "product_unit_price") // mapping the column "product_unit_price" of table "product_details"
-    private Double product_unit_price;
+    private Integer product_unit_price;
 
     @Column(name = "product_created_date") // mapping the column "product_created_date" of table "product_details"
     private LocalDateTime product_created_date;
@@ -73,5 +73,5 @@ public class Product {
     private ProductSize productsize_id;
 
     @OneToMany(mappedBy = "product_id", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductHasMaterial> productHasMaterialList;
+    private List<ProductHasMaterial> product_has_material_list;
 }

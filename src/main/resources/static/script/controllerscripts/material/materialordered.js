@@ -28,7 +28,7 @@ let currentPage = 1;
 loadTable();
 
 function loadTable(){
-    fetch("/material/findall/exist")
+    fetch("/purchaseorderLine/findall")
     .then(function(response){
         return response.json();
     })
@@ -84,22 +84,126 @@ function visualizePag(pageNo){
 
 function setDataSet(pagDataList){
     var out ="";
-    for(let material of pagDataList){
+    for(let order of pagDataList){
         out += `
-            <tr id=`+ material.material_id +`>
-                <td id="material_name">${material.material_name.replaceAll('_', ' ')}</td>
-                <td id="material_code">${material.material_code}</td>
-                <td id="material_extra">${material.material_extra +" " + material.material_unit}</td>
+            <tr id=`+ JSON.stringify(order) +`>
+                <td id="supplier">${order.request_id.supplier_id.supplier_business_name.replaceAll('_', ' ')}</td>
+                <td id="material">${order.request_id.supplier_id.supplier_material_id.material_name.replaceAll('_', ' ')}</td>
+                <td id="qty">${order.requested_qty + " " + order.request_id.supplier_id.supplier_material_id.material_unit}</td>
+                <td id="price">${"Rs. "+order.line_price}</td>
+                <td id="date">${order.request_id.request_created_date.split('T')[0]}</td>
                 <td>
                     <div id="basicBtn" style="display:flex">
-                        <button class="btnEdit" onclick='editMaterial(` + JSON.stringify(material) + `, this)'>Edit</button>
-                        <button class="btnDelete" onclick='deleteMaterial(` + JSON.stringify(material) + `)'>Delete</button>
+                        <button class="btnEdit" onclick='recieveForm(${JSON.stringify(order)})';>${order.status}</button>
                     </div>
                 </td>
             </tr>
         `;
     }
     return out;
+}
+
+function calcDiscount(){
+    var price = parseFloat(document.getElementById('price').value);
+    var paid = parseFloat(document.getElementById('paid').value);
+
+    var discount = (price-paid)*100/paid;
+    document.getElementById('discount').value = discount;
+}
+
+function recieveForm(order){
+
+    console.log(order);
+    document.getElementById('modal').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+
+    document.getElementById('supplier').value = order.request_id.supplier_id.supplier_business_name.replaceAll('_', ' ');
+    document.getElementById('material').value = order.request_id.supplier_id.supplier_material_id.material_name.replaceAll('_', ' ');
+    document.getElementById('quantity').value = order.requested_qty + " " + order.request_id.supplier_id.supplier_material_id.material_unit;
+    document.getElementById('price').value =  order.line_price;
+    document.getElementById('created').value = order.request_id.request_date.split('T')[0];
+
+    document.getElementById('submitNote').addEventListener('click', function(){
+        order.paid_date = document.getElementById('paying').value + 'T00:00:00';
+        order.status = "recieved";
+        order.payment_paid = document.getElementById('paid').value;
+
+        console.log(order);
+
+
+        $.ajax("/purchaseorderLine/edit", {
+            async : false,
+            type : "PUT",
+            data : JSON.stringify(order),
+            contentType: 'application/json',
+
+            success : function (data, status, xhr){
+                console.log("success " + status + " " + xhr);
+                responseStatus = data;
+                console.log(responseStatus);
+            },
+
+            error : function (xhr, status, errormsg){
+                console.log("fail " + errormsg + " " + status +" " + xhr);
+                responseStatus = errormsg;
+            },
+        });
+
+        var materialObj = order.request_id.supplier_id.supplier_material_id;
+        materialObj.material_has = materialObj.material_has + order.requested_qty;
+        console.log(materialObj);
+
+        $.ajax("/material/edit", {
+            async : false,
+            type : "PUT",
+            data : JSON.stringify(materialObj),
+            contentType: 'application/json',
+
+            success : function (data, status, xhr){
+                console.log("success " + status + " " + xhr);
+                responseStatus = data;
+                console.log(responseStatus);
+            },
+
+            error : function (xhr, status, errormsg){
+                console.log("fail " + errormsg + " " + status +" " + xhr);
+                responseStatus = errormsg;
+            },
+        });
+
+        window.location.href ="/materialneed";
+    });
+
+    
+    
+}
+
+function submitReceiveForm(orderEle){
+    orderEle.paid_date = document.getElementById('paying').value + 'T00:00:00';
+    orderEle.status = "recieved";
+    orderEle.payment_paid = document.getElementById('paid').value;
+
+    console.log(orderEle);
+
+    $.ajax("/purchaseorderLine/edit", {
+        async : false,
+        type : "PUT",
+        data : JSON.stringify(orderEle),
+        contentType: 'application/json',
+
+        success : function (data, status, xhr){
+            console.log("success " + status + " " + xhr);
+            responseStatus = data;
+            console.log(responseStatus);
+        },
+
+        error : function (xhr, status, errormsg){
+            console.log("fail " + errormsg + " " + status +" " + xhr);
+            responseStatus = errormsg;
+        },
+    });
+
+
 }
 
 function loadPrevious(){
@@ -110,65 +214,4 @@ function loadPrevious(){
 function loadNext(){
     currentPage++;
     loadTable();
-}
-
-function showForm(){
-
-    $("#material_tab tbody").prepend("<tr><td id= newItem><td></td></td><td id= extraQty></td><td id= newAddBtn onclick=saveMaterial()></td></tr>");
-
-    var inputFieldData = document.getElementById("newItem");
-    var inputField = document.createElement("input");
-    inputField.type = "text";
-    inputField.id = "materialName";
-    inputFieldData.appendChild(inputField);
-
-    var extraQtyData = document.getElementById("extraQty");
-    var extraQtyField = document.createElement("input");
-    extraQtyField.placeholder = "Ex: 50 kg";
-    extraQtyField.type = "text";
-    extraQtyField.id = "materialExtra";
-    extraQtyData.appendChild(extraQtyField);
-
-    var buttonFieldData = document.getElementById("newAddBtn");
-    var buttonField = document.createElement('button');
-    buttonField.innerHTML = 'Submit';
-    buttonField.className = 'btnEdit';
-    buttonField.id = 'buttonAdd';
-    buttonFieldData.appendChild(buttonField);
-}
-
-function saveMaterial(){
-    var materialNew = document.getElementById('materialName').value.replaceAll(' ', '_');
-    var extraQty = document.getElementById('materialExtra').value;
-
-    var material = {};
-    material['material_name'] = materialNew;
-    material['material_extra'] = extraQty.split(" ")[0]
-    material['material_unit'] = extraQty.split(" ")[1];
-
-    restFunction('/material/save', material, "POST", "/material", "Material");
-}
-
-function deleteMaterial(material){
-
-    console.log(material);
-    restFunction('/material/delete', material, "DELETE", "/material", "Material");
-
-}
-
-function editMaterial(material, ele){
-    var trObj = ele.parentNode.parentNode.parentNode;
-    trObj.querySelector("#material_name").innerHTML = `<input id="materialInput" placeholder = '${material.material_name}'/>`;
-    trObj.querySelector("#material_extra").innerHTML = `<input id="materialExtra" placeholder = '${material.material_extra +" " + material.material_unit}'/>`;
-    trObj.querySelector("#basicBtn").innerHTML = `<button class='btnEdit' onclick='editRowMaterial(${JSON.stringify(material)})'>save</button>`; 
-}
-
-function editRowMaterial(material){
-    var materialName = document.getElementById('materialInput').value.replaceAll(" ", "_");
-    var extraQty = document.getElementById('materialExtra').value;
-    material.material_name = materialName;
-    material.material_extra = extraQty.split(" ")[0];
-    material.material_unit = extraQty.split(" ")[1];
-    console.log(material);
-    restFunction('/material/edit', material, "PUT", "/material", "Material");
 }

@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sampathproducts.Email.EmailDetails;
+import com.sampathproducts.Email.EmailService;
+import com.sampathproducts.Supplier.Supplier;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +22,9 @@ public class RequestController {
 
     @Autowired
     private RequestDao dao;
+
+    @Autowired
+    private EmailService emailServiceImpl;
 
     // create mapping ui
     @RequestMapping(value = "/quotation")
@@ -112,6 +119,17 @@ public class RequestController {
             request.setRequest_created(0);
             dao.save(request);
             System.out.println(request);
+
+            // send mail
+            Supplier supplier = request.getSupplier_id();
+            EmailDetails emailDetails = new EmailDetails();
+            emailDetails.setSendTo(supplier.getSupplier_email());
+            emailDetails.setMsgBody("To " + supplier.getSupplier_business_name().replace('_', ' ')
+                    + ", \n\t Since your Quotation period is ended, please send us your new quotations.\nCall or WhatsApp will be also ok. (0707579674) \n Your sincerly, \nSampath Products.");
+            emailDetails.setSubject("Requesting new quotation");
+
+            emailServiceImpl.sendSimpleMail(emailDetails);
+
             return "Ok";
         } catch (Exception e) {
             return "Save not completed" + e.getMessage();

@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sampathproducts.CustomerOrderHasProduct.CustomerOrderHasProduct;
+import com.sampathproducts.Material.Material;
+import com.sampathproducts.Material.MaterialDao;
+import com.sampathproducts.Product.Product;
+import com.sampathproducts.Product.ProductDao;
+import com.sampathproducts.ProductHasMaterial.ProductHasMaterial;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,6 +24,12 @@ public class CustomerOrderController {
 
     @Autowired
     private CustomerOrderDao dao;
+
+    @Autowired
+    private ProductDao daoProduct;
+
+    @Autowired
+    private MaterialDao daoMaterial;
 
     // create mapping ui
     @RequestMapping(value = "/customerorder")
@@ -99,8 +110,18 @@ public class CustomerOrderController {
                 ohp.setCustomer_order_id(customerorder);
             }
 
-            dao.save(customerorder);
-            System.out.println(customerorder);
+            CustomerOrder savCustomerOrder = dao.save(customerorder);
+
+            for (CustomerOrderHasProduct ohp : savCustomerOrder.getCustomerOrderHasProductList()) {
+                Product orderProduct = daoProduct.getReferenceById(ohp.getProduct_id().getProduct_id());
+                for (ProductHasMaterial phm : orderProduct.getProduct_has_material_list()) {
+                    Material orderMaterial = daoMaterial.getReferenceById(phm.getMaterial_id().getMaterial_id());
+                    orderMaterial.setMaterial_want(
+                            orderMaterial.getMaterial_want() + ohp.getQuantity() * phm.getQuantity_needed());
+                }
+                orderProduct.setProduct_need(orderProduct.getProduct_need() + ohp.getQuantity());
+                daoProduct.save(orderProduct);
+            }
             return "Ok";
         } catch (Exception e) {
             return "Save not completed" + e.getMessage();

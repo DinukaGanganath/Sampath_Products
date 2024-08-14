@@ -1,5 +1,6 @@
 package com.sampathproducts.PurchaseOrder;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class PurchaseOrder {
     @Column(name = "purchase_price")
     private Double purchase_price;
 
-    @OneToMany(mappedBy = "purchase_order_id")
+    @OneToMany(mappedBy = "purchase_order_id", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PurchaseOrderHasQuotation> purchaseOrderHasQuotationList;
 
 }

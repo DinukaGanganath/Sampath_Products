@@ -18,6 +18,7 @@ import java.util.List;
 
 import com.sampathproducts.Customer.Customer;
 import com.sampathproducts.CustomerOrderHasProduct.CustomerOrderHasProduct;
+import com.sampathproducts.Payment.Payment;
 
 @Entity // convert to the Entity class
 @Table(name = "customer_order_details") // map with customer_order_details table
@@ -47,16 +48,14 @@ public class CustomerOrder {
     @Column(name = "customer_order_status", unique = true) // mappling the column "customer_order_status" of table
     private String customer_order_status;
 
-    @Column(name = "customer_order_total", unique = true) // mappling the column "customer_order_total" of table
-    private Double customer_order_total;
-
-    @Column(name = "customer_order_paid", unique = true) // mappling the column "customer_order_pa" of table
-    private Double customer_order_paid;
-
     @OneToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id") // mapping from "customer_details"
                                                                             // table "customer_id"
     private Customer customer_id;
+
+    @OneToOne
+    @JoinColumn(name = "payment_id", referencedColumnName = "payment_id")
+    private Payment payment_id;
 
     @OneToMany(mappedBy = "customer_order_id", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CustomerOrderHasProduct> customerOrderHasProductList;

@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sampathproducts.User.User;
+import com.sampathproducts.User.UserDao;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +26,9 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeDao dao;
+
+    @Autowired
+    private UserDao userDao;
 
     /*
      * public EmployeeController(EmployeeDao dao) {
@@ -112,6 +120,7 @@ public class EmployeeController {
 
     }
 
+    @Transactional
     @DeleteMapping(value = "/employee/delete")
     public String delete(@RequestBody Employee employee) {
         try {
@@ -121,12 +130,18 @@ public class EmployeeController {
             extEmployee.setDeleted_date_time(LocalDateTime.now());
             dao.save(extEmployee);
 
+            User extUser = userDao.getUserByEmployee(extEmployee.getEmployee_id());
+            if (extUser != null) {
+                extUser.setUser_status(0);
+                userDao.save(extUser);
+            }
             return "Ok";
         } catch (Exception e) {
             return "Save not completed" + e.getMessage();
         }
     }
 
+    @Transactional
     @PutMapping(value = "/employee/restore")
     public String restore(@RequestBody Employee employee) {
         System.out.println(employee.getEmployee_id());
@@ -135,6 +150,12 @@ public class EmployeeController {
             Employee extEmployee = dao.getReferenceById(employee.getEmployee_id());
             extEmployee.setEmployee_deleted(0);
             dao.save(extEmployee);
+
+            User extUser = userDao.getUserByEmployee(extEmployee.getEmployee_id());
+            if (extUser != null) {
+                extUser.setUser_status(1);
+                userDao.save(extUser);
+            }
 
             return "Ok";
         } catch (Exception e) {

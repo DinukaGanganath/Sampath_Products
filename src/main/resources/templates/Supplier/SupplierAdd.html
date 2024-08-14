@@ -32,8 +32,28 @@
 					
 			</div>
 
-			<div class="content-container">
+			<div id="modal" class="hidden">
+				<div class="modal-content">
+					<h3 id="quotationTitle">Add Division</h3>
+					<form>
+						<div class="formcls">
+							<div class="details personal">
+								<div class="fields">
+									<div class="input-fieldfull">
+										<label for="type_name">Business Type Name</label>
+										<input id="type_name" type="text" />
+									</div>
+								</div>
+								<button type="button" onclick='createType();'>Create</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div id="overlay" class="hidden"></div>
 
+			<div class="content-container">
+				
 				<div class="content">
 					<div class="head-title" id="heading">
 						
@@ -139,14 +159,15 @@
 										</div>
 
 										<div class="input-field">
-											<label for="supplier_business_type">Business Type</label>
+											
+											<label for="supplier_business_type" onclick="typeAddForm()">Business Type</label>
 											<select id="supplier_business_type" required>
 											</select>
 											<label class="validMessage"></label>
 										</div>
 
 										<div class="input-field">
-											<label for="supplier_material_id">Material Supplied</label>
+											<label for="supplier_material_id" onclick="window.location.href = '/material'">Material Supplied</label>
 											<select id="supplier_material_id" type="text" required>
 											</select>
 											<label class="validMessage"></label>

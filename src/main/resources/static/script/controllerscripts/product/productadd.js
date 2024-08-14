@@ -49,7 +49,7 @@ function loadTabData(){
 
 function createProduct(){
     var object = {};
-    object.productHasMaterialList = new Array();
+    object.product_has_material_list = new Array();
     var tab = document.getElementById('data-output')
     var trList = tab.querySelectorAll('tr');
 
@@ -59,7 +59,7 @@ function createProduct(){
             obj.material_id = JSON.parse(ele.getAttribute('value'));
             obj.quantity_needed = parseInt(ele.querySelector('input').value);
             obj.product_id = {};
-            object.productHasMaterialList.push(obj);
+            object.product_has_material_list.push(obj);
         }
     }
     object.product_usable_time = parseInt(document.getElementById('product_usable_time').value);
@@ -72,7 +72,7 @@ function createProduct(){
     object.product_deleted = 0;
     object.product_code = 0;
     object.product_needed = 0;
-    object.product_extra = 10;
+    object.product_extra = parseInt(document.getElementById('product_extra').value);
     object.product_has = 0;
 
     console.log(object);

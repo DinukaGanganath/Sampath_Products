@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,4 +26,15 @@ public class DivisionController {
         return dao.findAll();
     }
 
+    @PostMapping(value = "/division/save")
+    public String save(@RequestBody Division division) {
+
+        try {
+            dao.save(division);
+            return "Ok";
+        } catch (Exception e) {
+            return "Save not completed" + e.getMessage();
+        }
+
+    }
 }

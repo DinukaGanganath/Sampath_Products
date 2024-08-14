@@ -41,6 +41,6 @@ public class ProductHasMaterial {
     private Material material_id;
 
     @Column(name = "quantity_needed") // mapping "product_material_details" table column "quantity_needed"
-    private Double quantity_needed;
+    private Integer quantity_needed;
 
 }

@@ -48,6 +48,13 @@ public class MaterialController {
         return viewMaterialAdd;
     }
 
+    @RequestMapping(value = "/materialordered")
+    public ModelAndView materialOrderUI() {
+        ModelAndView viewMaterialAdd = new ModelAndView();
+        viewMaterialAdd.setViewName("Material/MaterialOrdered.html");
+        return viewMaterialAdd;
+    }
+
     @RequestMapping(value = "/materialreceived")
     public ModelAndView materialRecievedUI() {
         ModelAndView viewMaterialAdd = new ModelAndView();

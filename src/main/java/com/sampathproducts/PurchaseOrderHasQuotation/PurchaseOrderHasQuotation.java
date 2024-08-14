@@ -1,5 +1,7 @@
 package com.sampathproducts.PurchaseOrderHasQuotation;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sampathproducts.PurchaseOrder.PurchaseOrder;
 import com.sampathproducts.Request.Request;
@@ -12,7 +14,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,12 +40,19 @@ public class PurchaseOrderHasQuotation {
     private Request request_id;
 
     @Column(name = "requested_qty")
-    @NotNull
     private Integer requested_qty;
 
     @Column(name = "line_price")
-    @NotNull
     private Double line_price;
+
+    @Column(name = "paid_date")
+    private LocalDateTime paid_date;
+
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "payment_paid")
+    private Double payment_paid;
 
     // purchase_order_id int PK
     // request_id int PK

@@ -26,7 +26,29 @@
 				<div class="column" id="sidebarContainer">
 					
 				</div>
-				
+				<div id="modal" class="hidden">
+					<div class="modal-content">
+						<h3 id="quotationTitle">Add Division</h3>
+						<form>
+							<div class="formcls">
+								<div class="details personal">
+									<div class="fields">
+										<div class="input-fieldhalf">
+											<label for="postal_division_name">Division Name</label>
+											<input id="postal_division_name" type="text" />
+										</div>
+										<div class="input-fieldhalf">
+											<label for="postal_division_code">Postal Code</label>
+											<input id="postal_division_code" type="text" />
+										</div>
+									</div>
+									<button type="button" onclick='createDivision();'>Create</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div id="overlay" class="hidden"></div>
 				<div class="content-container">
 
 					<div class="content">
@@ -39,12 +61,13 @@
 									Add
 								</a>
 							</button>
+							
 							<table class="table table-striped" id="area_tab">
 								<thead>
 									<tr>
 										<th scope="col">Area Name</th>
 										<th scope="col">Area Code</th>
-										<th scope="col">Area Division</th>
+										<th scope="col" onclick="divisionAddForm()">Area Division</th>
 										<th scope="col"></th>
 									</tr>
 								</thead>

@@ -37,7 +37,7 @@ loadTable();
 
 // table value load
 function loadTable(){
-    fetch("/request/findall/created")
+    fetch("/customerorder/findall/ordered")
     .then(function(response){
         return response.json();
     })
@@ -94,31 +94,110 @@ function visualizePag(pageNo){
 // data set creaing
 function setDataSet(pagDataList){
     
-    var valid = getRecords("/request/findall/valid", "request_code");
-    var expired = getRecords("/request/findall/expired", "request_code");
-    var ending = getRecords("/request/findall/ending", "request_code");
-    var requested = getRecords("/request/findall/requested", "request_code");
+
 
     var quotClass = "";
 
     let currentDate = new Date().toJSON().slice(0, 10)
     var out ="";
-    for(let request of pagDataList){
-        
-                                    
+    for(let order of pagDataList){
+
+        // <th>Business name</th>
+        // <th>Area</th>
+        // <th>Order Need date</th>
+        // <th>Order Ordered date</th>
+        // <th>Order value</th>
+        // <th>Price paid</th>
+        // <th>Status</th>	
+                                        
         out += `
-            <tr id=`+ request.request_id +` class = ${quotClass}>
-                <td id="request_code">${request.request_code}</td>
-                <td id="supplier_id">${request.supplier_id.supplier_business_name.replaceAll('_', ' ')}</td>
-                <td id="material_name" class='avoid'>${request.supplier_id.supplier_material_id.material_name.replaceAll('_',' ')}</td>
-                <td id="request_date">${request.request_created_date.split('T')[0]}</td>
-                <td id="request_validity">${request.request_validity}</td>
-                <td id="material_units">${request.request_units + " " + request.supplier_id.supplier_material_id.material_unit}</td>
-                <td id="request_price">${request.request_price}</td>
+            <tr id=`+ JSON.stringify(order) +`>
+                <td id="bussiness_name">${order.customer_id.customer_business_name.replaceAll('_', ' ')}</td>
+                <td id="area_id">${order.customer_id.customer_address_city.replaceAll('_', ' ')}</td>
+                <td id="need_date">${order.customer_order_needed.split('T')[0]}</td>
+                <td id="ordered_date">${order.customer_order_created.split('T')[0]}</td>
+                <td id="order_value">Rs. ${order.customer_order_total}.00</td>
+                <td id="price_paid">${order.customer_order_paid}</td>
+                <td id="status">${order.customer_order_status}</td>
+                <td>
+                    <div id="basicBtn" style="display:flex">
+                        <button class="btnEdit" onclick='viewOrder(` + JSON.stringify(order) +`)'>View</button>
+                        <button class="btnDelete" onclick='processOrder(` + JSON.stringify(order) + `)'>Process</button>
+                    </div>
+                </td>
             </tr>
         `;
     }
     return out;
+}
+
+function calibrateVal(){
+    var total = parseFloat(document.getElementById('payment_amount').value.split(" ")[1]);
+    var discount = parseFloat(document.getElementById('payment_discount').value);
+
+    document.getElementById('payment_need').value = total - discount;
+    
+    var amount = parseFloat(document.getElementById('payment_need').value);
+    var initial = parseFloat(document.getElementById('payment_paid').value);
+
+    document.getElementById('payment_balance').value = amount - initial;
+    
+    
+}
+
+function viewOrder(order){
+    var out = "";
+    showForm();
+    document.getElementById('addRowBtn').style.display='none';
+
+    document.getElementById('customer_id').style.display = 'none';
+    document.getElementById('customer_name').style.display = 'none';
+    document.getElementById('customer_id_text').style.display = 'block';
+    document.getElementById('customer_name_text').style.display = 'block';
+    document.getElementById('customer_id_text').setAttribute('disabled',true);
+    document.getElementById('customer_name_text').setAttribute('disabled',true);
+    document.getElementById('customer_order_created').setAttribute('disabled',true);
+    document.getElementById('customer_order_needed').setAttribute('disabled',true);
+
+    document.getElementById('customer_id_text').value = order.customer_id.customer_code;
+    document.getElementById('customer_name_text').value = order.customer_id.customer_business_name.replaceAll("_", " ");
+    document.getElementById('customer_order_needed').value = order.customer_order_needed.split('T')[0];
+    document.getElementById('customer_order_created').value = order.customer_order_created.split('T')[0];
+
+    for(var obj of order.customerOrderHasProductList){
+        out += `<tr>
+                    <td>${obj.product_id.producttype_id.producttype_name + " "+obj.product_id.productsize_id.productsize_name}</td>
+                    <td>${obj.quantity}</td>
+                    <td>Rs. ${obj.price}.00</td>
+                </tr>`
+
+    }
+    document.getElementById('tabBody').innerHTML = out;
+
+}
+
+function processOrder(order){
+    
+    order.customer_order_status = 'progress';
+    console.log(order);
+
+    $.ajax("/customerorder/edit", {
+        async : false,
+        type : "PUT",
+        data : JSON.stringify(order),
+        contentType: 'application/json',
+
+        success : function (data, status, xhr){
+            console.log("success " + status + " " + xhr);
+            responseStatus = data;
+            console.log(responseStatus);
+        },
+
+        error : function (xhr, status, errormsg){
+            console.log("fail " + errormsg + " " + status +" " + xhr);
+            responseStatus = errormsg;
+        },
+    });
 }
 
 // load pagination pages
@@ -158,7 +237,7 @@ function addRow(){
     numInput.onchange = function(){
         var lineVal = JSON.parse(this.parentElement.parentElement.firstChild.firstChild.value)['product_unit_price']*parseInt(this.value);
         tdprice.innerHTML = "Rs. " + lineVal + ".00";
-        document.getElementById('total_price').value = 'Rs. '+calculateTotal()+'.00';
+        document.getElementById('payment_amount').value = 'Rs. '+calculateTotal()+'.00';
     }
     tdprice.id = "trPrice";
     tdQty.appendChild(numInput);
@@ -238,11 +317,11 @@ function createCustOrder(){
     ordObject.customer_order_created = document.getElementById('customer_order_created').value + "T00:00";
     ordObject.customer_order_needed = document.getElementById('customer_order_needed').value + "T00:00";
     ordObject.customer_order_status = 'created';
-    ordObject.customer_order_total = parseFloat(document.getElementById('total_price').value.split(" ")[1]);
-    ordObject.customer_order_paid = parseFloat(document.getElementById('paid_price').value);
+    ordObject.customer_order_total = parseFloat(document.getElementById('payment_amount').value.split(" ")[1]);
+    ordObject.customer_order_paid = parseFloat(document.getElementById('payment_paid').value);
     ordObject.customer_id = JSON.parse(document.getElementById('customer_id').value);
 
-    ordObject.customerOrderHasProductList = new Array();
+    productList = new Array();
     var trList = document.querySelectorAll('.ordLine');
     for(var trEle of trList){
 
@@ -250,38 +329,13 @@ function createCustOrder(){
         trObj.product_id = JSON.parse(trEle.querySelector('select').value);
         trObj.quantity = parseFloat(trEle.querySelector('#qty').value);
         trObj.price = parseFloat(trEle.querySelector('#trPrice').innerHTML.split(" ")[1]);
-        ordObject.customerOrderHasProductList.push(trObj);
+        productList.push(trObj);
 
-        var productRow = new Array();
-        productRow.push(trObj.product_id);
-        productRow.push(trObj.quantity);
-        
-        productList.push(productRow);
-
-        var prodObj = trObj.product_id;
-        prodObj.material_want = prodObj.material_want + trObj.quantity;
-        console.log(prodObj);
-
-        $.ajax("/product/edit", {
-            async : false,
-            type : "PUT",
-            data : JSON.stringify(prodObj),
-            contentType: 'application/json',
-    
-            success : function (data, status, xhr){
-                console.log("success " + status + " " + xhr);
-                responseStatus = data;
-                console.log(responseStatus);
-            },
-    
-            error : function (xhr, status, errormsg){
-                console.log("fail " + errormsg + " " + status +" " + xhr);
-                responseStatus = errormsg;
-            },
-        });
     }
 
-    console.log(productList);
+    ordObject.customerOrderHasProductList = productList;
+
+    console.log(ordObject);
 
     $.ajax("/customerorder/save", {
         async : false,

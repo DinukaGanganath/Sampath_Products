@@ -98,7 +98,7 @@ public class ProductController {
                 product.setProduct_code(nextProductCode);
             }
 
-            for (ProductHasMaterial phm : product.getProductHasMaterialList()) {
+            for (ProductHasMaterial phm : product.getProduct_has_material_list()) {
                 phm.setProduct_id(product);
             }
 
@@ -144,10 +144,13 @@ public class ProductController {
     public String edit(@RequestBody Product product) {
 
         try {
-            Product extProduct = dao.getReferenceById(product.getProduct_id());
-            extProduct = product;
-            extProduct.setProduct_updated_date(LocalDateTime.now());
-            dao.save(extProduct);
+            System.out.println((product));
+            product.setProduct_updated_date(LocalDateTime.now());
+            for (ProductHasMaterial phm : product.getProduct_has_material_list()) {
+                phm.setProduct_id(product);
+            }
+
+            dao.save(product);
             return "Ok";
         } catch (Exception e) {
             return "Update not completed" + e.getMessage();

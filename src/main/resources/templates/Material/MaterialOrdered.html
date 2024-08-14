@@ -1,0 +1,161 @@
+<html>
+	<head>
+		
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="fontawesome/css/all.css" />
+		<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
+		<link rel="stylesheet" href="style/formstyles.css" />
+		<link rel="stylesheet" href="style/sidenavbarstyles.css" />
+		<link rel="stylesheet" href="style/tablestyles.css" />
+		<link rel="stylesheet" href="style/contentstyles.css" />
+		<link rel="icon" href="images/logo_white.png">
+		
+		
+	</head>
+	
+	<body>
+		<div id="modal" class="hidden">
+			<div class="modal-content">
+				<h3 id="quotationTitle">Add Customer Order</h3>
+				<form>
+					<div class="formcls">
+						<div class="details personal">
+							<span class="title">General Details</span>
+							<div class="fields">
+								<div class="input-fieldhalf">
+									<label for="supplier">Supplier</label>
+									<input id="supplier" disabled/>
+									<input type="text" id="customer_id_text" style="display:none" />
+								</div>
+								<div class="input-fieldhalf">
+									<label for="material">Material</label>
+									<input id="material" disabled/>
+									<input type="text" id="customer_id_text" style="display:none" />
+								</div>
+							</div>
+							<div class="fields">
+								<div class="input-fieldhalf">
+									<label for="quantity">Quantity</label>
+									<input id="quantity" disabled/>
+									<input type="text" id="customer_id_text" style="display:none" />
+								</div>
+								<div class="input-fieldhalf">
+									<label for="price">Price</label>
+									<div style="display:flex">
+										<div>Rs. </div>
+										<input id="price" disabled/>
+									</div>
+								</div>
+							</div>
+							<div class="fields">
+								<div class="input-fieldhalf">
+									<label for="created">Created Date</label>
+									<input id="created" type="text" disabled/>
+									<input type="text" id="customer_id_text" style="display:none" />
+								</div>
+								<div class="input-fieldhalf">
+									<label for="paying">Paying Date</label>
+									<input id="paying" type = "Date" />
+								</div>
+							</div>
+							<div class="fields">
+								<div class="input-fieldhalf">
+									<label for="paid">Paid Price</label>
+									<input id="paid" type="number" onchange="calcDiscount()" min="0" />
+									<input type="text" id="customer_id_text" style="display:none" />
+								</div>
+								<div class="input-fieldhalf">
+									<label for="discount">Discount</label>
+									<input id="discount" disable/>
+									<input type="text" id="customer_id_text" style="display:none" />
+								</div>
+							</div>
+							<button type="button" id="submitNote">Recieve</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="overlay" class="hidden"></div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="column">
+					<div class="mobile-icon">
+						<i class="fa-solid fa-bars mob-icon" onclick="mobMenuToggle()"></i>
+						<div class="part">
+							<img class="mob-image" src="images/logo_white.png" alt="logo"/>
+							<h5 class="name mob-header">Sampath Products</h5>
+						</div>
+					</div>
+				</div>
+				<div class="column" id="sidebarContainer">
+					
+				</div>
+				
+			  
+				<div class="content-container">
+
+					<div class="content">
+						
+						<div class="head-title" id="heading">
+							
+						</div>
+						
+						<div id="parentDiv" style="text-align: center;">
+						
+						</div>
+
+						<div class="table-container">
+							
+							<table class="table table-striped">
+								<thead>
+								<tr>
+									<th scope="col">Supplier</th>
+									<th scope="col">Material</th>
+									<th scope="col">Quantity</th>
+									<th scope="col">Price</th>
+									<th scope="col">Date</th>
+									<th scope="col"></th>
+								</tr>
+								</thead>
+								<tbody id="data-output">
+
+								</tbody>
+													
+							</table>
+						</div>
+						<div class="paginationFooter">
+							<div class="leftCorner">
+								<div class="container">
+									<div id="pagLeftBtn" class="half-circle left pagBtn" onclick="loadPrevious()">
+										<span class="button-label">
+											<i class="icon fa-solid fa-chevron-left" style="height: 20px;"></i>
+										</span>
+									</div>
+									<div id="pagMiddle"></div>
+									<div id="pagRightBtn" class="half-circle right pagBtn" onclick="loadNext()">
+										<span class="button-label">
+											<i class="icon fa-solid fa-chevron-right" style="height: 20px;"></i>
+										</span>
+									</div>
+								</div>  
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="script/sidebarscripts.js"></script>
+		<script type="text/javascript" src="script/formscripts.js"></script>
+		<script type="text/javascript" src="script/tablescript.js"></script>
+		<script type="text/javascript" src="script/restfunction.js"></script>
+		<script type="text/javascript" src="script/topnavbar.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="fontawesome/js/all.js"></script>
+		<script type="text/javascript" src="script/objects.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/material/materialordered.js"></script>
+		<script type="text/javascript" src="script/jquery.js"></script>
+		  
+	</body>
+</html>

@@ -11,12 +11,13 @@ function loadQuotationList(){
     var selectedObj = JSON.parse(document.getElementById("material").value)
     var material = selectedObj.material_name;
 
+    console.log("value : " + selectedObj.material_extra + selectedObj.material_want - selectedObj.material_has);
     document.getElementById("needed").value = selectedObj.material_extra + selectedObj.material_want - selectedObj.material_has;
     for (var ele of document.querySelectorAll(".unit")){
         ele.innerHTML = JSON.parse(document.getElementById("material").value).material_unit;
     }
 
-    fetch("/request/findall/created")
+    fetch("/request/findall/valid")
     .then(function(response){
         return response.json();
     })
@@ -25,7 +26,7 @@ function loadQuotationList(){
         tableBody.innerHTML = loadTableData(quotations, material);
     });
 
-    fetch("/request/findall/created")
+    fetch("/request/findall/ending")
     .then(function(response){
         return response.json();
     })
@@ -73,11 +74,47 @@ function createOrder(){
     var obj = {};
     var quotationList = [];
 
-    for(var val in document.getElementsByClassName('orderLine')){
-        console.log(val.getElementById('ordering_qty'));
-    }
+    obj.purchase_price = parseFloat(document.getElementById('astement').value);
+    obj.purchase_qty = parseInt(document.getElementById('ordered').value);
 
+    /* 
+    purchaseOrderHasQuotationList
+        request_id
+        requested_qty
+        line_price
+        purchase_order_id
     
+    */
+
+    for(var val of document.getElementsByClassName('orderLine')){
+        var ele ={};
+
+        var checkedVal = val.querySelector('#ordering_qty').children[0].value;
+
+        if(checkedVal != ""){
+            ele.request_id = JSON.parse(val.getAttribute('value'));
+            ele.requested_qty = parseInt(val.querySelector('#ordering_qty').children[0].value);
+            ele.line_price = parseFloat(val.querySelector('#total_price').innerHTML.split(" ")[1]);
+            ele.payment_paid = 0;
+            ele.status = "ordered";
+            quotationList.push(ele);
+        }
+    }
+    obj.purchaseOrderHasQuotationList = quotationList;
+   
+    console.log(obj);
+    $.ajax("/purchaseorder/save", {
+        async : false,
+        type : "POST",
+        data : JSON.stringify(obj),
+        contentType: 'application/json',
+
+        success : function (data, status, xhr){
+            console.log("success " + status + " " + xhr);
+            responseStatus = data;
+            console.log(responseStatus);
+        }
+    });
 }
 
 function loadTableData(dataList, dataVal){
@@ -90,7 +127,7 @@ function loadTableData(dataList, dataVal){
         tableObj.supplier_id.supplier_business_name = tableObj.supplier_id.supplier_business_name.replaceAll(" ", "_");
         if(quotation.supplier_id.supplier_material_id.material_name == dataVal){
             out += `
-                <tr class="orderLine">
+                <tr class="orderLine" value=${JSON.stringify(quotation)}>
                     <td id="supplier">${quotation.supplier_id.supplier_business_name.replaceAll('_', ' ')}</td>
                     <td id="ready_qty">${quotation.request_units + " " + quotation.supplier_id.supplier_material_id.material_unit}</td>
                     <td id="unit_price">Rs. ${quotation.request_price / quotation.request_units}</td>

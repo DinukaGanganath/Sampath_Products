@@ -3,7 +3,11 @@ package com.sampathproducts.PurchaseOrderHasQuotation;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class PurchaseOrderHasQuotationController {
@@ -15,6 +19,27 @@ public class PurchaseOrderHasQuotationController {
 
     @GetMapping(value = "/purchaseorderLine/findall", produces = "application/json")
     public List<PurchaseOrderHasQuotation> findAll() {
-        return dao.findAll();
+        return dao.getPurchaseOrdered();
+    }
+
+    @RequestMapping(value = "/purchaseorderLine")
+    public ModelAndView purchaseorderUI() {
+        ModelAndView viewPurchaseOrder = new ModelAndView();
+        viewPurchaseOrder.setViewName("Material/MaterialOrdered.html");
+        return viewPurchaseOrder;
+    }
+
+    @PutMapping("/purchaseorderLine/edit")
+    public String updateArea(@RequestBody PurchaseOrderHasQuotation pohq) {
+
+        try {
+            PurchaseOrderHasQuotation extPohq = dao.getReferenceById(pohq.getOrder_line_id());
+            pohq.setPurchase_order_id(extPohq.getPurchase_order_id());
+
+            dao.save(pohq);
+            return "Ok";
+        } catch (Exception e) {
+            return "Update not completed : " + e.getMessage();
+        }
     }
 }

@@ -1,14 +1,27 @@
 var receivedData = JSON.parse(sessionStorage.getItem("dataToSend"));
 console.log(receivedData);
 
-var idVal = [["product_id", `${receivedData["product_id"]}`], ["product_code", `${receivedData["product_code"]}`]];
 
 //configure the GUI and window parameters
 initLayout("Product", `Product View - ${receivedData.product_code}`);
 sidebarLoader("/product");
 
-objectToForm('productViewForm', receivedData, ["type_name","area_name","material_name"]);
-disableForm('productViewForm', ['input', 'select']);
+document.getElementById('producttype_id').value = receivedData.producttype_id.producttype_name.replaceAll("_", " ");
+document.getElementById('productsize_id').value = receivedData.productsize_id.productsize_name.replaceAll("_", " ");
+document.getElementById('product_unit_price').value = receivedData.product_unit_price;
+document.getElementById('product_usable_time').value = receivedData.product_usable_time;
+document.getElementById('product_extra').value = receivedData.product_extra;
+
+var tabInner = '';
+var tableBdy = document.getElementById('data-output');
+for(var material of receivedData.product_has_material_list){
+    console.log(material);
+    tabInner += `<tr value="${JSON.stringify(material).trim}">
+                    <td>${material.material_id.material_name.replaceAll("_", " ")}</td>
+                    <td>${material.quantity_needed +" "+material.material_id.material_unit}</td>
+                </tr>`;
+}
+tableBdy.innerHTML = tabInner;
 
 function deleteFormProduct(){
     restFunction('/product/delete', receivedData, "DELETE", "/product", "Product");

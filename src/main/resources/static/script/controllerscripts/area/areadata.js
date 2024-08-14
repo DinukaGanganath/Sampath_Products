@@ -80,6 +80,39 @@ function setDataSet(pagDataList){
     return out;
 }
 
+function divisionAddForm(){
+    document.getElementById('modal').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+}
+
+function createDivision(){
+    var obj ={};
+    obj.postal_division_code = document.getElementById('postal_division_code').value;
+    obj.postal_division_name = document.getElementById('postal_division_name').value;
+
+    $.ajax("/division/save", {
+        async : false,
+        type : "POST",
+        data : JSON.stringify(obj),
+        contentType: 'application/json',
+
+        success : function (data, status, xhr){
+            console.log("success " + status + " " + xhr);
+            responseStatus = data;
+            console.log(responseStatus);
+        },
+
+        error : function (xhr, status, errormsg){
+            console.log("fail " + errormsg + " " + status +" " + xhr);
+            console.log(xhr);
+            responseStatus = errormsg;
+        },
+    });
+
+    window.location.href = "/areas";
+
+}
+
 function loadPrevious(){
     currentPage--;
     loadTable();

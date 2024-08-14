@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+import com.sampathproducts.Payment.Payment;
 import com.sampathproducts.Request.Request;
 
 @Entity // convert to the Entity class
@@ -37,8 +39,9 @@ public class RecieveNote {
     @Column(name = "recieve_note_qty")
     private Integer recieve_note_qty;
 
-    @Column(name = "recieve_note_total")
-    private Double recieve_note_total;
+    @OneToOne
+    @JoinColumn(name = "payment_id", referencedColumnName = "payment_id")
+    private Payment payment_id;
 
     @ManyToOne
     @JoinColumn(name = "request_id", referencedColumnName = "request_id")
