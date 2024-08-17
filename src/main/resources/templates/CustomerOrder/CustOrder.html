@@ -13,6 +13,35 @@
 
 	<body>
 
+		<div id="modal-notification" class="hidden">
+			<div class="modal-content">
+				<form>
+				<div class="formcls">
+					<div class="details personal">
+						<span class="title">Products are not sufficient.</span>
+						<div class="fields">
+							<div class="input-fieldhalf">
+								<label for="postal_division_name">Following list of products are not sufficient for the production.</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<table id="myTable">
+					<thead style="position: sticky; top:-1; left:-1; background:white">
+						<tr>
+							<th>Product</th>
+							<th>Products Need</th>
+							<th>Products has</th>
+						</tr>
+					</thead>
+					<tbody id="tabBodyProduct">
+				
+					</tbody>
+				</table>
+			</form>
+			</div>
+		</div>
+
 		<div id="modal" class="hidden">
 			<div class="modal-content">
 				<h3 id="quotationTitle">Add Customer Order</h3>
@@ -67,7 +96,7 @@
 								</div>
 								<div class="input-fieldonethird">
 									<label for="payment_discount">Discount</label>
-									<input id ="payment_discount" type="number" value=0 min=0 onclick="calibrateVal()" />
+									<input id ="payment_discount" type="number" value=0 min=0 onchange="calibrateVal()" />
 								</div>
 								<div class="input-fieldonethird">
 									<label for="payment_need">To be paid</label>
@@ -76,16 +105,19 @@
 							</div>
 							<div style="display:flex">
 								<div class="input-fieldonethird">
+									<label for="payment_type">Type of payment</label>
+									<select id="payment_type" onchange="createBalance();">
+										<option value="cash">Cash</option>
+										<option value="card">Card</option>
+									</select>
+								</div>
+								<div class="input-fieldonethird">
 									<label for="payment_paid">Amount paid</label>
-									<input id ="payment_paid" type="text" value=0  onclick="calibrateVal()" />
+									<input id ="payment_paid" type="text" value=0  onchange="calibrateVal()" />
 								</div>
 								<div class="input-fieldonethird">
 									<label for="payment_balance">Balance</label>
 									<input id ="payment_balance" type="text" value=0 disabled />
-								</div>
-								<div class="input-fieldonethird">
-									<label for="payment_type">Type of payment</label>
-									<input id ="payment_type" type="text" value=0 disabled />
 								</div>
 							</div>
 							<button type="button" onclick='createCustOrder();'>Create Customer Order</button>

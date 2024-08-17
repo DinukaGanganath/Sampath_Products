@@ -1,5 +1,6 @@
-package com.sampathproducts.Privilage;
+package com.sampathproducts.ModuleRole;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sampathproducts.Module.Module;
 import com.sampathproducts.Role.Role;
 
@@ -16,21 +17,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity // convert to the Entity class
-@Table(name = "privilage") // map with material_details table
+@Table(name = "module_has_role") // map with material_details table
 @Data // for getters and setters
 @NoArgsConstructor // default constructor
 @AllArgsConstructor // all argument constructor
-public class Privilage {
+public class ModuleRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "privilage_id", unique = true) // mapping column
-    private Integer privilage_id;
+    @Column(name = "module_role", unique = true) // mapping column
+    private Integer module_role;
 
     @Column(name = "sel")
     private Integer sel;
 
-    @Column(name = "edit")
-    private Integer edit;
+    @Column(name = "upd")
+    private Integer upd;
 
     @Column(name = "cre")
     private Integer cre;
@@ -40,6 +41,7 @@ public class Privilage {
 
     @ManyToOne
     @JoinColumn(name = "module_id", referencedColumnName = "module_id")
+    @JsonIgnore
     private Module module_id;
 
     @ManyToOne

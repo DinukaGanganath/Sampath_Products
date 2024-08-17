@@ -32,7 +32,7 @@
     color: var(--active-color);
 }
 
-#modal {
+#modal, #modal_notification {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -45,7 +45,7 @@
     display: none;
 }
 
-#modal .modal-content {
+#modal .modal-content, #modal_notification .modal-content{
     padding: 20px;
 }
 

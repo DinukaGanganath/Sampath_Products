@@ -1,5 +1,6 @@
 package com.sampathproducts.CustomerOrder;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sampathproducts.CustomerOrderHasProduct.CustomerOrderHasProduct;
+import com.sampathproducts.Email.EmailDetails;
+import com.sampathproducts.Email.EmailService;
 import com.sampathproducts.Material.Material;
 import com.sampathproducts.Material.MaterialDao;
 import com.sampathproducts.Product.Product;
@@ -30,6 +33,9 @@ public class CustomerOrderController {
 
     @Autowired
     private MaterialDao daoMaterial;
+
+    @Autowired
+    private EmailService emailServiceImpl;
 
     // create mapping ui
     @RequestMapping(value = "/customerorder")
@@ -112,8 +118,22 @@ public class CustomerOrderController {
 
             CustomerOrder savCustomerOrder = dao.save(customerorder);
 
+            String customerName = savCustomerOrder.getCustomer_id().getCustomer_name().replaceAll("_", " ");
+            LocalDateTime date = savCustomerOrder.getCustomer_order_created();
+
+            String message = "Dear " + customerName + ", \n\n\tWe have recieved your order on " + date.getYear() + "-"
+                    + date.getMonth() + "-" + date.getDayOfMonth() + ".\n\nOrder Details: \n\n\tTotal = Rs."
+                    + savCustomerOrder.getPayment_amount() + "\n\tDiscount = Rs."
+                    + savCustomerOrder.getPayment_discount() + "\n\tPayment Paid = Rs."
+                    + savCustomerOrder.getPayment_paid() + "\n\tPayment Method = Rs."
+                    + savCustomerOrder.getPayment_method() + "\n\nOrdered products :\n";
+
             for (CustomerOrderHasProduct ohp : savCustomerOrder.getCustomerOrderHasProductList()) {
                 Product orderProduct = daoProduct.getReferenceById(ohp.getProduct_id().getProduct_id());
+                message += orderProduct.getProducttype_id().getProducttype_name().replaceAll("_", " ") + " - "
+                        + orderProduct.getProductsize_id().getProductsize_name().replace("_", " ") + "\t\t"
+                        + ohp.getQuantity() + "Packets. \t\tRs. " + ohp.getPrice()
+                        + "\n\n Thank you! \n\nBest Regards, \n Sampath Products.";
                 for (ProductHasMaterial phm : orderProduct.getProduct_has_material_list()) {
                     Material orderMaterial = daoMaterial.getReferenceById(phm.getMaterial_id().getMaterial_id());
                     orderMaterial.setMaterial_want(
@@ -121,7 +141,15 @@ public class CustomerOrderController {
                 }
                 orderProduct.setProduct_need(orderProduct.getProduct_need() + ohp.getQuantity());
                 daoProduct.save(orderProduct);
+
             }
+
+            EmailDetails emailDetails = new EmailDetails();
+            emailDetails.setSendTo(savCustomerOrder.getCustomer_id().getCustomer_email());
+            emailDetails.setMsgBody(message);
+            emailDetails.setSubject("Customer Order Creation " + savCustomerOrder.getCustomer_order_code());
+
+            emailServiceImpl.sendSimpleMail(emailDetails);
             return "Ok";
         } catch (Exception e) {
             return "Save not completed" + e.getMessage();
@@ -134,7 +162,6 @@ public class CustomerOrderController {
 
         try {
 
-            @SuppressWarnings("null")
             CustomerOrder extQuotation = dao.getReferenceById(customerorder.getCustomer_order_id());
             extQuotation = customerorder;
             dao.save(extQuotation);

@@ -63,7 +63,47 @@ function loadTable(){
 
         visualizePag(pageNo);
         placeholder.innerHTML = setDataSet(pagDataList);
-    })
+
+        
+    });
+
+    
+}
+
+
+function alertCreate(){
+    for(var i of pagDataList){
+        var order = i.getAttribute('value');
+
+        console.log(order.customer_order_code);
+        var readyVal = 1;
+        var productList = [];
+        for(var i of order.customerOrderHasProductList){
+            console.log(i.product_id.product_has + "----" + i.quantity);
+            if(i.product_id.product_has<i.quantity){
+                productList.push([i.product_id.productsize_id.productsize_name + " " + i.product_id.producttype_id.producttype_name, i.quantity, i.product_id.product_has]);
+            }
+        }
+        if(productList.length != 0){
+            console.log(order.customer_order_code);
+            document.getElementById(order.customer_order_code).style.backgroundColor = "white";
+            document.getElementById(order.customer_order_code).addEventListener("click", function(){
+                document.getElementById('modal-notification').style.display = 'block';
+                document.getElementById('overlay').style.display = 'block';
+                var x = "";
+
+            for(var y of productList){
+                x += `<tr>
+                <td>${y[0]}</td>
+                <td>${y[1]}</td>
+                <td>${y[2]}</td>
+            </tr>`;
+            }
+            
+            });
+        }
+        console.log("--------");
+    }
 }
 
 // show paginations
@@ -102,6 +142,20 @@ function setDataSet(pagDataList){
     var out ="";
     for(let order of pagDataList){
 
+        var color="";
+        var today = new Date();
+        var needed = new Date(order.customer_order_needed.split('T')[0]);
+        var noDays = Math.ceil((needed - today)/(60*60*24*1000));
+
+        if(noDays<0){
+            color = "#ff0000aa";
+        }else if(noDays<3 && 0<noDays){
+            color ="#ffff00aa";
+        }
+        else{
+            color = "#00ff00aa";
+        }
+
         // <th>Business name</th>
         // <th>Area</th>
         // <th>Order Need date</th>
@@ -111,23 +165,28 @@ function setDataSet(pagDataList){
         // <th>Status</th>	
                                         
         out += `
-            <tr id=`+ JSON.stringify(order) +`>
+            <tr id=`+ JSON.stringify(order) +`" style="background-color:${color}">
                 <td id="bussiness_name">${order.customer_id.customer_business_name.replaceAll('_', ' ')}</td>
                 <td id="area_id">${order.customer_id.customer_address_city.replaceAll('_', ' ')}</td>
                 <td id="need_date">${order.customer_order_needed.split('T')[0]}</td>
                 <td id="ordered_date">${order.customer_order_created.split('T')[0]}</td>
-                <td id="order_value">Rs. ${order.customer_order_total}.00</td>
-                <td id="price_paid">${order.customer_order_paid}</td>
+                <td id="order_value">Rs. ${order.payment_amount}.00</td>
+                <td id="price_paid">Rs. ${order.payment_paid}</td>
                 <td id="status">${order.customer_order_status}</td>
                 <td>
                     <div id="basicBtn" style="display:flex">
                         <button class="btnEdit" onclick='viewOrder(` + JSON.stringify(order) +`)'>View</button>
-                        <button class="btnDelete" onclick='processOrder(` + JSON.stringify(order) + `)'>Process</button>
+                        <button id=${order.customer_order_code} class="btnDelete" onclick='processOrder(` + JSON.stringify(order) + `)'>Process</button>
                     </div>
                 </td>
             </tr>
         `;
+
+        
     }
+
+    
+
     return out;
 }
 
@@ -307,6 +366,22 @@ function showForm(){
 
 }
 
+function createBalance(){
+
+    if(document.getElementById('payment_type').value=='card'){
+        document.getElementById('payment_balance').value = 0;
+        document.getElementById('payment_paid').value = document.getElementById('payment_need').value;
+        document.getElementById('payment_paid').setAttribute("disabled", true);
+    }
+
+    if(document.getElementById('payment_type').value=='cash'){
+        document.getElementById('payment_balance').value = 0;
+        document.getElementById('payment_paid').value = 0;
+        document.getElementById('payment_paid').removeAttribute("disabled");
+    }
+    
+}
+
 //add a customer order
 function createCustOrder(){
 
@@ -334,6 +409,11 @@ function createCustOrder(){
     }
 
     ordObject.customerOrderHasProductList = productList;
+    ordObject.payment_amount = parseFloat(document.getElementById("payment_amount").value.split(" ")[1]);
+    ordObject.payment_discount = parseFloat(document.getElementById("payment_discount").value);
+    ordObject.payment_paid = parseFloat(document.getElementById("payment_need").value);
+    ordObject.payment_balance = parseFloat(document.getElementById("payment_balance").value); 
+    ordObject.payment_method= document.getElementById("payment_type").value;
 
     console.log(ordObject);
 

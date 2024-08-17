@@ -27,6 +27,45 @@
 					
 				</div>
 
+				<div id="modal" class="hidden">
+					<div class="modal-content">
+						<h3 id="quotationTitle">Add Division</h3>
+						<form>
+							<div class="formcls">
+								<div class="details personal">
+									<div class="fields">
+										<div class="input-fieldfull">
+											<label for="type_name">Role </label>
+											<input id="type_name" type="text" />
+										</div>
+									</div>
+									<button type="button" onclick='createRole();'>Create</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div id="modal_notification" class="hidden">
+					<div class="modal-content">
+						<h3 id="quotationTitle">Add Division</h3>
+						<form>
+							<div class="formcls">
+								<div class="details personal">
+									<div class="fields">
+										<div class="input-fieldfull">
+											<label for="module_name">Module </label>
+											<input id="module_name" type="text" />
+										</div>
+									</div>
+									<button type="button" onclick='createModule();'>Create</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div id="overlay" class="hidden"></div>
+
 				<div class="content-container">
 
 					<div class="content">
@@ -38,10 +77,9 @@
                                     <select id="module_id" onchange="searchPrivilage(this)">
                                     </select>
                                 </div>
-								<!--div class="input-fieldonethird" onchange="searchPrivilage(this)">
-                                    <select id="role_id">
-                                    </select>
-                                </div-->
+								<div class="input-field">
+									<div onclick="moduleAddForm()" style="padding-left:40px; padding-left:10px; font-size:30px;">+</div>
+                                </div>
                                 <div class="input-fieldonethird">
                                     <button class="btnEdit" onclick="savePrivilage()">
                                         <a>
@@ -54,7 +92,7 @@
 							<table class="table table-striped" id="privilage_tab">
 								<thead>
 									<tr>
-										<th scope="col">Role Name</th>
+										<th scope="col" onclick="roleAddForm()" >Role Name</th>
 										<th scope="col">Create</th>
 										<th scope="col">View</th>
                                         <th scope="col">Update</th>
