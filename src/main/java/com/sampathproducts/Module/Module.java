@@ -30,5 +30,5 @@ public class Module {
     private String module_name;
 
     @OneToMany(mappedBy = "module_id", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ModuleRole> privilages;
+    private List<ModuleRole> modulerole;
 }

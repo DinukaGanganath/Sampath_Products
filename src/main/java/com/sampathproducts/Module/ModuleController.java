@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,7 @@ public class ModuleController {
     public String save(@RequestBody Module module) {
         try {
 
-            for (ModuleRole privilage : module.getPrivilages()) {
+            for (ModuleRole privilage : module.getModulerole()) {
                 privilage.setModule_id(module);
             }
             dao.save(module);
@@ -35,5 +36,21 @@ public class ModuleController {
             return "Save not completed" + e.getMessage();
         }
 
+    }
+
+    @PutMapping(value = "/module/edit")
+    public String restore(@RequestBody Module module) {
+        try {
+
+            for (ModuleRole privilage : module.getModulerole()) {
+                privilage.setModule_id(module);
+            }
+
+            dao.save(module);
+
+            return "Ok";
+        } catch (Exception e) {
+            return "Save not completed" + e.getMessage();
+        }
     }
 }

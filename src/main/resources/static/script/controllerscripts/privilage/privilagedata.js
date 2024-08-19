@@ -14,14 +14,14 @@ function searchPrivilage(ele){
     loadCheckBox("/module/findall");
     loadTable("/role/findall");
     
-    var privilageTable = document.getElementById('data-output');
-    var trs = privilageTable.querySelectorAll('tr');
+    var moduleroleTable = document.getElementById('data-output');
+    var trs = moduleroleTable.querySelectorAll('tr');
      
 }
 
 function loadTable(url){
-    var privilageTable = document.getElementById('data-output');
-    privilageTable.innerHTML = "";
+    var moduleroleTable = document.getElementById('data-output');
+    moduleroleTable.innerHTML = "";
 
     fetch(url)
     .then(function(response){
@@ -50,7 +50,7 @@ function loadTable(url){
             hidden.id = "hidden";
             tabRow.appendChild(hidden);
 
-            privilageTable.appendChild(tabRow);
+            moduleroleTable.appendChild(tabRow);
         }
     });
 }
@@ -69,7 +69,7 @@ function loadCheckBox(url){
             //     var privRole = document.getElementById(priv.role_id.role_id);
             //     if(moduleId == priv.module_id.module_id && privRole.id == priv.role_id.role_id){
             //         var privId = document.createElement('td');
-            //         privId.innerHTML = priv.privilage_id;
+            //         privId.innerHTML = priv.modulerole_id;
             //         privId.style.display='none';
             //         privId.id = "privId";
             //         privRole.appendChild(privId);
@@ -84,7 +84,7 @@ function loadCheckBox(url){
 
             if(mod.module_id == moduleId){
                 for(var trEle  of tBody.getElementsByTagName('tr')){
-                    for(var privEle of mod.privilages){
+                    for(var privEle of mod.modulerole){
                         if(trEle.id == privEle.role_id.role_id){
                             trEle.setAttribute('value', privEle['module_role']);
                             for(var cls of attrList){
@@ -109,15 +109,14 @@ function savePrivilage(){
     var module_id = JSON.parse(document.getElementById('module_id').value);
     var tbdy = document.getElementById('data-output');
     var trs = tbdy.getElementsByTagName('tr');
+    module_id.modulerole = new Array();
     for(var row of trs){
-        console.log(row);
         var objRow = {};
-        objRow.module_id = module_id;
+        objRow.module_role = row.id;
         objRow.role_id = JSON.parse(row.querySelector("#hidden").innerHTML);
         // var str = row.querySelector("#hidden").innerHTML;
         // var obj = JSON.parse(str)
         // objRow.role_id = obj;
-        objRow.module_role = parseInt(row.getAttribute('value'));
 
         for(var attr of attrList){
             if(row.querySelector('.'+attr).checked){
@@ -128,17 +127,21 @@ function savePrivilage(){
             }
         }
 
-        console.log(objRow);
 
-        $.ajax("/privilage/edit", {
+
+        module_id.modulerole.push(objRow);
+
+        $.ajax("/module/edit", {
             async : false,
             type : "PUT",
-            data : JSON.stringify(objRow),
+            data : JSON.stringify(module_id),
             contentType: 'application/json',
         });
         
     }
     
+    
+    console.log(module_id);
 }
 
 function roleAddForm(){
@@ -185,7 +188,7 @@ function createModule(){
     var loadAfter = "/"+ window.location.href.split("/").slice(-1);
     
     var modobj ={};
-    modobj.privilages = new Array();
+    modobj.moduleroles = new Array();
     
     modobj.module_name = document.getElementById('module_name').value.replaceAll(" ", "_");
     fetch("/role/findall")
@@ -200,7 +203,7 @@ function createModule(){
             privobj.del = 0;
             privobj.edit = 0;
             privobj.cre =0;
-            modobj.privilages.push(privobj);
+            modobj.moduleroles.push(privobj);
         }
     });
 

@@ -50,7 +50,7 @@ public class ModuleRoleController {
         return dao.findAll();
     }
 
-    @PutMapping(value = "/privilage/edit")
+    @PutMapping(value = "/modulerole/edit")
     public String restore(@RequestBody ModuleRole privilage) {
         try {
 
