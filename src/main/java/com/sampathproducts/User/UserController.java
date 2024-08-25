@@ -98,7 +98,6 @@ public class UserController {
     @DeleteMapping(value = "/user/delete")
     public String delete(@RequestBody User user) {
         try {
-            @SuppressWarnings("null")
             User extUser = dao.getReferenceById(user.getUser_id());
 
             dao.save(extUser);
@@ -113,9 +112,8 @@ public class UserController {
     public String restore(@RequestBody User user) {
         System.out.println(user.getUser_id());
         try {
-            @SuppressWarnings("null")
             User extUser = dao.getReferenceById(user.getUser_id());
-            extUser.setUser_status(0);
+            extUser.setUser_status(false);
             dao.save(extUser);
 
             return "Ok";
@@ -129,10 +127,9 @@ public class UserController {
 
         try {
 
-            @SuppressWarnings("null")
             User extUser = dao.getReferenceById(user.getUser_id());
             extUser = user;
-            user.setUser_status(0);
+            user.setUser_status(false);
             dao.save(extUser);
 
             return "Ok";

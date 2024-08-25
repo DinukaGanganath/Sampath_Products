@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.Set;
+import java.time.LocalDateTime;
 
 import com.sampathproducts.Employee.Employee;
 import com.sampathproducts.Role.Role;
@@ -44,7 +45,10 @@ public class User {
     private String user_photopath;
 
     @Column(name = "user_status")
-    private Integer user_status;
+    private Boolean user_status;
+
+    @Column(name = "user_addeddate")
+    private LocalDateTime user_addeddate;
 
     @OneToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")

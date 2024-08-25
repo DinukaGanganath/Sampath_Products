@@ -19,4 +19,7 @@ public interface UserDao extends JpaRepository<User, Integer> {
     @Query(value = "select * from sampathproducts.user where employee_id = :employee_id", nativeQuery = true)
     public User getUserByEmployee(@Param("employee_id") Integer employee_id);
 
+    @Query(value = "select * from sampathproducts.user where user_name = :user_name", nativeQuery = true)
+    public User getUserByUsername(@Param("user_name") String user_name);
+
 }

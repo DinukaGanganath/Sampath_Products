@@ -132,7 +132,7 @@ public class EmployeeController {
 
             User extUser = userDao.getUserByEmployee(extEmployee.getEmployee_id());
             if (extUser != null) {
-                extUser.setUser_status(0);
+                extUser.setUser_status(false);
                 userDao.save(extUser);
             }
             return "Ok";
@@ -153,7 +153,7 @@ public class EmployeeController {
 
             User extUser = userDao.getUserByEmployee(extEmployee.getEmployee_id());
             if (extUser != null) {
-                extUser.setUser_status(1);
+                extUser.setUser_status(true);
                 userDao.save(extUser);
             }
 

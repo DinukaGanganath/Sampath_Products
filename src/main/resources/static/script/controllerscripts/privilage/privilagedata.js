@@ -11,7 +11,7 @@ var roleObjs = [];
 function searchPrivilage(ele){
     
 
-    loadCheckBox("/module/findall");
+    loadCheckBox("/privilage/findall");
     loadTable("/role/findall");
     
     var moduleroleTable = document.getElementById('data-output');
@@ -82,21 +82,21 @@ function loadCheckBox(url){
             //     }
             // }
 
-            if(mod.module_id == moduleId){
+            if(mod.module_id.module_id == moduleId){
                 for(var trEle  of tBody.getElementsByTagName('tr')){
-                    for(var privEle of mod.modulerole){
-                        if(trEle.id == privEle.role_id.role_id){
-                            trEle.setAttribute('value', privEle['module_role']);
+                    
+                        if(trEle.id == mod.role_id.role_id){
+                            trEle.setAttribute('value', mod['module_role']);
                             for(var cls of attrList){
-                                console.log(privEle[cls]);
-                                if(privEle[cls]==1){
+                                console.log(mod[cls]);
+                                if(mod[cls]==1){
                                     trEle.getElementsByClassName(cls)[0].setAttribute("checked","checked");
                                 }else{
                                     trEle.getElementsByClassName(cls)[0].removeAttribute("checked");
                                 }
                             }
                         }
-                    }
+                    
                 }
             }
 
@@ -109,14 +109,12 @@ function savePrivilage(){
     var module_id = JSON.parse(document.getElementById('module_id').value);
     var tbdy = document.getElementById('data-output');
     var trs = tbdy.getElementsByTagName('tr');
-    module_id.modulerole = new Array();
+   
     for(var row of trs){
+
         var objRow = {};
-        objRow.module_role = row.id;
+        objRow.module_id = module_id;
         objRow.role_id = JSON.parse(row.querySelector("#hidden").innerHTML);
-        // var str = row.querySelector("#hidden").innerHTML;
-        // var obj = JSON.parse(str)
-        // objRow.role_id = obj;
 
         for(var attr of attrList){
             if(row.querySelector('.'+attr).checked){
@@ -128,20 +126,19 @@ function savePrivilage(){
         }
 
 
-
-        module_id.modulerole.push(objRow);
-
-        $.ajax("/module/edit", {
+        $.ajax("/modulerole/edit", {
             async : false,
             type : "PUT",
-            data : JSON.stringify(module_id),
+            data : JSON.stringify(objRow),
             contentType: 'application/json',
         });
+
+        console.log(objRow);
         
     }
     
     
-    console.log(module_id);
+    
 }
 
 function roleAddForm(){
@@ -180,7 +177,7 @@ function createRole(){
         },
     });
 
-    //window.location.href = loadAfter;
+    window.location.href = loadAfter;
 
 }
 
@@ -196,15 +193,7 @@ function createModule(){
         return response.json();
     })
     .then(function(roles){
-        for(var i of roles){
-            var privobj = {};
-            privobj.role_id = i;
-            privobj.sel = 0;
-            privobj.del = 0;
-            privobj.edit = 0;
-            privobj.cre =0;
-            modobj.moduleroles.push(privobj);
-        }
+        modobj.roleList = roles;
     });
 
     console.log(modobj);
@@ -228,6 +217,6 @@ function createModule(){
         },
     });
 
-    //window.location.href = loadAfter;
+    window.location.href = loadAfter;
 
 }

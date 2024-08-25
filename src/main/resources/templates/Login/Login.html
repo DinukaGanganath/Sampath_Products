@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <link rel="icon" href="images/logo_white.png">
+
+        <title>Login</title>
+    </head>
+    <body>
+        <div class="login-container">
+            <div class="image-section">
+                <img src="images/logo_white.png" alt="Logo">
+            </div>
+            <div class="form-section">
+                <h1>Login</h1>
+                <form action="/login" method="post">
+
+                    <!--div class="input-field"-->
+                        <label for="user_name">Username</label>
+                        <input type="text" id="user_name" name="user_name" required>
+                    <!--/div-->
+                    <!--div class="input-field"-->
+                        <label for="user_password">Password</label>
+                        <input type="password" id="user_password" name="user_password" required>
+                    <!--/div-->
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

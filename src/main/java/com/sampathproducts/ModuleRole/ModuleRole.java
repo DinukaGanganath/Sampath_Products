@@ -1,6 +1,5 @@
 package com.sampathproducts.ModuleRole;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sampathproducts.Module.Module;
 import com.sampathproducts.Role.Role;
 
@@ -41,7 +40,6 @@ public class ModuleRole {
 
     @ManyToOne
     @JoinColumn(name = "module_id", referencedColumnName = "module_id")
-    @JsonIgnore
     private Module module_id;
 
     @ManyToOne

@@ -54,8 +54,13 @@ public class ModuleRoleController {
     public String restore(@RequestBody ModuleRole privilage) {
         try {
 
+            ModuleRole moduleRole = dao.getModuleRole(privilage.getModule_id().getModule_id(),
+                    privilage.getRole_id().getRole_id());
+
+            privilage.setModule_role(moduleRole.getModule_role());
+
             System.out.println(privilage);
-            // dao.save(privilage);
+            dao.save(privilage);
 
             return "Ok";
         } catch (Exception e) {

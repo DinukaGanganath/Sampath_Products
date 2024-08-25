@@ -29,7 +29,7 @@ public class DashboardController {
     @RequestMapping(value = "/dashboards/admin")
     public ModelAndView admindashboardUI() {
         ModelAndView viewDashboard = new ModelAndView();
-        viewDashboard.setViewName("Dashboard/Admin.html");
+        viewDashboard.setViewName("DashBoard/Admin.html");
         return viewDashboard;
     }
 
