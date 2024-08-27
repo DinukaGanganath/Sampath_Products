@@ -14,16 +14,16 @@
 	</head>
 	
 	<body>
-		<div id="context-menu">
-			<div class="item" id="context_view" onclick="viewProduct()">
+		<div id="context-menu" onmouseout="hideContextMenu(event);">
+			<div class="item" id="context_view" onclick="viewCustomer()">
 				<i class="fa-solid fa-eye"></i>
 				View
 			</div>
-			<div class="item" id="context_edit" onclick="editProduct()">
+			<div class="item" id="context_edit" onclick="editCustomer()">
 				<i class="fa-solid fa-pencil"></i>
 				Edit
 			</div>
-			<div class="item" id="context_delete" onclick="deleteProduct()">
+			<div class="item" id="context_delete" onclick="deleteCustomer()">
 				<i class="fa-solid fa-trash"></i>
 				Delete
 			</div>
@@ -56,19 +56,19 @@
 						</div>
 						<div class="table-container">
 							<button class="addBtn">
-								<a href="/productadd">
+								<a href="/customeradd">
 									Add
 								</a>
 							</button>
 							<table class="table table-striped">
 								<thead>
 								<tr>
-									<th scope="col">Product Name</th>
-									<th scope="col">Product Code</th>
-									<th scope="col">Unit Qty</th>
-									<th scope="col">Unit Price</th>
-									<th scope="col">Usable time</th>
-									<th scope="col"></th>
+									<th scope="col">Customer Name</th>
+									<th scope="col">Customer Code</th>
+									<th scope="col">Contact No</th>
+									<th scope="col">Email</th>
+									<th scope="col">Business Name</th>
+									<th scope="col">City</th>
 								</tr>
 								</thead>
 								<tbody id="data-output">
@@ -76,6 +76,26 @@
 								</tbody>
 													
 							</table>
+						</div>
+						<div class="paginationFooter">
+							<div class="leftCorner">
+								<div class="container">
+									<div id="pagLeftBtn" class="half-circle left pagBtn" onclick="loadPrevious()">
+										<span class="button-label">
+											<i class="icon fa-solid fa-chevron-left" style="height: 20px;"></i>
+										</span>
+									</div>
+									<div id="pagMiddle"></div>
+									<div id="pagRightBtn" class="half-circle right pagBtn" onclick="loadNext()">
+										<span class="button-label">
+											<i class="icon fa-solid fa-chevron-right" style="height: 20px;"></i>
+										</span>
+									</div>
+								</div>  
+							</div>
+							<div class="rightCorner">
+								<a style="text-align: right; color: black; float: right;" href="/customerdeleted">Deleted Customers</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -85,11 +105,11 @@
 		<script type="text/javascript" src="script/formscripts.js"></script>
 		<script type="text/javascript" src="script/tablescript.js"></script>
 		<script type="text/javascript" src="script/restfunction.js"></script>
-		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="script/topnavbar.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="fontawesome/js/all.js"></script>
 		<script type="text/javascript" src="script/objects.js"></script>
-		<script type="text/javascript" src="script/controllerscripts/product/productdata.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/batch/batchprocess.js"></script>
 		<script type="text/javascript" src="script/jquery.js"></script>
 		  
 	</body>

@@ -5,23 +5,71 @@
 		<link rel="stylesheet" href="fontawesome/css/all.css" />
 		<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
 		<link rel="stylesheet" href="style/sidenavbarstyles.css" />
+		<link rel="stylesheet" href="style/formstyles.css" />
 		<link rel="stylesheet" href="style/tablestyles.css" />
 		<link rel="stylesheet" href="style/contentstyles.css" />
 		<link rel="icon" href="images/logo_white.png">
 		
 		
 	</head>
+	
 	<body>
-		<div id="context-menu">
-			<div class="item" id="context_view" onclick="restoreProduct()">
-				<i class="fa-solid fa-trash-arrow-up"></i>
-				Restore
-			</div>
-			<div class="item" id="context_edit" onclick="viewProduct()">
+		<div id="context-menu" onmouseout="hideContextMenu(event);">
+			<div class="item" id="context_view" onclick="viewCustomer()">
 				<i class="fa-solid fa-eye"></i>
 				View
 			</div>
+			<div class="item" id="context_edit" onclick="editCustomer()">
+				<i class="fa-solid fa-pencil"></i>
+				Edit
+			</div>
+			<div class="item" id="context_delete" onclick="deleteCustomer()">
+				<i class="fa-solid fa-trash"></i>
+				Delete
+			</div>
 		</div>
+        <div id="modal" class="hidden">
+			<div class="modal-content">
+				<h3 id="quotationTitle">Request Batch</h3>
+				<form>
+					<div class="formcls">
+						<div class="details personal">
+							<span class="title">Available Material Details</span>
+							<div class="fields" id="material_val">
+								
+							</div>
+							<span class="title">Batch Details</span>
+							<div class="fields">
+								<div class="input-fieldhalf">
+									<label for="batch_code">Batch Code</label>
+									<input id="batch_code" type="text" disabled />
+								</div>
+							</div>
+							<div style="padding: 20px; height: 200px;">
+								<div style="height: 80%; overflow-y: auto;">
+									<table id="myTable" style="background-color: rgba(0, 0, 0, 0); border: none;">
+										<thead style="position: sticky; top:-1; left:-1; background:white">
+											<tr>
+												<th>Product</th>
+												<th>To be product</th>
+												<th>Quantity</th>
+											</tr>
+										</thead>
+										<tbody id="tabBody">
+									
+										</tbody>
+										
+									</table>
+								</div>
+							</div>
+							<button type="button" onclick='createBatch();'>Create Batch</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div id="overlay" class="hidden"></div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="column">
@@ -41,6 +89,7 @@
 				<div class="content-container">
 
 					<div class="content">
+						
 						<div class="head-title" id="heading">
 							
 						</div>
@@ -48,19 +97,23 @@
 						
 						</div>
 						<div class="table-container">
+							<button class="addBtn" onclick='loadProduction()'>
+									Request Batch
+							</button>
 							<table class="table table-striped">
 								<thead>
 								<tr>
-									<th scope="col">Product Name</th>
-									<th scope="col">Product Code</th>
-									<th scope="col">Unit Qty</th>
-									<th scope="col">Unit Price</th>
-									<th scope="col">Usable time</th>
+									<th scope="col">Batch Code</th>
+									<th scope="col">Batch Requested Date</th>
+									<th scope="col">Batch Products</th>
+									<th scope="col">Quantity</th>
+									<th scope="col"></th>
 								</tr>
 								</thead>
 								<tbody id="data-output">
 
 								</tbody>
+													
 							</table>
 						</div>
 						<div class="paginationFooter">
@@ -80,21 +133,22 @@
 								</div>  
 							</div>
 							<div class="rightCorner">
-								<a style="text-align: right; color: black; float: right;" href="/product">Product Details</a>
+								<a style="text-align: right; color: black; float: right;" href="/customerdeleted">Deleted Customers</a>
 							</div>
-						</div>		
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript" src="script/sidebarscripts.js"></script>
-		<script type="text/javascript" src="script/tablescript.js"></script>
 		<script type="text/javascript" src="script/formscripts.js"></script>
+		<script type="text/javascript" src="script/tablescript.js"></script>
 		<script type="text/javascript" src="script/restfunction.js"></script>
+		<script type="text/javascript" src="script/topnavbar.js"></script>
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="fontawesome/js/all.js"></script>
 		<script type="text/javascript" src="script/objects.js"></script>
-		<script type="text/javascript" src="script/controllerscripts/product/productdeleted.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/batch/batchprocess.js"></script>
 		<script type="text/javascript" src="script/jquery.js"></script>
 		  
 	</body>

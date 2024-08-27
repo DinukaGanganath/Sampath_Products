@@ -8,14 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 public interface BatchDao extends JpaRepository<Batch, Integer> {
 
     // get Deleted values
-    @Query(value = "select * from sampathproducts.purchaseorder where purchaseorder_status=0 order by purchaseorder_id desc", nativeQuery = true)
-    public List<Batch> getDeletedBatch();
+    @Query(value = "select * from sampathproducts.batch where batch_status=0 order by batch_id desc", nativeQuery = true)
+    public List<Batch> getFinishedBatch();
 
     // get non deleted values
-    @Query(value = "select * from sampathproducts.purchaseorder where purchaseorder_status=1 order by purchaseorder_id desc", nativeQuery = true)
-    public List<Batch> getExistingBatch();
+    @Query(value = "select * from sampathproducts.batch where batch_status=1 order by batch_id desc", nativeQuery = true)
+    public List<Batch> getProcessingBatch();
 
-    @Query(value = "select concat('batch/',lpad((substring(max(batch_code),(position('/'in max(batch_code)))+1, 3)+1),3,0)) FROM sampathproducts.batch;", nativeQuery = true)
+    @Query(value = "select concat('Batch/',lpad((substring(max(batch_code),(position('/'in max(batch_code)))+1, 3)+1),3,0)) FROM sampathproducts.batch;", nativeQuery = true)
     public String getNextBatchCode();
 
 }

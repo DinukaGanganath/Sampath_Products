@@ -4,6 +4,28 @@ sidebarLoader("/product");
 
 //Create the table initial values
 loadTable();
+
+var jsonList = [
+    {
+        "str" : "Products",
+        "url" : "/product",
+        "status" : "active"
+    },
+    {
+        "str" : "Products Store",
+        "url" : "/productstores"
+    },
+    {
+        "str" : "Batch process",
+        "url" : "/batchprocess"
+    },
+    {
+        "str" : "Batch finished",
+        "url" : "/batch"
+    }
+]
+createThinLongDiv(jsonList);
+
 ////////////////////////// 
 ///// Product View //////
 //////////////////////////

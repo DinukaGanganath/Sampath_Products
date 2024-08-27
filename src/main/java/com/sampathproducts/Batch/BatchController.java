@@ -17,6 +17,7 @@ import com.sampathproducts.Product.ProductDao;
 import com.sampathproducts.ProductHasMaterial.ProductHasMaterial;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -38,10 +39,10 @@ public class BatchController {
         return viewBatch;
     }
 
-    @RequestMapping(value = "/batchadd")
+    @RequestMapping(value = "/batchprocess")
     public ModelAndView batchAddUI() {
         ModelAndView viewBatchAdd = new ModelAndView();
-        viewBatchAdd.setViewName("Batch/BatchAdd.html");
+        viewBatchAdd.setViewName("Batch/BatchProcess.html");
         return viewBatchAdd;
     }
 
@@ -73,15 +74,15 @@ public class BatchController {
     }
 
     // get database values as json data
-    @GetMapping(value = "/batch/findall/deleted", produces = "application/json")
-    public List<Batch> findAllDeleted() {
-        return dao.getDeletedBatch();
+    @GetMapping(value = "/batch/findall/finished", produces = "application/json")
+    public List<Batch> findAllFinished() {
+        return dao.getFinishedBatch();
     }
 
     // get database exsisting values as json data
-    @GetMapping(value = "/batch/findall/exist", produces = "application/json")
-    public List<Batch> findAllExist() {
-        return dao.getExistingBatch();
+    @GetMapping(value = "/batch/findall/process", produces = "application/json")
+    public List<Batch> findAllProcess() {
+        return dao.getProcessingBatch();
     }
 
     // Save a Batch with post method
@@ -113,42 +114,42 @@ public class BatchController {
             String nextBatchCode = dao.getNextBatchCode();
 
             if (nextBatchCode == "" || nextBatchCode == null) {
-                batch.setBatch_code("cust/001");
+                batch.setBatch_code("Batch/001");
             } else {
                 batch.setBatch_code(nextBatchCode);
             }
 
             dao.save(batch);
-            /*
-             * List<BatchHasProduct> list = batch.getBatchHasProductList();
-             * 
-             * for (BatchHasProduct phq : list) {
-             * Request request = phq.getRequest_id();
-             * Supplier supplier = request.getSupplier_id();
-             * String business = supplier.getSupplier_business_name();
-             * String material_name = supplier.getSupplier_material_id().getMaterial_name();
-             * String material_unit = supplier.getSupplier_material_id().getMaterial_unit();
-             * Integer req_qty = phq.getRequested_qty();
-             * LocalDateTime req_date = request.getRequest_created_date();
-             * Integer req_unit = request.getRequest_price() / request.getRequest_units();
-             * String email = supplier.getSupplier_email();
-             * 
-             * EmailDetails emailDetails = new EmailDetails();
-             * emailDetails.setSendTo(email);
-             * emailDetails.setMsgBody("To " + business.replace('_', ' ')
-             * + ", \n\n\t According to the Quotation you have sent us on " + req_date
-             * + ", we are pleased to purchase " + req_qty + material_unit + "s of " +
-             * material_name
-             * + " at your unit price, Rs. " + req_unit
-             * +
-             * ". \n\n\t Full payment for the Products will be paid on the purchasing date. \n\n\tYour sincerly,\nSampath Products."
-             * );
-             * emailDetails.setSubject("Batch order for buying " + material_name);
-             * 
-             * emailServiceImpl.sendSimpleMail(emailDetails);
-             * 
-             * }
-             */
+
+            return "Ok";
+        } catch (Exception e) {
+            return "Save not completed" + e.getMessage();
+        }
+
+    }
+
+    @PutMapping(value = "/batch/edit")
+    public String edit(@RequestBody Batch batch) {
+
+        try {
+
+            for (BatchHasProduct phq : batch.getBatchHasProductList()) {
+                Product p = phq.getProduct_id();
+                p.setProduct_id(p.getProduct_id());
+                p.setProduct_progress(p.getProduct_progress() - phq.getQty());
+                p.setProduct_has(p.getProduct_has() + phq.getQty());
+                phq.setBatch_id(batch);
+                phq.setBatch_product_created(LocalDateTime.now());
+                phq.setBatch_product_expired(LocalDateTime.now());
+                p.setProduct_progress(phq.getQty());
+                proddao.save(p);
+            }
+
+            // batch.setBatch_created_date(LocalDateTime.now());
+            batch.setBatch_status(0);
+
+            dao.save(batch);
+
             return "Ok";
         } catch (Exception e) {
             return "Save not completed" + e.getMessage();
