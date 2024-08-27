@@ -64,6 +64,13 @@ public class ProductController {
         return viewProductView;
     }
 
+    @RequestMapping(value = "/productstores")
+    public ModelAndView productStoresUI() {
+        ModelAndView viewProductView = new ModelAndView();
+        viewProductView.setViewName("Product/ProductStore.html");
+        return viewProductView;
+    }
+
     // get database values as json data
     @GetMapping(value = "/product/findall", produces = "application/json")
     public List<Product> findAll() {

@@ -59,6 +59,9 @@ public class Product {
     @Column(name = "product_need") // mapping the column "product_need" of table "product_details"
     private Integer product_need;
 
+    @Column(name = "product_progress") // mapping the column "product_need" of table "product_details"
+    private Integer product_progress;
+
     @Column(name = "product_extra") // mapping the column "product_extra" of table "product_details"
     private Integer product_extra;
 

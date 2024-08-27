@@ -106,6 +106,8 @@ tr{
     color: var(--text-color);
 }
 
+
+
 .hidden{
     display : none;
 }   
@@ -226,6 +228,23 @@ width: calc(33.33% - 5px);
 #myTable td:nth-child(4) { 
 width: 15px; 
 }
+
+td.orange {
+    font-weight: bold;
+    color : orange;
+}
+
+td.red {
+    font-weight: bold;
+    color: red;
+}
+
+
+td.green {
+    font-weight: bold;
+    color: green;
+}
+
 
 
 @media (max-width: 767px){
