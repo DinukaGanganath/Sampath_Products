@@ -1,0 +1,214 @@
+<html>
+
+	<head>		
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="fontawesome/css/all.css" />
+		<link rel="stylesheet" href="fontawesome/css/fontawesome.css" />
+		<link rel="stylesheet" href="style/sidenavbarstyles.css" />
+		<link rel="stylesheet" href="style/formstyles.css" />
+		<link rel="stylesheet" href="style/contentstyles.css" />
+		<link rel="stylesheet" href="style/tablestyles.css" />
+		<link rel="icon" href="images/logo_white.png">
+	</head>
+
+	<body>
+
+		<div id="modal-notification" class="hidden">
+			<div class="modal-content">
+				<form>
+				<div class="formcls">
+					<div class="details personal">
+						<span class="title">Products are not sufficient.</span>
+						<div class="fields">
+							<div class="input-fieldhalf">
+								<label for="postal_division_name">Following list of products are not sufficient for the production.</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<table id="myTable">
+					<thead style="position: sticky; top:-1; left:-1; background:white">
+						<tr>
+							<th>Product</th>
+							<th>Products Need</th>
+							<th>Products has</th>
+						</tr>
+					</thead>
+					<tbody id="tabBodyProduct">
+				
+					</tbody>
+				</table>
+			</form>
+			</div>
+		</div>
+
+		<div id="modal" class="hidden">
+			<div class="modal-content">
+				<h3 id="quotationTitle">Add Customer Order</h3>
+				<form>
+					<div class="formcls">
+						<div class="details personal">
+							<span class="title">General Details</span>
+							<div class="fields">
+								<div class="input-fieldhalf">
+									<label for="customer_id">Customer ID</label>
+									<select id="customer_id" onchange='document.getElementById("customer_name").value=this.value;'>
+									</select>
+									<input type="text" id="customer_id_text" style="display:none" />
+								</div>
+								<div class="input-fieldhalf">
+									<label for="customer_name">Business Name</label>
+									<select id="customer_name" onchange='document.getElementById("customer_id").value=this.value;'>
+									</select>
+									<input type="text" id="customer_name_text" style="display:none" />
+								</div>
+								<div class="input-fieldhalf">
+									<label for="customer_order_created">Created Date</label>
+									<input id="customer_order_created" type="date" />
+								</div>
+								<div class="input-fieldhalf">
+									<label for="customer_order_needed">Needed Date</label>
+									<input id="customer_order_needed" type="date" />
+								</div>
+							</div>
+							<div style="padding: 20px; height: 200px;">
+								<div style="height: 80%; overflow-y: auto;">
+									<table id="myTable">
+										<thead style="position: sticky; top:-1; left:-1; background:white">
+											<tr>
+												<th>Product</th>
+												<th>Quantity</th>
+												<th>Price</th>
+												<th id='addRowBtn' onclick="addRow()"><i class="fa-solid fa-plus"></i></th>
+											</tr>
+										</thead>
+										<tbody id="tabBody">
+									
+										</tbody>
+										
+									</table>
+								</div>
+							</div>
+							<div style="display:flex">
+								<div class="input-fieldonethird">
+									<label for="payment_amount">Total</label>
+									<input id ="payment_amount" type="text" value=0 disabled />	
+								</div>
+								<div class="input-fieldonethird">
+									<label for="payment_discount">Discount</label>
+									<input id ="payment_discount" type="number" value=0 min=0 onchange="calibrateVal()" />
+								</div>
+								<div class="input-fieldonethird">
+									<label for="payment_need">To be paid</label>
+									<input id ="payment_need" type="text" value=0 disabled />
+								</div>
+							</div>
+							<div style="display:flex">
+								<div class="input-fieldonethird">
+									<label for="payment_type">Type of payment</label>
+									<select id="payment_type" onchange="createBalance();">
+										<option value="cash">Cash</option>
+										<option value="card">Card</option>
+									</select>
+								</div>
+								<div class="input-fieldonethird">
+									<label for="payment_paid">Amount paid</label>
+									<input id ="payment_paid" type="text" value=0  onchange="calibrateVal()" />
+								</div>
+								<div class="input-fieldonethird">
+									<label for="payment_balance">Balance</label>
+									<input id ="payment_balance" type="text" value=0 disabled />
+								</div>
+							</div>
+							<button type="button" onclick='createCustOrder();'>Create Customer Order</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div id="overlay" class="hidden"></div>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="column">
+					<div class="mobile-icon">
+						<i class="fa-solid fa-bars mob-icon" onclick="mobMenuToggle()"></i>
+						<div class="part">
+							<img class="mob-image" src="images/logo_white.png" alt="logo" />
+							<h5 class="name mob-header">Sampath Products</h5>
+						</div>
+					</div>
+				</div>
+				<div class="column" id="sidebarContainer">
+					
+				</div>
+
+				<div class="content-container">
+
+					<div class="content">
+						<div class="head-title" id="heading">
+						</div>
+						<div id="parentDiv" style="text-align: center;">
+						
+						</div>
+						<div class="table-container">
+							<button class="addBtn" onclick="showForm()">
+								<a>
+									Add
+								</a>
+							</button>
+							<table class="table table-striped" id="material_tab">
+								<thead>
+									<tr>
+										<th>Business name</th>
+										<th>Area</th>
+										<th>Order Need date</th>
+										<th>Order Ordered date</th>
+										<th>Order value</th>
+										<th>Price paid</th>
+										<th>Status</th>	
+										<th></th>
+									</tr>
+								</thead>
+								<tbody id="data-output">
+
+								</tbody>
+							</table>
+						</div>
+						<div class="paginationFooter">
+							<div class="leftCorner">
+								<div class="container">
+									<div id="pagLeftBtn" class="half-circle left pagBtn" onclick="loadPrevious()">
+										<span class="button-label">
+											<i class="icon fa-solid fa-chevron-left" style="height: 20px;"></i>
+										</span>
+									</div>
+									<div id="pagMiddle"></div>
+									<div id="pagRightBtn" class="half-circle right pagBtn" onclick="loadNext()">
+										<span class="button-label">
+											<i class="icon fa-solid fa-chevron-right" style="height: 20px;"></i>
+										</span>
+									</div>
+								</div>  
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="script/jquery.js"></script>
+		<script type="text/javascript" src="script/sidebarscripts.js"></script>
+		<script type="text/javascript" src="script/restfunction.js"></script>
+		<script type="text/javascript" src="script/formscripts.js"></script>
+		<script type="text/javascript" src="script/objects.js"></script>
+		<script type="text/javascript" src="script/topnavbar.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="fontawesome/js/all.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/product/productedit.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/customerorder/customerorderready.js"></script>
+		<script type="text/javascript" src="script/jquery.js"></script>
+	</body>
+
+</html>

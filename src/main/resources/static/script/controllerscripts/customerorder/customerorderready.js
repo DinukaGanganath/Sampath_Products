@@ -13,16 +13,16 @@ var jsonList = [
     },
     {
         "str" : "Ordered",
-        "url" : "/customerorder",
-        "status" : "active",
+        "url" : "/customerorder"
     },
     {
         "str" : "Ready",
-        "url" : "/customerorderready"
+        "url" : "/customerorderready",
+        "status" : "active",
     },
     {
         "str" : "Shipped",
-        "url" : "/customerordershipped",
+        "url" : "/customerordeshipped",
     },
     {
         "str" : "Delivered",
@@ -37,7 +37,7 @@ loadTable();
 
 // table value load
 function loadTable(){
-    fetch("/customerorder/findall/created")
+    fetch("/customerorder/findall/ready")
     .then(function(response){
         return response.json();
     })

@@ -45,24 +45,24 @@ public class CustomerOrderController {
         return viewOrder;
     }
 
-    @RequestMapping(value = "/validcustomerorder")
+    @RequestMapping(value = "/customerorderready")
     public ModelAndView customerordervalidUI() {
         ModelAndView viewOrder = new ModelAndView();
-        viewOrder.setViewName("CustomerOrder/CustOrderValid.html");
+        viewOrder.setViewName("CustomerOrder/CustOrderReady.html");
         return viewOrder;
     }
 
-    @RequestMapping(value = "/expiredcustomerorder")
+    @RequestMapping(value = "/customerordershipped")
     public ModelAndView customerorderExpiredUI() {
         ModelAndView viewOrder = new ModelAndView();
-        viewOrder.setViewName("CustomerOrder/CustOrderExpired.html");
+        viewOrder.setViewName("CustomerOrder/CustOrderShipped.html");
         return viewOrder;
     }
 
-    @RequestMapping(value = "/endingcustomerorder")
+    @RequestMapping(value = "/customerorderdelivered")
     public ModelAndView customerorderEndingUI() {
         ModelAndView viewOrder = new ModelAndView();
-        viewOrder.setViewName("CustomerOrder/CustOrderEnding.html");
+        viewOrder.setViewName("CustomerOrder/CustOrderDelivered.html");
         return viewOrder;
     }
 
@@ -80,24 +80,24 @@ public class CustomerOrderController {
     }
 
     // get database exsisting values as json data
-    @GetMapping(value = "/customerorder/findall/ordered", produces = "application/json")
+    @GetMapping(value = "/customerorder/findall/created", produces = "application/json")
     public List<CustomerOrder> findAllExist() {
         return dao.getCreatedCustomerOrder();
     }
 
-    @GetMapping(value = "/customerorder/findall/valid", produces = "application/json")
-    public List<CustomerOrder> validOrders() {
-        return dao.getvalidCustomerOrder();
+    @GetMapping(value = "/customerorder/findall/ready", produces = "application/json")
+    public List<CustomerOrder> readyOrders() {
+        return dao.getReadyCustomerOrder();
     }
 
-    @GetMapping(value = "/customerorder/findall/ending", produces = "application/json")
-    public List<CustomerOrder> endingOrders() {
-        return dao.getEndingCustomerOrder();
+    @GetMapping(value = "/customerorder/findall/shipped", produces = "application/json")
+    public List<CustomerOrder> shippedOrders() {
+        return dao.getShippedCustomerOrder();
     }
 
-    @GetMapping(value = "/customerorder/findall/expired", produces = "application/json")
-    public List<CustomerOrder> expiredOrders() {
-        return dao.getExpiredCustomerOrder();
+    @GetMapping(value = "/customerorder/findall/delivered", produces = "application/json")
+    public List<CustomerOrder> deliveredOrders() {
+        return dao.getDeliveredCustomerOrder();
     }
 
     // Save a Order with post method
@@ -132,8 +132,7 @@ public class CustomerOrderController {
                 Product orderProduct = daoProduct.getReferenceById(ohp.getProduct_id().getProduct_id());
                 message += orderProduct.getProducttype_id().getProducttype_name().replaceAll("_", " ") + " - "
                         + orderProduct.getProductsize_id().getProductsize_name().replace("_", " ") + "\t\t"
-                        + ohp.getQuantity() + "Packets. \t\tRs. " + ohp.getPrice()
-                        + "\n\n Thank you! \n\nBest Regards, \n Sampath Products.";
+                        + ohp.getQuantity() + "Packets. \t\tRs. " + ohp.getPrice();
                 for (ProductHasMaterial phm : orderProduct.getProduct_has_material_list()) {
                     Material orderMaterial = daoMaterial.getReferenceById(phm.getMaterial_id().getMaterial_id());
                     orderMaterial.setMaterial_want(
@@ -143,7 +142,7 @@ public class CustomerOrderController {
                 daoProduct.save(orderProduct);
 
             }
-
+            message += "\n\n Thank you! \n\nBest Regards, \n Sampath Products.";
             EmailDetails emailDetails = new EmailDetails();
             emailDetails.setSendTo(savCustomerOrder.getCustomer_id().getCustomer_email());
             emailDetails.setMsgBody(message);

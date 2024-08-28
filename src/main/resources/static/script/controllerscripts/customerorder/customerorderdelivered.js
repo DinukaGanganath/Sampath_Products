@@ -13,8 +13,7 @@ var jsonList = [
     },
     {
         "str" : "Ordered",
-        "url" : "/customerorder",
-        "status" : "active",
+        "url" : "/customerorder"
     },
     {
         "str" : "Ready",
@@ -26,7 +25,8 @@ var jsonList = [
     },
     {
         "str" : "Delivered",
-        "url" : "/customerorderdelivered"
+        "url" : "/customerorderdelivered",
+        "status" : "active"
     },
 ]
 createThinLongDiv(jsonList);

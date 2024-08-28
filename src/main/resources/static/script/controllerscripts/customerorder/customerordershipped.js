@@ -13,8 +13,7 @@ var jsonList = [
     },
     {
         "str" : "Ordered",
-        "url" : "/customerorder",
-        "status" : "active",
+        "url" : "/customerorder"
     },
     {
         "str" : "Ready",
@@ -23,6 +22,7 @@ var jsonList = [
     {
         "str" : "Shipped",
         "url" : "/customerordershipped",
+        "status" : "active"
     },
     {
         "str" : "Delivered",

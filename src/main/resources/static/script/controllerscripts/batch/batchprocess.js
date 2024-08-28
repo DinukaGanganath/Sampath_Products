@@ -344,6 +344,9 @@ function setDataSet(pagDataList){
 }
 
 function processBatch(obj){
+
+    console.log(obj);
+
     $.ajax("/batch/edit", {
         async : false,
         type : "PUT",

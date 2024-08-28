@@ -10,8 +10,17 @@ public interface CustomerOrderDao extends JpaRepository<CustomerOrder, Integer> 
     public String getNextCustomerOrderCode();
 
     // get Deleted values
-    @Query(value = "select * from sampathproducts.customer_order_details order by customer_order_id desc", nativeQuery = true)
+    @Query(value = "select * from sampathproducts.customer_order_details where customer_order_status='created' order by customer_order_id desc", nativeQuery = true)
     public List<CustomerOrder> getCreatedCustomerOrder();
+
+    @Query(value = "select * from sampathproducts.customer_order_details where customer_order_status='progress' order by customer_order_id desc", nativeQuery = true)
+    public List<CustomerOrder> getReadyCustomerOrder();
+
+    @Query(value = "select * from sampathproducts.customer_order_details where customer_order_status='shipped' order by customer_order_id desc", nativeQuery = true)
+    public List<CustomerOrder> getShippedCustomerOrder();
+
+    @Query(value = "select * from sampathproducts.customer_order_details where customer_order_status='delivered' order by customer_order_id desc", nativeQuery = true)
+    public List<CustomerOrder> getDeliveredCustomerOrder();
 
     // get non deleted values
     @Query(value = "select * from sampathproducts.customer_order_details where customer_order_created=0 and customer_order_deleted=0 order by customer_order_id desc", nativeQuery = true)

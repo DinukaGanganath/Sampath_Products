@@ -9,24 +9,24 @@ dataLoadTable("/customer/findall/exist", ["customer_name","customer_code","custo
 var jsonList = [
     {
         "str" : "Customer",
-        "url" : "/customer",
-        "status" : "active",
+        "url" : "/customer"
     },
     {
-        "str" : "Order",
+        "str" : "Ordered",
         "url" : "/customerorder"
     },
     {
-        "str" : "Valid",
-        "url" : "/validcustomerorder"
+        "str" : "Ready",
+        "url" : "/customerorderready"
     },
     {
-        "str" : "Ending",
-        "url" : "/endingcustomerorder",
+        "str" : "Shipped",
+        "url" : "/customerordershipped",
     },
     {
-        "str" : "Expired",
-        "url" : "/expiredcustomerorder"
+        "str" : "Delivered",
+        "url" : "/customerorderdelivered",
+        "status" : "active"
     },
 ]
 createThinLongDiv(jsonList);
