@@ -164,6 +164,34 @@ public class CustomerOrderController {
             CustomerOrder extQuotation = dao.getReferenceById(customerorder.getCustomer_order_id());
             extQuotation = customerorder;
             dao.save(extQuotation);
+            String ordStatus = extQuotation.getCustomer_order_status();
+
+            String message = "Dear " + customerorder.getCustomer_id().getCustomer_name()
+                    + ", \n\n\t Your customer order with code " + customerorder.getCustomer_order_code();
+
+            switch (ordStatus) {
+                case "progress":
+                    message += " is beign processing.";
+                    break;
+
+                case "shipped":
+                    message += " has been shipped.";
+                    break;
+
+                case "delivered":
+                    message += " has been delivered. ";
+                    break;
+
+                default:
+                    break;
+            }
+            message += "\n\n Thank you! \n\nBest Regards, \n Sampath Products.";
+            EmailDetails emailDetails = new EmailDetails();
+            emailDetails.setSendTo(customerorder.getCustomer_id().getCustomer_email());
+            emailDetails.setMsgBody(message);
+            emailDetails.setSubject("Customer Order Updating " + customerorder.getCustomer_order_code());
+
+            emailServiceImpl.sendSimpleMail(emailDetails);
 
             return "Ok";
         } catch (Exception e) {

@@ -176,7 +176,7 @@ function setDataSet(pagDataList){
                 <td>
                     <div id="basicBtn" style="display:flex">
                         <button class="btnEdit" onclick='viewOrder(` + JSON.stringify(order) +`)'>View</button>
-                        <button id=${order.customer_order_code} class="btnDelete" onclick='processOrder(this,` + JSON.stringify(order) + `)'>Process</button>
+                        <button id=${order.customer_order_code} class="btnDelete" onclick='processOrder(this,` + JSON.stringify(order) + `)'>Deiliver</button>
                     </div>
                 </td>
             </tr>
@@ -254,7 +254,7 @@ function processOrder(ele,order){
             ele.setAttribute("disabled", "disabled");
             ele.addEventListener("click", alert(notification));
         }else{
-            order.customer_order_status = 'progress';
+            order.customer_order_status = 'delivered';
             console.log(order);
 
             $.ajax("/customerorder/edit", {

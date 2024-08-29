@@ -173,12 +173,6 @@ function setDataSet(pagDataList){
                 <td id="order_value">Rs. ${order.payment_amount}.00</td>
                 <td id="price_paid">Rs. ${order.payment_paid}</td>
                 <td id="status">${order.customer_order_status}</td>
-                <td>
-                    <div id="basicBtn" style="display:flex">
-                        <button class="btnEdit" onclick='viewOrder(` + JSON.stringify(order) +`)'>View</button>
-                        <button id=${order.customer_order_code} class="btnDelete" onclick='processOrder(this,` + JSON.stringify(order) + `)'>Process</button>
-                    </div>
-                </td>
             </tr>
         `;
 
