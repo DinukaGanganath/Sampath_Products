@@ -2,6 +2,7 @@ package com.sampathproducts.Employee;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sampathproducts.ModuleRole.ModuleRoleController;
 import com.sampathproducts.User.User;
 import com.sampathproducts.User.UserDao;
 
@@ -31,6 +33,9 @@ public class EmployeeController {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private ModuleRoleController moduleRoleController;
 
     /*
      * public EmployeeController(EmployeeDao dao) {
@@ -81,31 +86,66 @@ public class EmployeeController {
     // get database values as json data
     @GetMapping(value = "/employee/findall", produces = "application/json")
     public List<Employee> findAll() {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Employee");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.findAll(Sort.by(Direction.DESC, "employeeid"));
     }
 
     // get database values as json data
     @GetMapping(value = "/employee/findall/deleted", produces = "application/json")
     public List<Employee> findAllDeleted() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Employee");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getDeletedEmployee();
     }
 
     // get database values as json data
     @GetMapping(value = "/employee/findall/nouser", produces = "application/json")
     public List<Employee> findAllNoUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Employee");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getEmployeeNoUser();
     }
 
     // get database exsisting values as json data
     @GetMapping(value = "/employee/findall/exist", produces = "application/json")
     public List<Employee> findAllExist() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Employee");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getExistingEmployee();
     }
 
     // Save a Employee with post method
     @PostMapping(value = "/employee/save")
     public String save(@RequestBody Employee employee) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Employee");
 
+        if (!logUserPrivi.get("insert")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             employee.setCreated_date_time(LocalDateTime.now());
             employee.setEmployee_deleted(0);
@@ -129,6 +169,13 @@ public class EmployeeController {
     @Transactional
     @DeleteMapping(value = "/employee/delete")
     public String delete(@RequestBody Employee employee) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Employee");
+
+        if (!logUserPrivi.get("delete")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             @SuppressWarnings("null")
             Employee extEmployee = dao.getReferenceById(employee.getEmployee_id());
@@ -151,6 +198,13 @@ public class EmployeeController {
     @PutMapping(value = "/employee/restore")
     public String restore(@RequestBody Employee employee) {
         System.out.println(employee.getEmployee_id());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Employee");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             @SuppressWarnings("null")
             Employee extEmployee = dao.getReferenceById(employee.getEmployee_id());
@@ -172,6 +226,13 @@ public class EmployeeController {
     @PutMapping(value = "/employee/edit")
     public String edit(@RequestBody Employee employee) {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Employee");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         try {
 
             @SuppressWarnings("null")
@@ -190,6 +251,13 @@ public class EmployeeController {
     // get the last added employee
     @GetMapping("/lastemployee")
     public List<Employee> latestEmployee() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Employee");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getLatestEmployee();
     }
 

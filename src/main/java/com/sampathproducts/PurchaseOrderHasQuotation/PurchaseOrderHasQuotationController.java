@@ -1,7 +1,9 @@
 package com.sampathproducts.PurchaseOrderHasQuotation;
 
 import java.util.List;
+import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sampathproducts.ModuleRole.ModuleRoleController;
+
 @RestController
 public class PurchaseOrderHasQuotationController {
     private PurchaseOrderHasQuotationDao dao;
+
+    @Autowired
+    private ModuleRoleController moduleRoleController;
 
     public PurchaseOrderHasQuotationController(PurchaseOrderHasQuotationDao dao) {
         this.dao = dao;

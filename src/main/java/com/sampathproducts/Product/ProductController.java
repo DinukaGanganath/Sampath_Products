@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sampathproducts.ModuleRole.ModuleRoleController;
 import com.sampathproducts.ProductHasMaterial.ProductHasMaterial;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,12 +18,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.HashMap;
 
 @RestController
 public class ProductController {
 
     @Autowired
     private ProductDao dao;
+
+    @Autowired
+    private ModuleRoleController moduleRoleController;
 
     /*
      * public ProductController(ProductDao dao) {

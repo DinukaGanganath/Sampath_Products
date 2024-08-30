@@ -2,6 +2,7 @@ package com.sampathproducts.Request;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sampathproducts.Email.EmailDetails;
 import com.sampathproducts.Email.EmailService;
+import com.sampathproducts.ModuleRole.ModuleRoleController;
 import com.sampathproducts.Supplier.Supplier;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +29,9 @@ public class RequestController {
 
     @Autowired
     private EmailService emailServiceImpl;
+
+    @Autowired
+    private ModuleRoleController moduleRoleController;
 
     // create mapping ui
     @RequestMapping(value = "/quotation")

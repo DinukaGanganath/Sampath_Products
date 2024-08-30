@@ -2,6 +2,7 @@ package com.sampathproducts.Vehicle;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sampathproducts.ModuleRole.ModuleRoleController;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +24,9 @@ public class VehicleController {
 
     @Autowired
     private VehicleDao dao;
+
+    @Autowired
+    private ModuleRoleController moduleRoleController;
 
     /*
      * public VehicleController(VehicleDao dao) {

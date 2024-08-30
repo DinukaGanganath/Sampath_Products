@@ -2,6 +2,7 @@ package com.sampathproducts.CustomerOrder;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -16,6 +17,7 @@ import com.sampathproducts.Email.EmailDetails;
 import com.sampathproducts.Email.EmailService;
 import com.sampathproducts.Material.Material;
 import com.sampathproducts.Material.MaterialDao;
+import com.sampathproducts.ModuleRole.ModuleRoleController;
 import com.sampathproducts.Product.Product;
 import com.sampathproducts.Product.ProductDao;
 import com.sampathproducts.ProductHasMaterial.ProductHasMaterial;
@@ -38,6 +40,9 @@ public class CustomerOrderController {
 
     @Autowired
     private EmailService emailServiceImpl;
+
+    @Autowired
+    private ModuleRoleController moduleRoleController;
 
     // create mapping ui
     @RequestMapping(value = "/customerorder")
@@ -89,33 +94,81 @@ public class CustomerOrderController {
     // get database values as json data
     @GetMapping(value = "/customerorders/findall", produces = "application/json")
     public List<CustomerOrder> findAll() {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Customer_Order");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
+
         return dao.findAll();
     }
 
     // get database exsisting values as json data
     @GetMapping(value = "/customerorder/findall/created", produces = "application/json")
     public List<CustomerOrder> findAllExist() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Customer_Order");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getCreatedCustomerOrder();
     }
 
     @GetMapping(value = "/customerorder/findall/ready", produces = "application/json")
     public List<CustomerOrder> readyOrders() {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Customer_Order");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getReadyCustomerOrder();
     }
 
     @GetMapping(value = "/customerorder/findall/shipped", produces = "application/json")
     public List<CustomerOrder> shippedOrders() {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Customer_Order");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getShippedCustomerOrder();
     }
 
     @GetMapping(value = "/customerorder/findall/delivered", produces = "application/json")
     public List<CustomerOrder> deliveredOrders() {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Customer_Order");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getDeliveredCustomerOrder();
     }
 
     // Save a Order with post method
     @PostMapping(value = "/customerorder/save")
     public String save(@RequestBody CustomerOrder customerorder) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Customer_Order");
+
+        if (!logUserPrivi.get("insert")) {
+            return "Not Completed. You have no privilages.";
+        }
 
         try {
             String nextOrderCode = dao.getNextCustomerOrderCode();
@@ -171,6 +224,14 @@ public class CustomerOrderController {
 
     @PutMapping(value = "/customerorder/edit")
     public String edit(@RequestBody CustomerOrder customerorder) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Customer_Order");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. You Have no privilages.";
+        }
 
         try {
             String message = "Dear " + customerorder.getCustomer_id().getCustomer_name()

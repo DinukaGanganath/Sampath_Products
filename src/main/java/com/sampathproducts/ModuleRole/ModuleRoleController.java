@@ -1,6 +1,7 @@
 package com.sampathproducts.ModuleRole;
 
 import java.util.List;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,9 @@ public class ModuleRoleController {
 
     @Autowired
     private ModuleRoleDao dao;
+
+    @Autowired
+    private ModuleRoleController moduleRoleController;
 
     /*
      * public ModuleRoleController(ModuleRoleDao dao) {
@@ -74,6 +78,33 @@ public class ModuleRoleController {
         } catch (Exception e) {
             return "Save not completed" + e.getMessage();
         }
+    }
+
+    public HashMap<String, Boolean> getPrivilageByUserModule(String username, String modulename) {
+
+        HashMap<String, Boolean> userPrivilage = new HashMap<String, Boolean>();
+
+        if (username.equals("Admin")) {
+            userPrivilage.put("select", true);
+            userPrivilage.put("insert", true);
+            userPrivilage.put("update", true);
+            userPrivilage.put("delete", true);
+        } else {
+            String userPrivi = dao.getPrivilageByUserModule(username, modulename);
+            String[] userPriviList = userPrivi.split(",");
+            userPrivilage.put("select", userPriviList[0].equals("1"));
+            userPrivilage.put("insert", userPriviList[1].equals("1"));
+            userPrivilage.put("update", userPriviList[2].equals("1"));
+            userPrivilage.put("delete", userPriviList[3].equals("1"));
+
+            System.out.println(userPrivilage.get("select"));
+            System.out.println(userPrivilage.get("insert"));
+            System.out.println(userPrivilage.get("update"));
+            System.out.println(userPrivilage.get("delete"));
+        }
+
+        return userPrivilage;
+
     }
 
 }

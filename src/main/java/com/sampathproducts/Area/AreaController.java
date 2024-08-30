@@ -2,6 +2,7 @@ package com.sampathproducts.Area;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sampathproducts.ModuleRole.ModuleRoleController;
+
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
@@ -21,6 +24,9 @@ public class AreaController {
 
     @Autowired
     private AreaDao dao;
+
+    @Autowired
+    private ModuleRoleController moduleRoleController;
 
     /*
      * public AreaController(AreaDao dao) {
@@ -58,6 +64,14 @@ public class AreaController {
     // get database values as json data
     @GetMapping(value = "/areas/findall", produces = "application/json")
     public List<Area> findAll() {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(), "Area");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
+
         return dao.findAll();
     }
 
@@ -76,6 +90,13 @@ public class AreaController {
     // Save a Material with post method
     @PostMapping(value = "/area/save")
     public String save(@RequestBody Area area) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(), "Area");
+
+        if (!logUserPrivi.get("insert")) {
+            return "Not complted. You have no privilages.";
+        }
 
         try {
             area.setArea_added_date(LocalDateTime.now());
@@ -102,6 +123,13 @@ public class AreaController {
     @PutMapping(value = "/area/restore")
     public String restore(@RequestBody Area area) {
         System.out.println(area.getArea_id());
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(), "Area");
+        if (!logUserPrivi.get("update")) {
+            return "Not complted. You have no privilages.";
+        }
+
         try {
             // @SuppressWarnings("null")
             Area extArea = dao.getReferenceById(area.getArea_id());
@@ -116,6 +144,14 @@ public class AreaController {
 
     @DeleteMapping(value = "/area/delete")
     public String delete(@RequestBody Area area) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(), "Area");
+
+        if (!logUserPrivi.get("delete")) {
+            return "Not complted. You have no privilages.";
+        }
+
         try {
             @SuppressWarnings("null")
             Area extArea = dao.getReferenceById(area.getArea_id());
@@ -132,6 +168,13 @@ public class AreaController {
     @SuppressWarnings("null")
     @PutMapping("/area/edit")
     public String updateArea(@RequestBody Area area) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(), "Area");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not complted. You have no privilages.";
+        }
 
         try {
             Area extArea = dao.getReferenceById(area.getArea_id());

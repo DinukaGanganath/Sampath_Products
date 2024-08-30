@@ -1,17 +1,21 @@
 package com.sampathproducts.User;
 
 import java.util.List;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.sampathproducts.ModuleRole.ModuleRoleController;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -22,6 +26,12 @@ public class UserController {
 
     @Autowired
     private UserDao dao;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private ModuleRoleController moduleRoleController;
 
     /*
      * public UserController(UserDao dao) {
@@ -98,7 +108,7 @@ public class UserController {
     public String save(@RequestBody User user) {
 
         try {
-
+            user.setUser_password(bCryptPasswordEncoder.encode(user.getUser_password()));
             dao.save(user);
             return "Ok";
         } catch (Exception e) {

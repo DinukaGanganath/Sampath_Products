@@ -39,7 +39,7 @@ function restFunction(url, object, method, loadAfter, objectType){
         window.location.href = loadAfter;
     }else{
         console.log(responseStatus);
-        alert('Some Errors has Occured...');
+        alert(responseStatus);
     }
 }
 

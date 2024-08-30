@@ -2,6 +2,7 @@ package com.sampathproducts.PurchaseOrder;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sampathproducts.Email.EmailDetails;
 import com.sampathproducts.Email.EmailService;
+import com.sampathproducts.ModuleRole.ModuleRoleController;
 import com.sampathproducts.PurchaseOrderHasQuotation.PurchaseOrderHasQuotation;
 import com.sampathproducts.Request.Request;
 import com.sampathproducts.Supplier.Supplier;
@@ -22,6 +24,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 public class PurchaseOrderController {
+
+    @Autowired
+    private ModuleRoleController moduleRoleController;
 
     @Autowired
     private PurchaseOrderDao dao;

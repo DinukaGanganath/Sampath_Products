@@ -2,6 +2,7 @@ package com.sampathproducts.Customer;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sampathproducts.ModuleRole.ModuleRoleController;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +26,9 @@ public class CustomerController {
 
     @Autowired
     private CustomerDao dao;
+
+    @Autowired
+    private ModuleRoleController moduleRoleController;
 
     /*
      * public CustomerController(CustomerDao dao) {
@@ -79,6 +85,13 @@ public class CustomerController {
     // get database values as json data
     @GetMapping(value = "/customer/findall", produces = "application/json")
     public List<Customer> findAll() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Customer");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.findAll(Sort.by(Direction.DESC, "customerid"));
     }
 
