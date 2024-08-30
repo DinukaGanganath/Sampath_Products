@@ -120,7 +120,7 @@
 									<input id ="payment_balance" type="text" value=0 disabled />
 								</div>
 							</div>
-							<button type="button" onclick='createCustOrder();'>Create Customer Order</button>
+							<button id="formBtn" type="button" onclick='createCustOrder();'>OK</button>
 						</div>
 					</div>
 				</form>
@@ -141,7 +141,7 @@
 					</div>
 				</div>
 				<div class="column" id="sidebarContainer">
-					
+					<div th:replace="~{SideBar :: sidenavbarFragment}"></div>
 				</div>
 
 				<div class="content-container">
@@ -207,7 +207,7 @@
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="fontawesome/js/all.js"></script>
 		<script type="text/javascript" src="script/controllerscripts/product/productedit.js"></script>
-		<script type="text/javascript" src="script/controllerscripts/customerorder/customerorderready.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/customerorder/customerorderdelivered.js"></script>
 		<script type="text/javascript" src="script/jquery.js"></script>
 	</body>
 

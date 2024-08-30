@@ -207,4 +207,24 @@ function getMainFormObject(url, eleId){
     });
 }
 
+function dateBefore(ele){
+    ele.min = new Date();
+    if(new Date()-new Date(ele.value)>0){
+        ele.classList.add('invalid');
+    }
+    if(new Date()-new Date(ele.value)<0){
+        ele.classList.add('valid');
+    }
+}
+
+function dateAfter(ele){
+    ele.min = new Date();
+    if(new Date()-new Date(ele.value)<3){
+        ele.classList.add('invalid');
+    }
+    if(new Date()-new Date(ele.value)>3){
+        ele.classList.add('valid');
+    }
+}
+
 

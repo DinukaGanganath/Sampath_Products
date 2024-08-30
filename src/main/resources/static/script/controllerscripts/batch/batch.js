@@ -322,8 +322,8 @@ function setDataSet(pagDataList){
         out += `
         <tr value=${JSON.stringify(batch)}>
             <td rowspan=${batchProd}>${batch.batch_code}</td>
-            <td rowspan=${batchProd}>${batch.batch_created_date}</td>
-            <td>${batch.batchHasProductList[0].product_id.producttype_id.producttype_name} ${batch.batchHasProductList[0].product_id.productsize_id.productsize_name}</td>
+            <td rowspan=${batchProd}>${batch.batch_created_date.split("T")[0]}</td>
+            <td>${batch.batchHasProductList[0].product_id.producttype_id.producttype_name.replace("_", " ")} ${batch.batchHasProductList[0].product_id.productsize_id.productsize_name}</td>
             <td>${batch.batchHasProductList[0].qty}</td>
         </tr>`
         

@@ -20,18 +20,18 @@
 					
 				</div>
 				<div class="column" id="sidebarContainer">
-					
+					<div th:replace="~{SideBar :: sidenavbarFragment}"></div>
 				</div>
 				
 			  
 				<div class="content-container">
 
-					<div class="content">
+					<div class="content" id="dashboard-container">
 						
 						<div class="head-title" id="heading">
 							
 						</div>
-						<div class="dashboard-partition">
+						<!--div class="dashboard-partition">
 							<div class="dashboard-title" style="font-size:20px; font-weight:bold; color:green">Supplier Management Sub System</div>
 							<div style="display:flex">
 								<div class="dashboardcard">
@@ -51,7 +51,8 @@
 											abc
 										</div>
 									</div>
-								</div><div class="dashboardcard">
+								</div>
+								<div class="dashboardcard">
 									<div id="titleDiv"></div>
 									<div id="dataDiv"></div>
 									<div id="attributeDiv" style="display:flex">
@@ -70,7 +71,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div-->
 						
 					</div>
 				</div>
@@ -83,7 +84,7 @@
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="fontawesome/js/all.js"></script>
 		<script type="text/javascript" src="script/objects.js"></script>
-		<script type="text/javascript" src="script/controllerscripts/employee/employeedata.js"></script>
+		<script type="text/javascript" src="script/controllerscripts/dashboard/dashboard.js"></script>
 		<script type="text/javascript" src="script/jquery.js"></script>
 		  
 	</body>

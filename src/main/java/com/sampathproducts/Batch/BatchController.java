@@ -92,19 +92,22 @@ public class BatchController {
         try {
 
             for (BatchHasProduct phq : batch.getBatchHasProductList()) {
+                phq.setBatch_id(batch);
+
                 Product p = phq.getProduct_id();
-                p.setProduct_id(p.getProduct_id());
+                // p.setProduct_id(p.getProduct_id());
 
                 for (ProductHasMaterial phm : p.getProduct_has_material_list()) {
-                    Material mat = phm.getMaterial_id();
                     phm.setProduct_id(p);
+
+                    Material mat = phm.getMaterial_id();
                     mat.setMaterial_id(mat.getMaterial_id());
                     mat.setMaterial_has(mat.getMaterial_has() - (phq.getQty() * phm.getQuantity_needed()));
                     matdao.save(mat);
                 }
 
-                phq.setBatch_id(batch);
-                p.setProduct_progress(phq.getQty());
+                p.setProduct_progress(p.getProduct_progress() + phq.getQty());
+
                 proddao.save(p);
             }
 
@@ -134,26 +137,22 @@ public class BatchController {
         try {
 
             for (BatchHasProduct phq : batch.getBatchHasProductList()) {
-                Product p = phq.getProduct_id();
-                p.setProduct_id(p.getProduct_id());
-
-                System.out.println("product ---->" + phq.getProduct_id());
-                System.out.println("product progress ---->" + p.getProduct_progress());
-                System.out.println("product quantity ---->" + phq.getQty());
-                int x = p.getProduct_progress() - phq.getQty();
-                p.setProduct_progress(x);
-
-                System.out.println("product progress after---->" + p.getProduct_progress());
-                System.out.println("product has ---->" + p.getProduct_has());
-                System.out.println("product quantity ---->" + phq.getQty());
-                p.setProduct_has(p.getProduct_has() + phq.getQty());
-                System.out.println("product has after---->" + p.getProduct_has());
                 phq.setBatch_id(batch);
                 phq.setBatch_product_created(LocalDateTime.now());
-                phq.setBatch_product_expired(LocalDateTime.now());
-                p.setProduct_progress(phq.getQty());
-                System.out.println(p);
-                // proddao.save(p);
+
+                Product p = phq.getProduct_id();
+
+                phq.setBatch_product_expired(LocalDateTime.now().plusMonths(p.getProduct_usable_time()));
+                for (ProductHasMaterial phm : p.getProduct_has_material_list()) {
+                    phm.setProduct_id(p);
+                }
+
+                // int x = ;
+                p.setProduct_progress(p.getProduct_progress() - phq.getQty());
+                p.setProduct_has(p.getProduct_has() + phq.getQty());
+
+                proddao.save(p);
+
             }
 
             // batch.setBatch_created_date(LocalDateTime.now());

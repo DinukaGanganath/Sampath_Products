@@ -124,6 +124,10 @@ public class ProductController {
             Product extProduct = dao.getReferenceById(product.getProduct_id());
             extProduct.setProduct_deleted(1);
             extProduct.setProduct_deleted_date(LocalDateTime.now());
+
+            for (ProductHasMaterial phm : extProduct.getProduct_has_material_list()) {
+                phm.setProduct_id(extProduct);
+            }
             dao.save(extProduct);
 
             return "Ok";
@@ -139,6 +143,9 @@ public class ProductController {
             @SuppressWarnings("null")
             Product extProduct = dao.getReferenceById(product.getProduct_id());
             extProduct.setProduct_deleted(0);
+            for (ProductHasMaterial phm : extProduct.getProduct_has_material_list()) {
+                phm.setProduct_id(extProduct);
+            }
             dao.save(extProduct);
 
             return "Ok";

@@ -95,39 +95,6 @@ function productNeed(productList){
 }
 
 function editProduct(){
-    // var object = {};
-
-    // phml = new Array();
-    // var tab = document.getElementById('data-output')
-    // var trList = tab.querySelectorAll('tr');
-
-    // object.product_id = receivedData.product_id;
-    // object.product_code = receivedData.product_code;
-    // object.product_usable_time = parseInt(document.getElementById('product_usable_time').value);
-    // object.product_unit_price = parseInt(document.getElementById('product_unit_price').value);
-    // object.productsize_id = JSON.parse(document.getElementById('productsize_id').value);
-    // object.producttype_id = JSON.parse(document.getElementById('producttype_id').value);
-    // object.product_deleted = 0;
-    // object.product_need = 0;
-    // object.product_extra = parseInt(document.getElementById('product_extra').value);
-    // object.product_has = 0;
-    // object.product_created_date = receivedData.product_created_date;
-    // object.product_updated_date = receivedData.product_updated_date;
-
-    // for(var ele of Object.keys(object)){
-    //     console.log(ele + "___ " + typeof(object[ele]));
-    // }
-
-    // for(var ele of trList){
-    //     var obj = {};
-    //     if(parseInt(ele.querySelector('input').value) != 0 || parseInt(ele.querySelector('input').value)!= NaN){
-    //         obj.material_id = JSON.parse(ele.getAttribute('value'));
-    //         obj.quantity_needed = parseInt(ele.querySelector('input').value);
-    //         obj.product_material_id = JSON.parse(ele.getAttribute('value')).product_material_id;
-    //         phml.push(obj);
-    //     }
-    // }
-    // object.product_has_material_list = phml;
 
     var test = receivedData;
     test.product_need = 5;
@@ -154,5 +121,5 @@ function editProduct(){
         },
     });
 
-    
+    window.location.href = '/product';
 }

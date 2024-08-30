@@ -230,7 +230,7 @@ function createBatch(){
         },
     });
 
-    //window.location.href = loadAfter;
+    window.location.href = loadAfter;
 
 }
 
@@ -322,8 +322,8 @@ function setDataSet(pagDataList){
         out += `
         <tr value=${JSON.stringify(batch)}>
             <td rowspan=${batchProd}>${batch.batch_code}</td>
-            <td rowspan=${batchProd}>${batch.batch_created_date}</td>
-            <td>${batch.batchHasProductList[0].product_id.producttype_id.producttype_name} ${batch.batchHasProductList[0].product_id.productsize_id.productsize_name}</td>
+            <td rowspan=${batchProd}>${batch.batch_created_date.split("T")[0]}</td>
+            <td>${batch.batchHasProductList[0].product_id.producttype_id.producttype_name.replaceAll("_"," ")} ${batch.batchHasProductList[0].product_id.productsize_id.productsize_name}</td>
             <td>${batch.batchHasProductList[0].qty}</td>
             <td rowspan=${batchProd}>
                 <button id=${batch} class="btnDelete" onclick='processBatch(` + JSON.stringify(batch) + `)'>Process</button>

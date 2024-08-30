@@ -64,11 +64,11 @@
 								</div>
 								<div class="input-fieldhalf">
 									<label for="customer_order_created">Created Date</label>
-									<input id="customer_order_created" type="date" />
+									<input id="customer_order_created" type="date" onchange = dateBefore(this) />
 								</div>
 								<div class="input-fieldhalf">
 									<label for="customer_order_needed">Needed Date</label>
-									<input id="customer_order_needed" type="date" />
+									<input id="customer_order_needed" type="date" onchange = dateAfter(this) />
 								</div>
 							</div>
 							<div style="padding: 20px; height: 200px;">
@@ -120,7 +120,7 @@
 									<input id ="payment_balance" type="text" value=0 disabled />
 								</div>
 							</div>
-							<button type="button" onclick='createCustOrder();'>Create Customer Order</button>
+							<button id="formBtn" type="button" onclick='createCustOrder();'>OK</button>
 						</div>
 					</div>
 				</form>
@@ -141,7 +141,7 @@
 					</div>
 				</div>
 				<div class="column" id="sidebarContainer">
-					
+					<div th:replace="~{SideBar :: sidenavbarFragment}"></div>
 				</div>
 
 				<div class="content-container">

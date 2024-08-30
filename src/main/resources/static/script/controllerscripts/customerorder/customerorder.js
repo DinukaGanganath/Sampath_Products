@@ -205,6 +205,7 @@ function calibrateVal(){
 }
 
 function viewOrder(order){
+
     var out = "";
     showForm();
     document.getElementById('addRowBtn').style.display='none';
@@ -231,6 +232,19 @@ function viewOrder(order){
                 </tr>`
 
     }
+
+    document.getElementById("payment_discount").value = order.payment_discount;
+    document.getElementById("payment_need").value = order.payment_amount - order.payment_discount;
+    document.getElementById("payment_amount").value = order.payment_amount;
+    document.getElementById("payment_type").value = order.payment_method;
+    document.getElementById("payment_paid").value = order.payment_paid;
+    document.getElementById("payment_balance").value = order.payment_balance;
+
+    document.getElementById('formBtn').addEventListener('click', function() {
+        var loadAfter = "/"+ window.location.href.split("/").slice(-1);
+        window.location.href = loadAfter;
+    });
+
     document.getElementById('tabBody').innerHTML = out;
 
 }
@@ -439,6 +453,8 @@ function createCustOrder(){
 
     console.log(ordObject);
 
+    var loadAfter = "/"+ window.location.href.split("/").slice(-1);
+
     $.ajax("/customerorder/save", {
         async : false,
         type : "POST",
@@ -458,6 +474,6 @@ function createCustOrder(){
         },
     });
 
-   
+    window.location.href = loadAfter;
     
 }

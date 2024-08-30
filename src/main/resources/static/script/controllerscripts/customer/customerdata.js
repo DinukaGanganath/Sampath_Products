@@ -9,7 +9,8 @@ dataLoadTable("/customer/findall/exist", ["customer_name","customer_code","custo
 var jsonList = [
     {
         "str" : "Customer",
-        "url" : "/customer"
+        "url" : "/customer",
+        "status" : "active"
     },
     {
         "str" : "Ordered",
@@ -25,8 +26,7 @@ var jsonList = [
     },
     {
         "str" : "Delivered",
-        "url" : "/customerorderdelivered",
-        "status" : "active"
+        "url" : "/customerorderdelivered"
     },
 ]
 createThinLongDiv(jsonList);

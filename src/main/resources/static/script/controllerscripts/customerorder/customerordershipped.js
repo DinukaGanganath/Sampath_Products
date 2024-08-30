@@ -37,7 +37,7 @@ loadTable();
 
 // table value load
 function loadTable(){
-    fetch("/customerorder/findall/created")
+    fetch("/customerorder/findall/shipped")
     .then(function(response){
         return response.json();
     })
@@ -231,11 +231,26 @@ function viewOrder(order){
                 </tr>`
 
     }
+
+    document.getElementById("payment_discount").value = order.payment_discount;
+    document.getElementById("payment_need").value = order.payment_amount - order.payment_discount;
+    document.getElementById("payment_amount").value = order.payment_amount;
+    document.getElementById("payment_type").value = order.payment_method;
+    document.getElementById("payment_paid").value = order.payment_paid;
+    document.getElementById("payment_balance").value = order.payment_balance;
+
+    document.getElementById('formBtn').addEventListener('click', function() {
+        var loadAfter = "/"+ window.location.href.split("/").slice(-1);
+        window.location.href = loadAfter;
+    });
+
     document.getElementById('tabBody').innerHTML = out;
 
 }
 
 function processOrder(ele,order){
+
+    viewOrder(order);
 
     var storeok = 1;
     var notification = "Following Products are not available. \n\n";

@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -55,7 +57,7 @@ public class CustomerOrderController {
     @RequestMapping(value = "/customerordershipped")
     public ModelAndView customerorderExpiredUI() {
         ModelAndView viewOrder = new ModelAndView();
-        viewOrder.setViewName("CustomerOrder/CustOrderShipped.html");
+        viewOrder.setViewName("CustomerOrder/CustOrdershipped.html");
         return viewOrder;
     }
 
@@ -68,7 +70,9 @@ public class CustomerOrderController {
 
     @RequestMapping(value = "/customerorderadd")
     public ModelAndView customerorderAddUI() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         ModelAndView viewOrderAdd = new ModelAndView();
+        viewOrderAdd.addObject("logusername", auth.getName());
         viewOrderAdd.setViewName("Order/OrderAdd.html");
         return viewOrderAdd;
     }
@@ -160,17 +164,26 @@ public class CustomerOrderController {
     public String edit(@RequestBody CustomerOrder customerorder) {
 
         try {
-
-            CustomerOrder extQuotation = dao.getReferenceById(customerorder.getCustomer_order_id());
-            extQuotation = customerorder;
-            dao.save(extQuotation);
-            String ordStatus = extQuotation.getCustomer_order_status();
-
             String message = "Dear " + customerorder.getCustomer_id().getCustomer_name()
                     + ", \n\n\t Your customer order with code " + customerorder.getCustomer_order_code();
 
+            CustomerOrder customerOrder = dao.getReferenceById(customerorder.getCustomer_order_id());
+            customerOrder = customerorder;
+
+            for (CustomerOrderHasProduct ohp : customerOrder.getCustomerOrderHasProductList()) {
+                ohp.setCustomer_order_id(customerOrder);
+            }
+
+            String ordStatus = customerOrder.getCustomer_order_status();
+
             switch (ordStatus) {
                 case "progress":
+                    for (CustomerOrderHasProduct ohp : customerOrder.getCustomerOrderHasProductList()) {
+                        Product product = ohp.getProduct_id();
+                        product.setProduct_has(product.getProduct_has() - ohp.getQuantity());
+                        product.setProduct_has(product.getProduct_need() - ohp.getQuantity());
+                        daoProduct.save(product);
+                    }
                     message += " is beign processing.";
                     break;
 
@@ -185,6 +198,9 @@ public class CustomerOrderController {
                 default:
                     break;
             }
+
+            dao.save(customerOrder);
+
             message += "\n\n Thank you! \n\nBest Regards, \n Sampath Products.";
             EmailDetails emailDetails = new EmailDetails();
             emailDetails.setSendTo(customerorder.getCustomer_id().getCustomer_email());

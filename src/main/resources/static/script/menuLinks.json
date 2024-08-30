@@ -30,11 +30,6 @@
         "text": "Products"
     },
     {
-        "link": "/production",
-        "icon": "fa-solid fa-truck-ramp-box icon",
-        "text": "Production"
-    },
-    {
         "link": "/stores",
         "icon": "fa-solid fa-boxes-stacked icon",
         "text": "Stores"

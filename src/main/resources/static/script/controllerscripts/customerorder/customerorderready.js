@@ -22,7 +22,7 @@ var jsonList = [
     },
     {
         "str" : "Shipped",
-        "url" : "/customerordeshipped",
+        "url" : "/customerordershipped",
     },
     {
         "str" : "Delivered",
@@ -176,7 +176,7 @@ function setDataSet(pagDataList){
                 <td>
                     <div id="basicBtn" style="display:flex">
                         <button class="btnEdit" onclick='viewOrder(` + JSON.stringify(order) +`)'>View</button>
-                        <button id=${order.customer_order_code} class="btnDelete" onclick='processOrder(this,` + JSON.stringify(order) + `)'>Accept Order</button>
+                        <button id=${order.customer_order_code} class="btnDelete" onclick='processOrder(this,` + JSON.stringify(order) + `)'>Accept</button>
                     </div>
                 </td>
             </tr>
@@ -231,6 +231,19 @@ function viewOrder(order){
                 </tr>`
 
     }
+
+    document.getElementById("payment_discount").value = order.payment_discount;
+    document.getElementById("payment_need").value = order.payment_amount - order.payment_discount;
+    document.getElementById("payment_amount").value = order.payment_amount;
+    document.getElementById("payment_type").value = order.payment_method;
+    document.getElementById("payment_paid").value = order.payment_paid;
+    document.getElementById("payment_balance").value = order.payment_balance;
+
+    document.getElementById('formBtn').addEventListener('click', function() {
+        var loadAfter = "/"+ window.location.href.split("/").slice(-1);
+        window.location.href = loadAfter;
+    });
+
     document.getElementById('tabBody').innerHTML = out;
 
 }

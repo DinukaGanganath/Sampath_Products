@@ -1,5 +1,7 @@
 package com.sampathproducts.Login;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +26,11 @@ public class LoginController {
 
     @GetMapping(value = "/index")
     public ModelAndView indexUI() {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
         ModelAndView loginView = new ModelAndView();
+        loginView.addObject("logusername", auth.getName());
         loginView.setViewName("DashBoard/Admin.html");
         return loginView;
     }
