@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -35,12 +37,26 @@ public class ModuleController {
 
     @GetMapping(value = "/module/findall", produces = "application/json")
     public List<Module> findAll() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(), "Module");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.findAll();
     }
 
     @PostMapping(value = "/module/save")
     public String save(@RequestBody Module module) {
         try {
+
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                    "Module");
+
+            if (!logUserPrivi.get("insert")) {
+                return "Not Completed. No Privilages";
+            }
 
             dao.save(module);
 
@@ -66,6 +82,13 @@ public class ModuleController {
     @PutMapping(value = "/module/edit")
     public String restore(@RequestBody Module module) {
         try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                    "Module");
+
+            if (!logUserPrivi.get("update")) {
+                return "Not Completed. No Privilages";
+            }
 
             dao.save(module);
 

@@ -83,18 +83,39 @@ public class VehicleController {
     // get database values as json data
     @GetMapping(value = "/vehicle/findall", produces = "application/json")
     public List<Vehicle> findAll() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Vehicle");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.findAll();
     }
 
     // get database values as json data
     @GetMapping(value = "/vehicle/findall/deleted", produces = "application/json")
     public List<Vehicle> findAllDeleted() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Vehicle");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getDeletedVehicle();
     }
 
     // get database exsisting values as json data
     @GetMapping(value = "/vehicle/findall/exist", produces = "application/json")
     public List<Vehicle> findAllExist() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Vehicle");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getExistingVehicle();
     }
 
@@ -102,6 +123,13 @@ public class VehicleController {
     @PostMapping(value = "/vehicle/save")
     public String save(@RequestBody Vehicle vehicle) {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Vehicle");
+
+        if (!logUserPrivi.get("insert")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             vehicle.setCreated_date_time(LocalDateTime.now());
             vehicle.setVehicle_deleted(0);
@@ -124,6 +152,13 @@ public class VehicleController {
 
     @DeleteMapping(value = "/vehicle/delete")
     public String delete(@RequestBody Vehicle vehicle) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Vehicle");
+
+        if (!logUserPrivi.get("delete")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             @SuppressWarnings("null")
             Vehicle extVehicle = dao.getReferenceById(vehicle.getVehicle_id());
@@ -140,6 +175,13 @@ public class VehicleController {
     @PutMapping(value = "/vehicle/restore")
     public String restore(@RequestBody Vehicle vehicle) {
         System.out.println(vehicle.getVehicle_id());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Vehicle");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             @SuppressWarnings("null")
             Vehicle extVehicle = dao.getReferenceById(vehicle.getVehicle_id());
@@ -155,6 +197,13 @@ public class VehicleController {
     @PutMapping(value = "/vehicle/edit")
     public String edit(@RequestBody Vehicle vehicle) {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Vehicle");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         try {
 
             @SuppressWarnings("null")

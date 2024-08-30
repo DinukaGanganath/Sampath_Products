@@ -37,3 +37,11 @@ function deleteEmployee(){
     }
     window.location.href = '/employee';
 }
+
+function loadUser(){
+
+    var objvalue = getRowObject();
+    sessionStorage.setItem("dataToSend", JSON.stringify(objvalue));
+    window.location.href = '/useradd';
+    
+}

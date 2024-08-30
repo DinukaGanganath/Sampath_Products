@@ -91,33 +91,75 @@ public class RequestController {
     // get database values as json data
     @GetMapping(value = "/requests/findall", produces = "application/json")
     public List<Request> findAll() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Request");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.findAll();
     }
 
     // get database deleted values as json data
     @GetMapping(value = "/request/findall/created", produces = "application/json")
     public List<Request> findAllDeleted() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Request");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getCreatedQuotationRequest();
     }
 
     // get database exsisting values as json data
     @GetMapping(value = "/request/findall/requested", produces = "application/json")
     public List<Request> findAllExist() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Request");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getRequestedQuotationRequest();
     }
 
     @GetMapping(value = "/request/findall/valid", produces = "application/json")
     public List<Request> validRequests() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Request");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getvalidQuotations();
     }
 
     @GetMapping(value = "/request/findall/ending", produces = "application/json")
     public List<Request> endingRequests() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Request");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getEndingQuotations();
     }
 
     @GetMapping(value = "/request/findall/expired", produces = "application/json")
     public List<Request> expiredRequests() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Request");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getExpiredQuotations();
     }
 
@@ -125,6 +167,13 @@ public class RequestController {
     @PostMapping(value = "/request/save")
     public String save(@RequestBody Request request) {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Request");
+
+        if (!logUserPrivi.get("insert")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             request.setRequest_date(LocalDateTime.now());
 
@@ -159,6 +208,13 @@ public class RequestController {
     @PutMapping(value = "/request/edit")
     public String edit(@RequestBody Request quotation) {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Request");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         try {
 
             @SuppressWarnings("null")

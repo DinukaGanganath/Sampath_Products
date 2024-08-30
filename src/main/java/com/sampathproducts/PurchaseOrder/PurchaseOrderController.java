@@ -82,24 +82,53 @@ public class PurchaseOrderController {
     // get database values as json data
     @GetMapping(value = "/purchaseorder/findall", produces = "application/json")
     public List<PurchaseOrder> getAllData() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Order");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.findAll();
     }
 
     // get database values as json data
     @GetMapping(value = "/purchaseorder/findall/deleted", produces = "application/json")
     public List<PurchaseOrder> findAllDeleted() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Order");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getDeletedPurchaseOrder();
     }
 
     // get database exsisting values as json data
     @GetMapping(value = "/purchaseorder/findall/exist", produces = "application/json")
     public List<PurchaseOrder> findAllExist() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Order");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getExistingPurchaseOrder();
     }
 
     // Save a PurchaseOrder with post method
     @PostMapping(value = "/purchaseorder/save")
     public String save(@RequestBody PurchaseOrder purchaseorder) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Purchase_Order");
+
+        if (!logUserPrivi.get("insert")) {
+            return "Not Completed. No Privilages";
+        }
 
         try {
             purchaseorder.setPurchase_created_date(LocalDateTime.now());

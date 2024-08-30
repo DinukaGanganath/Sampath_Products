@@ -19,9 +19,6 @@ public class ModuleRoleController {
     @Autowired
     private ModuleRoleDao dao;
 
-    @Autowired
-    private ModuleRoleController moduleRoleController;
-
     /*
      * public ModuleRoleController(ModuleRoleDao dao) {
      * this.dao = dao;

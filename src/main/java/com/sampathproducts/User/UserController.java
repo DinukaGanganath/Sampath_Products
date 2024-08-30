@@ -88,18 +88,36 @@ public class UserController {
     // get database values as json data
     @GetMapping(value = "/user/findall", produces = "application/json")
     public List<User> findAll() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(), "User");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.findAll(Sort.by(Direction.DESC, "user_id"));
     }
 
     // get database values as json data
     @GetMapping(value = "/user/findall/deleted", produces = "application/json")
     public List<User> findAllDeleted() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(), "User");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getDeletedUser();
     }
 
     // get database exsisting values as json data
     @GetMapping(value = "/user/findall/exist", produces = "application/json")
     public List<User> findAllExist() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(), "User");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getExistingUser();
     }
 
@@ -107,6 +125,12 @@ public class UserController {
     @PostMapping(value = "/user/save")
     public String save(@RequestBody User user) {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(), "User");
+
+        if (!logUserPrivi.get("insert")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             user.setUser_password(bCryptPasswordEncoder.encode(user.getUser_password()));
             dao.save(user);
@@ -119,6 +143,12 @@ public class UserController {
 
     @DeleteMapping(value = "/user/delete")
     public String delete(@RequestBody User user) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(), "User");
+
+        if (!logUserPrivi.get("delete")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             User extUser = dao.getReferenceById(user.getUser_id());
 
@@ -133,6 +163,12 @@ public class UserController {
     @PutMapping(value = "/user/restore")
     public String restore(@RequestBody User user) {
         System.out.println(user.getUser_id());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(), "User");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             User extUser = dao.getReferenceById(user.getUser_id());
             extUser.setUser_status(false);
@@ -147,6 +183,12 @@ public class UserController {
     @PutMapping(value = "/user/edit")
     public String edit(@RequestBody User user) {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(), "User");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         try {
 
             User extUser = dao.getReferenceById(user.getUser_id());

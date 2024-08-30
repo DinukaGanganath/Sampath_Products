@@ -64,24 +64,53 @@ public class ProductTypeController {
     // get database values as json data
     @GetMapping(value = "/producttypes/findall", produces = "application/json")
     public List<ProductType> findAll() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Type");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.findAll();
     }
 
     // get database deleted values as json data
     @GetMapping(value = "/producttypes/findall/deleted", produces = "application/json")
     public List<ProductType> findAllDeleted() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Type");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getDeletedProductType();
     }
 
     // get database exsisting values as json data
     @GetMapping(value = "/producttypes/findall/exist", produces = "application/json")
     public List<ProductType> findAllExist() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Type");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getExistingProductType();
     }
 
     // Save a Material with post method
     @PostMapping(value = "/producttype/save")
     public String save(@RequestBody ProductType producttype) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Type");
+
+        if (!logUserPrivi.get("insert")) {
+            return "Not Completed. No Privilages";
+        }
 
         try {
             producttype.setProducttype_added_date(LocalDateTime.now());
@@ -107,6 +136,13 @@ public class ProductTypeController {
 
     @PutMapping(value = "/producttype/restore")
     public String restore(@RequestBody ProductType producttype) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Type");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         System.out.println(producttype.getProducttype_id());
         try {
             // @SuppressWarnings("null")
@@ -122,6 +158,13 @@ public class ProductTypeController {
 
     @DeleteMapping(value = "/producttype/delete")
     public String delete(@RequestBody ProductType producttype) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Type");
+
+        if (!logUserPrivi.get("delete")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             @SuppressWarnings("null")
             ProductType extProductType = dao.getReferenceById(producttype.getProducttype_id());
@@ -139,6 +182,13 @@ public class ProductTypeController {
     @PutMapping("/producttype/edit")
     public String updateProductType(@RequestBody ProductType producttype) {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Type");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             ProductType extProductType = dao.getReferenceById(producttype.getProducttype_id());
             extProductType = producttype;

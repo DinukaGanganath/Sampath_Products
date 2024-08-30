@@ -93,24 +93,53 @@ public class ProductController {
     // get database values as json data
     @GetMapping(value = "/product/findall", produces = "application/json")
     public List<Product> findAll() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.findAll();
     }
 
     // get database values as json data
     @GetMapping(value = "/product/findall/deleted", produces = "application/json")
     public List<Product> findAllDeleted() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getDeletedProduct();
     }
 
     // get database exsisting values as json data
     @GetMapping(value = "/product/findall/exist", produces = "application/json")
     public List<Product> findAllExist() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getExistingProduct();
     }
 
     // Save a Product with post method
     @PostMapping(value = "/product/save")
     public String save(@RequestBody Product product) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product");
+
+        if (!logUserPrivi.get("insert")) {
+            return "Not Completed. No Privilages";
+        }
 
         try {
             product.setProduct_created_date(LocalDateTime.now());
@@ -138,6 +167,13 @@ public class ProductController {
 
     @DeleteMapping(value = "/product/delete")
     public String delete(@RequestBody Product product) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product");
+
+        if (!logUserPrivi.get("delete")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             @SuppressWarnings("null")
             Product extProduct = dao.getReferenceById(product.getProduct_id());
@@ -158,6 +194,13 @@ public class ProductController {
     @PutMapping(value = "/product/restore")
     public String restore(@RequestBody Product product) {
         System.out.println(product.getProduct_id());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             @SuppressWarnings("null")
             Product extProduct = dao.getReferenceById(product.getProduct_id());
@@ -176,6 +219,13 @@ public class ProductController {
     @PutMapping(value = "/product/edit")
     public String edit(@RequestBody Product product) {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             System.out.println((product));
             product.setProduct_updated_date(LocalDateTime.now());

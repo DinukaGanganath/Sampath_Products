@@ -83,25 +83,52 @@ public class MaterialController {
     // get database values as json data
     @GetMapping(value = "/materials/findall", produces = "application/json")
     public List<Material> findAll() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Material");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.findAll();
     }
 
     // get database deleted values as json data
     @GetMapping(value = "/material/findall/deleted", produces = "application/json")
     public List<Material> findAllDeleted() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Material");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getDeletedMaterial();
     }
 
     // get database exsisting values as json data
     @GetMapping(value = "/material/findall/exist", produces = "application/json")
     public List<Material> findAllExist() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Material");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getExistingMaterial();
     }
 
     // Save a Material with post method
     @PostMapping(value = "/material/save")
     public String save(@RequestBody Material material) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Material");
 
+        if (!logUserPrivi.get("insert")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             material.setMaterial_added_date(LocalDateTime.now());
             material.setMaterial_has(0);
@@ -126,6 +153,13 @@ public class MaterialController {
 
     @DeleteMapping(value = "/material/delete")
     public String delete(@RequestBody Material material) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Material");
+
+        if (!logUserPrivi.get("delete")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             @SuppressWarnings("null")
             Material extSupplier = dao.getReferenceById(material.getMaterial_id());
@@ -149,6 +183,14 @@ public class MaterialController {
     @PutMapping(value = "/material/restore")
     public String restore(@RequestBody Material supplier) {
         System.out.println(supplier.getMaterial_id());
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Material");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             @SuppressWarnings("null")
             Material extSupplier = dao.getReferenceById(supplier.getMaterial_id());
@@ -165,6 +207,13 @@ public class MaterialController {
     @PutMapping("/material/edit")
     public String updateArea(@RequestBody Material material) {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Material");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             Material extArea = dao.getReferenceById(material.getMaterial_id());
             extArea = material;

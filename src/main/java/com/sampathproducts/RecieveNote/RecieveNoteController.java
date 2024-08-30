@@ -73,6 +73,13 @@ public class RecieveNoteController {
     // get database values as json data
     @GetMapping(value = "/recievenote/findall", produces = "application/json")
     public List<RecieveNote> getAllData() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Recieve_Note");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.findAll();
     }
 
@@ -80,6 +87,13 @@ public class RecieveNoteController {
     @PostMapping(value = "/recievenote/save")
     public String save(@RequestBody RecieveNote recievenote) {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Recieve_Note");
+
+        if (!logUserPrivi.get("insert")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             String nextProductCode = dao.getNextNoteCode();
 

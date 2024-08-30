@@ -1,3 +1,5 @@
+var receivedData = JSON.parse(sessionStorage.getItem("dataToSend"));
+
 initLayout("User", "User Add");
 sidebarLoader("/privilage");
 

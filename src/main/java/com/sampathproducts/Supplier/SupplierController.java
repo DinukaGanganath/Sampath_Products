@@ -85,24 +85,52 @@ public class SupplierController {
     // get database values as json data
     @GetMapping(value = "/supplier/findall", produces = "application/json")
     public List<Supplier> findAll() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Supplier");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.findAll(Sort.by(Direction.DESC, "supplierid"));
     }
 
     // get database values as json data
     @GetMapping(value = "/supplier/findall/deleted", produces = "application/json")
     public List<Supplier> findAllDeleted() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Supplier");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getDeletedSupplier();
     }
 
     // get database exsisting values as json data
     @GetMapping(value = "/supplier/findall/exist", produces = "application/json")
     public List<Supplier> findAllExist() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Supplier");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getExistingSupplier();
     }
 
     // get database quotation makeable values as json data
     @GetMapping(value = "/supplier/findall/quotation", produces = "application/json")
     public List<Supplier> findAllQuotationSupplier() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Request");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getQuotationSupplier();
     }
 
@@ -110,6 +138,13 @@ public class SupplierController {
     @PostMapping(value = "/supplier/save")
     public String save(@RequestBody Supplier supplier) {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Supplier");
+
+        if (!logUserPrivi.get("insert")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             supplier.setCreated_date_time(LocalDateTime.now());
             supplier.setSupplier_deleted(0);
@@ -132,6 +167,13 @@ public class SupplierController {
 
     @DeleteMapping(value = "/supplier/delete")
     public String delete(@RequestBody Supplier supplier) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Supplier");
+
+        if (!logUserPrivi.get("delete")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             @SuppressWarnings("null")
             Supplier extSupplier = dao.getReferenceById(supplier.getSupplierid());
@@ -148,6 +190,13 @@ public class SupplierController {
     @PutMapping(value = "/supplier/restore")
     public String restore(@RequestBody Supplier supplier) {
         System.out.println(supplier.getSupplierid());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Supplier");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             @SuppressWarnings("null")
             Supplier extSupplier = dao.getReferenceById(supplier.getSupplierid());
@@ -163,6 +212,13 @@ public class SupplierController {
     @PutMapping(value = "/supplier/edit")
     public String edit(@RequestBody Supplier supplier) {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Supplier");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         try {
 
             @SuppressWarnings("null")

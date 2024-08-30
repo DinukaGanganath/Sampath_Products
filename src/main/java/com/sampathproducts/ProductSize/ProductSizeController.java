@@ -64,24 +64,53 @@ public class ProductSizeController {
     // get database values as json data
     @GetMapping(value = "/productsizes/findall", produces = "application/json")
     public List<ProductSize> findAll() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Size");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.findAll();
     }
 
     // get database deleted values as json data
     @GetMapping(value = "/productsizes/findall/deleted", produces = "application/json")
     public List<ProductSize> findAllDeleted() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Size");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getDeletedProductSize();
     }
 
     // get database exsisting values as json data
     @GetMapping(value = "/productsizes/findall/exist", produces = "application/json")
     public List<ProductSize> findAllExist() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Size");
+
+        if (!logUserPrivi.get("select")) {
+            return null;
+        }
         return dao.getExistingProductSize();
     }
 
     // Save a Material with post method
     @PostMapping(value = "/productsize/save")
     public String save(@RequestBody ProductSize productsize) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Size");
+
+        if (!logUserPrivi.get("insert")) {
+            return "Not Completed. No Privilages";
+        }
 
         try {
             productsize.setProductsize_added_date(LocalDateTime.now());
@@ -108,6 +137,13 @@ public class ProductSizeController {
     @PutMapping(value = "/productsize/restore")
     public String restore(@RequestBody ProductSize productsize) {
         System.out.println(productsize.getProductsize_id());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Size");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             // @SuppressWarnings("null")
             ProductSize extProductSize = dao.getReferenceById(productsize.getProductsize_id());
@@ -122,6 +158,13 @@ public class ProductSizeController {
 
     @DeleteMapping(value = "/productsize/delete")
     public String delete(@RequestBody ProductSize productsize) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Size");
+
+        if (!logUserPrivi.get("delete")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             @SuppressWarnings("null")
             ProductSize extProductSize = dao.getReferenceById(productsize.getProductsize_id());
@@ -139,6 +182,13 @@ public class ProductSizeController {
     @PutMapping("/productsize/edit")
     public String updateProductSize(@RequestBody ProductSize productsize) {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, Boolean> logUserPrivi = moduleRoleController.getPrivilageByUserModule(auth.getName(),
+                "Product_Size");
+
+        if (!logUserPrivi.get("update")) {
+            return "Not Completed. No Privilages";
+        }
         try {
             ProductSize extProductSize = dao.getReferenceById(productsize.getProductsize_id());
             extProductSize = productsize;
