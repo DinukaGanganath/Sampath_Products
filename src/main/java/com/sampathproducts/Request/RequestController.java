@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +32,8 @@ public class RequestController {
     @RequestMapping(value = "/quotation")
     public ModelAndView quotationUI() {
         ModelAndView viewRequest = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewRequest.addObject("logusername", auth.getName());
         viewRequest.setViewName("QuotationRequest/Quotation.html");
         return viewRequest;
     }
@@ -37,6 +41,8 @@ public class RequestController {
     @RequestMapping(value = "/validquot")
     public ModelAndView quotationvalidUI() {
         ModelAndView viewRequest = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewRequest.addObject("logusername", auth.getName());
         viewRequest.setViewName("QuotationRequest/QuotationValid.html");
         return viewRequest;
     }
@@ -44,6 +50,8 @@ public class RequestController {
     @RequestMapping(value = "/expiredquot")
     public ModelAndView quotationExpiredUI() {
         ModelAndView viewRequest = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewRequest.addObject("logusername", auth.getName());
         viewRequest.setViewName("QuotationRequest/QuotationExpired.html");
         return viewRequest;
     }
@@ -51,6 +59,8 @@ public class RequestController {
     @RequestMapping(value = "/endingquot")
     public ModelAndView quotationEndingUI() {
         ModelAndView viewRequest = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewRequest.addObject("logusername", auth.getName());
         viewRequest.setViewName("QuotationRequest/QuotationEnding.html");
         return viewRequest;
     }
@@ -58,6 +68,8 @@ public class RequestController {
     @RequestMapping(value = "/requestedquot")
     public ModelAndView requestUI() {
         ModelAndView viewRequest = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewRequest.addObject("logusername", auth.getName());
         viewRequest.setViewName("QuotationRequest/QuotationRequest.html");
         return viewRequest;
     }
@@ -65,6 +77,8 @@ public class RequestController {
     @RequestMapping(value = "/requestadd")
     public ModelAndView requestAddUI() {
         ModelAndView viewRequestAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewRequestAdd.addObject("logusername", auth.getName());
         viewRequestAdd.setViewName("Request/RequestAdd.html");
         return viewRequestAdd;
     }

@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,6 +37,8 @@ public class BatchController {
     @RequestMapping(value = "/batch")
     public ModelAndView batchUI() {
         ModelAndView viewBatch = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewBatch.addObject("logusername", auth.getName());
         viewBatch.setViewName("Batch/Batch.html");
         return viewBatch;
     }
@@ -42,6 +46,8 @@ public class BatchController {
     @RequestMapping(value = "/batchprocess")
     public ModelAndView batchAddUI() {
         ModelAndView viewBatchAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewBatchAdd.addObject("logusername", auth.getName());
         viewBatchAdd.setViewName("Batch/BatchProcess.html");
         return viewBatchAdd;
     }
@@ -49,6 +55,8 @@ public class BatchController {
     @RequestMapping(value = "/batchdeleted")
     public ModelAndView batchDeletedItems() {
         ModelAndView viewBatchAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewBatchAdd.addObject("logusername", auth.getName());
         viewBatchAdd.setViewName("Batch/BatchDeleted.html");
         return viewBatchAdd;
     }
@@ -56,6 +64,8 @@ public class BatchController {
     @RequestMapping(value = "/batchedit")
     public ModelAndView batchEditUI() {
         ModelAndView viewBatchEdit = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewBatchEdit.addObject("logusername", auth.getName());
         viewBatchEdit.setViewName("Batch/BatchEdit.html");
         return viewBatchEdit;
     }
@@ -63,6 +73,8 @@ public class BatchController {
     @RequestMapping(value = "/batchview")
     public ModelAndView batchViewUI() {
         ModelAndView viewBatchView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewBatchView.addObject("logusername", auth.getName());
         viewBatchView.setViewName("Batch/BatchView.html");
         return viewBatchView;
     }

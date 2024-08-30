@@ -1,6 +1,8 @@
 package com.sampathproducts.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +34,8 @@ public class ProductController {
     @RequestMapping(value = "/product")
     public ModelAndView productUI() {
         ModelAndView viewProduct = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewProduct.addObject("logusername", auth.getName());
         viewProduct.setViewName("Product/Product.html");
         return viewProduct;
     }
@@ -39,6 +43,8 @@ public class ProductController {
     @RequestMapping(value = "/productadd")
     public ModelAndView productAddUI() {
         ModelAndView viewProductAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewProductAdd.addObject("logusername", auth.getName());
         viewProductAdd.setViewName("Product/ProductAdd.html");
         return viewProductAdd;
     }
@@ -46,6 +52,8 @@ public class ProductController {
     @RequestMapping(value = "/productdeleted")
     public ModelAndView productDeletedItems() {
         ModelAndView viewProductAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewProductAdd.addObject("logusername", auth.getName());
         viewProductAdd.setViewName("Product/ProductDeleted.html");
         return viewProductAdd;
     }
@@ -53,6 +61,8 @@ public class ProductController {
     @RequestMapping(value = "/productedit")
     public ModelAndView productEditUI() {
         ModelAndView viewProductEdit = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewProductEdit.addObject("logusername", auth.getName());
         viewProductEdit.setViewName("Product/ProductEdit.html");
         return viewProductEdit;
     }
@@ -60,6 +70,8 @@ public class ProductController {
     @RequestMapping(value = "/productview")
     public ModelAndView productViewUI() {
         ModelAndView viewProductView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewProductView.addObject("logusername", auth.getName());
         viewProductView.setViewName("Product/ProductView.html");
         return viewProductView;
     }
@@ -67,6 +79,8 @@ public class ProductController {
     @RequestMapping(value = "/productstores")
     public ModelAndView productStoresUI() {
         ModelAndView viewProductView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewProductView.addObject("logusername", auth.getName());
         viewProductView.setViewName("Product/ProductStore.html");
         return viewProductView;
     }

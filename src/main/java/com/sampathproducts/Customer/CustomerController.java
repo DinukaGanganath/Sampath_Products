@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +34,8 @@ public class CustomerController {
     @RequestMapping(value = "/customer")
     public ModelAndView customerUI() {
         ModelAndView viewCustomer = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewCustomer.addObject("logusername", auth.getName());
         viewCustomer.setViewName("Customer/Customer.html");
         return viewCustomer;
     }
@@ -39,6 +43,8 @@ public class CustomerController {
     @RequestMapping(value = "/customeradd")
     public ModelAndView customerAddUI() {
         ModelAndView viewCustomerAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewCustomerAdd.addObject("logusername", auth.getName());
         viewCustomerAdd.setViewName("Customer/CustomerAdd.html");
         return viewCustomerAdd;
     }
@@ -46,6 +52,8 @@ public class CustomerController {
     @RequestMapping(value = "/customerdeleted")
     public ModelAndView customerDeletedItems() {
         ModelAndView viewCustomerAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewCustomerAdd.addObject("logusername", auth.getName());
         viewCustomerAdd.setViewName("Customer/CustomerDeleted.html");
         return viewCustomerAdd;
     }
@@ -53,6 +61,8 @@ public class CustomerController {
     @RequestMapping(value = "/customeredit")
     public ModelAndView customerEditUI() {
         ModelAndView viewCustomerEdit = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewCustomerEdit.addObject("logusername", auth.getName());
         viewCustomerEdit.setViewName("Customer/CustomerEdit.html");
         return viewCustomerEdit;
     }
@@ -60,6 +70,8 @@ public class CustomerController {
     @RequestMapping(value = "/customerview")
     public ModelAndView customerViewUI() {
         ModelAndView viewCustomerView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewCustomerView.addObject("logusername", auth.getName());
         viewCustomerView.setViewName("Customer/CustomerView.html");
         return viewCustomerView;
     }

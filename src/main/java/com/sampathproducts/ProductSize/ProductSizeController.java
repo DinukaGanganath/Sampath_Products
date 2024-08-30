@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +31,8 @@ public class ProductSizeController {
     @RequestMapping(value = "/productsizes")
     public ModelAndView productsizeUI() {
         ModelAndView viewProductSize = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewProductSize.addObject("logusername", auth.getName());
         viewProductSize.setViewName("ProductSize/ProductSize.html");
         return viewProductSize;
     }
@@ -36,6 +40,8 @@ public class ProductSizeController {
     @RequestMapping(value = "/productsizedeleted")
     public ModelAndView productsizeDeletedUI() {
         ModelAndView viewProductSizeAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewProductSizeAdd.addObject("logusername", auth.getName());
         viewProductSizeAdd.setViewName("ProductSize/ProductSizeDeleted.html");
         return viewProductSizeAdd;
     }
@@ -43,6 +49,8 @@ public class ProductSizeController {
     @RequestMapping(value = "/productsizeAdd")
     public ModelAndView productsizeAddUI() {
         ModelAndView viewProductSizeAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewProductSizeAdd.addObject("logusername", auth.getName());
         viewProductSizeAdd.setViewName("ProductSize/ProductSizeAdd.html");
         return viewProductSizeAdd;
     }

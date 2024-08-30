@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,8 @@ public class MaterialController {
     @RequestMapping(value = "/material")
     public ModelAndView materialUI() {
         ModelAndView viewMaterial = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewMaterial.addObject("logusername", auth.getName());
         viewMaterial.setViewName("Material/Material.html");
         return viewMaterial;
     }
@@ -37,6 +41,8 @@ public class MaterialController {
     @RequestMapping(value = "/materialadd")
     public ModelAndView materialAddUI() {
         ModelAndView viewMaterialAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewMaterialAdd.addObject("logusername", auth.getName());
         viewMaterialAdd.setViewName("Material/MaterialAdd.html");
         return viewMaterialAdd;
     }
@@ -44,6 +50,8 @@ public class MaterialController {
     @RequestMapping(value = "/materialneed")
     public ModelAndView materialNeedUI() {
         ModelAndView viewMaterialAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewMaterialAdd.addObject("logusername", auth.getName());
         viewMaterialAdd.setViewName("Material/MaterialNeed.html");
         return viewMaterialAdd;
     }
@@ -51,6 +59,8 @@ public class MaterialController {
     @RequestMapping(value = "/materialordered")
     public ModelAndView materialOrderUI() {
         ModelAndView viewMaterialAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewMaterialAdd.addObject("logusername", auth.getName());
         viewMaterialAdd.setViewName("Material/MaterialOrdered.html");
         return viewMaterialAdd;
     }
@@ -58,6 +68,8 @@ public class MaterialController {
     @RequestMapping(value = "/materialreceived")
     public ModelAndView materialRecievedUI() {
         ModelAndView viewMaterialAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewMaterialAdd.addObject("logusername", auth.getName());
         viewMaterialAdd.setViewName("Material/MaterialRecieved.html");
         return viewMaterialAdd;
     }

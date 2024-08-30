@@ -27,9 +27,8 @@ public class LoginController {
     @GetMapping(value = "/index")
     public ModelAndView indexUI() {
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
         ModelAndView loginView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         loginView.addObject("logusername", auth.getName());
         loginView.setViewName("DashBoard/Admin.html");
         return loginView;

@@ -3,6 +3,8 @@ package com.sampathproducts.Payment;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +30,8 @@ public class PaymentController {
     @RequestMapping(value = "/payments")
     public ModelAndView paymentUI() {
         ModelAndView viewPayment = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewPayment.addObject("logusername", auth.getName());
         viewPayment.setViewName("Payment/Payment.html");
         return viewPayment;
     }
@@ -35,6 +39,8 @@ public class PaymentController {
     @RequestMapping(value = "/paymentdeleted")
     public ModelAndView paymentDeletedUI() {
         ModelAndView viewPaymentAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewPaymentAdd.addObject("logusername", auth.getName());
         viewPaymentAdd.setViewName("Payment/PaymentDeleted.html");
         return viewPaymentAdd;
     }
@@ -42,6 +48,8 @@ public class PaymentController {
     @RequestMapping(value = "/paymentAdd")
     public ModelAndView paymentAddUI() {
         ModelAndView viewPaymentAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewPaymentAdd.addObject("logusername", auth.getName());
         viewPaymentAdd.setViewName("Payment/PaymentAdd.html");
         return viewPaymentAdd;
     }

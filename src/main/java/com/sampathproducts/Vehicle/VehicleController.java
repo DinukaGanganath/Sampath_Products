@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,8 @@ public class VehicleController {
     @RequestMapping(value = "/vehicle")
     public ModelAndView vehicleUI() {
         ModelAndView viewVehicle = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewVehicle.addObject("logusername", auth.getName());
         viewVehicle.setViewName("Vehicle/Vehicle.html");
         return viewVehicle;
     }
@@ -37,6 +41,8 @@ public class VehicleController {
     @RequestMapping(value = "/vehicleadd")
     public ModelAndView vehicleAddUI() {
         ModelAndView viewVehicleAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewVehicleAdd.addObject("logusername", auth.getName());
         viewVehicleAdd.setViewName("Vehicle/VehicleAdd.html");
         return viewVehicleAdd;
     }
@@ -44,6 +50,8 @@ public class VehicleController {
     @RequestMapping(value = "/vehicledeleted")
     public ModelAndView vehicleDeletedItems() {
         ModelAndView viewVehicleAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewVehicleAdd.addObject("logusername", auth.getName());
         viewVehicleAdd.setViewName("Vehicle/VehicleDeleted.html");
         return viewVehicleAdd;
     }
@@ -51,6 +59,8 @@ public class VehicleController {
     @RequestMapping(value = "/vehicleedit")
     public ModelAndView vehicleEditUI() {
         ModelAndView viewVehicleEdit = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewVehicleEdit.addObject("logusername", auth.getName());
         viewVehicleEdit.setViewName("Vehicle/VehicleEdit.html");
         return viewVehicleEdit;
     }
@@ -58,6 +68,8 @@ public class VehicleController {
     @RequestMapping(value = "/vehicleview")
     public ModelAndView vehicleViewUI() {
         ModelAndView viewVehicleView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewVehicleView.addObject("logusername", auth.getName());
         viewVehicleView.setViewName("Vehicle/VehicleView.html");
         return viewVehicleView;
     }

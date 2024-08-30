@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +33,8 @@ public class UserController {
     @RequestMapping(value = "/user")
     public ModelAndView userUI() {
         ModelAndView viewUser = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewUser.addObject("logusername", auth.getName());
         viewUser.setViewName("User/User.html");
         return viewUser;
     }
@@ -38,6 +42,8 @@ public class UserController {
     @RequestMapping(value = "/useradd")
     public ModelAndView userAddUI() {
         ModelAndView viewUserAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewUserAdd.addObject("logusername", auth.getName());
         viewUserAdd.setViewName("User/UserAdd.html");
         return viewUserAdd;
     }
@@ -45,6 +51,8 @@ public class UserController {
     @RequestMapping(value = "/userdeleted")
     public ModelAndView userDeletedItems() {
         ModelAndView viewUserAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewUserAdd.addObject("logusername", auth.getName());
         viewUserAdd.setViewName("User/UserDeleted.html");
         return viewUserAdd;
     }
@@ -52,6 +60,8 @@ public class UserController {
     @RequestMapping(value = "/useredit")
     public ModelAndView userEditUI() {
         ModelAndView viewUserEdit = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewUserEdit.addObject("logusername", auth.getName());
         viewUserEdit.setViewName("User/UserEdit.html");
         return viewUserEdit;
     }
@@ -59,6 +69,8 @@ public class UserController {
     @RequestMapping(value = "/userview")
     public ModelAndView userViewUI() {
         ModelAndView viewUserView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewUserView.addObject("logusername", auth.getName());
         viewUserView.setViewName("User/UserView.html");
         return viewUserView;
     }

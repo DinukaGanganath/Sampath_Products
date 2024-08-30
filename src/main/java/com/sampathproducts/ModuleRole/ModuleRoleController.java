@@ -3,6 +3,8 @@ package com.sampathproducts.ModuleRole;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +27,8 @@ public class ModuleRoleController {
     @RequestMapping(value = "/privilage")
     public ModelAndView privilageUI() {
         ModelAndView viewModuleRole = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewModuleRole.addObject("logusername", auth.getName());
         viewModuleRole.setViewName("Privilage/Privilage.html");
         return viewModuleRole;
     }
@@ -32,6 +36,8 @@ public class ModuleRoleController {
     @RequestMapping(value = "/privilagedeleted")
     public ModelAndView privilageDeletedUI() {
         ModelAndView viewModuleRoleAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewModuleRoleAdd.addObject("logusername", auth.getName());
         viewModuleRoleAdd.setViewName("ModuleRole/ModuleRoleDeleted.html");
         return viewModuleRoleAdd;
     }
@@ -39,6 +45,8 @@ public class ModuleRoleController {
     @RequestMapping(value = "/privilageAdd")
     public ModelAndView privilageAddUI() {
         ModelAndView viewModuleRoleAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewModuleRoleAdd.addObject("logusername", auth.getName());
         viewModuleRoleAdd.setViewName("ModuleRole/ModuleRoleAdd.html");
         return viewModuleRoleAdd;
     }

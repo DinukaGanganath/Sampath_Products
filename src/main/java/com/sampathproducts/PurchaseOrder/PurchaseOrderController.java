@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +32,8 @@ public class PurchaseOrderController {
     @RequestMapping(value = "/purchaseorder")
     public ModelAndView purchaseorderUI() {
         ModelAndView viewPurchaseOrder = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewPurchaseOrder.addObject("logusername", auth.getName());
         viewPurchaseOrder.setViewName("PurchaseOrder/PurchaseOrder.html");
         return viewPurchaseOrder;
     }
@@ -37,6 +41,8 @@ public class PurchaseOrderController {
     @RequestMapping(value = "/purchaseorderadd")
     public ModelAndView purchaseorderAddUI() {
         ModelAndView viewPurchaseOrderAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewPurchaseOrderAdd.addObject("logusername", auth.getName());
         viewPurchaseOrderAdd.setViewName("PurchaseOrder/PurchaseOrderAdd.html");
         return viewPurchaseOrderAdd;
     }
@@ -44,6 +50,8 @@ public class PurchaseOrderController {
     @RequestMapping(value = "/purchaseorderdeleted")
     public ModelAndView purchaseorderDeletedItems() {
         ModelAndView viewPurchaseOrderAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewPurchaseOrderAdd.addObject("logusername", auth.getName());
         viewPurchaseOrderAdd.setViewName("PurchaseOrder/PurchaseOrderDeleted.html");
         return viewPurchaseOrderAdd;
     }
@@ -51,6 +59,8 @@ public class PurchaseOrderController {
     @RequestMapping(value = "/purchaseorderedit")
     public ModelAndView purchaseorderEditUI() {
         ModelAndView viewPurchaseOrderEdit = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewPurchaseOrderEdit.addObject("logusername", auth.getName());
         viewPurchaseOrderEdit.setViewName("PurchaseOrder/PurchaseOrderEdit.html");
         return viewPurchaseOrderEdit;
     }
@@ -58,6 +68,8 @@ public class PurchaseOrderController {
     @RequestMapping(value = "/purchaseorderview")
     public ModelAndView purchaseorderViewUI() {
         ModelAndView viewPurchaseOrderView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewPurchaseOrderView.addObject("logusername", auth.getName());
         viewPurchaseOrderView.setViewName("PurchaseOrder/PurchaseOrderView.html");
         return viewPurchaseOrderView;
     }

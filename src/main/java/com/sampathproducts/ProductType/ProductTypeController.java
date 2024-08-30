@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +31,8 @@ public class ProductTypeController {
     @RequestMapping(value = "/producttypes")
     public ModelAndView producttypeUI() {
         ModelAndView viewProductType = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewProductType.addObject("logusername", auth.getName());
         viewProductType.setViewName("ProductType/ProductType.html");
         return viewProductType;
     }
@@ -36,6 +40,8 @@ public class ProductTypeController {
     @RequestMapping(value = "/producttypedeleted")
     public ModelAndView producttypeDeletedUI() {
         ModelAndView viewProductTypeAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewProductTypeAdd.addObject("logusername", auth.getName());
         viewProductTypeAdd.setViewName("ProductType/ProductTypeDeleted.html");
         return viewProductTypeAdd;
     }
@@ -43,6 +49,8 @@ public class ProductTypeController {
     @RequestMapping(value = "/producttypeAdd")
     public ModelAndView producttypeAddUI() {
         ModelAndView viewProductTypeAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewProductTypeAdd.addObject("logusername", auth.getName());
         viewProductTypeAdd.setViewName("ProductType/ProductTypeAdd.html");
         return viewProductTypeAdd;
     }

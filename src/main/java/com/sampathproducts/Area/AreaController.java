@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +31,8 @@ public class AreaController {
     @RequestMapping(value = "/areas")
     public ModelAndView areaUI() {
         ModelAndView viewArea = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewArea.addObject("logusername", auth.getName());
         viewArea.setViewName("Area/Area.html");
         return viewArea;
     }
@@ -36,6 +40,8 @@ public class AreaController {
     @RequestMapping(value = "/areadeleted")
     public ModelAndView areaDeletedUI() {
         ModelAndView viewAreaAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewAreaAdd.addObject("logusername", auth.getName());
         viewAreaAdd.setViewName("Area/AreaDeleted.html");
         return viewAreaAdd;
     }
@@ -43,6 +49,8 @@ public class AreaController {
     @RequestMapping(value = "/aeraAdd")
     public ModelAndView areaAddUI() {
         ModelAndView viewAreaAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewAreaAdd.addObject("logusername", auth.getName());
         viewAreaAdd.setViewName("Area/AreaAdd.html");
         return viewAreaAdd;
     }

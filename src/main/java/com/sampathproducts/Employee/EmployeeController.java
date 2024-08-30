@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +42,8 @@ public class EmployeeController {
     @RequestMapping(value = "/employee")
     public ModelAndView employeeUI() {
         ModelAndView viewEmployee = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewEmployee.addObject("logusername", auth.getName());
         viewEmployee.setViewName("Employee/Employee.html");
         return viewEmployee;
     }
@@ -47,6 +51,8 @@ public class EmployeeController {
     @RequestMapping(value = "/employeeadd")
     public ModelAndView employeeAddUI() {
         ModelAndView viewEmployeeAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewEmployeeAdd.addObject("logusername", auth.getName());
         viewEmployeeAdd.setViewName("Employee/EmployeeAdd.html");
         return viewEmployeeAdd;
     }

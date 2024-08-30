@@ -3,6 +3,8 @@ package com.sampathproducts.RecieveNote;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +22,8 @@ public class RecieveNoteController {
     @RequestMapping(value = "/recievenote")
     public ModelAndView recievenoteUI() {
         ModelAndView viewRecieveNote = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewRecieveNote.addObject("logusername", auth.getName());
         viewRecieveNote.setViewName("RecieveNote/RecieveNote.html");
         return viewRecieveNote;
     }
@@ -27,6 +31,8 @@ public class RecieveNoteController {
     @RequestMapping(value = "/recievenoteadd")
     public ModelAndView recievenoteAddUI() {
         ModelAndView viewRecieveNoteAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewRecieveNoteAdd.addObject("logusername", auth.getName());
         viewRecieveNoteAdd.setViewName("RecieveNote/RecieveNoteAdd.html");
         return viewRecieveNoteAdd;
     }
@@ -34,6 +40,8 @@ public class RecieveNoteController {
     @RequestMapping(value = "/recievenotedeleted")
     public ModelAndView recievenoteDeletedItems() {
         ModelAndView viewRecieveNoteAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewRecieveNoteAdd.addObject("logusername", auth.getName());
         viewRecieveNoteAdd.setViewName("RecieveNote/RecieveNoteDeleted.html");
         return viewRecieveNoteAdd;
     }
@@ -41,6 +49,8 @@ public class RecieveNoteController {
     @RequestMapping(value = "/recievenoteedit")
     public ModelAndView recievenoteEditUI() {
         ModelAndView viewRecieveNoteEdit = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewRecieveNoteEdit.addObject("logusername", auth.getName());
         viewRecieveNoteEdit.setViewName("RecieveNote/RecieveNoteEdit.html");
         return viewRecieveNoteEdit;
     }
@@ -48,6 +58,8 @@ public class RecieveNoteController {
     @RequestMapping(value = "/recievenoteview")
     public ModelAndView recievenoteViewUI() {
         ModelAndView viewRecieveNoteView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewRecieveNoteView.addObject("logusername", auth.getName());
         viewRecieveNoteView.setViewName("RecieveNote/RecieveNoteView.html");
         return viewRecieveNoteView;
     }

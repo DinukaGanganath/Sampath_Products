@@ -42,7 +42,10 @@ public class CustomerOrderController {
     // create mapping ui
     @RequestMapping(value = "/customerorder")
     public ModelAndView customerorderUI() {
+
         ModelAndView viewOrder = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewOrder.addObject("logusername", auth.getName());
         viewOrder.setViewName("CustomerOrder/CustOrder.html");
         return viewOrder;
     }
@@ -50,6 +53,8 @@ public class CustomerOrderController {
     @RequestMapping(value = "/customerorderready")
     public ModelAndView customerordervalidUI() {
         ModelAndView viewOrder = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewOrder.addObject("logusername", auth.getName());
         viewOrder.setViewName("CustomerOrder/CustOrderReady.html");
         return viewOrder;
     }
@@ -57,6 +62,8 @@ public class CustomerOrderController {
     @RequestMapping(value = "/customerordershipped")
     public ModelAndView customerorderExpiredUI() {
         ModelAndView viewOrder = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewOrder.addObject("logusername", auth.getName());
         viewOrder.setViewName("CustomerOrder/CustOrdershipped.html");
         return viewOrder;
     }
@@ -64,6 +71,8 @@ public class CustomerOrderController {
     @RequestMapping(value = "/customerorderdelivered")
     public ModelAndView customerorderEndingUI() {
         ModelAndView viewOrder = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewOrder.addObject("logusername", auth.getName());
         viewOrder.setViewName("CustomerOrder/CustOrderDelivered.html");
         return viewOrder;
     }

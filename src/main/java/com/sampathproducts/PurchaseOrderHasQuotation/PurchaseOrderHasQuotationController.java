@@ -2,6 +2,8 @@ package com.sampathproducts.PurchaseOrderHasQuotation;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +27,8 @@ public class PurchaseOrderHasQuotationController {
     @RequestMapping(value = "/purchaseorderLine")
     public ModelAndView purchaseorderUI() {
         ModelAndView viewPurchaseOrder = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewPurchaseOrder.addObject("logusername", auth.getName());
         viewPurchaseOrder.setViewName("Material/MaterialOrdered.html");
         return viewPurchaseOrder;
     }

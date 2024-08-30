@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +34,8 @@ public class SupplierController {
     @RequestMapping(value = "/supplier")
     public ModelAndView supplierUI() {
         ModelAndView viewSupplier = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewSupplier.addObject("logusername", auth.getName());
         viewSupplier.setViewName("Supplier/Supplier.html");
         return viewSupplier;
     }
@@ -39,6 +43,8 @@ public class SupplierController {
     @RequestMapping(value = "/supplieradd")
     public ModelAndView supplierAddUI() {
         ModelAndView viewSupplierAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewSupplierAdd.addObject("logusername", auth.getName());
         viewSupplierAdd.setViewName("Supplier/SupplierAdd.html");
         return viewSupplierAdd;
     }
@@ -46,6 +52,8 @@ public class SupplierController {
     @RequestMapping(value = "/supplierdeleted")
     public ModelAndView supplierDeletedItems() {
         ModelAndView viewSupplierAdd = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewSupplierAdd.addObject("logusername", auth.getName());
         viewSupplierAdd.setViewName("Supplier/SupplierDeleted.html");
         return viewSupplierAdd;
     }
@@ -53,6 +61,8 @@ public class SupplierController {
     @RequestMapping(value = "/supplieredit")
     public ModelAndView supplierEditUI() {
         ModelAndView viewSupplierEdit = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewSupplierEdit.addObject("logusername", auth.getName());
         viewSupplierEdit.setViewName("Supplier/SupplierEdit.html");
         return viewSupplierEdit;
     }
@@ -60,6 +70,8 @@ public class SupplierController {
     @RequestMapping(value = "/supplierview")
     public ModelAndView supplierViewUI() {
         ModelAndView viewSupplierView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        viewSupplierView.addObject("logusername", auth.getName());
         viewSupplierView.setViewName("Supplier/SupplierView.html");
         return viewSupplierView;
     }
